@@ -1,0 +1,1 @@
+Skeleton for an offline application based on Meteor and Meteoric (Possible change to Materialize)
