@@ -55,11 +55,3 @@ if ( Meteor.isClient ) {
       'removeContact'
   ]);
 }
-
-if ( Meteor.isServer ) {
-  Meteor.startup(function () {
-    if (Contacts.find().count() === 0) {
-      Contacts.
-    }
-  })
-}
