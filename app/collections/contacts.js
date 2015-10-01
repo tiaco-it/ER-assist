@@ -22,9 +22,11 @@ Contacts = new Meteor.Collection('Contacts');
 
 //Meteor.is(options) checks where meteor is running, in this case on Cordova which means mobile
 //Ground.Collection makes the collection available offline
+
 if (Meteor.isCordova) Ground.Collection(Contacts);
 
 //Methods for user input to the collection: Adding, editing, removing
+
 Meteor.methods({
   addContact: function(doc) {
     check(doc, ContactsSchema);
@@ -45,10 +47,19 @@ Meteor.methods({
 
 //Lets you cache method calls on the collection so that they apply when the app goes online
 //Simple "last update wins" conflict resolution at server
+
 if ( Meteor.isClient ) {
   Ground.methodResume([
       'addContact',
       'editContact',
       'removeContact'
   ]);
+}
+
+if ( Meteor.isServer ) {
+  Meteor.startup(function () {
+    if (Contacts.find().count() === 0) {
+      Contacts.
+    }
+  })
 }

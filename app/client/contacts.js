@@ -13,6 +13,10 @@ Template.contacts.helpers({
 	}
 });
 
+//Asynchronous call to the collection method 'removeContact'
+//The third argument is a special async arg, making the call async and forcing you
+//to handle the possible async error as done here
+
 Template.contacts.events({
 	'click .button-assertive': function(e) {
 		e.preventDefault();
@@ -37,6 +41,10 @@ Template.edit.helpers({
 		return Contacts.findOne(Router.current().params._id);
 	}
 });
+
+//hooks provide callback when the given formID is provided in an AutoForm call
+//The id is used to connect the forms to the hook
+//When is the hook called? In this case onSubmit
 
 AutoForm.hooks({
 	insertContactForm: {
