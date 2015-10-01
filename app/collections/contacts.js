@@ -1,11 +1,11 @@
 //SimpleSchema validates (constrains) input information, typically user input
 ContactsSchema = new SimpleSchema({
-  name: {
+  data1: {
     type: String,
     min: 3,
     max: 20
   },
-  email: {
+  data2: {
     type: String
   },
   createdAt: {
@@ -28,7 +28,7 @@ if (Meteor.isCordova) Ground.Collection(Contacts);
 Meteor.methods({
   addContact: function(doc) {
     check(doc, ContactsSchema);
-    var obj = {name: doc.name, email: doc.email, createdAt: new Date};
+    var obj = {data1: doc.data1, data2: doc.data2, createdAt: new Date};
     return Contacts.insert(obj);
   },
   editContact: function(obj) {
