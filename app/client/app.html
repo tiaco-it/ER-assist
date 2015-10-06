@@ -12,7 +12,7 @@
 
 <!-- The layout template is the general layout of the app, router puts it inside "body" for any page  -->
 
-<template name="layout">
+<template name="defaultLayout">
   {{#ionBody}}
 
 <!-- Basic layout for pages with side menus -->
@@ -55,15 +55,15 @@
 
 <template name="new">
   <div class="bar bar-header bar-positive">
-    {{>ionNavBackButton path="contacts" text="Back"}}
-    <div class="title">Edit Contact</div>
+    {{>ionNavBackButton path="home" text="Back"}}
+    <div class="title">Edit Element</div>
   </div>
 
 <!-- quickForm is a quick use of AutoForm which supplies basic, simple forms for filling out a specific schema (that we specify with SimpleSchema) -->
 
   {{#ionView}}
       {{#ionContent class="padding"}}
-          {{> quickForm schema="ContactsSchema" collection="Contacts" id="insertContactForm" type="normal" omitFields="createdAt, lastUpdated"}}
+          {{> quickForm schema="ElementsSchema" collection="Elements" id="insertElementForm" type="normal" omitFields="createdAt, lastUpdated"}}
       {{/ionContent}}
   {{/ionView}}
 </template>
@@ -72,8 +72,8 @@
 
 <template name="edit">
     <div class="bar bar-header bar-positive">
-      {{>ionNavBackButton path="contacts" text="Back"}}
-      <div class="title">Edit Contact</div>
+      {{>ionNavBackButton path="home" text="Back"}}
+      <div class="title">Edit Element</div>
     </div>
 
 <!-- Subscriptions connect the page to collections, can only submit data to collection if subscribed to it -->
@@ -81,7 +81,7 @@
   {{#ionView}}
       {{#ionContent class="padding"}}
         {{#if Template.subscriptionsReady}}
-          {{> quickForm schema="ContactsSchema" collection="Contacts" id="editContactForm" type="normal" doc=selectedDoc omitFields="createdAt, lastUpdated"}}
+          {{> quickForm schema="ElementsSchema" collection="Elements" id="editElementForm" type="normal" doc=selectedDoc omitFields="createdAt, lastUpdated"}}
         {{else}}
           {{> spinner}}
         {{/if}}
@@ -91,7 +91,7 @@
 
 <!-- contentFor means content for the element, in this case "headerTitle" which is one of 3 regions supplied by the IonNavBar. In general ion elements can supply regions where content is displayed if put inside contentFor "regionName" -->
 
-<template name="contacts">
+<template name="home">
   {{#contentFor "headerTitle"}}
     <h1 class="title">Offline application</h1>
   {{/contentFor}}
@@ -118,7 +118,8 @@
       {{#ionContent}}
           {{#if Template.subscriptionsReady}}
             {{#ionList}}
-             {{#each contacts}}
+<!-- Elements here refers to a helper method in app.js -->
+             {{#each Elements}}
                {{#ionItem path="edit" buttonRight=true}}
                   <h2>{{data1}}</h2>
                   <p>{{data2}}</p>

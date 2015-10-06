@@ -8,8 +8,6 @@ insecure
 aldeed:autoform
 aldeed:simple-schema
 meteoric:ionic
-meteoric:ionic-sass
-meteoric:ionicons-sass
 ground:db
 iron:router@1.0.9
 sacha:spin
@@ -27,4 +25,6 @@ random
 ejson
 spacebars
 check
-fourseven:scss
+fourseven:scss@2.0.0
+meteoric:ionic-sass
+meteoric:ionicons-sass

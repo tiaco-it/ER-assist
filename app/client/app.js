@@ -1,26 +1,26 @@
-Template.contacts.onCreated(function() {
+Template.home.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
 		if ( Meteor.status().connected ) {
-			Meteor.subscribe("contacts");
+			Meteor.subscribe("elements");
     	};
   	});
 });
 
-Template.contacts.helpers({
-	'contacts': function() {
-		return Contacts.find({});
+Template.home.helpers({
+	'Elements': function() {
+		return Elements.find({});
 	}
 });
 
-//Asynchronous call to the collection method 'removeContact'
+//Asynchronous call to the collection method 'removeElement'
 //The third argument is a special async arg, making the call async and forcing you
 //to handle the possible async error as done here
 
-Template.contacts.events({
+Template.home.events({
 	'click .button-assertive': function(e) {
 		e.preventDefault();
-		Meteor.call('removeContact', this._id, function(error, result) {
+		Meteor.call('removeElement', this._id, function(error, result) {
 			if (error) alert(error.reason);
 		});
 		return;
@@ -31,14 +31,14 @@ Template.edit.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
 		if ( Meteor.status().connected ) {
-      		Meteor.subscribe("contact", Router.current().params._id);
+      		Meteor.subscribe("element", Router.current().params._id);
     	}
   	});
 });
 
 Template.edit.helpers({
 	'selectedDoc': function() {
-		return Contacts.findOne(Router.current().params._id);
+		return Elements.findOne(Router.current().params._id);
 	}
 });
 
@@ -47,9 +47,9 @@ Template.edit.helpers({
 //When is the hook called? In this case onSubmit
 
 AutoForm.hooks({
-	insertContactForm: {
+	insertElementForm: {
 		onSubmit: function(insertDoc) {
-			Meteor.call('addContact', insertDoc, function(error, result) {
+			Meteor.call('addElement', insertDoc, function(error, result) {
 				if (error) alert(error.reason);
 			});
 			$(".back-button").click();
@@ -59,10 +59,10 @@ AutoForm.hooks({
 });
 
 AutoForm.hooks({
-	editContactForm: {
+	editElementForm: {
 		onSubmit: function(insertDoc, updateDoc, currentDoc) {
 			var obj = {_id: Router.current().params._id, updateDoc: updateDoc};
-			Meteor.call('editContact', obj, function(error, result) {
+			Meteor.call('editElement', obj, function(error, result) {
 				if (error) alert(error.reason);
 			});
 			$(".back-button").click();
