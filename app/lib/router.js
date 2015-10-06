@@ -4,7 +4,7 @@
 //Standard behaviour: If the user navigates to the url of the route, render the template
 //with the same name
 
-//Route names are relative to base url of the page
+//Route paths are relative to base url of the page
 
 Router.configure({
   layoutTemplate: 'defaultLayout',
@@ -19,8 +19,16 @@ Router.route('/', function () {
     name: 'home'
 });
 
-Router.route('/edit/_id', function () {
+Router.route('/laws/', function (){
+    this.render('laws');
+  }, {
+    name: 'laws'
+});
+
+Router.route('/edit/:_id', function () {
     this.render('edit');
+  }, {
+    name: 'edit'
     // reference for future code
     //var params = this.params; // {_id: '5'}
     //var id = params._id; // '5'

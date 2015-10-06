@@ -27,6 +27,7 @@
                 <div class="item item-icon-right" data-ion-menu-close>
                   Close button {{> ionIcon icon="arrow-right-b"}}
                 </div>
+                <a class="item item-icon-right" href="{{pathFor 'laws'}}">Laws {{> ionIcon icon="arrow-right-c"}}</a>
               </div>
             </div>
           {{/ionSideMenu}}
@@ -118,8 +119,8 @@
       {{#ionContent}}
           {{#if Template.subscriptionsReady}}
             {{#ionList}}
-<!-- Elements here refers to a helper method in app.js -->
-             {{#each Elements}}
+<!-- items here refers to a helper method in app.js which returns an array of objects -->
+             {{#each items}}
                {{#ionItem path="edit" buttonRight=true}}
                   <h2>{{data1}}</h2>
                   <p>{{data2}}</p>
@@ -136,3 +137,61 @@
   {{/ionView}}
 </template>
 
+<template name="laws">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Laws</h1>
+  {{/contentFor}}
+
+
+  {{#contentFor "headerButtonRight"}}
+    <a href="{{pathFor 'new'}}" class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</a>
+  {{/contentFor}}
+
+
+  {{#contentFor "headerButtonLeft"}}
+    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+    {{> ionIcon icon="navicon"}}</button>
+  {{/contentFor}}
+
+
+  {{#ionView}}
+      {{#ionContent}}
+          {{#ionList}}
+             {{#each laws}}
+               {{#ionItem path="laws" buttonRight=true}}
+                  <h2>{{title}}</h2>
+                  <button class="button button-assertive">
+                    {{> ionIcon icon="close-circled"}}
+                  </button>
+               {{/ionItem}}
+            {{/each}}
+          {{/ionList}}
+      {{/ionContent}}
+  {{/ionView}}
+</template>
+
+<template name='law'>
+  {{#contentFor "headerTitle"}}
+    {{#with thisLaw}}
+    <h1 class="title">{{title}}</h1>
+    {{/with}}
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+    <a href="{{pathFor 'new'}}" class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</a>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonLeft"}}
+    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+    {{> ionIcon icon="navicon"}}</button>
+  {{/contentFor}}
+
+  {{#ionView}}
+      {{#ionContent}}
+          {{#with thisLaw}}
+            <h2>{{title}}</h2>
+            <p>{{text}}</p>
+          {{/with}}
+      {{/ionContent}}
+  {{/ionView}}
+  </template>

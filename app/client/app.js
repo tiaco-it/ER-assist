@@ -2,16 +2,39 @@ Template.home.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
 		if ( Meteor.status().connected ) {
-			Meteor.subscribe("elements");
+			self.subscribe("elements");
     	};
   	});
 });
 
 Template.home.helpers({
-	'Elements': function() {
-		return Elements.find({});
+	'items': function() {
+		var ele = Elements.find({});
+		return ele && ele
 	}
 });
+
+Template.laws.helpers({
+	'law': function() {
+		var law = Laws.find({});
+		return law && law
+	}
+});
+
+Template.law.helpers({
+	'thisLaw': function() {
+		return Laws.findOne(Router.current().params._id)
+	}
+})
+
+Template.unused.helpers( {
+	var id = this._id;
+		var qry = {};
+		qry[title] = id
+		var law = Laws.find(qry);
+		//Check if law exists before returning (error fix)
+		return law && law
+})
 
 //Asynchronous call to the collection method 'removeElement'
 //The third argument is a special async arg, making the call async and forcing you
@@ -41,6 +64,8 @@ Template.edit.helpers({
 		return Elements.findOne(Router.current().params._id);
 	}
 });
+
+
 
 //hooks provide callback when the given formID is provided in an AutoForm call
 //The id is used to connect the forms to the hook
