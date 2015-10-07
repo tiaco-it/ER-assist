@@ -137,6 +137,8 @@
   {{/ionView}}
 </template>
 
+<!-- Tentative template for displaying all laws (For shortcut directly to law) -->
+
 <template name="laws">
   {{#contentFor "headerTitle"}}
     <h1 class="title">Laws</h1>
@@ -144,11 +146,13 @@
 
 
   {{#contentFor "headerButtonRight"}}
+    <!-- This button is a placeholder -->
     <a href="{{pathFor 'new'}}" class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</a>
   {{/contentFor}}
 
 
   {{#contentFor "headerButtonLeft"}}
+  <!-- This button is a placeholder -->
     <button class="button button-clear pull-left" data-ion-menu-toggle="left">
     {{> ionIcon icon="navicon"}}</button>
   {{/contentFor}}
@@ -157,12 +161,11 @@
   {{#ionView}}
       {{#ionContent}}
           {{#ionList}}
+          <!-- For each item in laws (from the helper, check js file) -->
              {{#each laws}}
                {{#ionItem path="laws" buttonRight=true}}
-                  <h2>{{title}}</h2>
-                  <button class="button button-assertive">
-                    {{> ionIcon icon="close-circled"}}
-                  </button>
+               <!-- Paragraph from laws collection -->
+                  <h2>{{paragraph}}</h2>
                {{/ionItem}}
             {{/each}}
           {{/ionList}}
@@ -170,6 +173,8 @@
   {{/ionView}}
 </template>
 
+
+<!-- Tentative template for displaying one law -->
 <template name='law'>
   {{#contentFor "headerTitle"}}
     {{#with thisLaw}}
@@ -178,10 +183,12 @@
   {{/contentFor}}
 
   {{#contentFor "headerButtonRight"}}
+  <!-- This button is a placeholder -->
     <a href="{{pathFor 'new'}}" class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</a>
   {{/contentFor}}
 
   {{#contentFor "headerButtonLeft"}}
+  <!-- This button is a placeholder -->
     <button class="button button-clear pull-left" data-ion-menu-toggle="left">
     {{> ionIcon icon="navicon"}}</button>
   {{/contentFor}}
@@ -189,7 +196,8 @@
   {{#ionView}}
       {{#ionContent}}
           {{#with thisLaw}}
-            <h2>{{title}}</h2>
+            <h1>{{Law}}</h1>
+            <h2>{{paragraph}}</h2>
             <p>{{text}}</p>
           {{/with}}
       {{/ionContent}}
