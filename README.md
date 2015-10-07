@@ -1,5 +1,48 @@
 # ER-assist
 
+## Documentation
+### Database
+
+There are 4 collections in this app:
+#### Startcases
+*Startcases is the entry point of a path through the app*
+```
+Text: String
+// Textual content of the entry point.
+```
+
+#### Laws
+*Laws are the endpoint of a path through the app*
+```
+Law: String
+// Which legislation does this law belong to. (straffeloven, passientrettighetsloven, etc.)
+Paragraph: String
+// The paragraph number and name of the law. (17. Nødrett, Kapittel 4A, etc.)
+Text: String
+// The content of the law
+```
+
+#### Filters
+*Filters is applied in between links*
+```
+Text: String
+// Textual content of the filter
+Number_of_outcomes: Number
+// The number of outbound links from this filter
+```
+
+#### Links
+*Links bind two objects together to form a path*
+```
+From: Object
+// The object in the start of the link (startcase or filter)
+Mark: String
+// An optional mark over the link (YES, NO, etc.)
+To: Object
+// The object in the end of the link (filter or law)
+```
+
+
 ## Workflow
 #### Create branch
 First off, create a new branch:
