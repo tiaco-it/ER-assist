@@ -27,7 +27,7 @@
                 <div class="item item-icon-right" data-ion-menu-close>
                   Close button {{> ionIcon icon="arrow-right-b"}}
                 </div>
-                <a class="item item-icon-right" href="{{pathFor 'laws'}}">Laws {{> ionIcon icon="arrow-right-c"}}</a>
+                <a class="item item-icon-right" href="{{pathFor 'laws'}}" data-ion-menu-close>Laws {{> ionIcon icon="arrow-right-c"}}</a>
               </div>
             </div>
           {{/ionSideMenu}}
@@ -163,7 +163,7 @@
           {{#ionList}}
           <!-- For each item in laws (from the helper, check js file) -->
              {{#each laws}}
-               {{#ionItem path="laws" buttonRight=true}}
+               {{#ionItem}}
                <!-- Paragraph from laws collection -->
                   <h2>{{paragraph}}</h2>
                {{/ionItem}}

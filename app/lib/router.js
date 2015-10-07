@@ -19,10 +19,17 @@ Router.route('/', function () {
     name: 'home'
 });
 
-Router.route('/laws/', function (){
+Router.route('/laws', function (){
+    this.layout('defaultLayout')
     this.render('laws');
   }, {
     name: 'laws'
+});
+
+Router.route('/law/:_id', function (){
+    this.render('law');
+  }, {
+    name: 'law'
 });
 
 Router.route('/edit/:_id', function () {
@@ -30,8 +37,8 @@ Router.route('/edit/:_id', function () {
   }, {
     name: 'edit'
     // reference for future code
-    //var params = this.params; // {_id: '5'}
-    //var id = params._id; // '5'
+    //var params = this.params; // {_id: 'some id'}
+    //var id = params._id; // 'some id'
 });
 
 Router.route('/new', function () {

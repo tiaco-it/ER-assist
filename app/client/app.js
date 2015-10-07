@@ -15,6 +15,14 @@ Template.home.helpers({
 });
 
 Template.laws.helpers({
+	'laws': function() {
+		console.log('logging helper activation')
+		var laws = Laws.find({})
+		return laws && laws
+	}
+});
+
+Template.law.helpers({
 	'law': function() {
 		var law = Laws.find({});
 		return law && law

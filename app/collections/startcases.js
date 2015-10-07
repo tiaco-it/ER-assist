@@ -9,7 +9,7 @@ StartcaseSchema = new SimpleSchema({
 Startcases = new Meteor.Collection('Startcases');
 
 // Make collection available offline if on a mobile device.
-if (Meteor.isCordova) Ground.Collection(Statcases);
+if (Meteor.isCordova) Ground.Collection(Startcases);
 
 // Methods for user input
 Meteor.methods({

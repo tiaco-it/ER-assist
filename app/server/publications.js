@@ -2,17 +2,17 @@ Meteor.publish('elements', function() {
   return Elements.find();
 });
 
-Meteor.publish('contact', function(_id) {
-  return Contacts.find({_id: _id});
+Meteor.publish('element', function(_id) {
+  return Elements.find({_id: _id});
 });
 
 // STARTCASES
 Meteor.publish('startcases', function() {
-  return Statcases.find();
+  return Startcases.find();
 });
 
 Meteor.publish('startcase', function(_id) {
-  return Statcases.find({_id: _id});
+  return Startcases.find({_id: _id});
 });
 
 // LAWS
@@ -40,3 +40,4 @@ Meteor.publish('links', function() {
 
 Meteor.publish('link', function(_id) {
   return Links.find({_id: _id});
+});
