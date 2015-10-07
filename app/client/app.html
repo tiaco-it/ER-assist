@@ -12,7 +12,7 @@
 
 <!-- The layout template is the general layout of the app, router puts it inside "body" for any page  -->
 
-<template name="layout">
+<template name="defaultLayout">
   {{#ionBody}}
 
 <!-- Basic layout for pages with side menus -->
@@ -27,6 +27,7 @@
                 <div class="item item-icon-right" data-ion-menu-close>
                   Close button {{> ionIcon icon="arrow-right-b"}}
                 </div>
+                <a class="item item-icon-right" href="{{pathFor 'laws'}}">Laws {{> ionIcon icon="arrow-right-c"}}</a>
               </div>
             </div>
           {{/ionSideMenu}}
@@ -55,15 +56,15 @@
 
 <template name="new">
   <div class="bar bar-header bar-positive">
-    {{>ionNavBackButton path="contacts" text="Back"}}
-    <div class="title">Edit Contact</div>
+    {{>ionNavBackButton path="home" text="Back"}}
+    <div class="title">Edit Element</div>
   </div>
 
 <!-- quickForm is a quick use of AutoForm which supplies basic, simple forms for filling out a specific schema (that we specify with SimpleSchema) -->
 
   {{#ionView}}
       {{#ionContent class="padding"}}
-          {{> quickForm schema="ContactsSchema" collection="Contacts" id="insertContactForm" type="normal" omitFields="createdAt, lastUpdated"}}
+          {{> quickForm schema="ElementsSchema" collection="Elements" id="insertElementForm" type="normal" omitFields="createdAt, lastUpdated"}}
       {{/ionContent}}
   {{/ionView}}
 </template>
@@ -72,8 +73,8 @@
 
 <template name="edit">
     <div class="bar bar-header bar-positive">
-      {{>ionNavBackButton path="contacts" text="Back"}}
-      <div class="title">Edit Contact</div>
+      {{>ionNavBackButton path="home" text="Back"}}
+      <div class="title">Edit Element</div>
     </div>
 
 <!-- Subscriptions connect the page to collections, can only submit data to collection if subscribed to it -->
@@ -81,7 +82,7 @@
   {{#ionView}}
       {{#ionContent class="padding"}}
         {{#if Template.subscriptionsReady}}
-          {{> quickForm schema="ContactsSchema" collection="Contacts" id="editContactForm" type="normal" doc=selectedDoc omitFields="createdAt, lastUpdated"}}
+          {{> quickForm schema="ElementsSchema" collection="Elements" id="editElementForm" type="normal" doc=selectedDoc omitFields="createdAt, lastUpdated"}}
         {{else}}
           {{> spinner}}
         {{/if}}
@@ -91,7 +92,7 @@
 
 <!-- contentFor means content for the element, in this case "headerTitle" which is one of 3 regions supplied by the IonNavBar. In general ion elements can supply regions where content is displayed if put inside contentFor "regionName" -->
 
-<template name="contacts">
+<template name="home">
   {{#contentFor "headerTitle"}}
     <h1 class="title">Offline application</h1>
   {{/contentFor}}
@@ -118,7 +119,8 @@
       {{#ionContent}}
           {{#if Template.subscriptionsReady}}
             {{#ionList}}
-             {{#each contacts}}
+<!-- items here refers to a helper method in app.js which returns an array of objects -->
+             {{#each items}}
                {{#ionItem path="edit" buttonRight=true}}
                   <h2>{{data1}}</h2>
                   <p>{{data2}}</p>
@@ -135,3 +137,69 @@
   {{/ionView}}
 </template>
 
+<!-- Tentative template for displaying all laws (For shortcut directly to law) -->
+
+<template name="laws">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Laws</h1>
+  {{/contentFor}}
+
+
+  {{#contentFor "headerButtonRight"}}
+    <!-- This button is a placeholder -->
+    <a href="{{pathFor 'new'}}" class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</a>
+  {{/contentFor}}
+
+
+  {{#contentFor "headerButtonLeft"}}
+  <!-- This button is a placeholder -->
+    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+    {{> ionIcon icon="navicon"}}</button>
+  {{/contentFor}}
+
+
+  {{#ionView}}
+      {{#ionContent}}
+          {{#ionList}}
+          <!-- For each item in laws (from the helper, check js file) -->
+             {{#each laws}}
+               {{#ionItem path="laws" buttonRight=true}}
+               <!-- Paragraph from laws collection -->
+                  <h2>{{paragraph}}</h2>
+               {{/ionItem}}
+            {{/each}}
+          {{/ionList}}
+      {{/ionContent}}
+  {{/ionView}}
+</template>
+
+
+<!-- Tentative template for displaying one law -->
+<template name='law'>
+  {{#contentFor "headerTitle"}}
+    {{#with thisLaw}}
+    <h1 class="title">{{title}}</h1>
+    {{/with}}
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+  <!-- This button is a placeholder -->
+    <a href="{{pathFor 'new'}}" class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</a>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonLeft"}}
+  <!-- This button is a placeholder -->
+    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+    {{> ionIcon icon="navicon"}}</button>
+  {{/contentFor}}
+
+  {{#ionView}}
+      {{#ionContent}}
+          {{#with thisLaw}}
+            <h1>{{Law}}</h1>
+            <h2>{{paragraph}}</h2>
+            <p>{{text}}</p>
+          {{/with}}
+      {{/ionContent}}
+  {{/ionView}}
+  </template>

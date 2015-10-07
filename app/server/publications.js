@@ -1,5 +1,5 @@
-Meteor.publish('contacts', function() {
-  return Contacts.find();
+Meteor.publish('elements', function() {
+  return Elements.find();
 });
 
 Meteor.publish('contact', function(_id) {
@@ -40,4 +40,3 @@ Meteor.publish('links', function() {
 
 Meteor.publish('link', function(_id) {
   return Links.find({_id: _id});
-});
