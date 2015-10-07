@@ -3,6 +3,9 @@ LinkSchema = new SimpleSchema({
     from: {
         type: Object
     },
+    mark: {
+        type: String
+    },
     to: {
         type: Object
     }
@@ -18,7 +21,7 @@ if (Meteor.isCordova) Ground.Collection(Links);
 Meteor.methods({
     addLink: function(doc) {
         check(doc, LinkSchema);
-        var obj = {from: doc.from, to: doc.to};
+        var obj = {from: doc.from, mark: doc.mark, to: doc.to};
         return Links.insert(obj);
     },
     editLink: function(obj) {

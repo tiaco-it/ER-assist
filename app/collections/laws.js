@@ -4,7 +4,7 @@ LawSchema = new SimpleSchema({
         type: String
     },
     paragraph: {
-        type: Number
+        type: String
     },
     text: {
         type: String

@@ -16,8 +16,8 @@ Text: String
 ```
 Law: String
 // Which legislation does this law belong to. (straffeloven, passientrettighetsloven, etc.)
-Paragraph: Number
-// The paragraph number of the law.
+Paragraph: String
+// The paragraph number and name of the law. (17. Nødrett, Kapittel 4A, etc.)
 Text: String
 // The content of the law
 ```
@@ -36,6 +36,8 @@ Number_of_outcomes: Number
 ```
 From: Object
 // The object in the start of the link (startcase or filter)
+Mark: String
+// An optional mark over the link (YES, NO, etc.)
 To: Object
 // The object in the end of the link (filter or law)
 ```
