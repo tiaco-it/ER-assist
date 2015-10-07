@@ -163,9 +163,10 @@
           {{#ionList}}
           <!-- For each item in laws (from the helper, check js file) -->
              {{#each laws}}
-               {{#ionItem}}
+               {{#ionItem path="law" buttonRight=true}}
                <!-- Paragraph from laws collection -->
-                  <h2>{{paragraph}}</h2>
+                  <h2>{{law}}</h2>
+                  <p>{{paragraph}}</p>
                {{/ionItem}}
             {{/each}}
           {{/ionList}}
@@ -176,22 +177,10 @@
 
 <!-- Tentative template for displaying one law -->
 <template name='law'>
-  {{#contentFor "headerTitle"}}
-    {{#with thisLaw}}
-    <h1 class="title">{{title}}</h1>
-    {{/with}}
-  {{/contentFor}}
-
-  {{#contentFor "headerButtonRight"}}
-  <!-- This button is a placeholder -->
-    <a href="{{pathFor 'new'}}" class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</a>
-  {{/contentFor}}
-
-  {{#contentFor "headerButtonLeft"}}
-  <!-- This button is a placeholder -->
-    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-    {{> ionIcon icon="navicon"}}</button>
-  {{/contentFor}}
+   <div class="bar bar-header bar-positive">
+      {{>ionNavBackButton path="laws" text="Back"}}
+      <div class="title">Single Law</div>
+    </div>
 
   {{#ionView}}
       {{#ionContent}}

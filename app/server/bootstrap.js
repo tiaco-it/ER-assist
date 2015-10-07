@@ -5,7 +5,6 @@
 
 var UPDATE = true; // set true to delete all records and insert all initial data
 
-/*
 if (UPDATE == true) {
     // Remove existing collection
     Startcases.remove({});
@@ -13,7 +12,6 @@ if (UPDATE == true) {
     Filters.remove({});
     Links.remove({});
 }
-*/
 
 // STARTCASES
 if (Startcases.find().count() === 0 || UPDATE == true) {

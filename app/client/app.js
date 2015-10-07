@@ -2,7 +2,7 @@ Template.home.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
 		if ( Meteor.status().connected ) {
-			self.subscribe("elements");
+			Meteor.subscribe("elements");
     	};
   	});
 });
@@ -23,7 +23,7 @@ Template.laws.helpers({
 });
 
 Template.law.helpers({
-	'law': function() {
+	'lawItem': function() {
 		var law = Laws.find({});
 		return law && law
 	}
@@ -33,15 +33,6 @@ Template.law.helpers({
 	'thisLaw': function() {
 		return Laws.findOne(Router.current().params._id)
 	}
-})
-
-Template.unused.helpers( {
-	var id = this._id;
-		var qry = {};
-		qry[title] = id
-		var law = Laws.find(qry);
-		//Check if law exists before returning (error fix)
-		return law && law
 })
 
 //Asynchronous call to the collection method 'removeElement'
