@@ -121,13 +121,24 @@
             {{#ionList}}
 <!-- startcases here refers to a helper method in app.js which returns an array of objects -->
              {{#each case in startcases}}
-              {{#if oneOutcome}}
+              {{#ionItem}}
+                <h2>{{case.text}}</h2>
+              {{/ionItem}}
+<!--              {{#if oneOutcome case}}
                {{#ionItem path="law" buttonRight=true}}
-                  <h2>{{text}}</h2>
+                  <h2>{{case.text}}</h2>
                {{/ionItem}}
-               {{#else}}
-                <button class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</button>
-               {{/if}}
+              {{else}}
+                {{#if twoOutcome case}}
+                  {{#ionItem path="step" buttonRight=true}}
+                    <h2>{{case.text}}</h2>
+                  {{/ionItem}}
+                {{else}}
+                  {{#ionItem path="step" buttonRight=true}}
+                    <h2>{{case.text}}</h2>
+                  {{/ionItem}}
+                {{/if}}
+              {{/if}} -->
              {{/each}}
             {{/ionList}}
          {{else}}

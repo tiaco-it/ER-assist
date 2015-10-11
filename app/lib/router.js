@@ -32,6 +32,13 @@ Router.route('/law/:_id', function (){
     name: 'law'
 });
 
+Router.route('/step/_id', function (){
+    this.layout('defaultLayout')
+    this.render('step');
+  }, {
+    name: 'step'
+});
+
 Router.route('/edit/:_id', function () {
     this.render('edit');
   }, {

@@ -151,13 +151,11 @@ if (Links.find().count() === 0 || UPDATE == true) {
             from: Startcases.findOne({text: "Suicidal pasient"}),
             mark: "",
             to: Laws.findOne({paragraph: "17. Nødrett"})
-            toLaw: true
         },
         {
             from: Startcases.findOne({text: "Voldelig pasient"}),
             mark: "",
             to: Laws.findOne({paragraph: "18. Nødverge"})
-            toLaw: true
         },
         {
             from: Startcases.findOne({text: "Pasient nekter behandling"}),

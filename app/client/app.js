@@ -9,9 +9,39 @@ Template.home.onCreated(function() {
 
 Template.home.helpers({
 	'startcases': function() {
-		var cases = Startcases.find({});
-		return cases && cases
-	}
+        var cases = Startcases.find({})
+        return cases && cases
+    },
+	'links': function() {
+        var links = Links.find({})
+        return links && links
+    },
+    'singleLink': function() {
+        Links.findOne({
+             from: fromItem 
+        })
+    },
+    'yesLink': function() {
+        Links.findOne({
+            $and: [
+            { mark: 'JA' },
+            { from: fromItem }
+            ]
+        })
+    },
+    'noLink': function() {
+        Links.findOne({
+            $and: [
+            { mark: 'NEI'},
+            { from: fromItem}
+            ]
+        })
+    },
+    'allLinks': function() {
+        Links.find({
+             from: fromItem 
+        })
+    }
 });
 
 Template.laws.helpers({
