@@ -2,15 +2,15 @@ Template.home.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
 		if ( Meteor.status().connected ) {
-			Meteor.subscribe("elements");
+			Meteor.subscribe("startcases");
     	};
   	});
 });
 
 Template.home.helpers({
-	'items': function() {
-		var ele = Elements.find({});
-		return ele && ele
+	'startcases': function() {
+		var cases = Startcases.find({});
+		return cases && cases
 	}
 });
 
@@ -19,13 +19,6 @@ Template.laws.helpers({
 		console.log('logging helper activation')
 		var laws = Laws.find({})
 		return laws && laws
-	}
-});
-
-Template.law.helpers({
-	'lawItem': function() {
-		var law = Laws.find({});
-		return law && law
 	}
 });
 

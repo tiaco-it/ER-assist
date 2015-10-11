@@ -119,15 +119,15 @@
       {{#ionContent}}
           {{#if Template.subscriptionsReady}}
             {{#ionList}}
-<!-- items here refers to a helper method in app.js which returns an array of objects -->
-             {{#each items}}
-               {{#ionItem path="edit" buttonRight=true}}
-                  <h2>{{data1}}</h2>
-                  <p>{{data2}}</p>
-                  <button class="button button-assertive">
-                    {{> ionIcon icon="close-circled"}}
-                  </button>
+<!-- startcases here refers to a helper method in app.js which returns an array of objects -->
+             {{#each case in startcases}}
+              {{#if oneOutcome}}
+               {{#ionItem path="law" buttonRight=true}}
+                  <h2>{{text}}</h2>
                {{/ionItem}}
+               {{#else}}
+                <button class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</button>
+               {{/if}}
              {{/each}}
             {{/ionList}}
          {{else}}
