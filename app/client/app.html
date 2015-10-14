@@ -13,41 +13,14 @@
 <!-- The layout template is the general layout of the app, router puts it inside "body" for any page  -->
 
 <template name="defaultLayout">
-  {{#ionBody}}
-
-<!-- Basic layout for pages with side menus -->
-      {{#ionSideMenuContainer}}
-        {{#ionSideMenus}}
-          {{#ionSideMenu}}
-            <div class="bar bar-header bar-dark">
-              <h1 class="title">More</h1>
-            </div>
-            <div class="content has-header">
-              <div class="list">
-                <div class="item item-icon-right" data-ion-menu-close>
-                  Close button {{> ionIcon icon="arrow-right-b"}}
-                </div>
-                <a class="item item-icon-right" href="{{pathFor 'laws'}}" data-ion-menu-close>Laws {{> ionIcon icon="arrow-right-c"}}</a>
-              </div>
-            </div>
-          {{/ionSideMenu}}
-        {{/ionSideMenus}}
-
-<!-- The normal middle content on a page with side menus is put inside here -->
-
-        {{#ionSideMenuContent}}
-          {{> ionNavBar class="bar-positive"}}
+    {{#ionBody}}
+        {{> ionNavBar class="bar-positive"}}
 
 <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->  
 
-           {{#ionNavView}}
-             {{> yield}}
-           {{/ionNavView}}
-        {{/ionSideMenuContent}}
-
-
-
-      {{/ionSideMenuContainer}}
+        {{#ionNavView}}
+            {{> yield}}
+        {{/ionNavView}}
     {{/ionBody}}
 
 </template>
@@ -100,18 +73,6 @@
 <!-- pathFor creates a link dynamically based on info from the route.  -->
 <!-- In this case, base version, it refers to the simple route 'new' -->
 
-<!-- Here a button is put inside a region (headerButtonRight) supplied by the top ionNavBar -->
-
-  {{#contentFor "headerButtonRight"}}
-    <a href="{{pathFor 'new'}}" class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</a>
-  {{/contentFor}}
-
-<!-- button-clear and pull-left are keywords supplied to the button (positioning in this case) -->
-
-  {{#contentFor "headerButtonLeft"}}
-    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-    {{> ionIcon icon="navicon"}}</button>
-  {{/contentFor}}
 
 <!-- {{#each}} iterates over over elements in the named object. {{ (attribute) }} can then be used to get attributes from each element. HTML and ion elements are then used to format and enclose the output content -->
 
@@ -148,6 +109,7 @@
           {{> spinner}}
          {{/if}}
       {{/ionContent}}
+      {{> tabs}}
   {{/ionView}}
 </template>
 
@@ -156,19 +118,6 @@
 <template name="laws">
   {{#contentFor "headerTitle"}}
     <h1 class="title">Laws</h1>
-  {{/contentFor}}
-
-
-  {{#contentFor "headerButtonRight"}}
-    <!-- This button is a placeholder -->
-    <a href="{{pathFor 'new'}}" class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</a>
-  {{/contentFor}}
-
-
-  {{#contentFor "headerButtonLeft"}}
-  <!-- This button is a placeholder -->
-    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-    {{> ionIcon icon="navicon"}}</button>
   {{/contentFor}}
 
 
@@ -185,6 +134,7 @@
             {{/each}}
           {{/ionList}}
       {{/ionContent}}
+      {{> tabs}}
   {{/ionView}}
 </template>
 
@@ -206,3 +156,21 @@
       {{/ionContent}}
   {{/ionView}}
   </template>
+  
+<template name="tabs">
+  {{#if isAndroid}}
+    {{#ionTabs style="android" class="tabs-background-positive tabs-color-light"}}
+      {{> ionTab title="Hjem" path="home" icon="android-home"}}
+      {{> ionTab title="Lover" path="laws" icon="android-star"}}
+      {{> ionTab title="Tab 3" path="tabs.three" icon="heart"}}
+      {{> ionTab title="Tab 4" path="tabs.four" icon="gear-b"}}
+    {{/ionTabs}}
+  {{else}}
+    {{#ionTabs style="ios"}}
+      {{> ionTab title="Hjem" path="home" iconOff="ios-home-outline" iconOn="ios-home"}}
+      {{> ionTab title="Lover" path="laws" iconOff="ios-star-outline" iconOn="ios-star"}}
+      {{> ionTab title="Tab 3" path="tabs.three" iconOff="ios-heart-outline" iconOn="ios-heart"}}
+      {{> ionTab title="Tab 4" path="tabs.four" iconOff="ios-gear-outline" iconOn="ios-gear"}}
+    {{/ionTabs}}
+  {{/if}}
+</template>
