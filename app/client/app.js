@@ -2,30 +2,91 @@ Template.home.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
 		if ( Meteor.status().connected ) {
-			Meteor.subscribe("elements");
+			Meteor.subscribe("startcases");
     	};
   	});
 });
 
 Template.home.helpers({
-	'items': function() {
-		var ele = Elements.find({});
-		return ele && ele
-	}
+	'startcases': function() {
+        var cases = Startcases.find({})
+        return cases && cases
+    },
+	'links': function() {
+        var links = Links.find({})
+        return links && links
+    },
+    'singleLink': function(fromItem) {
+        Links.findOne({
+             from: fromItem 
+        })
+    },
+    'yesLink': function(fromItem) {
+        Links.findOne({
+            $and: [
+            { mark: 'JA' },
+            { from: fromItem }
+            ]
+        })
+    },
+    'noLink': function(fromItem) {
+        Links.findOne({
+            $and: [
+            { mark: 'NEI'},
+            { from: fromItem}
+            ]
+        })
+    },
+    'allLinks': function(fromItem) {
+        Links.find({
+             from: fromItem 
+        })
+    },
+    'notClicked': function(id) {
+    	return !Session.get(id)
+    },
+    'oneOutcome': function(scase){
+    	var qry = {};
+    	qry["from"] = scase;
+    	console.log(qry)
+    	var con = Links.findOne(qry)
+    	console.log(scase)
+    	console.log(con)
+    	console.log(con.to)
+    	console.log(con.to.number_of_outcomes)
+    	if ( con.to.hasOwnProperty('paragraph') )
+    		return true
+    	else 
+    		return false
+    },
+    'twoOutcome': function(scase){
+    	var qry = {};
+    	qry['from'] = scase;
+    	var con = Links.findOne(qry)
+    	console.log(con.to)
+    	console.log(con.to.number_of_outcomes)
+    	if ( con.to.number_of_outcomes == 2 )
+    		return true
+    	else 
+    		return false
+    }
 });
+
+Template.home.events({
+	'click .button': function(e) {
+		console.log(this)
+		console.log(this.id)
+		console.log("#" + e.currentTarget.id)
+		$("#" + e.currentTarget.id).fadeOut();
+		Session.set(e.currentTarget.id, true)
+	}
+})
 
 Template.laws.helpers({
 	'laws': function() {
 		console.log('logging helper activation')
 		var laws = Laws.find({})
 		return laws && laws
-	}
-});
-
-Template.law.helpers({
-	'lawItem': function() {
-		var law = Laws.find({});
-		return law && law
 	}
 });
 
