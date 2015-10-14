@@ -58,7 +58,6 @@ oneOutcome = function(cons){
 };
 twoOutcome = function(cons){
 	if ( typeof cons[0] !== "undefined" ) {
-			console.log(cons[0])
 		if ( cons[0].to.number_of_outcomes === 2 ) {
 			return true;
 		}
@@ -67,7 +66,6 @@ twoOutcome = function(cons){
 		}
 	}
 	else if (typeof cons[1] !== "undefined" ) {
-			console.log(cons[1])
 		if ( cons[1].to.number_of_outcomes === 2 ) {
 			return true;
 		}
@@ -132,7 +130,6 @@ Template.home.helpers({
             qry2
             ]
         })
-        console.log(li.to.text)
         return li.to
     },
     'allLinks': function(fromItem) {
@@ -156,8 +153,6 @@ Template.home.helpers({
     },
 
     'currentFrom': function() {
-    	console.log('HERE')
-    	console.log(Session.get('currentFrom'))
     	return Session.get('currentFrom')
     },
     'oneEither': function(item) {
@@ -167,9 +162,6 @@ Template.home.helpers({
     	return twoOutcome(either(item))
     },
     'oneYes': function(item) {
-    	console.log('JA')
-    	console.log(item)
-    	console.log(yes(item))
     	return oneOutcome(yes(item))
     },
     'twoYes': function(item) {
@@ -187,42 +179,36 @@ Template.home.helpers({
 
 Template.home.events({
 	'click .button': function(e) {
-		var f = buttons.pop()
-		Session.set(f, false)
-		$("#" + e.currentTarget.id).fadeOut();
-		console.log(this)
-		console.log(this.text)
-		console.log(e.currentTarget.id)
-		Session.set('currentFrom', this)
-		Session.set(e.currentTarget.id, true)
-		buttons.push(e.currentTarget.id)
-	},
-	'click .button1': function(e) {
-		$("#" + e.currentTarget.id).fadeOut();
-		console.log(this)
-		console.log(this.text)
-		console.log(e.currentTarget.id)
-		Session.set('currentFrom', this)
-		Session.set(e.currentTarget.id, true)
-		buttons.push(e.currentTarget.id)
-	},
-	'click .button2': function(e) {
-		while ( buttons.length > 0 ){
+		if ($(e.currentTarget).attr("level") === "start") {
 			var f = buttons.pop()
 			Session.set(f, false)
+			$("#" + e.currentTarget.id).fadeOut();
+			Session.set('currentFrom', this)
+			Session.set(e.currentTarget.id, true)
+			buttons.push(e.currentTarget.id)
 		}
-		$("#" + e.currentTarget.id).fadeOut();
-		console.log(this)
-		console.log(this.text)
-		console.log(e.currentTarget.id)
-		Session.set('currentFrom', undefined)
-}
-
-})
+		else if ($(e.currentTarget).attr("level") === "inter") {
+			$("#" + e.currentTarget.id).fadeOut();
+			Session.set('currentFrom', this)
+			Session.set(e.currentTarget.id, true)
+			buttons.push(e.currentTarget.id)
+		}
+		else if ($(e.currentTarget).attr("level") === "end") {
+			while ( buttons.length > 0 ){
+				var f = buttons.pop()
+				Session.set(f, false)
+			}
+			$("#" + e.currentTarget.id).fadeOut();
+			Session.set('currentFrom', undefined)
+			}
+		else {
+			console.log("Failed button activation")
+		}
+	}
+});
 
 Template.laws.helpers({
 	'laws': function() {
-		console.log('logging helper activation')
 		var laws = Laws.find({})
 		return laws && laws
 	}
