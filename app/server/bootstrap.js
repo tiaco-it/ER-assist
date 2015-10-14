@@ -124,19 +124,11 @@ if (Filters.find().count() === 0 || UPDATE == true) {
         },
         {
             text: "Er pasienten samtykkekompetent?",
-            number_of_outcomes: 4
+            number_of_outcomes: 2
         },
         {
-            text: "Pasienten trenger somatisk behandling",
-            number_of_outcomes: 1
-        },
-        {
-            text: "Mistenkt alvorlig sinnslidelse",
-            number_of_outcomes: 1
-        },
-        {
-            text: "Kjent alvorlig sinnslidelse",
-            number_of_outcomes: 1
+            text: "Pasient trenger ikke øyeblikkelig hjelp og er ikke samtykkekompetent",
+            number_of_outcomes: 3
         }
     ];
     _.each(filters, function(list) {
@@ -180,31 +172,21 @@ if (Links.find().count() === 0 || UPDATE == true) {
         {
             from: Filters.findOne({text: "Er pasienten samtykkekompetent?"}),
             mark: "NEI",
-            to: Filters.findOne({text: "Pasienten trenger somatisk behandling"})
+            to: Filters.findOne({text: "Pasient trenger ikke øyeblikkelig hjelp og er ikke samtykkekompetent"})
         },
         {
-            from: Filters.findOne({text: "Er pasienten samtykkekompetent?"}),
-            mark: "NEI",
-            to: Filters.findOne({text: "Mistenkt alvorlig sinnslidelse"})
-        },
-        {
-            from: Filters.findOne({text: "Er pasienten samtykkekompetent?"}),
-            mark: "NEI",
-            to: Filters.findOne({text: "Kjent alvorlig sinnslidelse"})
-        },
-        {
-            from: Filters.findOne({text: "Pasienten trenger somatisk behandling"}),
-            mark: "",
+            from: Filters.findOne({text: "Pasient trenger ikke øyeblikkelig hjelp og er ikke samtykkekompetent"}),
+            mark: "og trenger somatisk behandling",
             to: Laws.findOne({paragraph: "Kapittel 4A"})
         },
         {
-            from: Filters.findOne({text: "Mistenkt alvorlig sinnslidelse"}),
-            mark: "",
+            from: Filters.findOne({text: "Pasient trenger ikke øyeblikkelig hjelp og er ikke samtykkekompetent"}),
+            mark: "og har en mistenkt alvorlig sinnslidelse",
             to: Laws.findOne({paragraph: "3-2.Vedtak om tvungen observasjon"})
         },
         {
-            from: Filters.findOne({text: "Kjent alvorlig sinnslidelse"}),
-            mark: "",
+            from: Filters.findOne({text: "Pasient trenger ikke øyeblikkelig hjelp og er ikke samtykkekompetent"}),
+            mark: "og har en kjent alvorlig sinnslidelse",
             to: Laws.findOne({paragraph: "3-3.Vedtak om tvungent psykisk helsevern"})
         },
 
