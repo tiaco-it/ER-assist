@@ -120,25 +120,28 @@
           {{#if Template.subscriptionsReady}}
             {{#ionList}}
 <!-- startcases here refers to a helper method in app.js which returns an array of objects -->
-             {{#each case in startcases}}
-              {{#ionItem}}
-                <h2>{{case.text}}</h2>
-              {{/ionItem}}
-<!--              {{#if oneOutcome case}}
+             {{#each scase in startcases}}
+              {{#if oneOutcome scase}}
                {{#ionItem path="law" buttonRight=true}}
-                  <h2>{{case.text}}</h2>
+                  <h2>{{scase.text}}</h2>
                {{/ionItem}}
               {{else}}
-                {{#if twoOutcome case}}
-                  {{#ionItem path="step" buttonRight=true}}
-                    <h2>{{case.text}}</h2>
-                  {{/ionItem}}
+                {{#if twoOutcome scase}}
+                  {{#if notClicked scase.text}}
+                    <button class="button" id="{{ case.text }}">
+                      <h2>{{scase.text}}</h2>
+                    </button>
+                  {{else}}
+                    <button class="button">
+                      <p>overlayquestion</p>
+                    </button>
+                  {{/if}}
                 {{else}}
                   {{#ionItem path="step" buttonRight=true}}
-                    <h2>{{case.text}}</h2>
+                    <h2>{{scase.text}}</h2>
                   {{/ionItem}}
                 {{/if}}
-              {{/if}} -->
+              {{/if}}
              {{/each}}
             {{/ionList}}
          {{else}}
