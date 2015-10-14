@@ -124,7 +124,7 @@ if (Filters.find().count() === 0 || UPDATE == true) {
         },
         {
             text: "Er pasienten samtykkekompetent?",
-            number_of_outcomes: 4
+            number_of_outcomes: 2
         },
         {
             text: "Pasient trenger ikke øyeblikkelig hjelp og er ikke samtykkekompetent",
