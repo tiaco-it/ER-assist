@@ -146,7 +146,7 @@
                       <p>{{currentFrom.text}}</p>
                       {{#with yesLink currentFrom}}
                         {{#if oneYes currentFrom}}
-                          <a href="{{pathFor 'law'}}" class="button1">
+                          <a href="{{pathFor 'law'}}" class="button2">
                             <p>Ja</p>
                           </a>
                         {{else}}
@@ -155,7 +155,7 @@
                               <p>Ja</p>
                             </button>
                           {{else}}
-                            <a href = "{{pathFor 'step'}}" class="button1">
+                            <a href = "{{pathFor 'step'}}" class="button2">
                               <p>Ja</p>
                             </a>
                           {{/if}}
@@ -163,7 +163,7 @@
                       {{/with}}
                       {{#with noLink currentFrom}}
                         {{#if oneNo currentFrom}}
-                          <a href="{{pathFor 'law'}}" class="button1">
+                          <a href="{{pathFor 'law'}}" class="button2">
                             <p>Nei</p>
                           </a>
                         {{else}}
@@ -172,7 +172,7 @@
                               <p>Nei</p>
                             </button>
                           {{else}}
-                            <a href = "{{pathFor 'step'}}" class="button1">
+                            <a href = "{{pathFor 'step'}}" class="button2">
                               <p>Nei</p>
                             </a>
                           {{/if}}
@@ -184,7 +184,7 @@
                   {{#with to scase}}
                     {{#ionItem}}
                       <a href="{{pathFor 'step'}}" class="button">
-                        <p> n > 2 outcomes</p>
+                        <p>n > 2 outcomes</p>
                         <p>{{scase.text}}</p>
                       </a>
                     {{/ionItem}}

@@ -198,7 +198,6 @@ Template.home.events({
 		buttons.push(e.currentTarget.id)
 	},
 	'click .button1': function(e) {
-		var f = buttons.pop()
 		$("#" + e.currentTarget.id).fadeOut();
 		console.log(this)
 		console.log(this.text)
@@ -206,7 +205,18 @@ Template.home.events({
 		Session.set('currentFrom', this)
 		Session.set(e.currentTarget.id, true)
 		buttons.push(e.currentTarget.id)
-	}
+	},
+	'click .button2': function(e) {
+		while ( buttons.length > 0 ){
+			var f = buttons.pop()
+			Session.set(f, false)
+		}
+		$("#" + e.currentTarget.id).fadeOut();
+		console.log(this)
+		console.log(this.text)
+		console.log(e.currentTarget.id)
+		Session.set('currentFrom', undefined)
+}
 
 })
 
