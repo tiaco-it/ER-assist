@@ -82,25 +82,74 @@
             {{#ionList}}
 <!-- startcases here refers to a helper method in app.js which returns an array of objects -->
              {{#each scase in startcases}}
-              {{#if oneOutcome scase}}
-               {{#ionItem path="law" buttonRight=true}}
-                  <h2>{{scase.text}}</h2>
+              {{#if oneEither scase}}
+               {{#ionItem}}
+                <p>One outcome</p>
+                {{#with to scase}}
+                  <a href="{{pathFor 'law'}}" class="button">
+                    <p>{{scase.text}}</p>
+                  </a>
+                {{/with}}
                {{/ionItem}}
               {{else}}
-                {{#if twoOutcome scase}}
+                {{#if twoEither scase}}
                   {{#if notClicked scase.text}}
-                    <button class="button" id="{{ case.text }}">
-                      <h2>{{scase.text}}</h2>
-                    </button>
+                    {{#ionItem}}
+                      {{#with to scase}}
+                        <p>Two outcomes</p>
+                        <button class="button" id="{{ scase.text }}">
+                          <p>{{scase.text}}</p>
+                        </button>
+                      {{/with}}
+                    {{/ionItem}}
                   {{else}}
-                    <button class="button">
-                      <p>overlayquestion</p>
-                    </button>
+                    {{#ionItem}}
+                      <p>{{currentFrom.text}}</p>
+                      {{#with yesLink currentFrom}}
+                        {{#if oneYes currentFrom}}
+                          <a href="{{pathFor 'law'}}" class="button2">
+                            <p>Ja</p>
+                          </a>
+                        {{else}}
+                          {{#if twoYes currentFrom}}
+                            <button class="button1" id = "{{ noLink.text }}">
+                              <p>Ja</p>
+                            </button>
+                          {{else}}
+                            <a href = "{{pathFor 'step'}}" class="button2">
+                              <p>Ja</p>
+                            </a>
+                          {{/if}}
+                        {{/if}}
+                      {{/with}}
+                      {{#with noLink currentFrom}}
+                        {{#if oneNo currentFrom}}
+                          <a href="{{pathFor 'law'}}" class="button2">
+                            <p>Nei</p>
+                          </a>
+                        {{else}}
+                          {{#if twoNo currentFrom}}
+                            <button class="button1" id = "{{ noLink.text }}">
+                              <p>Nei</p>
+                            </button>
+                          {{else}}
+                            <a href = "{{pathFor 'step'}}" class="button2">
+                              <p>Nei</p>
+                            </a>
+                          {{/if}}
+                        {{/if}}
+                      {{/with}}
+                    {{/ionItem}}
                   {{/if}}
                 {{else}}
-                  {{#ionItem path="step" buttonRight=true}}
-                    <h2>{{scase.text}}</h2>
-                  {{/ionItem}}
+                  {{#with to scase}}
+                    {{#ionItem}}
+                      <a href="{{pathFor 'step'}}" class="button">
+                        <p>n > 2 outcomes</p>
+                        <p>{{scase.text}}</p>
+                      </a>
+                    {{/ionItem}}
+                  {{/with}}
                 {{/if}}
               {{/if}}
              {{/each}}
@@ -120,6 +169,16 @@
     <h1 class="title">Laws</h1>
   {{/contentFor}}
 
+  {{#contentFor "headerButtonRight"}}
+    <!-- This button is a placeholder -->
+    <a href="{{pathFor 'new'}}" class="button button-clear">{{> ionIcon icon="ios-plus-empty"}}</a>
+  {{/contentFor}}
+
+
+  {{#contentFor "headerButtonLeft"}}
+  <!-- This button is a placeholder -->
+    {{>ionNavBackButton text="Back"}}
+  {{/contentFor}}
 
   {{#ionView}}
       {{#ionContent}}
@@ -142,7 +201,7 @@
 <!-- Tentative template for displaying one law -->
 <template name='law'>
    <div class="bar bar-header bar-positive">
-      {{>ionNavBackButton path="laws" text="Back"}}
+      {{>ionNavBackButton text="Back"}}
       <div class="title">Single Law</div>
     </div>
 
