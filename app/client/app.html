@@ -122,24 +122,49 @@
 <!-- startcases here refers to a helper method in app.js which returns an array of objects -->
              {{#each scase in startcases}}
               {{#if oneOutcome scase}}
-               {{#ionItem path="law" buttonRight=true}}
-                  <h2>{{scase.text}}</h2>
+               {{#ionItem}}
+                <p>One outcome</p>
+                {{#with to scase}}
+                  <a href="{{pathFor 'law'}}" class="button">
+                    <p>{{scase.text}}</p>
+                  </a>
+                {{/with}}
                {{/ionItem}}
               {{else}}
                 {{#if twoOutcome scase}}
                   {{#if notClicked scase.text}}
-                    <button class="button" id="{{ case.text }}">
-                      <h2>{{scase.text}}</h2>
-                    </button>
+                    {{#ionItem}}
+                      {{#with to scase}}
+                        <p>Two outcomes</p>
+                        <button class="button" id="{{ scase.text }}">
+                          <p>{{scase.text}}</p>
+                        </button>
+                      {{/with}}
+                    {{/ionItem}}
                   {{else}}
-                    <button class="button">
-                      <p>overlayquestion</p>
-                    </button>
+                    {{#ionItem}}
+                      <p>{{currentFrom.text}}</p>
+                      {{#with yesLink currentFrom}}
+                        <a href="{{pathFor 'law'}}" class="button">
+                          <p>Ja</p>
+                        </a>
+                      {{/with}}
+                      {{#with noLink currentFrom}}
+                        <button class="button1" id = "{{ noLink.text }}">
+                          <p>Nei</p>
+                        </button>
+                      {{/with}}
+                    {{/ionItem}}
                   {{/if}}
                 {{else}}
-                  {{#ionItem path="step" buttonRight=true}}
-                    <h2>{{scase.text}}</h2>
-                  {{/ionItem}}
+                  {{#with to scase}}
+                    {{#ionItem}}
+                      <a href="{{pathFor 'step'}}" class="button">
+                        <p> n > 2 outcomes</p>
+                        <p>{{scase.text}}</p>
+                      </a>
+                    {{/ionItem}}
+                  {{/with}}
                 {{/if}}
               {{/if}}
              {{/each}}
@@ -167,8 +192,7 @@
 
   {{#contentFor "headerButtonLeft"}}
   <!-- This button is a placeholder -->
-    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-    {{> ionIcon icon="navicon"}}</button>
+    {{>ionNavBackButton text="Back"}}
   {{/contentFor}}
 
 
@@ -192,7 +216,7 @@
 <!-- Tentative template for displaying one law -->
 <template name='law'>
    <div class="bar bar-header bar-positive">
-      {{>ionNavBackButton path="laws" text="Back"}}
+      {{>ionNavBackButton text="Back"}}
       <div class="title">Single Law</div>
     </div>
 

@@ -14,7 +14,7 @@ Router.configure({
 
 Router.route('/', function () {
     this.layout('defaultLayout')
-    this.render('home');
+    this.render('home') 
 }, {
     name: 'home'
 });
@@ -32,7 +32,7 @@ Router.route('/law/:_id', function (){
     name: 'law'
 });
 
-Router.route('/step/_id', function (){
+Router.route('/step/:_id', function (){
     this.layout('defaultLayout')
     this.render('step');
   }, {

@@ -3,7 +3,7 @@
  * The UPDATE variable is set to clear all collections and insert the initial data.
  */
 
-var UPDATE = true; // set true to delete all records and insert all initial data
+var UPDATE = false; // set true to delete all records and insert all initial data
 
 if (UPDATE == true) {
     // Remove existing collection

@@ -1,8 +1,13 @@
+var buttons  = new Array();
+
 Template.home.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
 		if ( Meteor.status().connected ) {
 			Meteor.subscribe("startcases");
+			Meteor.subscribe("laws");
+			Meteor.subscribe("filters");
+			Meteor.subscribe("links");
     	};
   	});
 });
@@ -21,21 +26,32 @@ Template.home.helpers({
              from: fromItem 
         })
     },
-    'yesLink': function(fromItem) {
-        Links.findOne({
+    'yesLink': function(scase) {
+    	var qry = {};
+    	var qry2 = {};
+    	qry["text"] = scase.text;
+    	qry2["from"] = Filters.findOne(qry);
+        var li = Links.findOne({
             $and: [
             { mark: 'JA' },
-            { from: fromItem }
+            qry2
             ]
         })
+        return li.to
     },
-    'noLink': function(fromItem) {
-        Links.findOne({
+    'noLink': function(scase) {
+    	var qry = {};
+    	var qry2 = {};
+    	qry["text"] = scase.text;
+    	qry2["from"] = Filters.findOne(qry);
+        var li = Links.findOne({
             $and: [
             { mark: 'NEI'},
-            { from: fromItem}
+            qry2
             ]
         })
+        console.log(li.to.text)
+        return li.to
     },
     'allLinks': function(fromItem) {
         Links.find({
@@ -45,41 +61,74 @@ Template.home.helpers({
     'notClicked': function(id) {
     	return !Session.get(id)
     },
+    'to': function(scase) {
+    	var qry = {};
+    	var qry2 = {};
+    	qry["text"] = scase.text;
+    	qry2["from"] = Startcases.findOne(qry);
+    	var con = Links.findOne(qry2);
+    	if ( typeof con === "undefined" )
+    		console.log("collection not built")
+    	else
+    		console.log(con.to)
+    		return con.to
+    },
     'oneOutcome': function(scase){
     	var qry = {};
-    	qry["from"] = scase;
-    	console.log(qry)
-    	var con = Links.findOne(qry)
-    	console.log(scase)
-    	console.log(con)
-    	console.log(con.to)
-    	console.log(con.to.number_of_outcomes)
-    	if ( con.to.hasOwnProperty('paragraph') )
-    		return true
-    	else 
-    		return false
+    	var qry2 = {};
+    	qry["text"] = scase.text;
+    	qry2["from"] = Startcases.findOne(qry);
+    	var con = Links.findOne(qry2);
+    	if ( typeof con === "undefined" || typeof con.to === "undefined" )
+    		console.log("collection not built");
+    	else
+    		if ( con.to.hasOwnProperty('paragraph') )
+    			return true;
+    		else 
+    			return false;
     },
     'twoOutcome': function(scase){
-    	var qry = {};
-    	qry['from'] = scase;
-    	var con = Links.findOne(qry)
-    	console.log(con.to)
-    	console.log(con.to.number_of_outcomes)
-    	if ( con.to.number_of_outcomes == 2 )
-    		return true
-    	else 
-    		return false
+		var qry = {};
+    	var qry2 = {};
+    	qry["text"] = scase.text;
+    	qry2["from"] = Startcases.findOne(qry);
+    	var con = Links.findOne(qry2);
+    	if ( typeof con === "undefined" || typeof con.to === "undefined" || typeof con.to.number_of_outcomes === "undefined" )
+    		console.log("collection not built");
+    	else
+    		if ( con.to.number_of_outcomes === 2 )
+    			return true;
+    		else 
+    			return false;
+    },
+    'currentFrom': function() {
+    	return Session.get('currentFrom')
     }
 });
 
 Template.home.events({
 	'click .button': function(e) {
-		console.log(this)
-		console.log(this.id)
-		console.log("#" + e.currentTarget.id)
+		var f = buttons.pop()
+		Session.set(f, false)
 		$("#" + e.currentTarget.id).fadeOut();
+		console.log(this)
+		console.log(this.text)
+		console.log(e.currentTarget.id)
+		Session.set('currentFrom', this)
 		Session.set(e.currentTarget.id, true)
+		buttons.push(e.currentTarget.id)
+	},
+	'click .button1': function(e) {
+		var f = buttons.pop()
+		$("#" + e.currentTarget.id).fadeOut();
+		console.log(this)
+		console.log(this.text)
+		console.log(e.currentTarget.id)
+		Session.set('currentFrom', this)
+		Session.set(e.currentTarget.id, true)
+		buttons.push(e.currentTarget.id)
 	}
+
 })
 
 Template.laws.helpers({
