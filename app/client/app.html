@@ -1,7 +1,7 @@
 <!-- Basic screen setup -->
 
 <head>
-  <title>Offline App</title>
+  <title>Akuttjus App</title>
   <meta add="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body></body>
@@ -66,7 +66,7 @@
 
 <template name="home">
   {{#contentFor "headerTitle"}}
-    <h1 class="title">Offline application</h1>
+    <h1 class="title">Kategoriser pasienten</h1>
   {{/contentFor}}
 
 <!-- pathFor creates a link dynamically based on info from the route.  -->
@@ -164,7 +164,7 @@
 
 <template name="laws">
   {{#contentFor "headerTitle"}}
-    <h1 class="title">Laws</h1>
+    <h1 class="title">Lover</h1>
   {{/contentFor}}
 
   {{#contentFor "headerButtonRight"}}
@@ -214,19 +214,43 @@
   {{/ionView}}
 </template>
 
+<template name="links">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Lenker</h1>
+  {{/contentFor}}
+</template>
+
+<template name="info">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Informasjon</h1>
+  {{/contentFor}}
+</template>
+
+<template name="next">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Neste</h1>
+  {{/contentFor}}
+</template>
+
+<template name="admin">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Admin</h1>
+  {{/contentFor}}
+</template>
+
 <template name="tabs">
   {{#if isAndroid}}
     {{#ionTabs style="android" class="tabs-background-positive tabs-color-light"}}
       {{> ionTab title="Hjem" path="home" icon="android-home"}}
       {{> ionTab title="Lover" path="laws" icon="android-star"}}
-      {{> ionTab title="Lenker" path="tabs.three" icon="android-globe"}}
+      {{> ionTab title="Lenker" path="links" icon="android-globe"}}
       {{> ionTab title="Info" path="tabs.four" icon="gear-b"}}
     {{/ionTabs}}
   {{else}}
     {{#ionTabs style="ios"}}
       {{> ionTab title="Hjem" path="home" iconOff="ios-home-outline" iconOn="ios-home"}}
       {{> ionTab title="Lover" path="laws" iconOff="ios-book-outline" iconOn="ios-book"}}
-      {{> ionTab title="Lenker" path="tabs.three" iconOff="ios-world-outline" iconOn="ios-world"}}
+      {{> ionTab title="Lenker" path="links" iconOff="ios-world-outline" iconOn="ios-world"}}
       {{> ionTab title="Info" path="tabs.four" iconOff="ios-information-outline" iconOn="ios-information"}}
     {{/ionTabs}}
   {{/if}}
