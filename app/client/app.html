@@ -215,21 +215,21 @@
       {{/ionContent}}
   {{/ionView}}
   </template>
-  
+
 <template name="tabs">
   {{#if isAndroid}}
     {{#ionTabs style="android" class="tabs-background-positive tabs-color-light"}}
       {{> ionTab title="Hjem" path="home" icon="android-home"}}
       {{> ionTab title="Lover" path="laws" icon="android-star"}}
-      {{> ionTab title="Tab 3" path="tabs.three" icon="heart"}}
-      {{> ionTab title="Tab 4" path="tabs.four" icon="gear-b"}}
+      {{> ionTab title="Lenker" path="tabs.three" icon="android-globe"}}
+      {{> ionTab title="Info" path="tabs.four" icon="gear-b"}}
     {{/ionTabs}}
   {{else}}
     {{#ionTabs style="ios"}}
       {{> ionTab title="Hjem" path="home" iconOff="ios-home-outline" iconOn="ios-home"}}
-      {{> ionTab title="Lover" path="laws" iconOff="ios-star-outline" iconOn="ios-star"}}
-      {{> ionTab title="Tab 3" path="tabs.three" iconOff="ios-heart-outline" iconOn="ios-heart"}}
-      {{> ionTab title="Tab 4" path="tabs.four" iconOff="ios-gear-outline" iconOn="ios-gear"}}
+      {{> ionTab title="Lover" path="laws" iconOff="ios-book-outline" iconOn="ios-book"}}
+      {{> ionTab title="Lenker" path="tabs.three" iconOff="ios-world-outline" iconOn="ios-world"}}
+      {{> ionTab title="Info" path="tabs.four" iconOff="ios-information-outline" iconOn="ios-information"}}
     {{/ionTabs}}
   {{/if}}
 </template>
