@@ -13,16 +13,15 @@
 <!-- The layout template is the general layout of the app, router puts it inside "body" for any page  -->
 
 <template name="defaultLayout">
-    {{#ionBody}}
-        {{> ionNavBar class="bar-positive"}}
+  {{#ionBody}}
+    {{> ionNavBar class="bar-positive"}}
 
 <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->  
 
-        {{#ionNavView}}
-            {{> yield}}
-        {{/ionNavView}}
-    {{/ionBody}}
-
+    {{#ionNavView}}
+      {{> yield}}
+    {{/ionNavView}}
+  {{/ionBody}}
 </template>
 
 <!-- Path is the router version of links. The router creates a link based on the route the path keyword refers to  -->
@@ -36,30 +35,30 @@
 <!-- quickForm is a quick use of AutoForm which supplies basic, simple forms for filling out a specific schema (that we specify with SimpleSchema) -->
 
   {{#ionView}}
-      {{#ionContent class="padding"}}
-          {{> quickForm schema="ElementsSchema" collection="Elements" id="insertElementForm" type="normal" omitFields="createdAt, lastUpdated"}}
-      {{/ionContent}}
+    {{#ionContent class="padding"}}
+      {{> quickForm schema="ElementsSchema" collection="Elements" id="insertElementForm" type="normal" omitFields="createdAt, lastUpdated"}}
+    {{/ionContent}}
   {{/ionView}}
 </template>
 
 <!-- The BackButton is connected to the main view through the path  -->
 
 <template name="edit">
-    <div class="bar bar-header bar-positive">
-      {{>ionNavBackButton path="home" text="Back"}}
-      <div class="title">Edit Element</div>
-    </div>
+  <div class="bar bar-header bar-positive">
+    {{>ionNavBackButton path="home" text="Back"}}
+    <div class="title">Edit Element</div>
+  </div>
 
 <!-- Subscriptions connect the page to collections, can only submit data to collection if subscribed to it -->
 
   {{#ionView}}
-      {{#ionContent class="padding"}}
-        {{#if Template.subscriptionsReady}}
-          {{> quickForm schema="ElementsSchema" collection="Elements" id="editElementForm" type="normal" doc=selectedDoc omitFields="createdAt, lastUpdated"}}
-        {{else}}
-          {{> spinner}}
-        {{/if}}
-      {{/ionContent}}
+    {{#ionContent class="padding"}}
+      {{#if Template.subscriptionsReady}}
+        {{> quickForm schema="ElementsSchema" collection="Elements" id="editElementForm" type="normal" doc=selectedDoc omitFields="createdAt, lastUpdated"}}
+      {{else}}
+        {{> spinner}}
+      {{/if}}
+    {{/ionContent}}
   {{/ionView}}
 </template>
 
@@ -73,92 +72,91 @@
 <!-- pathFor creates a link dynamically based on info from the route.  -->
 <!-- In this case, base version, it refers to the simple route 'new' -->
 
-
 <!-- {{#each}} iterates over over elements in the named object. {{ (attribute) }} can then be used to get attributes from each element. HTML and ion elements are then used to format and enclose the output content -->
 
   {{#ionView}}
-      {{#ionContent}}
-          {{#if Template.subscriptionsReady}}
-            {{#ionList}}
+    {{#ionContent}}
+      {{#if Template.subscriptionsReady}}
+        {{#ionList}}
 <!-- startcases here refers to a helper method in app.js which returns an array of objects -->
-             {{#each scase in startcases}}
-              {{#if oneEither scase}}
-               {{#ionItem}}
+          {{#each scase in startcases}}
+            {{#if oneEither scase}}
+              {{#ionItem}}
                 <p>One outcome</p>
                 {{#with to scase}}
                   <a href="{{pathFor 'law'}}" level="start" class="button">
                     <p>{{scase.text}}</p>
                   </a>
                 {{/with}}
-               {{/ionItem}}
-              {{else}}
-                {{#if twoEither scase}}
-                  {{#if notClicked scase.text}}
-                    {{#ionItem}}
-                      {{#with to scase}}
-                        <p>Two outcomes</p>
-                        <button class="button" level="start" id="{{ scase.text }}">
-                          <p>{{scase.text}}</p>
-                        </button>
-                      {{/with}}
-                    {{/ionItem}}
-                  {{else}}
-                    {{#ionItem}}
-                      <p>{{currentFrom.text}}</p>
-                      {{#with yesLink currentFrom}}
-                        {{#if oneYes currentFrom}}
-                          <a href="{{pathFor 'law'}}" class="button" level="end">
+              {{/ionItem}}
+            {{else}}
+              {{#if twoEither scase}}
+                {{#if notClicked scase.text}}
+                  {{#ionItem}}
+                    {{#with to scase}}
+                      <p>Two outcomes</p>
+                      <button class="button" level="start" id="{{ scase.text }}">
+                        <p>{{scase.text}}</p>
+                      </button>
+                    {{/with}}
+                  {{/ionItem}}
+                {{else}}
+                  {{#ionItem}}
+                    <p>{{currentFrom.text}}</p>
+                    {{#with yesLink currentFrom}}
+                      {{#if oneYes currentFrom}}
+                        <a href="{{pathFor 'law'}}" class="button" level="end">
+                          <p>Ja</p>
+                        </a>
+                      {{else}}
+                        {{#if twoYes currentFrom}}
+                          <button class="button" level="inter" id = "{{ noLink.text }}">
+                            <p>Ja</p>
+                          </button>
+                        {{else}}
+                          <a href = "{{pathFor 'step'}}" class="button" level="end">
                             <p>Ja</p>
                           </a>
-                        {{else}}
-                          {{#if twoYes currentFrom}}
-                            <button class="button" level="inter" id = "{{ noLink.text }}">
-                              <p>Ja</p>
-                            </button>
-                          {{else}}
-                            <a href = "{{pathFor 'step'}}" class="button" level="end">
-                              <p>Ja</p>
-                            </a>
-                          {{/if}}
                         {{/if}}
-                      {{/with}}
-                      {{#with noLink currentFrom}}
-                        {{#if oneNo currentFrom}}
-                          <a href="{{pathFor 'law'}}" class="button" level="end">
+                      {{/if}}
+                    {{/with}}
+                    {{#with noLink currentFrom}}
+                      {{#if oneNo currentFrom}}
+                        <a href="{{pathFor 'law'}}" class="button" level="end">
+                          <p>Nei</p>
+                        </a>
+                      {{else}}
+                        {{#if twoNo currentFrom}}
+                          <button class="button" level="inter" id = "{{ noLink.text }}">
+                            <p>Nei</p>
+                          </button>
+                        {{else}}
+                          <a href = "{{pathFor 'step'}}" class="button" level="end">
                             <p>Nei</p>
                           </a>
-                        {{else}}
-                          {{#if twoNo currentFrom}}
-                            <button class="button" level="inter" id = "{{ noLink.text }}">
-                              <p>Nei</p>
-                            </button>
-                          {{else}}
-                            <a href = "{{pathFor 'step'}}" class="button" level="end">
-                              <p>Nei</p>
-                            </a>
-                          {{/if}}
                         {{/if}}
-                      {{/with}}
-                    {{/ionItem}}
-                  {{/if}}
-                {{else}}
-                  {{#with to scase}}
-                    {{#ionItem}}
-                      <a href="{{pathFor 'step'}}" level="start" class="button">
-                        <p>n > 2 outcomes</p>
-                        <p>{{scase.text}}</p>
-                      </a>
-                    {{/ionItem}}
-                  {{/with}}
+                      {{/if}}
+                    {{/with}}
+                  {{/ionItem}}
                 {{/if}}
+              {{else}}
+                {{#with to scase}}
+                  {{#ionItem}}
+                    <a href="{{pathFor 'step'}}" level="start" class="button">
+                      <p>n > 2 outcomes</p>
+                      <p>{{scase.text}}</p>
+                    </a>
+                  {{/ionItem}}
+                {{/with}}
               {{/if}}
-             {{/each}}
-            {{/ionList}}
-         {{else}}
-          {{> spinner}}
-         {{/if}}
-      {{/ionContent}}
-      {{> tabs}}
+            {{/if}}
+          {{/each}}
+        {{/ionList}}
+      {{else}}
+        {{> spinner}}
+      {{/if}}
+    {{/ionContent}}
+    {{> tabs}}
   {{/ionView}}
 </template>
 
@@ -181,40 +179,40 @@
   {{/contentFor}}
 
   {{#ionView}}
-      {{#ionContent}}
-          {{#ionList}}
-          <!-- For each item in laws (from the helper, check js file) -->
-             {{#each laws}}
-               {{#ionItem path="law" buttonRight=true}}
-               <!-- Paragraph from laws collection -->
-                  <h2>{{law}}</h2>
-                  <p>{{paragraph}}</p>
-               {{/ionItem}}
-            {{/each}}
-          {{/ionList}}
-      {{/ionContent}}
-      {{> tabs}}
+    {{#ionContent}}
+      {{#ionList}}
+        <!-- For each item in laws (from the helper, check js file) -->
+        {{#each laws}}
+          {{#ionItem path="law" buttonRight=true}}
+            <!-- Paragraph from laws collection -->
+              <h2>{{law}}</h2>
+              <p>{{paragraph}}</p>
+          {{/ionItem}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
+    {{> tabs}}
   {{/ionView}}
 </template>
 
 
 <!-- Tentative template for displaying one law -->
 <template name='law'>
-   <div class="bar bar-header bar-positive">
-      {{>ionNavBackButton text="Back"}}
-      <div class="title">Single Law</div>
-    </div>
+  <div class="bar bar-header bar-positive">
+    {{>ionNavBackButton text="Back"}}
+    <div class="title">Single Law</div>
+  </div>
 
   {{#ionView}}
-      {{#ionContent}}
-          {{#with thisLaw}}
-            <h1>{{Law}}</h1>
-            <h2>{{paragraph}}</h2>
-            <p>{{text}}</p>
-          {{/with}}
-      {{/ionContent}}
+    {{#ionContent}}
+      {{#with thisLaw}}
+        <h1>{{Law}}</h1>
+        <h2>{{paragraph}}</h2>
+        <p>{{text}}</p>
+      {{/with}}
+    {{/ionContent}}
   {{/ionView}}
-  </template>
+</template>
 
 <template name="tabs">
   {{#if isAndroid}}
