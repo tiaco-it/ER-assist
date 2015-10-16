@@ -215,27 +215,38 @@
 </template>
 
 <template name="links">
-  {{#contentFor "headerTitle"}}
-    <h1 class="title">Lenker</h1>
-  {{/contentFor}}
+  {{#ionView}}
+      {{#contentFor "headerTitle"}}
+        <h1 class="title">Lenker</h1>
+      {{/contentFor}}
+    {{>tabs}}
+  {{/ionView}}
 </template>
 
 <template name="info">
-  {{#contentFor "headerTitle"}}
-    <h1 class="title">Informasjon</h1>
-  {{/contentFor}}
+  {{#ionView}}
+    {{#contentFor "headerTitle"}}
+      <h1 class="title">Informasjon</h1>
+    {{/contentFor}}
+    {{>tabs}}
+  {{/ionView}}
 </template>
 
 <template name="next">
-  {{#contentFor "headerTitle"}}
-    <h1 class="title">Neste</h1>
-  {{/contentFor}}
+  {{#ionView}}
+    {{#contentFor "headerTitle"}}
+      <h1 class="title">Neste</h1>
+    {{/contentFor}}
+    {{>tabs}}
+  {{/ionView}}
 </template>
 
 <template name="admin">
-  {{#contentFor "headerTitle"}}
-    <h1 class="title">Admin</h1>
-  {{/contentFor}}
+  {{#ionView}}
+    {{#contentFor "headerTitle"}}
+      <h1 class="title">Admin</h1>
+    {{/contentFor}}
+  {{/ionView}}
 </template>
 
 <template name="tabs">
@@ -251,7 +262,7 @@
       {{> ionTab title="Hjem" path="home" iconOff="ios-home-outline" iconOn="ios-home"}}
       {{> ionTab title="Lover" path="laws" iconOff="ios-book-outline" iconOn="ios-book"}}
       {{> ionTab title="Lenker" path="links" iconOff="ios-world-outline" iconOn="ios-world"}}
-      {{> ionTab title="Info" path="tabs.four" iconOff="ios-information-outline" iconOn="ios-information"}}
+      {{> ionTab title="Info" path="info" iconOff="ios-information-outline" iconOn="ios-information"}}
     {{/ionTabs}}
   {{/if}}
 </template>

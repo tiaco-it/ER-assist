@@ -32,11 +32,11 @@ Router.route('/law/:_id', function (){
     name: 'law'
 });
 
-Router.route('/step/:_id', function (){
+Router.route('/next/:_id', function (){
     this.layout('defaultLayout')
-    this.render('step');
+    this.render('next');
   }, {
-    name: 'step'
+    name: 'next'
 });
 
 Router.route('/edit/:_id', function () {
@@ -52,10 +52,10 @@ Router.route('/new', function () {
     this.render('new');
 });
 
-Router.route('/more', function () {
-    this.render('more');
+Router.route('/links', function () {
+    this.render('links');
 });
 
-Router.route('/unused', function () {
-    this.render('unused');
+Router.route('/info', function () {
+    this.render('info');
 });
