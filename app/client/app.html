@@ -110,11 +110,11 @@
                         </a>
                       {{else}}
                         {{#if twoYes currentFrom}}
-                          <button class="button" level="inter" id = "{{ noLink.text }}">
+                          <button class="button" level="inter" id = "{{ text }}">
                             <p>Ja</p>
                           </button>
                         {{else}}
-                          <a href = "{{pathFor 'step'}}" class="button" level="end">
+                          <a href = "{{pathFor 'next'}}" class="button" level="end">
                             <p>Ja</p>
                           </a>
                         {{/if}}
@@ -127,11 +127,11 @@
                         </a>
                       {{else}}
                         {{#if twoNo currentFrom}}
-                          <button class="button" level="inter" id = "{{ noLink.text }}">
+                          <button class="button" level="inter" id = "{{ text }}">
                             <p>Nei</p>
                           </button>
                         {{else}}
-                          <a href = "{{pathFor 'step'}}" class="button" level="end">
+                          <a href = "{{pathFor 'next'}}" class="button" level="end">
                             <p>Nei</p>
                           </a>
                         {{/if}}
@@ -142,7 +142,7 @@
               {{else}}
                 {{#with to scase}}
                   {{#ionItem}}
-                    <a href="{{pathFor 'step'}}" level="start" class="button">
+                    <a href="{{pathFor 'next'}}" level="start" class="button">
                       <p>n > 2 outcomes</p>
                       <p>{{scase.text}}</p>
                     </a>
@@ -174,7 +174,6 @@
 
 
   {{#contentFor "headerButtonLeft"}}
-  <!-- This button is a placeholder -->
     {{>ionNavBackButton text="Back"}}
   {{/contentFor}}
 
@@ -215,37 +214,56 @@
 </template>
 
 <template name="links">
-  {{#ionView}}
       {{#contentFor "headerTitle"}}
         <h1 class="title">Lenker</h1>
       {{/contentFor}}
+  {{#ionView}}
     {{>tabs}}
   {{/ionView}}
 </template>
 
 <template name="info">
-  {{#ionView}}
     {{#contentFor "headerTitle"}}
       <h1 class="title">Informasjon</h1>
     {{/contentFor}}
+  {{#ionView}}
     {{>tabs}}
   {{/ionView}}
 </template>
 
 <template name="next">
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton text="Back"}}
+  {{/contentFor}}
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Neste</h1>
+  {{/contentFor}}
   {{#ionView}}
-    {{#contentFor "headerTitle"}}
-      <h1 class="title">Neste</h1>
-    {{/contentFor}}
+    {{#ionContent}}
+      {{#with current}}
+        <p>{{text}}</p>
+      {{/with}}
+      {{#ionList}}
+        {{#each link in currentLinks}}
+          {{#ionItem}}
+            {{#with to link}}
+              <a href = "{{pathFor 'law'}}" class="button"> 
+                <p>{{ link.mark }}</p>
+              </a>
+            {{/with}}
+          {{/ionItem}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
     {{>tabs}}
   {{/ionView}}
 </template>
 
 <template name="admin">
-  {{#ionView}}
     {{#contentFor "headerTitle"}}
       <h1 class="title">Admin</h1>
     {{/contentFor}}
+  {{#ionView}}
   {{/ionView}}
 </template>
 
@@ -255,7 +273,7 @@
       {{> ionTab title="Hjem" path="home" icon="android-home"}}
       {{> ionTab title="Lover" path="laws" icon="android-star"}}
       {{> ionTab title="Lenker" path="links" icon="android-globe"}}
-      {{> ionTab title="Info" path="tabs.four" icon="gear-b"}}
+      {{> ionTab title="Info" path="info" icon="gear-b"}}
     {{/ionTabs}}
   {{else}}
     {{#ionTabs style="ios"}}

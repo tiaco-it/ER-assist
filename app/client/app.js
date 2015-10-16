@@ -1,4 +1,5 @@
 var buttons  = new Array();
+var marks = new Array();
 
 query = function(string, item) {
 	var qry = {};
@@ -107,6 +108,8 @@ Template.home.helpers({
         })
     },
     'yesLink': function(scase) {
+    	console.log("YES")
+    	console.log(scase)
     	var qry = {};
     	var qry2 = {};
     	qry["text"] = scase.text;
@@ -120,6 +123,8 @@ Template.home.helpers({
         return li.to
     },
     'noLink': function(scase) {
+    	console.log("NO")
+    	console.log(scase)
     	var qry = {};
     	var qry2 = {};
     	qry["text"] = scase.text;
@@ -182,13 +187,13 @@ Template.home.events({
 		if ($(e.currentTarget).attr("level") === "start") {
 			var f = buttons.pop()
 			Session.set(f, false)
-			$("#" + e.currentTarget.id).fadeOut();
+			$(e.currentTarget).fadeOut();
 			Session.set('currentFrom', this)
 			Session.set(e.currentTarget.id, true)
 			buttons.push(e.currentTarget.id)
 		}
 		else if ($(e.currentTarget).attr("level") === "inter") {
-			$("#" + e.currentTarget.id).fadeOut();
+			$(e.currentTarget).fadeOut();
 			Session.set('currentFrom', this)
 			Session.set(e.currentTarget.id, true)
 			buttons.push(e.currentTarget.id)
@@ -198,7 +203,8 @@ Template.home.events({
 				var f = buttons.pop()
 				Session.set(f, false)
 			}
-			$("#" + e.currentTarget.id).fadeOut();
+			$(e.currentTarget).fadeOut();
+			console.log("SET TO UNDEFINED")
 			Session.set('currentFrom', undefined)
 			}
 		else {
@@ -206,6 +212,22 @@ Template.home.events({
 		}
 	}
 });
+
+Template.next.helpers({
+	'current': function() {
+		return Filters.findOne(Router.current().params._id)
+	},
+	'currentLinks': function() {
+		qry = {};
+		var a = Filters.findOne(Router.current().params._id)
+		console.log(a)
+    	qry["from"] = a;
+    	return Links.find(qry)
+	},
+	'to': function(link) {
+		return link.to
+	}
+})
 
 Template.laws.helpers({
 	'laws': function() {
