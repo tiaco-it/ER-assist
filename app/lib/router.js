@@ -59,3 +59,11 @@ Router.route('/links', function () {
 Router.route('/info', function () {
     this.render('info');
 });
+
+Router.route('/example', function () {
+    this.render('example');
+});
+
+Router.route('/summary', function () {
+    this.render('summary');
+});

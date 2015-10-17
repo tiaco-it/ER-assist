@@ -156,7 +156,7 @@
         {{> spinner}}
       {{/if}}
     {{/ionContent}}
-    {{> tabs}}
+    {{> mtabs}}
   {{/ionView}}
 </template>
 
@@ -190,7 +190,7 @@
         {{/each}}
       {{/ionList}}
     {{/ionContent}}
-    {{> tabs}}
+    {{> mtabs}}
   {{/ionView}}
 </template>
 
@@ -199,10 +199,11 @@
 <template name='law'>
   <div class="bar bar-header bar-positive">
     {{>ionNavBackButton text="Back"}}
-    <div class="title">Single Law</div>
+    <div class="title">Lov</div>
   </div>
 
   {{#ionView}}
+    {{>ttabs}}
     {{#ionContent}}
       {{#with thisLaw}}
         <h1>{{Law}}</h1>
@@ -210,6 +211,7 @@
         <p>{{text}}</p>
       {{/with}}
     {{/ionContent}}
+    {{>mtabs}}
   {{/ionView}}
 </template>
 
@@ -218,7 +220,7 @@
         <h1 class="title">Lenker</h1>
       {{/contentFor}}
   {{#ionView}}
-    {{>tabs}}
+    {{>mtabs}}
   {{/ionView}}
 </template>
 
@@ -227,10 +229,29 @@
       <h1 class="title">Informasjon</h1>
     {{/contentFor}}
   {{#ionView}}
-    {{>tabs}}
+    {{>mtabs}}
   {{/ionView}}
 </template>
 
+<template name="example">
+    {{#contentFor "headerTitle"}}
+      <h1 class="title">Eksempel</h1>
+    {{/contentFor}}
+  {{#ionView}}
+    {{>ttabs}}
+    {{>mtabs}}
+  {{/ionView}}
+</template>
+
+<template name="summary">
+    {{#contentFor "headerTitle"}}
+      <h1 class="title">Sammendrag</h1>
+    {{/contentFor}}
+  {{#ionView}}
+    {{>ttabs}}
+    {{>mtabs}}
+  {{/ionView}}
+</template>
 <template name="next">
   {{#contentFor "headerButtonLeft"}}
     {{>ionNavBackButton text="Back"}}
@@ -255,7 +276,7 @@
         {{/each}}
       {{/ionList}}
     {{/ionContent}}
-    {{>tabs}}
+    {{>mtabs}}
   {{/ionView}}
 </template>
 
@@ -267,7 +288,7 @@
   {{/ionView}}
 </template>
 
-<template name="tabs">
+<template name="mtabs">
   {{#if isAndroid}}
     {{#ionTabs style="android" class="tabs-background-positive tabs-color-light"}}
       {{> ionTab title="Hjem" path="home" icon="android-home"}}
@@ -283,4 +304,12 @@
       {{> ionTab title="Info" path="info" iconOff="ios-information-outline" iconOn="ios-information"}}
     {{/ionTabs}}
   {{/if}}
+</template>
+
+<template name="ttabs">
+  {{#ionTabs class="tabs-top tabs-background-positive tabs-color-light"}}
+    {{> ionTab title="Eksempel" path="example"}}
+    {{> ionTab title="Lov" path="law"}}
+    {{> ionTab title="Sammendrag" path="summary"}}
+  {{/ionTabs}}
 </template>
