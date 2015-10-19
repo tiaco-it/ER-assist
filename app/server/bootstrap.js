@@ -189,6 +189,11 @@ if (Links.find().count() === 0 || UPDATE == true) {
             mark: "og har en kjent alvorlig sinnslidelse",
             to: Laws.findOne({paragraph: "3-3.Vedtak om tvungent psykisk helsevern"})
         },
+        {
+            from: Startcases.findOne({text: "Pasient skader seg selv"}),
+            mark: "",
+            to: Filters.findOne({text: "Behov for akutt hjelp?"})
+        }
 
     ];
     _.each(links, function(list) {
