@@ -1,5 +1,7 @@
 var buttons  = new Array();
 var marks = new Array();
+var lawHolder = new Array();
+
 
 query = function(string, item) {
 	var qry = {};
@@ -183,7 +185,8 @@ Template.home.helpers({
 });
 
 Template.home.events({
-	'click .button': function(e) {
+    'click .button': function(e) {
+    IonNavigation.skipTransitions = true;
 		if ($(e.currentTarget).attr("level") === "start") {
 			var f = buttons.pop()
 			Session.set(f, false)
@@ -213,6 +216,12 @@ Template.home.events({
 	}
 });
 
+Template.next.events({
+    'click': function(e) {
+        IonNavigation.skipTransitions = true;
+    }
+});
+
 Template.next.helpers({
 	'current': function() {
 		return Filters.findOne(Router.current().params._id)
@@ -240,6 +249,47 @@ Template.law.helpers({
 	'thisLaw': function() {
 		return Laws.findOne(Router.current().params._id)
 	}
+})
+
+Template.ttabs.onRendered( function () {
+    Session.set('currentTab', 'end')
+})
+
+Template.end.onCreated( function() {
+    lawHolder.push(Router.current().params._id)
+})
+
+Template.endLayout.onDestroyed( function () {
+    console.log('Destroyed')
+    lawHolder.pop()
+})
+
+Template.summaryTab.helpers({
+    'thisLaw': function() {
+        var l = lawHolder[0]
+        return Laws.findOne(l)
+    }
+})
+
+Template.exampleTab.helpers({
+    'thisLaw': function() {
+        var l = lawHolder[0]
+        return Laws.findOne(l)
+    }
+})
+
+Template.lawTab.helpers({
+    'thisLaw': function() {
+        var l = lawHolder[0]
+        return Laws.findOne(l)
+    }
+})
+
+Template.end.helpers({
+    'thisLaw': function() {
+        var l = lawHolder[0]
+        return Laws.findOne(l)
+    }
 })
 
 //Asynchronous call to the collection method 'removeElement'

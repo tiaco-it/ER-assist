@@ -39,23 +39,35 @@ Router.route('/next/:_id', function (){
     name: 'next'
 });
 
-Router.route('/edit/:_id', function () {
-    this.render('edit');
-  }, {
-    name: 'edit'
-    // reference for future code
-    //var params = this.params; // {_id: 'some id'}
-    //var id = params._id; // 'some id'
-});
-
-Router.route('/new', function () {
-    this.render('new');
-});
-
 Router.route('/links', function () {
     this.render('links');
 });
 
 Router.route('/info', function () {
     this.render('info');
+});
+
+Router.route('/end/:_id', function (){
+    this.layout('endLayout')
+    this.render('end', {to: 'tab'});
+  }, {
+    name: 'end'
+});
+Router.route('/lawTab', function (){
+    this.layout('endLayout')
+    this.render('lawTab', {to: 'tab'});
+  }, {
+    name: 'lawTab'
+});
+Router.route('/summaryTab', function (){
+    this.layout('endLayout')
+    this.render('summaryTab', {to: 'tab'});
+  }, {
+    name: 'summaryTab'
+});
+Router.route('/exampleTab', function (){
+    this.layout('endLayout')
+    this.render('exampleTab', {to: 'tab'});
+  }, {
+    name: 'exampleTab'
 });
