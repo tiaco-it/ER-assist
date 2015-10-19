@@ -28,7 +28,7 @@
 
 <template name="new">
   <div class="bar bar-header bar-positive">
-    {{>ionNavBackButton path="home" text="Back"}}
+    {{>ionNavBackButton path="home" text="Tilbake"}}
     <div class="title">Edit Element</div>
   </div>
 
@@ -45,7 +45,7 @@
 
 <template name="edit">
   <div class="bar bar-header bar-positive">
-    {{>ionNavBackButton path="home" text="Back"}}
+    {{>ionNavBackButton path="home" text="Tilbake"}}
     <div class="title">Edit Element</div>
   </div>
 
@@ -84,7 +84,7 @@
               {{#ionItem}}
                 <p>One outcome</p>
                 {{#with to scase}}
-                  <a href="{{pathFor 'law'}}" level="start" class="button">
+                  <a href="{{pathFor 'end'}}" level="start" class="button">
                     <p>{{scase.text}}</p>
                   </a>
                 {{/with}}
@@ -105,7 +105,7 @@
                     <p>{{currentFrom.text}}</p>
                     {{#with yesLink currentFrom}}
                       {{#if oneYes currentFrom}}
-                        <a href="{{pathFor 'law'}}" class="button" level="end">
+                        <a href="{{pathFor 'end'}}" class="button" level="end">
                           <p>Ja</p>
                         </a>
                       {{else}}
@@ -122,7 +122,7 @@
                     {{/with}}
                     {{#with noLink currentFrom}}
                       {{#if oneNo currentFrom}}
-                        <a href="{{pathFor 'law'}}" class="button" level="end">
+                        <a href="{{pathFor 'end'}}" class="button" level="end">
                           <p>Nei</p>
                         </a>
                       {{else}}
@@ -174,7 +174,7 @@
 
 
   {{#contentFor "headerButtonLeft"}}
-    {{>ionNavBackButton text="Back"}}
+    {{>ionNavBackButton text="Tilbake"}}
   {{/contentFor}}
 
   {{#ionView}}
@@ -198,21 +198,46 @@
 <!-- Tentative template for displaying one law -->
 <template name='law'>
   <div class="bar bar-header bar-positive">
-    {{>ionNavBackButton text="Back"}}
+    {{>ionNavBackButton text="Tilbake"}}
     <div class="title">Lov</div>
   </div>
 
   {{#ionView}}
-    {{>ttabs}}
     {{#ionContent}}
       {{#with thisLaw}}
-        <h1>{{Law}}</h1>
+        <h1>{{law}}</h1>
         <h2>{{paragraph}}</h2>
         <p>{{text}}</p>
       {{/with}}
     {{/ionContent}}
     {{>mtabs}}
   {{/ionView}}
+</template>
+
+<template name="_tabsHeader">
+  {{#ionHeaderBar class="bar-positive"}}
+    {{>ionNavBackButton text="Tilbake"}}
+    <h1 class="title">Resultat</h1>
+  {{/ionHeaderBar}}
+</template>
+
+<template name='endLayout'>
+  {{> _tabsHeader}}
+  {{#ionView}}
+    {{>ttabs}} 
+    {{> yield "tab"}}
+    {{>mtabs}}
+  {{/ionView}}
+</template>
+
+<template name='end'>
+    {{#ionContent}}
+      {{#with thisLaw}}
+        <h1>{{law}}</h1>
+        <h2>{{paragraph}}</h2>
+        <p>{{text}}</p>
+      {{/with}}
+    {{/ionContent}}
 </template>
 
 <template name="links">
@@ -233,28 +258,39 @@
   {{/ionView}}
 </template>
 
-<template name="example">
-    {{#contentFor "headerTitle"}}
-      <h1 class="title">Eksempel</h1>
-    {{/contentFor}}
-  {{#ionView}}
-    {{>ttabs}}
-    {{>mtabs}}
-  {{/ionView}}
+<template name='lawTab'>
+    {{#ionContent}}
+      {{#with thisLaw}}
+        <h1>{{law}}</h1>
+        <h2>{{paragraph}}</h2>
+        <p>{{text}}</p>
+      {{/with}}
+    {{/ionContent}}
 </template>
 
-<template name="summary">
-    {{#contentFor "headerTitle"}}
-      <h1 class="title">Sammendrag</h1>
-    {{/contentFor}}
-  {{#ionView}}
-    {{>ttabs}}
-    {{>mtabs}}
-  {{/ionView}}
+<template name="exampleTab">
+    {{#ionContent}}
+      {{#with thisLaw}}
+        <h1>{{law}}</h1>
+        <h2>{{paragraph}}</h2>
+        <p>Relevant eksempel</p>
+      {{/with}}
+    {{/ionContent}}
 </template>
+
+<template name="summaryTab">
+    {{#ionContent}}
+      {{#with thisLaw}}
+        <h1>{{law}}</h1>
+        <h2>{{paragraph}}</h2>
+        <p>relevant sammendrag</p>
+      {{/with}}
+    {{/ionContent}}
+</template>
+
 <template name="next">
   {{#contentFor "headerButtonLeft"}}
-    {{>ionNavBackButton text="Back"}}
+    {{>ionNavBackButton text="Tilbake"}}
   {{/contentFor}}
   {{#contentFor "headerTitle"}}
     <h1 class="title">Neste</h1>
@@ -268,7 +304,7 @@
         {{#each link in currentLinks}}
           {{#ionItem}}
             {{#with to link}}
-              <a href = "{{pathFor 'law'}}" class="button"> 
+              <a href = "{{pathFor 'end'}}" class="button"> 
                 <p>{{ link.mark }}</p>
               </a>
             {{/with}}
@@ -308,8 +344,8 @@
 
 <template name="ttabs">
   {{#ionTabs class="tabs-top tabs-background-positive tabs-color-light"}}
-    {{> ionTab title="Eksempel" path="example"}}
-    {{> ionTab title="Lov" path="law"}}
-    {{> ionTab title="Sammendrag" path="summary"}}
+    {{> ionTab title="Lov" path="lawTab"}}
+    {{> ionTab title="Eksempel" path="exampleTab"}}
+    {{> ionTab title="Sammendrag" path="summaryTab"}}
   {{/ionTabs}}
 </template>
