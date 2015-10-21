@@ -20,6 +20,10 @@ Paragraph: String
 // The paragraph number and name of the law. (17. Nødrett, Kapittel 4A, etc.)
 Text: String
 // The content of the law
+Summary: String
+// A sentence that summarizes the law text
+Example: String
+// An example case where the law applies
 ```
 
 #### Filters
