@@ -188,8 +188,10 @@ Template.home.events({
     'click .button': function(e) {
     IonNavigation.skipTransitions = true;
 		if ($(e.currentTarget).attr("level") === "start") {
-			var f = buttons.pop()
-			Session.set(f, false)
+			while ( buttons.length > 0 ){
+				var f = buttons.pop()
+				Session.set(f, false)
+			}
 			$(e.currentTarget).fadeOut();
 			Session.set('currentFrom', this)
 			Session.set(e.currentTarget.id, true)
