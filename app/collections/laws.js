@@ -8,6 +8,12 @@ LawSchema = new SimpleSchema({
     },
     text: {
         type: String
+    },
+    summary: {
+        type: String
+    },
+    example: {
+        type: String
     }
 });
 

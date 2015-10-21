@@ -42,7 +42,9 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             paragraph: "17. Nødrett",
             text: "En handling som ellers ville være straffbar, er lovlig når \ " +
             "a) den blir foretatt for å redde liv, helse, eiendom eller en annen interesse fra en fare for skade som ikke kan avverges på annen rimelig måte, og \ " +
-            "b)	denne skaderisikoen er langt større enn skaderisikoen ved handlingen."
+            "b)	denne skaderisikoen er langt større enn skaderisikoen ved handlingen.",
+            summary: "Dette er et SAMMENDRAG av §17. Nødrett fra Straffeloven",
+            example: "Dette er et EKSEMPEL av §17. Nødrett fra Straffeloven"
         },
         {
             law: "Straffeloven",
@@ -52,7 +54,9 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "b)	ikke går lenger enn nødvendig, og \ " +
             "c)	ikke går åpenbart ut over hva som er forsvarlig under hensyn til hvor farlig angrepet er, hva slags interesse som angrepet krenker, og angriperens skyld \ " +
             "Regelen i første ledd gjelder tilsvarende for den som iverksetter en lovlig pågripelse eller søker å hindre at noen unndrar seg varetektsfengsling eller gjennomføring av frihetsstraff. \ " +
-            "Utøving av offentlig myndighet kan bare møtes med nødverge når myndighetsutøvingen er ulovlig, og den som gjennomfører den, opptrer forsettlig eller grovt uaktsomt."
+            "Utøving av offentlig myndighet kan bare møtes med nødverge når myndighetsutøvingen er ulovlig, og den som gjennomfører den, opptrer forsettlig eller grovt uaktsomt.",
+            summary: "Dette er et SAMMENDRAG av §18. Nødverge fra Straffeloven",
+            example: "Dette er et EKSEMPEL av §18. Nødverge fra Straffeloven"
         },
         {
             law: "Helsepersonelloven",
@@ -60,7 +64,9 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             text: "Helsepersonell skal straks gi den helsehjelp de evner når det må antas at hjelpen er påtrengende nødvendig. Med de begrensninger som følger av pasient- og brukerrettighetsloven \ " +
             "§ 4-9, skal nødvendig helsehjelp gis selv om pasienten ikke er i stand til å samtykke, og selv om pasienten motsetter seg helsehjelpen. \ " +
             "Ved tvil om helsehjelpen er påtrengende nødvendig, skal helsepersonell foreta nødvendige undersøkelser. \ " +
-            "Plikten gjelder ikke i den grad annet kvalifisert helsepersonell påtar seg ansvaret for å gi helsehjelpen."
+            "Plikten gjelder ikke i den grad annet kvalifisert helsepersonell påtar seg ansvaret for å gi helsehjelpen.",
+            summary: "Dette er et SAMMENDRAG av §7. Øyeblikkelig hjelp fra Helsepersonelloven",
+            example: "Dette er et EKSEMPEL av §7. Øyeblikkelig hjelp fra Helsepersonelloven"
         },
         {
             law: "Pasient- og brukerrettighetsloven",
@@ -69,12 +75,16 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "En døende pasient har rett til å motsette seg livsforlengende behandling. Er en døende pasient ute av stand til å formidle et behandlingsønske, skal helsepersonellet unnlate å gi \ " +
             "helsehjelp dersom pasientens nærmeste pårørende tilkjennegir tilsvarende ønsker, og helsepersonellet etter en selvstendig vurdering finner at dette også er pasientens ønske og at ønsket åpenbart bør respekteres. \ " +
             "Helsepersonell må forsikre seg om at pasient som nevnt i første og annet ledd er over 18 år og ikke er fratatt rettslig handleevne på det personlige området, \ " +
-            "og at vedkommende er gitt tilfredsstillende informasjon og har forstått konsekvensene for egen helse ved behandlingsnektelsen."
+            "og at vedkommende er gitt tilfredsstillende informasjon og har forstått konsekvensene for egen helse ved behandlingsnektelsen.",
+            summary: "Dette er et SAMMENDRAG av §4-9. Pasientens rett til å nekte helsehjelp i særlige situasjoner fra Pasient- og brukerrettighetsloven",
+            example: "Dette er et EKSEMPEL av §4-9. Pasientens rett til å nekte helsehjelp i særlige situasjoner fra Pasient- og brukerrettighetsloven"
         },
         {
             law: "Pasient- og brukerrettighetsloven",
             paragraph: "Kapittel 4A",
-            text: "Helsehjelp til pasienter uten samtykkekompetanse som motsetter seg helsehjelpen mv."
+            text: "Helsehjelp til pasienter uten samtykkekompetanse som motsetter seg helsehjelpen mv.",
+            summary: "Dette er et SAMMENDRAG av Kapittel 4A fra Pasient- og brukerrettighetsloven",
+            example: "Dette er et EKSEMPEL av Kapittel 4A fra Pasient- og brukerrettighetsloven"
         },
         {
             law: "Psykisk helsevernloven",
@@ -90,7 +100,9 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Den faglig ansvarlige treffer vedtak på grunnlag av foreliggende opplysninger og egen personlig undersøkelse av pasienten. Den faglig ansvarliges vedtak og grunnlaget for det skal straks nedtegnes. \ " +
             "Tvungen observasjon kan ikke vare ut over 10 dager fra undersøkelsens begynnelse uten pasientens samtykke. Dersom pasientens tilstand tilsier at det er strengt nødvendig, \ " +
             "kan fristen forlenges inntil 10 dager etter samtykke fra kontrollkommisjonens leder. Overføring til tvungent psykisk helsevern kan skje før eller ved utløpet av denne fristen, dersom vilkårene for slikt vern er til stede. \ " +
-            "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter annet ledd til kontrollkommisjonen."
+            "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter annet ledd til kontrollkommisjonen.",
+            summary: "Dette er et SAMMENDRAG av $3-2.Vedtak om tvungen observasjon fra Psykisk helsevernloven",
+            example: "Dette er et EKSEMPEL av $3-2.Vedtak om tvungen observasjon fra Psykisk helsevernloven"
         },
         {
             law: "Psykisk helsevernloven",
@@ -107,7 +119,9 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "med mindre han eller hun utgjør en nærliggende og alvorlig fare for andres liv eller helse. Ved vurderingen skal det legges særlig vekt på hvor stor belastning det tvangsmessige inngrepet vil medføre for vedkommende. \ " +
             "Den faglig ansvarlige treffer vedtak på grunnlag av foreliggende opplysninger og egen personlig undersøkelse av pasienten. Den faglig ansvarliges vedtak og grunnlaget for det skal straks nedtegnes. \ " +
             "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter denne bestemmelsen til kontrollkommisjonen. \ " +
-            "Pasienten kan påklage vedtak om etablering av tvungent psykisk helsevern i inntil 3 måneder etter at vernet er opphørt."
+            "Pasienten kan påklage vedtak om etablering av tvungent psykisk helsevern i inntil 3 måneder etter at vernet er opphørt.",
+            summary: "Dette er et SAMMENDRAG av $3-3.Vedtak om tvungent psykisk helsevern fra Psykisk helsevernloven",
+            example: "Dette er et EKSEMPEL av $3-3.Vedtak om tvungent psykisk helsevern fra Psykisk helsevernloven"
         }
     ];
     _.each(laws, function(list) {
