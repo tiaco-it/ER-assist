@@ -91,6 +91,7 @@ Template.home.onCreated(function() {
 			Meteor.subscribe("laws");
 			Meteor.subscribe("filters");
 			Meteor.subscribe("links");
+            Meteor.subscribe("urls");
     	};
   	});
 });
