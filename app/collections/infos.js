@@ -1,5 +1,8 @@
 // Validate input with SimpleSchema
 InfoSchema = new SimpleSchema({
+    title: {
+        type: String
+    },
     text: {
         type: String
     }

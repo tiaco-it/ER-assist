@@ -239,10 +239,19 @@ if (Urls.find().count() === 0 || UPDATE == true) {
 if (Infos.find().count() === 0 || UPDATE == true) {
     var info = [
         {
-            text: "Her finner du litt informasjon om Tiaco og appen"
+            title: "Om appen",
+            text: "Her finner du litt informasjon om selve appen"
+        },
+        {
+            title: "Hvordan bruke appen",
+            text: ".. f.eks. en brukerguide.."
+        },
+        {
+            title: "Om utviklerne",
+            text: ".. og litt informasjon om Tiaco.."
         }
     ];
     _.each(info, function (list) {
-        Infos.insert({text: list.text})
+        Infos.insert({title: list.title, text: list.text})
     });
 }

@@ -253,7 +253,7 @@ Template.law.helpers({
 	'thisLaw': function() {
 		return Laws.findOne(Router.current().params._id)
 	}
-})
+});
 
 Template.links.helpers({
 	'links': function() {
@@ -262,9 +262,22 @@ Template.links.helpers({
 	}
 });
 
-Template.link.helpers({
-	'thisLink': function() {
-		return Urls.findOne(Router.current().params._id)
+//Template.link.helpers({
+//	'thisLink': function() {
+//		return Urls.findOne(Router.current().params._id)
+//	}
+//})
+
+Template.infos.helpers({
+	'infos': function() {
+		var infos = Infos.find({})
+		return infos && infos
+	}
+});
+
+Template.info.helpers({
+	'thisInfo': function() {
+		return Infos.findOne(Router.current().params._id)
 	}
 })
 
