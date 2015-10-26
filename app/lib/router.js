@@ -71,3 +71,45 @@ Router.route('/exampleTab', function (){
   }, {
     name: 'exampleTab'
 });
+
+Router.route('/signin', function (){
+    this.layout('defaultLayout')
+    this.render('signin');
+  }, {
+    name: 'signin'
+});
+
+Router.route('/admin', function () {
+  this.layout('defaultLayout')
+  this.render('admin');
+}, {
+  name: 'admin'
+});
+
+Router.route('/admin/cases', function () {
+  this.layout('defaultLayout')
+  this.render('admincases');
+}, {
+  name: 'admincases'
+});
+
+Router.route('/admin/filters', function () {
+  this.layout('defaultLayout')
+  this.render('adminfilters');
+}, {
+  name: 'adminfilters'
+});
+
+Router.route('/admin/links', function () {
+  this.layout('defaultLayout')
+  this.render('adminlinks');
+}, {
+  name: 'adminlinks'
+});
+
+Router.route('/admin/laws', function () {
+  this.layout('defaultLayout')
+  this.render('adminlaws');
+}, {
+  name: 'adminlaws'
+});

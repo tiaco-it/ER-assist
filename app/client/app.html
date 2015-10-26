@@ -2,7 +2,7 @@
 
 <head>
   <title>Akuttjus App</title>
-  <meta add="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta add="viewport" content="width=device-width, initial-scale=1, maximum-scale=4, user-scalable=no">
 </head>
 <body></body>
 
@@ -67,7 +67,11 @@
 <template name="home">
   {{#contentFor "headerTitle"}}
     <h1 class="title">Kategoriser pasienten</h1>
+    <a href = "{{pathFor 'admin'}}" class="button button-clear pull-right">
+      {{> ionIcon icon='navicon'}}
+    </a>
   {{/contentFor}}
+
 
 <!-- pathFor creates a link dynamically based on info from the route.  -->
 <!-- In this case, base version, it refers to the simple route 'new' -->
@@ -82,7 +86,6 @@
           {{#each scase in startcases}}
             {{#if oneEither scase}}
               {{#ionItem}}
-                <p>One outcome</p>
                 {{#with to scase}}
                   <a href="{{pathFor 'end'}}" level="start" class="button">
                     <p>{{scase.text}}</p>
@@ -94,7 +97,6 @@
                 {{#if notClicked scase.text}}
                   {{#ionItem}}
                     {{#with to scase}}
-                      <p>Two outcomes</p>
                       <button class="button" level="start" id="{{ scase.text }}">
                         <p>{{scase.text}}</p>
                       </button>
@@ -193,7 +195,7 @@
 <template name='law'>
   <div class="bar bar-header bar-positive">
     {{>ionNavBackButton text="Tilbake"}}
-    <div class="title">Lov</div>
+  <div class="title">Lov</div>
   </div>
 
   {{#ionView}}
@@ -310,14 +312,6 @@
   {{/ionView}}
 </template>
 
-<template name="admin">
-    {{#contentFor "headerTitle"}}
-      <h1 class="title">Admin</h1>
-    {{/contentFor}}
-  {{#ionView}}
-  {{/ionView}}
-</template>
-
 <template name="mtabs">
   {{#if isAndroid}}
     {{#ionTabs style="android" class="tabs-background-positive tabs-color-light"}}
@@ -342,4 +336,169 @@
     {{> ionTab title="Eksempel" path="exampleTab"}}
     {{> ionTab title="Sammendrag" path="summaryTab"}}
   {{/ionTabs}}
+</template>
+
+<template name="signin">
+  <!-- Relevant login code -->
+  {{#if currentUser}}
+  {{/if}}
+  {{> loginButtons}}
+
+  <!-- Ionic styling for quickForms -->
+  {{> quickForm schema=mySchema id="myForm" template="ionic"}}
+
+  <!-- MISSING: meteor add accounts-ui accounts-password -->
+</template>
+
+<template name="admin">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Admin konfigurasjon</h1>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton text="Tilbake"}}
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      <a href = "{{pathFor 'admincases'}}" class="button">
+        <p>Startcases</p>
+      </a>
+      <p>Startcases are the initial categories of patients, the root node of the tree of questions.</p>
+      <a href = "{{pathFor 'adminfilters'}}" class="button">
+        <p>Filters</p>
+      </a>
+      <p>Filters are questions that depending on the answers given lead to a law or subsequent question, nodes in the tree.</p>
+      <a href = "{{pathFor 'adminlinks'}}" class="button">
+        <p>Links</p>
+      </a>
+      <p>Links decide where startcases and filters lead.</p>
+      <a href = "{{pathFor 'adminlaws'}}" class="button">
+        <p>Laws</p>
+      </a>
+      <p>Laws are the end points or leaf nodes to any tree of questions, reached when a patient has been categorized.</p>
+    {{/ionContent}}
+  {{/ionView}}
+</template>
+
+<template name="admincases">
+<!-- list all laws, clickable for edit and deletion -->
+<!-- Three options for adding new:
+     New page with form
+     Form on page
+     Form appears when "new" button is clicked, replacing the button
+-->
+  <p>New page with form</p>
+  <p>Form on page</p>
+  <p>Form appears when "new" button is clicked, replacing the button</p>
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Endre startcases</h1>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton text="Tilbake"}}
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent class="padding"}}
+      {{> quickForm schema="LawSchema" collection="Laws" id="insertLawForm" type="normal" omitFields="createdAt, lastUpdated"}}
+      {{#ionList}}
+        <!-- For each item in laws (from the helper, check js file) -->
+        {{#each cases}}
+          {{#ionItem path="caseedit" buttonRight=true}}
+            <!-- Paragraph from laws collection -->z|
+              <p>{{text}}</p>
+          {{/ionItem}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>
+
+<template name="adminlaws">
+<!-- list all laws, clickable for edit and deletion -->
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Endre lovtekster</h1>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton text="Tilbake"}}
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent class="padding"}}
+      {{> quickForm schema="LawSchema" collection="Laws" id="insertLawForm" type="normal" omitFields="createdAt, lastUpdated"}}
+      {{#ionList}}
+        <!-- For each item in laws (from the helper, check js file) -->
+        {{#each laws}}
+          {{#ionItem path="law" buttonRight=true}}
+            <!-- Paragraph from laws collection -->
+              <h2>{{law}}</h2>
+              <p>{{paragraph}}</p>
+          {{/ionItem}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+</template>
+
+<template name="adminlinks">
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Endre links</h1>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton text="Tilbake"}}
+  {{/contentFor}}
+
+{{#ionView}}
+  {{#ionContent class="padding"}}
+    <p>From and To are objects, from requires list of current startcases and filters, to requires list of current filters and laws</p>
+    <p>From/to in dropdown or new page?  </p>
+    {{> quickForm schema="LinkSchema" collection="Links" id="insertLinkForm" type="normal" omitFields="createdAt, lastUpdated"}}
+      {{#ionList}}
+        <!-- For each item in laws (from the helper, check js file) -->
+        {{#each links}}
+          {{#ionItem path="linkedit" buttonRight=true}}
+            <!-- Paragraph from laws collection -->
+              <p>{{from.text}}</p>
+              <p>{{mark}}</p>
+              <p>{{to.text}}</p>
+          {{/ionItem}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+<!-- list all links, clickable for edit and deletion -->
+</template>
+
+<template name="adminfilters">
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Endre filtere</h1>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton text="Tilbake"}}
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent class="padding"}}
+      {{> quickForm schema="FilterSchema" collection="Filters" id="insertFilterForm" type="normal" omitFields="createdAt, lastUpdated"}}
+        {{#ionList}}
+          <!-- For each item in laws (from the helper, check js file) -->
+          {{#each filters}}
+            {{#ionItem path="filteredit" buttonRight=true}}
+            <!-- Paragraph from laws collection -->
+              <p>{{text}}</p>
+              <p>{{number_of_outcomes}}</p>
+            {{/ionItem}}
+          {{/each}}
+        {{/ionList}}
+      {{/ionContent}}
+  {{/ionView}}
+<!-- list all filters, clickable for edit and deletion -->
 </template>
