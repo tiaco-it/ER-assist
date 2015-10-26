@@ -12,6 +12,7 @@ if (UPDATE == true) {
     Filters.remove({});
     Links.remove({});
     Urls.remove({});
+    Infos.remove({});
 }
 
 // STARTCASES
@@ -231,5 +232,17 @@ if (Urls.find().count() === 0 || UPDATE == true) {
     ];
     _.each(urls, function (list) {
         Urls.insert({link: list.link})
+    });
+}
+
+// INFOS
+if (Infos.find().count() === 0 || UPDATE == true) {
+    var info = [
+        {
+            text: "Her finner du litt informasjon om Tiaco og appen"
+        }
+    ];
+    _.each(info, function (list) {
+        Infos.insert({text: list.text})
     });
 }
