@@ -11,6 +11,7 @@ if (UPDATE == true) {
     Laws.remove({});
     Filters.remove({});
     Links.remove({});
+    Urls.remove({});
 }
 
 // STARTCASES
@@ -212,5 +213,23 @@ if (Links.find().count() === 0 || UPDATE == true) {
     ];
     _.each(links, function(list) {
         Links.insert({from: list.from, mark:list.mark, to: list.to})
+    });
+}
+
+// URLS
+if (Urls.find().count() === 0 || UPDATE == true) {
+    var urls = [
+        {
+            link: "https://lovdata.no"
+        },
+        {
+            link: "http://www.stolav.no"
+        },
+        {
+            link: "http://www.ntnu.no"
+        }
+    ];
+    _.each(urls, function (list) {
+        Urls.insert({link: list.link})
     });
 }

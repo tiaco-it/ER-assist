@@ -41,3 +41,12 @@ Meteor.publish('links', function() {
 Meteor.publish('link', function(_id) {
   return Links.find({_id: _id});
 });
+
+// URLS
+Meteor.publish('urls', function() {
+  return Urls.find();
+});
+
+Meteor.publish('url', function(_id) {
+  return Urls.find({_id: _id});
+});
