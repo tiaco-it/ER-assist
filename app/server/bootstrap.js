@@ -3,7 +3,7 @@
  * The UPDATE variable is set to clear all collections and insert the initial data.
  */
 
-var UPDATE = false; // set true to delete all records and insert all initial data
+var UPDATE = true; // set true to delete all records and insert all initial data
 
 if (UPDATE == true) {
     // Remove existing collection
@@ -125,7 +125,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
         }
     ];
     _.each(laws, function(list) {
-        Laws.insert({law: list.law, paragraph: list.paragraph, text: list.text})
+        Laws.insert({law: list.law, paragraph: list.paragraph, text: list.text, summary: list.summary, example: list.example})
     });
 }
 
