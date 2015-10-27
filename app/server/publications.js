@@ -41,3 +41,21 @@ Meteor.publish('links', function() {
 Meteor.publish('link', function(_id) {
   return Links.find({_id: _id});
 });
+
+// URLS
+Meteor.publish('urls', function() {
+  return Urls.find();
+});
+
+Meteor.publish('url', function(_id) {
+  return Urls.find({_id: _id});
+});
+
+// INFOS
+Meteor.publish('infos', function() {
+  return Infos.find();
+});
+
+Meteor.publish('info', function(_id) {
+  return Infos.find({_id: _id});
+});

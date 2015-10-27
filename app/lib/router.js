@@ -43,8 +43,14 @@ Router.route('/links', function () {
     this.render('links');
 });
 
-Router.route('/info', function () {
+Router.route('/infos', function () {
+    this.render('infos');
+});
+
+Router.route('/infos/:_id', function (){
     this.render('info');
+}, {
+    name: 'info'
 });
 
 Router.route('/end/:_id', function (){

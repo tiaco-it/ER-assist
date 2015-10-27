@@ -91,6 +91,8 @@ Template.home.onCreated(function() {
 			Meteor.subscribe("laws");
 			Meteor.subscribe("filters");
 			Meteor.subscribe("links");
+            Meteor.subscribe("urls");
+			Meteor.subscribe("infos");
     	};
   	});
 });
@@ -250,6 +252,32 @@ Template.laws.helpers({
 Template.law.helpers({
 	'thisLaw': function() {
 		return Laws.findOne(Router.current().params._id)
+	}
+});
+
+Template.links.helpers({
+	'links': function() {
+		var urls = Urls.find({})
+		return urls && urls
+	}
+});
+
+//Template.link.helpers({
+//	'thisLink': function() {
+//		return Urls.findOne(Router.current().params._id)
+//	}
+//})
+
+Template.infos.helpers({
+	'infos': function() {
+		var infos = Infos.find({})
+		return infos && infos
+	}
+});
+
+Template.info.helpers({
+	'thisInfo': function() {
+		return Infos.findOne(Router.current().params._id)
 	}
 })
 

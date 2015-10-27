@@ -46,6 +46,22 @@ To: Object
 // The object in the end of the link (filter or law)
 ```
 
+#### Urls
+*Relevant URLs for the application*
+```
+Link: String
+// The external URL (http://www...)
+```
+
+#### Infos
+*Information about the application and developers*
+```
+Title: String
+// A title for this information element
+Text: String
+// Textual description of this information element
+```
+
 
 ## Workflow
 #### Create branch

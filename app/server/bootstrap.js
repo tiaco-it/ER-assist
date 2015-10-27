@@ -3,7 +3,7 @@
  * The UPDATE variable is set to clear all collections and insert the initial data.
  */
 
-var UPDATE = false; // set true to delete all records and insert all initial data
+var UPDATE = true; // set true to delete all records and insert all initial data
 
 if (UPDATE == true) {
     // Remove existing collection
@@ -11,6 +11,8 @@ if (UPDATE == true) {
     Laws.remove({});
     Filters.remove({});
     Links.remove({});
+    Urls.remove({});
+    Infos.remove({});
 }
 
 // STARTCASES
@@ -125,7 +127,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
         }
     ];
     _.each(laws, function(list) {
-        Laws.insert({law: list.law, paragraph: list.paragraph, text: list.text})
+        Laws.insert({law: list.law, paragraph: list.paragraph, text: list.text, summary: list.summary, example: list.example})
     });
 }
 
@@ -212,5 +214,44 @@ if (Links.find().count() === 0 || UPDATE == true) {
     ];
     _.each(links, function(list) {
         Links.insert({from: list.from, mark:list.mark, to: list.to})
+    });
+}
+
+// URLS
+if (Urls.find().count() === 0 || UPDATE == true) {
+    var urls = [
+        {
+            link: "https://lovdata.no"
+        },
+        {
+            link: "http://www.stolav.no"
+        },
+        {
+            link: "http://www.ntnu.no"
+        }
+    ];
+    _.each(urls, function (list) {
+        Urls.insert({link: list.link})
+    });
+}
+
+// INFOS
+if (Infos.find().count() === 0 || UPDATE == true) {
+    var info = [
+        {
+            title: "Om appen",
+            text: "Her finner du litt informasjon om selve appen"
+        },
+        {
+            title: "Hvordan bruke appen",
+            text: ".. f.eks. en brukerguide.."
+        },
+        {
+            title: "Om utviklerne",
+            text: ".. og litt informasjon om Tiaco.."
+        }
+    ];
+    _.each(info, function (list) {
+        Infos.insert({title: list.title, text: list.text})
     });
 }

@@ -241,17 +241,58 @@
         <h1 class="title">Lenker</h1>
       {{/contentFor}}
   {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        <!-- For each item in links (from the helper, check js file) -->
+        {{#each links}}
+          {{#ionItem}}
+            <!-- Link from urls collection -->
+            <!-- Maybe redirect can be done with Iron Router? -->
+            <a class="" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
+            <h2>{{link}}</h2>
+            </a>
+              {{/ionItem}}
+          {{/each}}
+      {{/ionList}}
+      {{/ionContent}}
     {{>mtabs}}
   {{/ionView}}
 </template>
 
-<template name="info">
+<template name="infos">
     {{#contentFor "headerTitle"}}
       <h1 class="title">Informasjon</h1>
     {{/contentFor}}
   {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        <!-- For each item in Infos (from the helper, check js file) -->
+        {{#each infos}}
+          {{#ionItem path="info" buttonRight=true}}
+            <!-- Text from Infos collection -->
+            <h2>{{title}}</h2>
+          {{/ionItem}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
     {{>mtabs}}
   {{/ionView}}
+</template>
+
+<template name='info'>
+    <div class="bar bar-header bar-positive">
+        {{>ionNavBackButton text="Tilbake"}}
+        <div class="title">{{title}}</div>
+    </div>
+    {{#ionView}}
+        {{#ionContent}}
+            {{#with thisInfo}}
+                <h1>{{title}}</h1>
+                <p>{{text}}</p>
+            {{/with}}
+        {{/ionContent}}
+        {{>mtabs}}
+    {{/ionView}}
 </template>
 
 <template name='lawTab'>
@@ -318,14 +359,14 @@
       {{> ionTab title="Hjem" path="home" icon="android-home"}}
       {{> ionTab title="Lover" path="laws" icon="android-star"}}
       {{> ionTab title="Lenker" path="links" icon="android-globe"}}
-      {{> ionTab title="Info" path="info" icon="gear-b"}}
+      {{> ionTab title="Info" path="infos" icon="gear-b"}}
     {{/ionTabs}}
   {{else}}
     {{#ionTabs style="ios"}}
       {{> ionTab title="Hjem" path="home" iconOff="ios-home-outline" iconOn="ios-home"}}
       {{> ionTab title="Lover" path="laws" iconOff="ios-book-outline" iconOn="ios-book"}}
       {{> ionTab title="Lenker" path="links" iconOff="ios-world-outline" iconOn="ios-world"}}
-      {{> ionTab title="Info" path="info" iconOff="ios-information-outline" iconOn="ios-information"}}
+      {{> ionTab title="Info" path="infos" iconOff="ios-information-outline" iconOn="ios-information"}}
     {{/ionTabs}}
   {{/if}}
 </template>
