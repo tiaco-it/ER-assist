@@ -1,0 +1,99 @@
+<!-- contentFor means content for the element, in this case "headerTitle" which is one of 3 regions supplied by the IonNavBar. In general ion elements can supply regions where content is displayed if put inside contentFor "regionName" -->
+
+<template name="home">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Kategoriser pasienten</h1>
+    <a href = "{{pathFor 'admin'}}" class="button button-clear pull-right">
+      {{> ionIcon icon='navicon'}}
+    </a>
+  {{/contentFor}}
+
+
+<!-- pathFor creates a link dynamically based on info from the route.  -->
+<!-- In this case, base version, it refers to the simple route 'new' -->
+
+<!-- {{#each}} iterates over over elements in the named object. {{ (attribute) }} can then be used to get attributes from each element. HTML and ion elements are then used to format and enclose the output content -->
+
+  {{#ionView}}
+    {{#ionContent}}
+      {{#if Template.subscriptionsReady}}
+        {{#ionList}}
+<!-- startcases here refers to a helper method in app.js which returns an array of objects -->
+          {{#each scase in startcases}}
+            {{#if oneEither scase}}
+              {{#ionItem}}
+                {{#with to scase}}
+                  <a href="{{pathFor 'end'}}" level="start" class="button">
+                    <p>{{scase.text}}</p>
+                  </a>
+                {{/with}}
+              {{/ionItem}}
+            {{else}}
+              {{#if twoEither scase}}
+                {{#if notClicked scase.text}}
+                  {{#ionItem}}
+                    {{#with to scase}}
+                      <button class="button" level="start" id="{{ scase.text }}">
+                        <p>{{scase.text}}</p>
+                      </button>
+                    {{/with}}
+                  {{/ionItem}}
+                {{else}}
+                  {{#ionItem}}
+                    <p>{{currentFrom.text}}</p>
+                    {{#with yesLink currentFrom}}
+                      {{#if oneYes currentFrom}}
+                        <a href="{{pathFor 'end'}}" class="button" level="end">
+                          <p>Ja</p>
+                        </a>
+                      {{else}}
+                        {{#if twoYes currentFrom}}
+                          <button class="button" level="inter" id = "{{ text }}">
+                            <p>Ja</p>
+                          </button>
+                        {{else}}
+                          <a href = "{{pathFor 'next'}}" class="button" level="end">
+                            <p>Ja</p>
+                          </a>
+                        {{/if}}
+                      {{/if}}
+                    {{/with}}
+                    {{#with noLink currentFrom}}
+                      {{#if oneNo currentFrom}}
+                        <a href="{{pathFor 'end'}}" class="button" level="end">
+                          <p>Nei</p>
+                        </a>
+                      {{else}}
+                        {{#if twoNo currentFrom}}
+                          <button class="button" level="inter" id = "{{ text }}">
+                            <p>Nei</p>
+                          </button>
+                        {{else}}
+                          <a href = "{{pathFor 'next'}}" class="button" level="end">
+                            <p>Nei</p>
+                          </a>
+                        {{/if}}
+                      {{/if}}
+                    {{/with}}
+                  {{/ionItem}}
+                {{/if}}
+              {{else}}
+                {{#with to scase}}
+                  {{#ionItem}}
+                    <a href="{{pathFor 'next'}}" level="start" class="button">
+                      <p>n > 2 outcomes</p>
+                      <p>{{scase.text}}</p>
+                    </a>
+                  {{/ionItem}}
+                {{/with}}
+              {{/if}}
+            {{/if}}
+          {{/each}}
+        {{/ionList}}
+      {{else}}
+        {{> spinner}}
+      {{/if}}
+    {{/ionContent}}
+    {{> mtabs}}
+  {{/ionView}}
+</template>

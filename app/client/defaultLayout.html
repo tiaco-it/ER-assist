@@ -1,0 +1,18 @@
+
+<!-- Standard markup for the general layout of the pages in our app is below -->
+<!-- You have a top bar and a view with content -->
+<!-- Standard setup is that ionBody contains ionView which contains ionContent -->
+
+<!-- The layout template is the general layout of the app, router puts it inside "body" for any page  -->
+
+<template name="defaultLayout">
+  {{#ionBody}}
+    {{> ionNavBar class="bar-positive"}}
+
+<!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->  
+
+    {{#ionNavView}}
+      {{> yield}}
+    {{/ionNavView}}
+  {{/ionBody}}
+</template>

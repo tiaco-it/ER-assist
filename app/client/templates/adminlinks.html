@@ -1,0 +1,30 @@
+<template name="adminlinks">
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Endre links</h1>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton text="Tilbake"}}
+  {{/contentFor}}
+
+{{#ionView}}
+  {{#ionContent class="padding"}}
+    <p>From and To are objects, from requires list of current startcases and filters, to requires list of current filters and laws</p>
+    <p>From/to in dropdown or new page?  </p>
+    {{> quickForm schema="LinkSchema" collection="Links" id="insertLinkForm" type="normal" omitFields="createdAt, lastUpdated"}}
+      {{#ionList}}
+        <!-- For each item in laws (from the helper, check js file) -->
+        {{#each links}}
+          {{#ionItem path="linkedit" buttonRight=true}}
+            <!-- Paragraph from laws collection -->
+              <p>{{from.text}}</p>
+              <p>{{mark}}</p>
+              <p>{{to.text}}</p>
+          {{/ionItem}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
+  {{/ionView}}
+<!-- list all links, clickable for edit and deletion -->
+</template>

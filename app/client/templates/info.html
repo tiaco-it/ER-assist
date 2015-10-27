@@ -1,0 +1,15 @@
+<template name='info'>
+    <div class="bar bar-header bar-positive">
+        {{>ionNavBackButton text="Tilbake"}}
+        <div class="title">{{title}}</div>
+    </div>
+    {{#ionView}}
+        {{#ionContent}}
+            {{#with thisInfo}}
+                <h1>{{title}}</h1>
+                <p>{{text}}</p>
+            {{/with}}
+        {{/ionContent}}
+        {{>mtabs}}
+    {{/ionView}}
+</template>

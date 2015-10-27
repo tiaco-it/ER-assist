@@ -1,0 +1,19 @@
+<template name="infos">
+    {{#contentFor "headerTitle"}}
+      <h1 class="title">Informasjon</h1>
+    {{/contentFor}}
+  {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        <!-- For each item in Infos (from the helper, check js file) -->
+        {{#each infos}}
+          {{#ionItem path="info" buttonRight=true}}
+            <!-- Text from Infos collection -->
+            <h2>{{title}}</h2>
+          {{/ionItem}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
+    {{>mtabs}}
+  {{/ionView}}
+</template>

@@ -1,0 +1,27 @@
+<!-- Tentative template for displaying all laws (For shortcut directly to law) -->
+
+<template name="laws">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Lover</h1>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton text="Tilbake"}}
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      {{#ionList}}
+        <!-- For each item in laws (from the helper, check js file) -->
+        {{#each laws}}
+          {{#ionItem path="law" buttonRight=true}}
+            <!-- Paragraph from laws collection -->
+              <h2>{{law}}</h2>
+              <p>{{paragraph}}</p>
+          {{/ionItem}}
+        {{/each}}
+      {{/ionList}}
+    {{/ionContent}}
+    {{> mtabs}}
+  {{/ionView}}
+</template>
