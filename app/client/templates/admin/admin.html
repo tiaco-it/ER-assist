@@ -1,0 +1,30 @@
+<template name="admin">
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Admin konfigurasjon</h1>
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton text="Tilbake"}}
+    {{/contentFor}}
+
+    {{#ionView}}
+        {{#ionContent}}
+            <a href = "{{pathFor 'admincases'}}" class="button">
+                <p>Startcases</p>
+            </a>
+            <p>Startcases are the initial categories of patients, the root node of the tree of questions.</p>
+            <a href = "{{pathFor 'adminfilters'}}" class="button">
+                <p>Filters</p>
+            </a>
+            <p>Filters are questions that depending on the answers given lead to a law or subsequent question, nodes in the tree.</p>
+            <a href = "{{pathFor 'adminlinks'}}" class="button">
+                <p>Links</p>
+            </a>
+            <p>Links decide where startcases and filters lead.</p>
+            <a href = "{{pathFor 'adminlaws'}}" class="button">
+                <p>Laws</p>
+            </a>
+            <p>Laws are the end points or leaf nodes to any tree of questions, reached when a patient has been categorized.</p>
+        {{/ionContent}}
+    {{/ionView}}
+</template>

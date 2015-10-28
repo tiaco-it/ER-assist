@@ -1,0 +1,16 @@
+<!-- Path is the router version of links. The router creates a link based on the route the path keyword refers to  -->
+
+<template name="new">
+    <div class="bar bar-header bar-positive">
+        {{>ionNavBackButton path="home" text="Tilbake"}}
+        <div class="title">Edit Element</div>
+    </div>
+
+    <!-- quickForm is a quick use of AutoForm which supplies basic, simple forms for filling out a specific schema (that we specify with SimpleSchema) -->
+
+    {{#ionView}}
+        {{#ionContent class="padding"}}
+            {{> quickForm schema="ElementsSchema" collection="Elements" id="insertElementForm" type="normal" omitFields="createdAt, lastUpdated"}}
+        {{/ionContent}}
+    {{/ionView}}
+</template>

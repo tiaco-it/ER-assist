@@ -6,13 +6,13 @@
 <!-- The layout template is the general layout of the app, router puts it inside "body" for any page  -->
 
 <template name="defaultLayout">
-  {{#ionBody}}
-    {{> ionNavBar class="bar-positive"}}
+    {{#ionBody}}
+        {{> ionNavBar class="bar-positive"}}
 
-<!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->  
+        <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->
 
-    {{#ionNavView}}
-      {{> yield}}
-    {{/ionNavView}}
-  {{/ionBody}}
+        {{#ionNavView}}
+            {{> yield}}
+        {{/ionNavView}}
+    {{/ionBody}}
 </template>

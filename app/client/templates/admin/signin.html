@@ -1,0 +1,12 @@
+<template name="signin">
+    <!-- Relevant login code -->
+    {{#if currentUser}}
+    {{/if}}
+    {{> loginButtons}}
+
+    <!-- Ionic styling for quickForms -->
+    {{> quickForm schema=mySchema id="myForm" template="ionic"}}
+
+    <!-- MISSING: meteor add accounts-ui accounts-password -->
+</template>
+

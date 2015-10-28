@@ -50,8 +50,8 @@ Meteor.methods({
 
 if ( Meteor.isClient ) {
   Ground.methodResume([
-      'addElement',
-      'editElement',
-      'removeElement'
+    'addElement',
+    'editElement',
+    'removeElement'
   ]);
 }
