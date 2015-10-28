@@ -53,7 +53,7 @@ Link: String
 // The external URL (http://www...)
 ```
 
-#### Infos
+#### Info
 *Information about the application and developers*
 ```
 Title: String

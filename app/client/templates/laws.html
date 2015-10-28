@@ -1,24 +1,18 @@
 <!-- Tentative template for displaying all laws (For shortcut directly to law) -->
-
 <template name="laws">
     {{#contentFor "headerTitle"}}
-        <h1 class="title">Lover</h1>
+        <h1 class="title">LOVER</h1>
     {{/contentFor}}
-
-    {{#contentFor "headerButtonLeft"}}
-        {{>ionNavBackButton text="Tilbake"}}
-    {{/contentFor}}
-
     {{#ionView}}
         {{#ionContent}}
             {{#ionList}}
-                <!-- For each item in laws (from the helper, check js file) -->
-                {{#each laws}}
-                    {{#ionItem path="law" buttonRight=true}}
-                        <!-- Paragraph from laws collection -->
-                        <h2>{{law}}</h2>
-                        <p>{{paragraph}}</p>
-                    {{/ionItem}}
+                {{#each category}}
+                    <div class="item item-divider text-center">{{this}}</div>
+                    {{#each categoryLaws this}}
+                        {{#ionItem path="law" buttonRight=true}}
+                            <h3>{{paragraph}}</h3>
+                        {{/ionItem}}
+                    {{/each}}
                 {{/each}}
             {{/ionList}}
         {{/ionContent}}
@@ -26,19 +20,27 @@
     {{/ionView}}
 </template>
 
+
 <!-- Tentative template for displaying one law -->
 <template name='law'>
     <div class="bar bar-header bar-positive">
         {{>ionNavBackButton text="Tilbake"}}
-        <div class="title">Lov</div>
+        <div class="title">LOV</div>
     </div>
 
     {{#ionView}}
         {{#ionContent}}
             {{#with thisLaw}}
-                <h1>{{law}}</h1>
-                <h2>{{paragraph}}</h2>
-                <p>{{text}}</p>
+                <h2 class="text-center">{{law}}</h2>
+                <h3 class="text-center">{{paragraph}}</h3>
+                <!--<div class="bar bar-positive">-->
+                <div class="button button-full button-balanced disabled">
+                    <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
+                    <h4 style="color:white;">One-liner for lov..</h4>
+                </div>
+                {{#ionBody}}
+                    <p style="padding-left: 10px; padding-right: 10px;">{{text}}</p>
+                {{/ionBody}}
             {{/with}}
         {{/ionContent}}
         {{>mtabs}}
