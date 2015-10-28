@@ -92,7 +92,7 @@ Template.home.onCreated(function() {
             Meteor.subscribe("filters");
             Meteor.subscribe("links");
             Meteor.subscribe("urls");
-            Meteor.subscribe("infos");
+            Meteor.subscribe("info");
         }
     });
 });

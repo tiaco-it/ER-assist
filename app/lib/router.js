@@ -43,14 +43,21 @@ Router.route('/links', function () {
     this.render('links');
 });
 
-Router.route('/infos', function () {
-    this.render('infos');
+Router.route('/info', function () {
+    this.render('info');
 });
 
-Router.route('/infos/:_id', function (){
-    this.render('info');
+Router.route('/info/:_id', function (){
+    this.render('infoElement');
 }, {
-    name: 'info'
+    name: 'infoElement'
+});
+
+Router.route('/infoAbout', function (){
+    this.layout('infoAbout')
+    this.render('infoAbout', {to: 'tab'});
+}, {
+    name: 'infoAbout'
 });
 
 Router.route('/end/:_id', function (){
@@ -59,6 +66,7 @@ Router.route('/end/:_id', function (){
   }, {
     name: 'end'
 });
+
 Router.route('/lawTab', function (){
     this.layout('endLayout')
     this.render('lawTab', {to: 'tab'});

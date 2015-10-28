@@ -1,12 +1,12 @@
-Template.infos.helpers({
-    'infos': function() {
-        var infos = Infos.find({})
-        return infos && infos
+Template.info.helpers({
+    'info': function() {
+        var info = Info.find({});
+        return info && info
     }
 });
 
-Template.info.helpers({
+Template.infoElement.helpers({
     'thisInfo': function() {
-        return Infos.findOne(Router.current().params._id)
+        return Info.findOne(Router.current().params._id)
     }
 });

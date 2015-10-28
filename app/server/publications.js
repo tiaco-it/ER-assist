@@ -51,11 +51,11 @@ Meteor.publish('url', function(_id) {
   return Urls.find({_id: _id});
 });
 
-// INFOS
-Meteor.publish('infos', function() {
-  return Infos.find();
+// INFO
+Meteor.publish('info', function() {
+  return Info.find();
 });
 
-Meteor.publish('info', function(_id) {
-  return Infos.find({_id: _id});
+Meteor.publish('infoElement', function(_id) {
+  return Info.find({_id: _id});
 });

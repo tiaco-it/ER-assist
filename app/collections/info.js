@@ -9,26 +9,26 @@ InfoSchema = new SimpleSchema({
 });
 
 // Create collection
-Infos = new Meteor.Collection('Infos');
+Info = new Meteor.Collection('Info');
 
 // Make collection available offline if on a mobile device.
-if (Meteor.isCordova) Ground.Collection(Infos);
+if (Meteor.isCordova) Ground.Collection(Info);
 
 // Methods for user input
 Meteor.methods({
     addInfo: function(doc) {
         check(doc, InfoSchema);
         var obj = {text: doc.text};
-        return Infos.insert(obj);
+        return Info.insert(obj);
     },
     editInfo: function(obj) {
         check(obj._id, String);
         check(obj.updateDoc.$set, InfoSchema);
-        return Infos.update({_id: obj._id}, obj.updateDoc);
+        return Info.update({_id: obj._id}, obj.updateDoc);
     },
     removeInfo: function (id) {
         check(id, String);
-        return Infos.remove(id);
+        return Info.remove(id);
     }
 });
 

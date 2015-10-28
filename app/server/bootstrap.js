@@ -12,7 +12,7 @@ if (UPDATE == true) {
     Filters.remove({});
     Links.remove({});
     Urls.remove({});
-    Infos.remove({});
+    Info.remove({});
 }
 
 // STARTCASES
@@ -235,9 +235,9 @@ if (Urls.find().count() === 0 || UPDATE == true) {
     });
 }
 
-// INFOS
-if (Infos.find().count() === 0 || UPDATE == true) {
-    var info = [
+// INFO
+if (Info.find().count() === 0 || UPDATE == true) {
+    var elements = [
         {
             title: "Om appen",
             text: "Her finner du litt informasjon om selve appen"
@@ -251,7 +251,7 @@ if (Infos.find().count() === 0 || UPDATE == true) {
             text: ".. og litt informasjon om Tiaco.."
         }
     ];
-    _.each(info, function (list) {
-        Infos.insert({title: list.title, text: list.text})
+    _.each(elements, function (list) {
+        Info.insert({title: list.title, text: list.text})
     });
 }
