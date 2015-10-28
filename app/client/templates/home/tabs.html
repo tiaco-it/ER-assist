@@ -35,9 +35,27 @@
 <template name="summaryTab">
     {{#ionContent}}
         {{#with thisLaw}}
-            <h1>{{law}}</h1>
-            <h2>{{paragraph}}</h2>
-            <p>{{summary}}</p>
+            <h2 class="text-center">{{law}}</h2>
+            <h3 class="text-center">{{paragraph}}</h3>
+            <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
+            <div class="button button-full button-positive disabled" style="min-height: 3px;"></div>
+            <p style="padding-left: 10px; padding-right: 10px;">{{summary}}</p>
+            <div class="button button-full button-positive disabled" style="min-height: 3px;"></div>
+            <!-- Rest is dummy -->
+            <h3 class="text-center">Relevante dokumenter</h3>
+            <div class="list">
+                <label class="item item-radio">
+                    <input type="radio" name="group">
+                    <div class="item-content">Dokument 1</div>
+                    <i class="radio-icon ion-checkmark"></i>
+                </label>
+                <label class="item item-radio">
+                    <input type="radio" name="group">
+                    <div class="item-content">Dokument 2</div>
+                    <i class="radio-icon ion-checkmark"></i>
+                </label>
+                <div class="button button-block button-positive">SEND</div>
+            </div>
         {{/with}}
     {{/ionContent}}
 </template>
@@ -45,9 +63,14 @@
 <template name='lawTab'>
     {{#ionContent}}
         {{#with thisLaw}}
-            <h1>{{law}}</h1>
-            <h2>{{paragraph}}</h2>
-            <p>{{text}}</p>
+            <h2 class="text-center">{{law}}</h2>
+            <h3 class="text-center">{{paragraph}}</h3>
+            <!--<div class="bar bar-positive">-->
+            <div class="button button-full button-balanced disabled">
+                <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
+                <h4 style="color:white;">One-liner for lov..</h4>
+            </div>
+            <p style="padding-left: 10px; padding-right: 10px;">{{text}}</p>
         {{/with}}
     {{/ionContent}}
 </template>
@@ -55,9 +78,11 @@
 <template name="exampleTab">
     {{#ionContent}}
         {{#with thisLaw}}
-            <h1>{{law}}</h1>
-            <h2>{{paragraph}}</h2>
-            <p>{{example}}</p>
+            <h2 class="text-center">{{law}}</h2>
+            <h3 class="text-center">{{paragraph}}</h3>
+            <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
+            <div class="button button-full button-positive disabled" style="min-height: 3px;"></div>
+            <p style="padding-left: 10px; padding-right: 10px;">{{example}}</p>
         {{/with}}
     {{/ionContent}}
 </template>
