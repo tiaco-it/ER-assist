@@ -134,8 +134,9 @@ Router.route('/login', function () {
   name: 'login'
 });
 
-Router.route('/editpath', function () {
-  this.render('editpath');
+Router.route('/editcase/:_id', function () {
+  this.layout('defaultLayout');
+  this.render('editcase');
 }, {
-  name: 'editpath'
+  name: 'editcase'
 });

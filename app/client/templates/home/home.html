@@ -41,9 +41,11 @@
                                         <p>{{scase.text}}</p>
                                     </a>
                                     {{#if currentUser}}
-                                        <a href="{{pathFor 'editpath'}}" class="button pull-right" func="edit">
+                                        {{#with scase}}
+                                        <a href="{{pathFor 'editcase'}}" class="button pull-right" func="edit">
                                             {{> ionIcon icon="edit"}}
                                         </a>
+                                        {{/with}}
                                     {{/if}}
                             {{/with}}
                         {{/ionItem}}
@@ -56,9 +58,11 @@
                                                 <p>{{scase.text}}</p>
                                             </button>
                                     {{#if currentUser}}
-                                        <a href="{{pathFor 'editpath'}}" class="button pull-right" func="edit">
+                                        {{#with scase}}
+                                        <a href="{{pathFor 'editcase'}}" class="button pull-right" func="edit">
                                             {{> ionIcon icon="edit"}}
                                         </a>
+                                        {{/with}}
                                     {{/if}}
                                     {{/with}}
                                 {{/ionItem}}
@@ -109,9 +113,11 @@
                                             <p>{{scase.text}}</p>
                                         </a>
                                     {{#if currentUser}}
-                                        <a href="{{pathFor 'editpath'}}" class="button pull-right" func="edit">
+                                        {{#with scase}}
+                                        <a href="{{pathFor 'editcase'}}" class="button pull-right" func="edit">
                                             {{> ionIcon icon="edit"}}
                                         </a>
+                                        {{/with}}
                                     {{/if}}
                                 {{/ionItem}}
                             {{/with}}
