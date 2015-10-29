@@ -127,3 +127,15 @@ Router.route('/admin/laws', function () {
 }, {
   name: 'adminlaws'
 });
+
+Router.route('/login', function () {
+  this.render('login');
+}, {
+  name: 'login'
+});
+
+Router.route('/editpath', function () {
+  this.render('editpath');
+}, {
+  name: 'editpath'
+});

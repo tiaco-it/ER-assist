@@ -4,6 +4,7 @@
     {{/contentFor}}
     {{#ionView}}
         {{#ionContent}}
+            {{#if Template.subscriptionsReady}}
             {{#ionList}}
                 {{#each info}}
                     {{#ionItem path="infoElement" buttonRight=true}}
@@ -11,6 +12,9 @@
                     {{/ionItem}}
                 {{/each}}
             {{/ionList}}
+            {{else}}
+                {{> spinner}}
+            {{/if}}
         {{/ionContent}}
         {{>mtabs}}
     {{/ionView}}

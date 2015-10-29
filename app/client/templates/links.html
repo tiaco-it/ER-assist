@@ -4,6 +4,7 @@
     {{/contentFor}}
     {{#ionView}}
         {{#ionContent}}
+            {{#if Template.subscriptionsReady}}
             {{#ionList}}
                 <!-- For each item in links (from the helper, check js file) -->
                 {{#each links}}
@@ -16,6 +17,9 @@
                     {{/ionItem}}
                 {{/each}}
             {{/ionList}}
+            {{else}}
+                {{> spinner}}
+            {{/if}}
         {{/ionContent}}
         {{>mtabs}}
     {{/ionView}}

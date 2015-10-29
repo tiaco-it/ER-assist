@@ -1,3 +1,12 @@
+Template.links.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+        if ( Meteor.status().connected ) {
+            self.subscribe("urls");
+        }
+    });
+});
+
 Template.links.helpers({
     'links': function() {
         var urls = Urls.find({});

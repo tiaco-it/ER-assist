@@ -5,6 +5,7 @@
     {{/contentFor}}
     {{#ionView}}
         {{#ionContent}}
+        {{#if Template.subscriptionsReady}}
             {{#ionList}}
                 {{#each category}}
                     <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">{{this}}</div>
@@ -15,6 +16,9 @@
                     {{/each}}
                 {{/each}}
             {{/ionList}}
+        {{else}}
+            {{> spinner}}
+        {{/if}}
         {{/ionContent}}
         {{> mtabs}}
     {{/ionView}}
@@ -30,6 +34,7 @@
 
     {{#ionView}}
         {{#ionContent}}
+            {{#if Template.subscriptionsReady}}
             {{#with thisLaw}}
                 <h2 class="text-center">{{law}}</h2>
                 <h3 class="text-center">{{paragraph}}</h3>
@@ -40,6 +45,9 @@
                 </div>
                 <p style="padding-left: 10px; padding-right: 10px;">{{text}}</p>
             {{/with}}
+            {{else}}
+                {{> spinner}}
+            {{/if}}
         {{/ionContent}}
         {{>mtabs}}
     {{/ionView}}

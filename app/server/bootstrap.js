@@ -3,7 +3,7 @@
  * The UPDATE variable is set to clear all collections and insert the initial data.
  */
 
-var UPDATE = true; // set true to delete all records and insert all initial data
+var UPDATE = false; // set true to delete all records and insert all initial data
 
 if (UPDATE == true) {
     // Remove existing collection
@@ -14,8 +14,9 @@ if (UPDATE == true) {
     Urls.remove({});
     Info.remove({});
 }
+Meteor.startup(function () {
 
-// STARTCASES
+//STARTCASES
 if (Startcases.find().count() === 0 || UPDATE == true) {
     var startcases = [
         {
@@ -44,7 +45,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             paragraph: "17. Nødrett",
             text: "En handling som ellers ville være straffbar, er lovlig når \ " +
             "a) den blir foretatt for å redde liv, helse, eiendom eller en annen interesse fra en fare for skade som ikke kan avverges på annen rimelig måte, og \ " +
-            "b)	denne skaderisikoen er langt større enn skaderisikoen ved handlingen.",
+            "b) denne skaderisikoen er langt større enn skaderisikoen ved handlingen.",
             summary: "Dette er et SAMMENDRAG av §17. Nødrett fra Straffeloven",
             example: "Dette er et EKSEMPEL av §17. Nødrett fra Straffeloven"
         },
@@ -52,9 +53,9 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             law: "Straffeloven",
             paragraph: "18. Nødverge",
             text: "En handling som ellers ville være straffbar, er lovlig når den \ " +
-            "a)	blir foretatt for å avverge et ulovlig angrep, \ " +
-            "b)	ikke går lenger enn nødvendig, og \ " +
-            "c)	ikke går åpenbart ut over hva som er forsvarlig under hensyn til hvor farlig angrepet er, hva slags interesse som angrepet krenker, og angriperens skyld \ " +
+            "a) blir foretatt for å avverge et ulovlig angrep, \ " +
+            "b) ikke går lenger enn nødvendig, og \ " +
+            "c) ikke går åpenbart ut over hva som er forsvarlig under hensyn til hvor farlig angrepet er, hva slags interesse som angrepet krenker, og angriperens skyld \ " +
             "Regelen i første ledd gjelder tilsvarende for den som iverksetter en lovlig pågripelse eller søker å hindre at noen unndrar seg varetektsfengsling eller gjennomføring av frihetsstraff. \ " +
             "Utøving av offentlig myndighet kan bare møtes med nødverge når myndighetsutøvingen er ulovlig, og den som gjennomfører den, opptrer forsettlig eller grovt uaktsomt.",
             summary: "Dette er et SAMMENDRAG av §18. Nødverge fra Straffeloven",
@@ -92,12 +93,12 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             law: "Psykisk helsevernloven",
             paragraph: "3-2.Vedtak om tvungen observasjon",
             text: "På bakgrunn av opplysninger fra legeundersøkelsen etter § 3-1, foretar den faglig ansvarlige en vurdering av om de følgende vilkårene for tvungen observasjon er oppfylt: \ " +
-            "1.	Frivillig psykisk helsevern har vært forsøkt, uten at dette har ført fram, eller det er åpenbart formålsløst å forsøke dette. \ " +
-            "2.	Pasienten er undersøkt av to leger, hvorav én skal være uavhengig av den ansvarlige institusjon, jf. § 3-1. \ " +
-            "3.	Det er overveiende sannsynlig at pasienten fyller vilkårene for tvungent psykisk helsevern etter § 3-3. \ " +
-            "4.	Institusjonen er faglig og materielt i stand til å tilby pasienten tilfredsstillende behandling og omsorg og er godkjent i henhold til § 3-5. \ " +
-            "5.	Pasienten er gitt anledning til å uttale seg, jf. § 3-9. \ " +
-            "6.	Selv om lovens vilkår ellers er oppfylt, kan tvungen observasjon bare finne sted hvor dette etter en helhetsvurdering framtrer som den klart beste løsning for vedkommende, \ " +
+            "1. Frivillig psykisk helsevern har vært forsøkt, uten at dette har ført fram, eller det er åpenbart formålsløst å forsøke dette. \ " +
+            "2. Pasienten er undersøkt av to leger, hvorav én skal være uavhengig av den ansvarlige institusjon, jf. § 3-1. \ " +
+            "3. Det er overveiende sannsynlig at pasienten fyller vilkårene for tvungent psykisk helsevern etter § 3-3. \ " +
+            "4. Institusjonen er faglig og materielt i stand til å tilby pasienten tilfredsstillende behandling og omsorg og er godkjent i henhold til § 3-5. \ " +
+            "5. Pasienten er gitt anledning til å uttale seg, jf. § 3-9. \ " +
+            "6. Selv om lovens vilkår ellers er oppfylt, kan tvungen observasjon bare finne sted hvor dette etter en helhetsvurdering framtrer som den klart beste løsning for vedkommende, \ " +
             "med mindre han eller hun utgjør en nærliggende og alvorlig fare for andres liv eller helse. Ved vurderingen skal det legges særlig vekt på hvor stor belastning det tvangsmessige inngrepet vil medføre for vedkommende. \ " +
             "Den faglig ansvarlige treffer vedtak på grunnlag av foreliggende opplysninger og egen personlig undersøkelse av pasienten. Den faglig ansvarliges vedtak og grunnlaget for det skal straks nedtegnes. \ " +
             "Tvungen observasjon kan ikke vare ut over 10 dager fra undersøkelsens begynnelse uten pasientens samtykke. Dersom pasientens tilstand tilsier at det er strengt nødvendig, \ " +
@@ -110,14 +111,14 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             law: "Psykisk helsevernloven",
             paragraph: "3-3.Vedtak om tvungent psykisk helsevern",
             text: "På bakgrunn av opplysninger fra legeundersøkelsen etter § 3-1 og eventuell tvungen observasjon etter § 3-2, foretar den faglig ansvarlige en vurdering av om de følgende vilkårene for tvungent psykisk helsevern er oppfylt: \ " +
-            "1.	Frivillig psykisk helsevern har vært forsøkt, uten at dette har ført fram, eller det er åpenbart formålsløst å forsøke dette. \ " +
-            "2.	Pasienten er undersøkt av to leger, hvorav én skal være uavhengig av den ansvarlige institusjon, jf. § 3-1. \ " +
-            "3.	Pasienten har en alvorlig sinnslidelse og etablering av tvungent psykisk helsevern er nødvendig for å hindre at vedkommende på grunn av sinnslidelsen enten \ " +
-            "a.	får sin utsikt til helbredelse eller vesentlig bedring i betydelig grad redusert, eller det er stor sannsynlighet for at vedkommende i meget nær framtid får sin tilstand vesentlig forverret, eller \ " +
-            "b.	utgjør en nærliggende og alvorlig fare for eget eller andres liv eller helse. \ " +
-            "4.	Institusjonen er faglig og materielt i stand til å tilby pasienten tilfredsstillende behandling og omsorg og er godkjent i henhold til § 3-5. \ " +
-            "5.	Pasienten er gitt anledning til å uttale seg, jf. § 3-9. \ " +
-            "6.	Selv om lovens vilkår ellers er oppfylt, kan tvungent psykisk helsevern bare finne sted hvor dette etter en helhetsvurdering framtrer som den klart beste løsning for vedkommende, \ " +
+            "1. Frivillig psykisk helsevern har vært forsøkt, uten at dette har ført fram, eller det er åpenbart formålsløst å forsøke dette. \ " +
+            "2. Pasienten er undersøkt av to leger, hvorav én skal være uavhengig av den ansvarlige institusjon, jf. § 3-1. \ " +
+            "3. Pasienten har en alvorlig sinnslidelse og etablering av tvungent psykisk helsevern er nødvendig for å hindre at vedkommende på grunn av sinnslidelsen enten \ " +
+            "a. får sin utsikt til helbredelse eller vesentlig bedring i betydelig grad redusert, eller det er stor sannsynlighet for at vedkommende i meget nær framtid får sin tilstand vesentlig forverret, eller \ " +
+            "b. utgjør en nærliggende og alvorlig fare for eget eller andres liv eller helse. \ " +
+            "4. Institusjonen er faglig og materielt i stand til å tilby pasienten tilfredsstillende behandling og omsorg og er godkjent i henhold til § 3-5. \ " +
+            "5. Pasienten er gitt anledning til å uttale seg, jf. § 3-9. \ " +
+            "6. Selv om lovens vilkår ellers er oppfylt, kan tvungent psykisk helsevern bare finne sted hvor dette etter en helhetsvurdering framtrer som den klart beste løsning for vedkommende, \ " +
             "med mindre han eller hun utgjør en nærliggende og alvorlig fare for andres liv eller helse. Ved vurderingen skal det legges særlig vekt på hvor stor belastning det tvangsmessige inngrepet vil medføre for vedkommende. \ " +
             "Den faglig ansvarlige treffer vedtak på grunnlag av foreliggende opplysninger og egen personlig undersøkelse av pasienten. Den faglig ansvarliges vedtak og grunnlaget for det skal straks nedtegnes. \ " +
             "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter denne bestemmelsen til kontrollkommisjonen. \ " +
@@ -255,3 +256,5 @@ if (Info.find().count() === 0 || UPDATE == true) {
         Info.insert({title: list.title, text: list.text})
     });
 }
+
+})

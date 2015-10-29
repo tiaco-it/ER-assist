@@ -2,27 +2,18 @@ var buttons  = new Array();
 var marks = new Array();
 var lawHolder = new Array();
 
-
 query = function(string, item) {
-    var qry = {};
-    var qry2 = {};
-    var qry3 = {};
-    var qry4 = {};
-    qry["text"] = item.text;
-    qry2["from"] = Startcases.findOne(qry);
-    qry3["from"] = Filters.findOne(qry);
-    qry4["mark"] = string;
     var con = Links.findOne({
         $and: [
-            qry4,
-            qry2
+            {'mark': string },
+            {'from.text': item.text}
         ]
 
     });
     var con2 = Links.findOne({
         $and: [
-            qry4,
-            qry3
+            {'mark': string},
+            {'from.text': item.text}
         ]
     });
     return [con, con2]
@@ -56,6 +47,7 @@ oneOutcome = function(cons){
         }
     }
     else {
+        console.log('@oneOutcome');
         console.log("collection not built");
     }
 };
@@ -77,6 +69,7 @@ twoOutcome = function(cons){
         }
     }
     else {
+        console.log('@twoOutcome');
         console.log("collection not built");
     }
 };
@@ -87,12 +80,10 @@ Template.home.onCreated(function() {
     var self = this;
     self.autorun(function() {
         if ( Meteor.status().connected ) {
-            Meteor.subscribe("startcases");
-            Meteor.subscribe("laws");
-            Meteor.subscribe("filters");
-            Meteor.subscribe("links");
-            Meteor.subscribe("urls");
-            Meteor.subscribe("info");
+            self.subscribe("startcases");
+            self.subscribe("laws");
+            self.subscribe("filters");
+            self.subscribe("links");
         }
     });
 });
@@ -106,37 +97,33 @@ Template.home.helpers({
         var links = Links.find({});
         return links && links
     },
+    'laws': function() {
+        var links = Laws.find({});
+        return links && links
+    },
+    'filters': function() {
+        var links = Filters.find({});
+        return links && links
+    },
     'singleLink': function(fromItem) {
         Links.findOne({
             from: fromItem
         })
     },
     'yesLink': function(scase) {
-        console.log("YES");
-        console.log(scase);
-        var qry = {};
-        var qry2 = {};
-        qry["text"] = scase.text;
-        qry2["from"] = Filters.findOne(qry);
         var li = Links.findOne({
             $and: [
                 { mark: 'JA' },
-                qry2
+                {'from.text': scase.text}
             ]
         });
         return li.to
     },
     'noLink': function(scase) {
-        console.log("NO");
-        console.log(scase);
-        var qry = {};
-        var qry2 = {};
-        qry["text"] = scase.text;
-        qry2["from"] = Filters.findOne(qry);
         var li = Links.findOne({
             $and: [
                 { mark: 'NEI'},
-                qry2
+                {'from.text': scase.text}
             ]
         });
         return li.to
@@ -150,15 +137,14 @@ Template.home.helpers({
         return !Session.get(id)
     },
     'to': function(scase) {
-        var qry = {};
-        var qry2 = {};
-        qry["text"] = scase.text;
-        qry2["from"] = Startcases.findOne(qry);
-        var con = Links.findOne(qry2);
-        if ( typeof con === "undefined" )
+        var con = Links.findOne({ 'from.text': scase.text})
+        if ( typeof con === "undefined" ) {
+            console.log('@to');
             console.log("collection not built");
-        else
+        }
+        else {
             return con.to
+        }
     },
 
     'currentFrom': function() {
@@ -171,6 +157,7 @@ Template.home.helpers({
         return twoOutcome(either(item))
     },
     'oneYes': function(item) {
+
         return oneOutcome(yes(item))
     },
     'twoYes': function(item) {
@@ -181,9 +168,22 @@ Template.home.helpers({
     },
     'twoNo': function(item) {
         return twoOutcome(no(item))
-    }
-
-
+    },
+    'username': function() {
+        return Meteor.user().username
+    },
+        'link': function() {
+        var links = Links.findOne({});
+        return links && links
+    },
+        'filter': function() {
+        var links = Filters.findOne({});
+        return links && links
+    },
+        'law': function() {
+        var links = Laws.findOne({});
+        return links && links
+    },
 });
 
 Template.home.events({
@@ -214,6 +214,9 @@ Template.home.events({
             console.log("SET TO UNDEFINED");
             Session.set('currentFrom', undefined)
         }
+        else if ($(e.currentTarget).attr("func") === "edit") {
+
+        }
         else {
             console.log("Failed button activation")
         }
@@ -236,16 +239,23 @@ Template.home.events({
 
 // ------------ NEXT ------------ //
 
+Template.next.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+        if ( Meteor.status().connected ) {
+            self.subscribe("laws");
+            self.subscribe("filters");
+            self.subscribe("links");
+        }
+    });
+});
+
 Template.next.helpers({
     'current': function() {
         return Filters.findOne(Router.current().params._id)
     },
     'currentLinks': function() {
-        qry = {};
-        var a = Filters.findOne(Router.current().params._id)
-        console.log(a);
-        qry["from"] = a;
-        return Links.find(qry)
+        return Links.find( { 'from._id': Router.current().params._id } );
     },
     'to': function(link) {
         return link.to
@@ -270,18 +280,57 @@ Template.end.helpers({
 
 // ------------ TABS ------------ //
 
+Template.end.onCreated(function() {
+    lawHolder.push(Router.current().params._id)
+    var self = this;
+    self.autorun(function() {
+        if ( Meteor.status().connected ) {
+            self.subscribe("startcases");
+            self.subscribe("laws");
+            self.subscribe("filters");
+            self.subscribe("links");
+        }
+    });
+});
+
+Template.ttabs.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+        if ( Meteor.status().connected ) {
+            self.subscribe("startcases");
+            self.subscribe("laws");
+            self.subscribe("filters");
+            self.subscribe("links");
+        }
+    });
+});
+
 Template.ttabs.onRendered( function () {
     Session.set('currentTab', 'end')
 });
 
-Template.end.onCreated( function() {
+Template.end.onCreated(function () {
     lawHolder.push(Router.current().params._id)
+})
+
+Template.endLayout.onCreated(function() {
+    lawHolder.push(Router.current().params._id)
+    var self = this;
+    self.autorun(function() {
+        if ( Meteor.status().connected ) {
+            self.subscribe("startcases");
+            self.subscribe("laws");
+            self.subscribe("filters");
+            self.subscribe("links");
+        }
+    });
 });
 
 Template.endLayout.onDestroyed( function () {
     console.log('Destroyed');
     lawHolder.pop()
 });
+
 
 Template.summaryTab.helpers({
     'thisLaw': function() {

@@ -2,7 +2,11 @@
     {{> _tabsHeader}}
     {{#ionView}}
         {{>ttabs}}
-        {{> yield "tab"}}
+        {{#if Template.subscriptionsReady}} 
+            {{> yield "tab"}}
+        {{else}}
+            {{> spinner}}
+        {{/if}}
         {{>mtabs}}
     {{/ionView}}
 </template>

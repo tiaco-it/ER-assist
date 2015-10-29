@@ -1,3 +1,12 @@
+Template.info.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+        if ( Meteor.status().connected ) {
+            self.subscribe("info");
+        }
+    });
+});
+
 Template.info.helpers({
     'info': function() {
         var info = Info.find({});
