@@ -24,6 +24,8 @@ Summary: String
 // A sentence that summarizes the law text
 Example: String
 // An example case where the law applies
+Oneline: String
+// A custom sentence describing the content of the law
 ```
 
 #### Filters

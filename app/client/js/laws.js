@@ -1,4 +1,20 @@
+Template.laws.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+        if ( Meteor.status().connected ) {
+            self.subscribe("laws");
+        }
+    });
+});
 
+Template.law.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+        if ( Meteor.status().connected ) {
+            self.subscribe("laws");
+        }
+    });
+});
 
 Template.laws.helpers({
     // returns all laws, sorted by law-category

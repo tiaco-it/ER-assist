@@ -134,3 +134,16 @@ Router.route('/admin/laws', function () {
 }, {
   name: 'adminlaws'
 });
+
+Router.route('/login', function () {
+  this.render('login');
+}, {
+  name: 'login'
+});
+
+Router.route('/editcase/:_id', function () {
+  this.layout('defaultLayout');
+  this.render('editcase');
+}, {
+  name: 'editcase'
+});

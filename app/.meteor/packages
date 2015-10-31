@@ -29,3 +29,7 @@ underscore
 fourseven:scss@2.0.0
 meteoric:ionic-sass
 meteoric:ionicons-sass
+useraccounts:ionic
+accounts-password
+useraccounts:iron-routing
+meteoric:autoform-ionic

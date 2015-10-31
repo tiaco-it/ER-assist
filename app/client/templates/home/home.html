@@ -2,11 +2,25 @@
 
 <template name="home">
 {{#contentFor "headerTitle"}}
-        <h1 class="title">Kategoriser pasienten</h1>
-        <a href = "{{pathFor 'admin'}}" class="button button-clear pull-right">
+    <h1 class="title">Kategoriser pasienten</h1>
+    
+    <!--
+    {{#if currentUser}}
+        <button class="button button-clear pull-right"> 
+            Logget inn som {{username}}
+        </button>
+    {{else}}
+         <a href = "{{pathFor 'login'}}" class="button button-clear pull-right">
             {{> ionIcon icon='navicon'}}
         </a>
+    {{/if}} -->
 {{/contentFor}}
+
+{{#contentFor "headerButtonLeft"}}
+        {{> atNavButton}} <p>{{username}}</p>
+{{/contentFor}}
+
+
 
 
     <!-- pathFor creates a link dynamically based on info from the route.  -->
@@ -26,6 +40,13 @@
                                     <a href="{{pathFor 'end'}}" level="start" class="button">
                                         <p>{{scase.text}}</p>
                                     </a>
+                                    {{#if currentUser}}
+                                        {{#with scase}}
+                                        <a href="{{pathFor 'editcase'}}" class="button pull-right" func="edit">
+                                            {{> ionIcon icon="edit"}}
+                                        </a>
+                                        {{/with}}
+                                    {{/if}}
                             {{/with}}
                         {{/ionItem}}
                     {{else}}
@@ -36,6 +57,13 @@
                                             <button class="button" level="start" id="{{ scase.text }}">
                                                 <p>{{scase.text}}</p>
                                             </button>
+                                    {{#if currentUser}}
+                                        {{#with scase}}
+                                        <a href="{{pathFor 'editcase'}}" class="button pull-right" func="edit">
+                                            {{> ionIcon icon="edit"}}
+                                        </a>
+                                        {{/with}}
+                                    {{/if}}
                                     {{/with}}
                                 {{/ionItem}}
                             {{else}}
@@ -84,6 +112,13 @@
                                             <p>n > 2 outcomes</p>
                                             <p>{{scase.text}}</p>
                                         </a>
+                                    {{#if currentUser}}
+                                        {{#with scase}}
+                                        <a href="{{pathFor 'editcase'}}" class="button pull-right" func="edit">
+                                            {{> ionIcon icon="edit"}}
+                                        </a>
+                                        {{/with}}
+                                    {{/if}}
                                 {{/ionItem}}
                             {{/with}}
                         {{/if}}
