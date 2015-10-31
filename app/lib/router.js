@@ -134,44 +134,50 @@ Router.route('/login', function () {
   name: 'login'
 });
 
-Router.route('/editcase/:_id', function () {
-  this.layout('defaultLayout');
-  this.render('editcase');
+Router.route('/edit/case/:_id', function () {
+  this.layout('editLayout');
+  this.render('addcase', {to: 'add'});
+  this.render('editcase', {to: 'edit'});
 }, {
-  name: 'editcase'
+  name: 'edit.case'
 });
 
-Router.route('edit/link,' function (){
+Router.route('edit/link/:_id', function (){
     this.layout('editLayout')
+    this.render('addlink', {to: 'add'});
     this.render('editlink', {to: 'edit'});
   }, {
     name: 'edit.link'
 });
 
-Router.route('edit/link,' function (){
+Router.route('edit/law/:_id', function (){
     this.layout('editLayout')
-    this.render('editlink', {to: 'edit'});
+    this.render('addlaw', {to: 'add'});
+    this.render('editlaw', {to: 'edit'});
   }, {
-    name: 'edit.link'
+    name: 'edit.law'
 });
 
-Router.route('edit/link,' function (){
+Router.route('edit/filter/:_id', function (){
     this.layout('editLayout')
-    this.render('editlink', {to: 'edit'});
+    this.render('addfilter', {to: 'add'})
+    this.render('editfilter', {to: 'edit'});
   }, {
-    name: 'edit.link'
+    name: 'edit.filter'
 });
 
-Router.route('edit/link,' function (){
+Router.route('edit/info/:_id', function (){
     this.layout('editLayout')
-    this.render('editlink', {to: 'edit'});
+    this.render('addinfo', {to: 'add'})
+    this.render('editinfo', {to: 'edit'});
   }, {
-    name: 'edit.link'
+    name: 'edit.info'
 });
 
-Router.route('edit/link,' function (){
+Router.route('edit/url/:_id', function (){
     this.layout('editLayout')
+    this.render('addurl', {to: 'add'});
     this.render('editlink', {to: 'edit'});
   }, {
-    name: 'edit.link'
+    name: 'edit.url'
 });

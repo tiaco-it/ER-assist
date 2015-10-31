@@ -1,49 +1,71 @@
 <template name="editLayout">
-    {{#contentFor "headerTitle"}}
-        <h1 class="title">Admin konfigurasjon</h1>
-    {{/contentFor}}
+    {{#ionBody}}
+        {{> ionNavBar class="bar-positive"}}
+        {{#contentFor "headerTitle"}}
+            <h1 class="title">Admin konfigurasjon</h1>
+        {{/contentFor}}
 
-    {{#contentFor "headerButtonLeft"}}
-        {{>ionNavBackButton text="Tilbake"}}
-    {{/contentFor}}
+        {{#contentFor "headerButtonLeft"}}
+            {{>ionNavBackButton text="Tilbake"}}
+        {{/contentFor}}
 
-    {{#ionView}}
-        {{#ionContent}}
-            {{#if Template.subscriptionsReady}}
-                {{> yield "edit"}}
-            {{else}}
-                {{> spinner}}
-            {{/if}}
-        {{/ionContent}}
-    {{/ionView}}
+        {{#ionView}}
+            {{#ionContent}}
+                {{#if Template.subscriptionsReady}}
+                    {{> yield "add"}}
+                    {{> yield "edit"}}
+                {{else}}
+                    {{> spinner}}
+                {{/if}}
+            {{/ionContent}}
+        {{/ionView}}
+    {{/ionBody}}
 </template>
 
 <template name="editcase">
-{{#ionContent}}
         {{> quickForm schema="StartcaseSchema" collection="Startcases" id="editStartcaseForm" type="normal" doc=selectedDoc}}
-{{/ionContent}}
 </template>
 
 <template name="editfilter">
-{{#ionContent}}
-        {{> quickForm schema="FilterSchema" collection="Filters" id="insertFilterForm" type="normal" doc=selectedDoc}}
-{{/ionContent}}
+        {{> quickForm schema="FilterSchema" collection="Filters" id="editFilterForm" type="normal" doc=selectedDoc}}
 </template>
 
 <template name="editlink">
-{{#ionContent}}
-        {{> quickForm schema="LinkSchema" collection="Links" id="insertLinkForm" type="normal" doc=selectedDoc}}
-{{/ionContent}}
+        {{> quickForm schema="LinkSchema" collection="Links" id="editLinkForm" type="normal" doc=selectedDoc}}
 </template>
 
 <template name="editinfo">
-{{#ionContent}}
         {{> quickForm schema="InfoSchema" collection="Infos" id="editInfoForm" type="normal" doc=selectedDoc}}
-{{/ionContent}}
 </template>
 
 <template name="editlaw">
-{{#ionContent}}
-        {{> quickForm schema="LawSchema" collection="Laws" id="insertLawForm" type="normal" doc=selectedDoc}}
-{{/ionContent}}
+        {{> quickForm schema="LawSchema" collection="Laws" id="editLawForm" type="normal" doc=selectedDoc}}
+</template>
+
+<template name="editurl">
+        {{> quickForm schema="UrlSchema" collection="Urls" id="editUrlForm" type="normal" doc=selectedDoc}}
+</template>
+
+<template name="addlaw">
+    {{> quickForm schema="LawSchema" collection="Laws" id="insertLawForm" type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="addlink">
+    {{> quickForm schema="LinkSchema" collection="Links" id="insertLinkForm" type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="addfilter">
+    {{> quickForm schema="FilterSchema" collection="Filters" id="insertFilterForm" type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="addurl">
+    {{> quickForm schema="UrlSchema" collection="Urls" id="insertUrlForm" type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="addinfo">
+    {{> quickForm schema="InfoSchema" collection="Infos" id="insertInfoForm" type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="addcase">
+    {{> quickForm schema="StartcaseSchema" collection="Startcases" id="insertStartcaseForm" type="normal" omitFields="createdAt, lastUpdated"}}
 </template>
