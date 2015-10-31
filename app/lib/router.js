@@ -80,8 +80,7 @@ Router.route('/infoAbout', function (){
 });
 
 Router.route('/end/:_id', function (){
-    this.layout('endLayout');
-    this.render('end', {to: 'tab'});
+    this.render('endLayout');
   }, {
     name: 'end'
 });

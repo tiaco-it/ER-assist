@@ -264,6 +264,10 @@ Template.next.events({
 
 // ------------ END ------------ //
 
+Template.end.onCreated(function() {
+    lawHolder.push(Router.current().params._id);
+});
+
 Template.end.helpers({
     'thisLaw': function() {
         var l = lawHolder[0]
@@ -274,9 +278,6 @@ Template.end.helpers({
 
 // ------------ TABS ------------ //
 
-Template.end.onCreated(function() {
-    lawHolder.push(Router.current().params._id);
-});
 
 Template.ttabs.onRendered( function () {
     Session.set('currentTab', 'end');
