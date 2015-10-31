@@ -110,13 +110,6 @@ Router.route('/exampleTab', function (){
     name: 'exampleTab'
 });
 
-Router.route('/signin', function (){
-    this.layout('defaultLayout');
-    this.render('signin');
-  }, {
-    name: 'signin'
-});
-
 Router.route('/admin', function () {
   this.layout('defaultLayout');
   this.render('admin');
@@ -150,12 +143,6 @@ Router.route('/admin/laws', function () {
   this.render('adminlaws');
 }, {
   name: 'adminlaws'
-});
-
-Router.route('/login', function () {
-  this.render('login');
-}, {
-  name: 'login'
 });
 
 Router.route('/edit/case/:_id', function () {
@@ -204,4 +191,12 @@ Router.route('edit/url/:_id', function (){
     this.render('editlink', {to: 'edit'});
   }, {
     name: 'edit.url'
+});
+
+AccountsTemplates.configureRoute('signIn', {
+    name: 'signin',
+    path: '/login',
+    template: 'login',
+    layoutTemplate: 'defaultLayout',
+    redirect: '/',
 });

@@ -197,9 +197,10 @@ Template.homeContent.events({
                 Session.set(f, false)
             }
             $(e.currentTarget).fadeOut();
+            Session.set('category', Startcases.findOne({ 'text': e.currentTarget.id }));
             Session.set('currentFrom', this);
             Session.set(e.currentTarget.id, true);
-            buttons.push(e.currentTarget.id)
+            buttons.push(e.currentTarget.id);
         }
         else if ($(e.currentTarget).attr("level") === "inter") {
             $(e.currentTarget).fadeOut();
@@ -316,5 +317,16 @@ Template.lawTab.helpers({
     'thisLaw': function() {
         var l = lawHolder[0];
         return Laws.findOne(l)
+    }
+});
+
+$('html').click(function(e) {
+    if(!$(e.target).hasClass("button") ) {
+    while ( buttons.length > 0 ){
+        var f = buttons.pop();
+        Session.set(f, false)
+    }
+}
+    else {
     }
 });

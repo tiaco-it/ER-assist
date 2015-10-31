@@ -1,3 +1,4 @@
+
 Template.about.helpers({
     'about': function() {
         return Info.findOne({title: "Om appen"})

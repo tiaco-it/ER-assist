@@ -35,7 +35,7 @@
                     {{#if oneEither scase}}
                         {{#ionItem}}
                             {{#with to scase}}
-                                    <a href="{{pathFor 'end'}}" level="start" class="button">
+                                    <a href="{{pathFor 'end'}}" level="start" class="button" id="{{ scase.text }}">
                                         <p>{{scase.text}}</p>
                                     </a>
                                     {{#if currentUser}}
@@ -106,7 +106,7 @@
                         {{else}}
                             {{#with to scase}}
                                 {{#ionItem}}
-                                        <a href="{{pathFor 'next'}}" level="start" class="button">
+                                        <a href="{{pathFor 'next'}}" level="start" class="button" id="{{ scase.text }}">
                                             <p>n > 2 outcomes</p>
                                             <p>{{scase.text}}</p>
                                         </a>

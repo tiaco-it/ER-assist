@@ -182,17 +182,17 @@ if (Filters.find().count() === 0 || UPDATE == true) {
 if (Links.find().count() === 0 || UPDATE == true) {
     var links = [
         {
-            from: Startcases.findOne({text: "Suicidal pasient"}),
+            from: Startcases.findOne({text: "Pasienten er suicidal"}),
             mark: "",
             to: Laws.findOne({paragraph: "§17. Nødrett"})
         },
         {
-            from: Startcases.findOne({text: "Voldelig pasient"}),
+            from: Startcases.findOne({text: "Pasienten er voldelig"}),
             mark: "",
             to: Laws.findOne({paragraph: "§18. Nødverge"})
         },
         {
-            from: Startcases.findOne({text: "Pasient nekter behandling"}),
+            from: Startcases.findOne({text: "Pasienten nekter behandling"}),
             mark: "",
             to: Filters.findOne({text: "Behov for akutt hjelp?"})
         },
@@ -232,7 +232,7 @@ if (Links.find().count() === 0 || UPDATE == true) {
             to: Laws.findOne({paragraph: "§3-3. Vedtak om tvungent psykisk helsevern"})
         },
         {
-            from: Startcases.findOne({text: "Pasient skader seg selv"}),
+            from: Startcases.findOne({text: "Pasienten skader seg selv"}),
             mark: "",
             to: Filters.findOne({text: "Behov for akutt hjelp?"})
         }
