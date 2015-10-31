@@ -140,3 +140,38 @@ Router.route('/editcase/:_id', function () {
 }, {
   name: 'editcase'
 });
+
+Router.route('edit/link,' function (){
+    this.layout('editLayout')
+    this.render('editlink', {to: 'edit'});
+  }, {
+    name: 'edit.link'
+});
+
+Router.route('edit/link,' function (){
+    this.layout('editLayout')
+    this.render('editlink', {to: 'edit'});
+  }, {
+    name: 'edit.link'
+});
+
+Router.route('edit/link,' function (){
+    this.layout('editLayout')
+    this.render('editlink', {to: 'edit'});
+  }, {
+    name: 'edit.link'
+});
+
+Router.route('edit/link,' function (){
+    this.layout('editLayout')
+    this.render('editlink', {to: 'edit'});
+  }, {
+    name: 'edit.link'
+});
+
+Router.route('edit/link,' function (){
+    this.layout('editLayout')
+    this.render('editlink', {to: 'edit'});
+  }, {
+    name: 'edit.link'
+});

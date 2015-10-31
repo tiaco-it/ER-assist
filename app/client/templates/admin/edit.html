@@ -1,20 +1,49 @@
-<!-- The BackButton is connected to the main view through the path  -->
+<template name="editLayout">
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Admin konfigurasjon</h1>
+    {{/contentFor}}
 
-<template name="edit">
-    <div class="bar bar-header bar-positive">
-        {{>ionNavBackButton path="home" text="Tilbake"}}
-        <div class="title">Edit Element</div>
-    </div>
-
-    <!-- Subscriptions connect the page to collections, can only submit data to collection if subscribed to it -->
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton text="Tilbake"}}
+    {{/contentFor}}
 
     {{#ionView}}
-        {{#ionContent class="padding"}}
+        {{#ionContent}}
             {{#if Template.subscriptionsReady}}
-                {{> quickForm schema="ElementsSchema" collection="Elements" id="editElementForm" type="normal" doc=selectedDoc omitFields="createdAt, lastUpdated"}}
+                {{> yield "edit"}}
             {{else}}
                 {{> spinner}}
             {{/if}}
         {{/ionContent}}
     {{/ionView}}
+</template>
+
+<template name="editcase">
+{{#ionContent}}
+        {{> quickForm schema="StartcaseSchema" collection="Startcases" id="editStartcaseForm" type="normal" doc=selectedDoc}}
+{{/ionContent}}
+</template>
+
+<template name="editfilter">
+{{#ionContent}}
+        {{> quickForm schema="FilterSchema" collection="Filters" id="insertFilterForm" type="normal" doc=selectedDoc}}
+{{/ionContent}}
+</template>
+
+<template name="editlink">
+{{#ionContent}}
+        {{> quickForm schema="LinkSchema" collection="Links" id="insertLinkForm" type="normal" doc=selectedDoc}}
+{{/ionContent}}
+</template>
+
+<template name="editinfo">
+{{#ionContent}}
+        {{> quickForm schema="InfoSchema" collection="Infos" id="editInfoForm" type="normal" doc=selectedDoc}}
+{{/ionContent}}
+</template>
+
+<template name="editlaw">
+{{#ionContent}}
+        {{> quickForm schema="LawSchema" collection="Laws" id="insertLawForm" type="normal" doc=selectedDoc}}
+{{/ionContent}}
 </template>
