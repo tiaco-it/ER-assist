@@ -14,6 +14,9 @@ LawSchema = new SimpleSchema({
     },
     example: {
         type: String
+    },
+    oneline: {
+        type: String
     }
 });
 
@@ -27,7 +30,8 @@ if (Meteor.isCordova) Ground.Collection(Laws);
 Meteor.methods({
     addLaw: function(doc) {
         check(doc, LawSchema);
-        var obj = {law: doc.law, paragraph: doc.paragraph, text: doc.text};
+        var obj = {law: doc.law, paragraph: doc.paragraph, text: doc.text,
+            summary: doc.summary, example: doc.example, oneline: doc.oneline};
         return Laws.insert(obj);
     },
     editLaw: function(obj) {

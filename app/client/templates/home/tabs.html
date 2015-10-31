@@ -10,7 +10,15 @@
     {{#ionTabs class="tabs-top tabs-background-positive tabs-color-light"}}
         {{> ionTab title="Lov" path="lawTab"}}
         {{> ionTab title="Eksempel" path="exampleTab"}}
-        {{> ionTab title="Sammendrag" path="summaryTab"}}
+        {{> ionTab title="Dokumentasjon" path="summaryTab"}}
+    {{/ionTabs}}
+</template>
+
+<template name="itabs">
+    {{#ionTabs class="tabs-top tabs-background-positive tabs-color-light"}}
+        {{> ionTab title="Om appen" path="about"}}
+        {{> ionTab title="Hvordan bruke appen" path="info"}}
+        {{> ionTab title="Vilkår og bruk" path="conditions"}}
     {{/ionTabs}}
 </template>
 
@@ -68,7 +76,7 @@
             <!--<div class="bar bar-positive">-->
             <div class="button button-full button-positive disabled" style="opacity: 100;">
                 <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
-                <h4 style="color:white;">One-liner for lov..</h4>
+                <h4 style="color:white;">{{oneline}}</h4>
             </div>
             <p style="padding-left: 10px; padding-right: 10px;">{{text}}</p>
         {{/with}}

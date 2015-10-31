@@ -18,7 +18,7 @@ if (Meteor.isCordova) Ground.Collection(Info);
 Meteor.methods({
     addInfo: function(doc) {
         check(doc, InfoSchema);
-        var obj = {text: doc.text};
+        var obj = {title: doc.title, text: doc.text};
         return Info.insert(obj);
     },
     editInfo: function(obj) {

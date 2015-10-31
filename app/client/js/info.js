@@ -1,21 +1,17 @@
-Template.info.onCreated(function() {
-    var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("info");
-        }
-    });
-});
-
-Template.info.helpers({
-    'info': function() {
-        var info = Info.find({});
-        return info && info
+Template.about.helpers({
+    'about': function() {
+        return Info.findOne({title: "Om appen"})
     }
 });
 
-Template.infoElement.helpers({
-    'thisInfo': function() {
-        return Info.findOne(Router.current().params._id)
+Template.info.helpers({
+    'howto': function() {
+        return Info.findOne({title: "Hvordan bruke appen"})
+    }
+});
+
+Template.conditions.helpers({
+    'conditions': function() {
+        return Info.findOne({title: "Om utviklerne"})
     }
 });

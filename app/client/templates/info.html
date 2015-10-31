@@ -1,37 +1,41 @@
-<template name="info">
-    {{#contentFor "headerTitle"}}
-        <h1 class="title">Informasjon</h1>
-    {{/contentFor}}
+<template name="infoLayout">
+    {{> _infoHeader}}
     {{#ionView}}
-        {{#ionContent}}
-            {{#if Template.subscriptionsReady}}
-            {{#ionList}}
-                {{#each info}}
-                    {{#ionItem path="infoElement" buttonRight=true}}
-                        <h2>{{title}}</h2>
-                    {{/ionItem}}
-                {{/each}}
-            {{/ionList}}
-            {{else}}
-                {{> spinner}}
-            {{/if}}
-        {{/ionContent}}
+        {{>itabs}}
+        {{> yield "tab"}}
         {{>mtabs}}
     {{/ionView}}
 </template>
 
-<template name='infoElement'>
-    <div class="bar bar-header bar-positive">
-        {{>ionNavBackButton text="Tilbake"}}
-        <div class="title">{{title}}</div>
-    </div>
-    {{#ionView}}
-        {{#ionContent}}
-            {{#with thisInfo}}
-                <h1>{{title}}</h1>
-                <p>{{text}}</p>
-            {{/with}}
-        {{/ionContent}}
-        {{>mtabs}}
-    {{/ionView}}
+<template name="_infoHeader">
+    {{#ionHeaderBar class="bar-positive"}}
+        <h1 class="title">Info</h1>
+    {{/ionHeaderBar}}
+</template>
+
+<template name="about">
+      {{#ionContent}}
+          {{#with about}}
+              <h1>{{title}}</h1>
+              <p>{{text}}</p>
+          {{/with}}
+      {{/ionContent}}
+</template>
+
+<template name="info">
+      {{#ionContent}}
+          {{#with howto}}
+              <h1>{{title}}</h1>
+              <p>{{text}}</p>
+          {{/with}}
+      {{/ionContent}}
+</template>
+
+<template name="conditions">
+      {{#ionContent}}
+          {{#with conditions}}
+              <h1>{{title}}</h1>
+              <p>{{text}}</p>
+          {{/with}}
+      {{/ionContent}}
 </template>

@@ -3,7 +3,7 @@
  * The UPDATE variable is set to clear all collections and insert the initial data.
  */
 
-var UPDATE = false; // set true to delete all records and insert all initial data
+var UPDATE = true; // set true to delete all records and insert all initial data
 
 if (UPDATE == true) {
     // Remove existing collection
@@ -20,16 +20,16 @@ Meteor.startup(function () {
 if (Startcases.find().count() === 0 || UPDATE == true) {
     var startcases = [
         {
-            text: "Suicidal pasient"
+            text: "Pasienten er suicidal"
         },
         {
-            text: "Voldelig pasient"
+            text: "Pasienten er voldelig"
         },
         {
-            text: "Pasient nekter behandling"
+            text: "Pasienten nekter behandling"
         },
         {
-            text: "Pasient skader seg selv"
+            text: "Pasienten skader seg selv"
         }
     ];
     _.each(startcases, function(list) {
@@ -42,56 +42,75 @@ if (Laws.find().count() === 0 || UPDATE == true) {
     var laws = [
         {
             law: "Straffeloven",
-            paragraph: "17. Nødrett",
+            paragraph: "§17. Nødrett",
             text: "En handling som ellers ville være straffbar, er lovlig når \ " +
             "a) den blir foretatt for å redde liv, helse, eiendom eller en annen interesse fra en fare for skade som ikke kan avverges på annen rimelig måte, og \ " +
             "b) denne skaderisikoen er langt større enn skaderisikoen ved handlingen.",
-            summary: "Dette er et SAMMENDRAG av §17. Nødrett fra Straffeloven",
-            example: "Dette er et EKSEMPEL av §17. Nødrett fra Straffeloven"
+            summary: "Man må vurdere ytterlige psykiatrisk behandling for denne pasienten.",
+            example: "Helsepersonell kan holde fast en pasient som forsøker å hoppe ut av et vindu. \ " + 
+            " \ " +
+            "Selvmordsatferd omfatter tanker om, planer for, trusler om og forsøk på å gjennomføre selvmord. Slik atferd kan være uttrykk for et virkelig ønske om å dø, \ " + 
+            "men er også ofte blandet med et ønske om å få hjelp eller ønske om endring i en uutholdelig livssituasjon. I enkelte tilfeller motiveres selvmordsatferd av et ubevisst \ " + 
+            "eller bevisst ønske om å kontrollere personer i omgivelsene. Noen mennesker lever med tilnærmet konstante selvmordstanker og -planer (kronisk suicidale). \ " + 
+            "Disse må ofte håndteres annerledes enn mennesker med akutt nyoppstått suicidalitet. \ " +
+            "(ref. legevakthåndboken)",
+            oneline: "Nødrett gir rett til å hindre med makt at pasienten tar livet sitt."
         },
         {
             law: "Straffeloven",
-            paragraph: "18. Nødverge",
+            paragraph: "§18. Nødverge",
             text: "En handling som ellers ville være straffbar, er lovlig når den \ " +
             "a) blir foretatt for å avverge et ulovlig angrep, \ " +
             "b) ikke går lenger enn nødvendig, og \ " +
             "c) ikke går åpenbart ut over hva som er forsvarlig under hensyn til hvor farlig angrepet er, hva slags interesse som angrepet krenker, og angriperens skyld \ " +
             "Regelen i første ledd gjelder tilsvarende for den som iverksetter en lovlig pågripelse eller søker å hindre at noen unndrar seg varetektsfengsling eller gjennomføring av frihetsstraff. \ " +
             "Utøving av offentlig myndighet kan bare møtes med nødverge når myndighetsutøvingen er ulovlig, og den som gjennomfører den, opptrer forsettlig eller grovt uaktsomt.",
-            summary: "Dette er et SAMMENDRAG av §18. Nødverge fra Straffeloven",
-            example: "Dette er et EKSEMPEL av §18. Nødverge fra Straffeloven"
+            summary: "Politianmeldelse bør vurderes. Skjema for politianmeldelse må fylles ut.",
+            example: "Pasienten utøver vold mot ansatte eller pasienter som er tilstede i mottak/kontor. Helsepersonell har lov til å holde fast/låse inn en voldelig pasient til politi/vakt ankommer.",
+            oneline: "Gir mulighet til å holde fast/låse inn en utagerende pasient inntil politi/vakt ankommer."
         },
         {
             law: "Helsepersonelloven",
-            paragraph: "7. Øyeblikkelig hjelp",
+            paragraph: "§7. Øyeblikkelig hjelp",
             text: "Helsepersonell skal straks gi den helsehjelp de evner når det må antas at hjelpen er påtrengende nødvendig. Med de begrensninger som følger av pasient- og brukerrettighetsloven \ " +
             "§ 4-9, skal nødvendig helsehjelp gis selv om pasienten ikke er i stand til å samtykke, og selv om pasienten motsetter seg helsehjelpen. \ " +
             "Ved tvil om helsehjelpen er påtrengende nødvendig, skal helsepersonell foreta nødvendige undersøkelser. \ " +
             "Plikten gjelder ikke i den grad annet kvalifisert helsepersonell påtar seg ansvaret for å gi helsehjelpen.",
-            summary: "Dette er et SAMMENDRAG av §7. Øyeblikkelig hjelp fra Helsepersonelloven",
-            example: "Dette er et EKSEMPEL av §7. Øyeblikkelig hjelp fra Helsepersonelloven"
+            summary: "Man må vurdere ytterlige psykiatrisk behandling for denne pasienten.",
+            example: "Helsepersonell kan utføre akutt livreddende behandling mot pasientens vilje om pasientens liv står i øyeblikkelig fare.",
+            oneline: "Helsepersonell skal straks gi den helsehjelp de evner når det må antas at hjelpen er påtrengende nødvendig."
         },
         {
             law: "Pasient- og brukerrettighetsloven",
-            paragraph: "4-9.Pasientens rett til å nekte helsehjelp i særlige situasjoner",
-            text: "Pasienten har på grunn av alvorlig overbevisning rett til å nekte å motta blod eller blodprodukter eller til å nekte å avbryte en pågående sultestreik. \ " +
-            "En døende pasient har rett til å motsette seg livsforlengende behandling. Er en døende pasient ute av stand til å formidle et behandlingsønske, skal helsepersonellet unnlate å gi \ " +
-            "helsehjelp dersom pasientens nærmeste pårørende tilkjennegir tilsvarende ønsker, og helsepersonellet etter en selvstendig vurdering finner at dette også er pasientens ønske og at ønsket åpenbart bør respekteres. \ " +
-            "Helsepersonell må forsikre seg om at pasient som nevnt i første og annet ledd er over 18 år og ikke er fratatt rettslig handleevne på det personlige området, \ " +
-            "og at vedkommende er gitt tilfredsstillende informasjon og har forstått konsekvensene for egen helse ved behandlingsnektelsen.",
-            summary: "Dette er et SAMMENDRAG av §4-9. Pasientens rett til å nekte helsehjelp i særlige situasjoner fra Pasient- og brukerrettighetsloven",
-            example: "Dette er et EKSEMPEL av §4-9. Pasientens rett til å nekte helsehjelp i særlige situasjoner fra Pasient- og brukerrettighetsloven"
+            paragraph: "§4-1. Hovedregel om samtykke",
+            text: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke. \ " + 
+            "For at samtykket skal være gyldig, må pasienten ha fått nødvendig informasjon om sin helsetilstand og innholdet i helsehjelpen. \ " + 
+            "Pasienten kan trekke sitt samtykke tilbake. Trekker pasienten samtykket tilbake, skal den som yter helsehjelp gi nødvendig informasjon om betydningen av at helsehjelpen ikke gis.",
+            summary: "Pasienten forlater behandling uten legens samtykke. Pasienten må da skrive under skjema for utskrivelse. Man må vurdere ytterlige psykiatrisk behandling for denne pasienten.",
+            example: "Pasienten har f.eks. en spiseforstyrrelse, men er stabil og alle vitale parametre er ok. Man finner kanskje bifunn på røntgen som burde utredes nærmere, \ " + 
+            "men pasienten behøver ikke umiddelbar behandling. Pasienten har i dette tilfellet full rett til å nekte behandling.",
+            oneline: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke."
         },
         {
             law: "Pasient- og brukerrettighetsloven",
             paragraph: "Kapittel 4A",
-            text: "Helsehjelp til pasienter uten samtykkekompetanse som motsetter seg helsehjelpen mv.",
-            summary: "Dette er et SAMMENDRAG av Kapittel 4A fra Pasient- og brukerrettighetsloven",
-            example: "Dette er et EKSEMPEL av Kapittel 4A fra Pasient- og brukerrettighetsloven"
+            text: "Før det kan ytes helsehjelp som pasienten motsetter seg, må tillitskapende tiltak ha vært forsøkt, med mindre det er åpenbart formålsløst å prøve dette. \ " + 
+            "Opprettholder pasienten sin motstand, eller vet helsepersonellet at vedkommende med stor sannsynlighet vil opprettholde sin motstand, kan det treffes vedtak om helsehjelp dersom \ " +
+            "a) en unnlatelse av å gi helsehjelp kan føre til vesentlig helseskade for pasienten, og \ " + 
+            "b) helsehjelpen anses nødvendig, og \ " + 
+            "c) tiltakene står i forhold til behovet for helsehjelpen. \ " +
+            "\ " +
+            "Selv om vilkårene i første og andre ledd er oppfylt, kan helsehjelp bare gis der dette etter en helhetsvurdering framtrer som den klart beste løsningen for pasienten. \ " + 
+            "I vurderingen av om slik helsehjelp skal gis, skal det blant annet legges vekt på graden av motstand samt om det i nær fremtid kan forventes at pasienten vil kunne gjenvinne sin samtykkekompetanse.",
+            summary: "Man må vurdere ytterlige psykiatrisk behandling for denne pasienten.",
+            example: "Helsepersonell kan gi ernæring over PEG-sonde til en hjerneskadet pasient. \ " +
+            "Pasienten trenger somatisk behandling. Pasienter som faller innenfor denne kategorien kan ofte være: \ " + 
+            "- Ruspåvirket",
+            oneline: "Helsepersonell må sikre nødvendig somatisk helsehjelp til pasienter som mangler samtykkekompetanse og som motsetter seg helsehjelpen."
         },
         {
             law: "Psykisk helsevernloven",
-            paragraph: "3-2.Vedtak om tvungen observasjon",
+            paragraph: "§3-2. Vedtak om tvungen observasjon",
             text: "På bakgrunn av opplysninger fra legeundersøkelsen etter § 3-1, foretar den faglig ansvarlige en vurdering av om de følgende vilkårene for tvungen observasjon er oppfylt: \ " +
             "1. Frivillig psykisk helsevern har vært forsøkt, uten at dette har ført fram, eller det er åpenbart formålsløst å forsøke dette. \ " +
             "2. Pasienten er undersøkt av to leger, hvorav én skal være uavhengig av den ansvarlige institusjon, jf. § 3-1. \ " +
@@ -104,12 +123,13 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Tvungen observasjon kan ikke vare ut over 10 dager fra undersøkelsens begynnelse uten pasientens samtykke. Dersom pasientens tilstand tilsier at det er strengt nødvendig, \ " +
             "kan fristen forlenges inntil 10 dager etter samtykke fra kontrollkommisjonens leder. Overføring til tvungent psykisk helsevern kan skje før eller ved utløpet av denne fristen, dersom vilkårene for slikt vern er til stede. \ " +
             "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter annet ledd til kontrollkommisjonen.",
-            summary: "Dette er et SAMMENDRAG av $3-2.Vedtak om tvungen observasjon fra Psykisk helsevernloven",
-            example: "Dette er et EKSEMPEL av $3-2.Vedtak om tvungen observasjon fra Psykisk helsevernloven"
+            summary: "Pasienten skal undersøkes av helsepersonell etter §3-1 i psykisk helsevernloven og kan fatte vedtak om tvungen observasjon. Legen må fylle ut skjema for begjær om tvungen observasjon.",
+            example: "Den praktiserende legen mistenker en alvorlig sinnslidelse hos pasienten, men det er ikke registrert noen kjent alvorlig sinnslidelse. ",
+            oneline: "På bakgrunn av opplysninger fra legeundersøkelser, kan den faglige ansvarlige fatte vedtak om tvungen observasjon."
         },
         {
             law: "Psykisk helsevernloven",
-            paragraph: "3-3.Vedtak om tvungent psykisk helsevern",
+            paragraph: "§3-3. Vedtak om tvungent psykisk helsevern",
             text: "På bakgrunn av opplysninger fra legeundersøkelsen etter § 3-1 og eventuell tvungen observasjon etter § 3-2, foretar den faglig ansvarlige en vurdering av om de følgende vilkårene for tvungent psykisk helsevern er oppfylt: \ " +
             "1. Frivillig psykisk helsevern har vært forsøkt, uten at dette har ført fram, eller det er åpenbart formålsløst å forsøke dette. \ " +
             "2. Pasienten er undersøkt av to leger, hvorav én skal være uavhengig av den ansvarlige institusjon, jf. § 3-1. \ " +
@@ -123,12 +143,17 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Den faglig ansvarlige treffer vedtak på grunnlag av foreliggende opplysninger og egen personlig undersøkelse av pasienten. Den faglig ansvarliges vedtak og grunnlaget for det skal straks nedtegnes. \ " +
             "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter denne bestemmelsen til kontrollkommisjonen. \ " +
             "Pasienten kan påklage vedtak om etablering av tvungent psykisk helsevern i inntil 3 måneder etter at vernet er opphørt.",
-            summary: "Dette er et SAMMENDRAG av $3-3.Vedtak om tvungent psykisk helsevern fra Psykisk helsevernloven",
-            example: "Dette er et EKSEMPEL av $3-3.Vedtak om tvungent psykisk helsevern fra Psykisk helsevernloven"
+            summary: "Pasienten skal undersøkes av helsepersonell etter §3-1 i psykisk helsevernloven og kan fatte vedtak om tvungent psykisk helsevern. Legen må fylle ut skjema for begjær om tvungent psykisk helsevern.",
+            example: "Pasienten har en kjent alvorlig sinnslidelse. Pasienter som går under denne klassifiseringen kan lide av: \ " + 
+            "- Schizofreni \ " + 
+            "- Demens \ " + 
+            "- Alzheimer",
+            oneline: "På bakgrunn av opplysninger fra legeundersøkelser, kan den faglige ansvarlige fatte vedtak om tvungent psykisk helsevern."
         }
     ];
     _.each(laws, function(list) {
-        Laws.insert({law: list.law, paragraph: list.paragraph, text: list.text, summary: list.summary, example: list.example})
+        Laws.insert({law: list.law, paragraph: list.paragraph, text: list.text,
+            summary: list.summary, example: list.example, oneline: list.oneline})
     });
 }
 
@@ -159,12 +184,12 @@ if (Links.find().count() === 0 || UPDATE == true) {
         {
             from: Startcases.findOne({text: "Suicidal pasient"}),
             mark: "",
-            to: Laws.findOne({paragraph: "17. Nødrett"})
+            to: Laws.findOne({paragraph: "§17. Nødrett"})
         },
         {
             from: Startcases.findOne({text: "Voldelig pasient"}),
             mark: "",
-            to: Laws.findOne({paragraph: "18. Nødverge"})
+            to: Laws.findOne({paragraph: "§18. Nødverge"})
         },
         {
             from: Startcases.findOne({text: "Pasient nekter behandling"}),
@@ -174,7 +199,7 @@ if (Links.find().count() === 0 || UPDATE == true) {
         {
             from: Filters.findOne({text: "Behov for akutt hjelp?"}),
             mark: "JA",
-            to: Laws.findOne({paragraph: "7. Øyeblikkelig hjelp"})
+            to: Laws.findOne({paragraph: "§7. Øyeblikkelig hjelp"})
         },
         {
             from: Filters.findOne({text: "Behov for akutt hjelp?"}),
@@ -184,7 +209,7 @@ if (Links.find().count() === 0 || UPDATE == true) {
         {
             from: Filters.findOne({text: "Er pasienten samtykkekompetent?"}),
             mark: "JA",
-            to: Laws.findOne({paragraph: "4-9.Pasientens rett til å nekte helsehjelp i særlige situasjoner"})
+            to: Laws.findOne({paragraph: "§4-1. Hovedregel om samtykke"})
         },
         {
             from: Filters.findOne({text: "Er pasienten samtykkekompetent?"}),
@@ -199,12 +224,12 @@ if (Links.find().count() === 0 || UPDATE == true) {
         {
             from: Filters.findOne({text: "Pasient trenger ikke øyeblikkelig hjelp og er ikke samtykkekompetent"}),
             mark: "og har en mistenkt alvorlig sinnslidelse",
-            to: Laws.findOne({paragraph: "3-2.Vedtak om tvungen observasjon"})
+            to: Laws.findOne({paragraph: "§3-2. Vedtak om tvungen observasjon"})
         },
         {
             from: Filters.findOne({text: "Pasient trenger ikke øyeblikkelig hjelp og er ikke samtykkekompetent"}),
             mark: "og har en kjent alvorlig sinnslidelse",
-            to: Laws.findOne({paragraph: "3-3.Vedtak om tvungent psykisk helsevern"})
+            to: Laws.findOne({paragraph: "§3-3. Vedtak om tvungent psykisk helsevern"})
         },
         {
             from: Startcases.findOne({text: "Pasient skader seg selv"}),
@@ -229,6 +254,12 @@ if (Urls.find().count() === 0 || UPDATE == true) {
         },
         {
             link: "http://www.ntnu.no"
+        },
+        {
+            link: "http://www.helsenorge.no/giftsentralen.no"
+        },
+        {
+            link: "http://www.helsedirektoratet.no"
         }
     ];
     _.each(urls, function (list) {
