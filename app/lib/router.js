@@ -44,20 +44,27 @@ Router.route('/links', function () {
 });
 
 Router.route('/info', function () {
-    this.render('info');
+    this.layout('infoLayout')
+    this.render('info', {to: 'tab'});
+    name: 'info'
 });
 
-Router.route('/info/:_id', function (){
-    this.render('infoElement');
-}, {
-    name: 'infoElement'
+Router.route('/about', function () {
+    this.layout('infoLayout')
+    this.render('about', {to: 'tab'});
+    name: 'about'
 });
 
-Router.route('/infoAbout', function (){
-    this.layout('infoAbout')
-    this.render('infoAbout', {to: 'tab'});
-}, {
-    name: 'infoAbout'
+Router.route('/howto', function () {
+    this.layout('infoLayout')
+    this.render('howto', {to: 'tab'});
+    name: 'howto'
+});
+
+Router.route('/conditions', function () {
+    this.layout('infoLayout')
+    this.render('conditions', {to: 'tab'});
+    name: 'conditions'
 });
 
 Router.route('/end/:_id', function (){
