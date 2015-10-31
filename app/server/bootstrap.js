@@ -3,7 +3,7 @@
  * The UPDATE variable is set to clear all collections and insert the initial data.
  */
 
-var UPDATE = false; // set true to delete all records and insert all initial data
+var UPDATE = true; // set true to delete all records and insert all initial data
 
 if (UPDATE == true) {
     // Remove existing collection
@@ -47,7 +47,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "a) den blir foretatt for å redde liv, helse, eiendom eller en annen interesse fra en fare for skade som ikke kan avverges på annen rimelig måte, og \ " +
             "b) denne skaderisikoen er langt større enn skaderisikoen ved handlingen.",
             summary: "Dette er et SAMMENDRAG av §17. Nødrett fra Straffeloven",
-            example: "Dette er et EKSEMPEL av §17. Nødrett fra Straffeloven"
+            example: "Dette er et EKSEMPEL av §17. Nødrett fra Straffeloven",
+            oneline: "Oneliner 17."
         },
         {
             law: "Straffeloven",
@@ -59,7 +60,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Regelen i første ledd gjelder tilsvarende for den som iverksetter en lovlig pågripelse eller søker å hindre at noen unndrar seg varetektsfengsling eller gjennomføring av frihetsstraff. \ " +
             "Utøving av offentlig myndighet kan bare møtes med nødverge når myndighetsutøvingen er ulovlig, og den som gjennomfører den, opptrer forsettlig eller grovt uaktsomt.",
             summary: "Dette er et SAMMENDRAG av §18. Nødverge fra Straffeloven",
-            example: "Dette er et EKSEMPEL av §18. Nødverge fra Straffeloven"
+            example: "Dette er et EKSEMPEL av §18. Nødverge fra Straffeloven",
+            oneline: "Oneliner 18."
         },
         {
             law: "Helsepersonelloven",
@@ -69,7 +71,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Ved tvil om helsehjelpen er påtrengende nødvendig, skal helsepersonell foreta nødvendige undersøkelser. \ " +
             "Plikten gjelder ikke i den grad annet kvalifisert helsepersonell påtar seg ansvaret for å gi helsehjelpen.",
             summary: "Dette er et SAMMENDRAG av §7. Øyeblikkelig hjelp fra Helsepersonelloven",
-            example: "Dette er et EKSEMPEL av §7. Øyeblikkelig hjelp fra Helsepersonelloven"
+            example: "Dette er et EKSEMPEL av §7. Øyeblikkelig hjelp fra Helsepersonelloven",
+            oneline: "Oneliner 7."
         },
         {
             law: "Pasient- og brukerrettighetsloven",
@@ -80,14 +83,16 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Helsepersonell må forsikre seg om at pasient som nevnt i første og annet ledd er over 18 år og ikke er fratatt rettslig handleevne på det personlige området, \ " +
             "og at vedkommende er gitt tilfredsstillende informasjon og har forstått konsekvensene for egen helse ved behandlingsnektelsen.",
             summary: "Dette er et SAMMENDRAG av §4-9. Pasientens rett til å nekte helsehjelp i særlige situasjoner fra Pasient- og brukerrettighetsloven",
-            example: "Dette er et EKSEMPEL av §4-9. Pasientens rett til å nekte helsehjelp i særlige situasjoner fra Pasient- og brukerrettighetsloven"
+            example: "Dette er et EKSEMPEL av §4-9. Pasientens rett til å nekte helsehjelp i særlige situasjoner fra Pasient- og brukerrettighetsloven",
+            oneline: "Oneliner 4-9."
         },
         {
             law: "Pasient- og brukerrettighetsloven",
             paragraph: "Kapittel 4A",
             text: "Helsehjelp til pasienter uten samtykkekompetanse som motsetter seg helsehjelpen mv.",
             summary: "Dette er et SAMMENDRAG av Kapittel 4A fra Pasient- og brukerrettighetsloven",
-            example: "Dette er et EKSEMPEL av Kapittel 4A fra Pasient- og brukerrettighetsloven"
+            example: "Dette er et EKSEMPEL av Kapittel 4A fra Pasient- og brukerrettighetsloven",
+            oneline: "Oneliner 4A."
         },
         {
             law: "Psykisk helsevernloven",
@@ -105,7 +110,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "kan fristen forlenges inntil 10 dager etter samtykke fra kontrollkommisjonens leder. Overføring til tvungent psykisk helsevern kan skje før eller ved utløpet av denne fristen, dersom vilkårene for slikt vern er til stede. \ " +
             "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter annet ledd til kontrollkommisjonen.",
             summary: "Dette er et SAMMENDRAG av $3-2.Vedtak om tvungen observasjon fra Psykisk helsevernloven",
-            example: "Dette er et EKSEMPEL av $3-2.Vedtak om tvungen observasjon fra Psykisk helsevernloven"
+            example: "Dette er et EKSEMPEL av $3-2.Vedtak om tvungen observasjon fra Psykisk helsevernloven",
+            oneline: "Oneliner 3-2."
         },
         {
             law: "Psykisk helsevernloven",
@@ -124,11 +130,13 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter denne bestemmelsen til kontrollkommisjonen. \ " +
             "Pasienten kan påklage vedtak om etablering av tvungent psykisk helsevern i inntil 3 måneder etter at vernet er opphørt.",
             summary: "Dette er et SAMMENDRAG av $3-3.Vedtak om tvungent psykisk helsevern fra Psykisk helsevernloven",
-            example: "Dette er et EKSEMPEL av $3-3.Vedtak om tvungent psykisk helsevern fra Psykisk helsevernloven"
+            example: "Dette er et EKSEMPEL av $3-3.Vedtak om tvungent psykisk helsevern fra Psykisk helsevernloven",
+            oneline: "Oneliner 3-3."
         }
     ];
     _.each(laws, function(list) {
-        Laws.insert({law: list.law, paragraph: list.paragraph, text: list.text, summary: list.summary, example: list.example})
+        Laws.insert({law: list.law, paragraph: list.paragraph, text: list.text,
+            summary: list.summary, example: list.example, oneline: list.oneline})
     });
 }
 
