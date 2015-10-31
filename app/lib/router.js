@@ -7,122 +7,141 @@
 //Route paths are relative to base url of the page
 
 Router.configure({
-  layoutTemplate: 'defaultLayout',
-  notFoundTemplate: 'notFound',
-  loadingTemplate: 'loading'
+  loadingTemplate: 'loading',
+  waitOn: function() {
+    return [Meteor.subscribe("startcases"),
+            Meteor.subscribe("laws"),
+            Meteor.subscribe("filters"),
+            Meteor.subscribe("links") ];
+  }
 });
 
+Router.route('/', function() {
+    this.layout('defaultLayout');
+    this.render('homeHeader', {to: 'header'});
+    this.render('homeContent');
+    this.render('mtabs', {to: 'footer'});
+  }, {
+  name: 'home'
+});
+
+/*
 Router.route('/', function () {
     this.layout('defaultLayout')
     this.render('home') 
 }, {
     name: 'home'
 });
+*/
 
 Router.route('/laws', function (){
-    this.layout('defaultLayout')
+    this.layout('defaultLayout');
     this.render('laws');
   }, {
     name: 'laws'
 });
 
 Router.route('/law/:_id', function (){
+    this.layout('defaultLayout');
     this.render('law');
   }, {
     name: 'law'
 });
 
 Router.route('/next/:_id', function (){
-    this.layout('defaultLayout')
+    this.layout('defaultLayout');
     this.render('next');
   }, {
     name: 'next'
 });
 
 Router.route('/links', function () {
+    this.layout('defaultLayout');
     this.render('links');
 });
 
 Router.route('/info', function () {
+    this.layout('defaultLayout');
     this.render('info');
 });
 
 Router.route('/info/:_id', function (){
+    this.layout('defaultLayout');
     this.render('infoElement');
 }, {
     name: 'infoElement'
 });
 
 Router.route('/infoAbout', function (){
-    this.layout('infoAbout')
+    this.layout('infoAbout');
     this.render('infoAbout', {to: 'tab'});
 }, {
     name: 'infoAbout'
 });
 
 Router.route('/end/:_id', function (){
-    this.layout('endLayout')
+    this.layout('endLayout');
     this.render('end', {to: 'tab'});
   }, {
     name: 'end'
 });
 
 Router.route('/lawTab', function (){
-    this.layout('endLayout')
+    this.layout('endLayout');
     this.render('lawTab', {to: 'tab'});
   }, {
     name: 'lawTab'
 });
 Router.route('/summaryTab', function (){
-    this.layout('endLayout')
+    this.layout('endLayout');
     this.render('summaryTab', {to: 'tab'});
   }, {
     name: 'summaryTab'
 });
 Router.route('/exampleTab', function (){
-    this.layout('endLayout')
+    this.layout('endLayout');
     this.render('exampleTab', {to: 'tab'});
   }, {
     name: 'exampleTab'
 });
 
 Router.route('/signin', function (){
-    this.layout('defaultLayout')
+    this.layout('defaultLayout');
     this.render('signin');
   }, {
     name: 'signin'
 });
 
 Router.route('/admin', function () {
-  this.layout('defaultLayout')
+  this.layout('defaultLayout');
   this.render('admin');
 }, {
   name: 'admin'
 });
 
 Router.route('/admin/cases', function () {
-  this.layout('defaultLayout')
+  this.layout('defaultLayout');
   this.render('admincases');
 }, {
   name: 'admincases'
 });
 
 Router.route('/admin/filters', function () {
-  this.layout('defaultLayout')
+  this.layout('defaultLayout');
   this.render('adminfilters');
 }, {
   name: 'adminfilters'
 });
 
 Router.route('/admin/links', function () {
-  this.layout('defaultLayout')
+  this.layout('defaultLayout');
   this.render('adminlinks');
 }, {
   name: 'adminlinks'
 });
 
 Router.route('/admin/laws', function () {
-  this.layout('defaultLayout')
+  this.layout('defaultLayout');
   this.render('adminlaws');
 }, {
   name: 'adminlaws'

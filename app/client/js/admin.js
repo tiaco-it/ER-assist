@@ -1,4 +1,5 @@
-Template.edit.onCreated(function() {
+/*
+Template.editLayout.onCreated(function() {
     var self = this;
     self.autorun(function() {
         if ( Meteor.status().connected ) {
@@ -9,13 +10,14 @@ Template.edit.onCreated(function() {
         }
     });
 });
-
-Template.edit.helpers({
+*/
+Template.editLayout.helpers({
     'selectedDoc': function() {
         return Elements.findOne(Router.current().params._id);
     }
 });
 
+/*
 Template.editcase.onCreated( function() {
     var self = this;
     self.autorun(function() {
@@ -24,7 +26,7 @@ Template.editcase.onCreated( function() {
         }
     });
 });
-
+*/
 
 Template.editcase.helpers({ 
     'selectedDoc': function() {

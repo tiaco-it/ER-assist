@@ -1,3 +1,4 @@
+/*
 Template.laws.onCreated(function() {
     var self = this;
     self.autorun(function() {
@@ -6,6 +7,7 @@ Template.laws.onCreated(function() {
         }
     });
 });
+*/
 
 Template.laws.helpers({
     // returns all laws, sorted by law-category

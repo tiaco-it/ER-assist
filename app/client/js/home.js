@@ -76,6 +76,7 @@ twoOutcome = function(cons){
 
 // ------------ HOME ------------ //
 
+/*
 Template.home.onCreated(function() {
     var self = this;
     self.autorun(function() {
@@ -87,8 +88,9 @@ Template.home.onCreated(function() {
         }
     });
 });
+*/
 
-Template.home.helpers({
+Template.homeContent.helpers({
     'startcases': function() {
         var cases = Startcases.find({});
         return cases && cases
@@ -186,7 +188,7 @@ Template.home.helpers({
     },
 });
 
-Template.home.events({
+Template.homeContent.events({
     'click .button': function(e) {
         IonNavigation.skipTransitions = true;
         if ($(e.currentTarget).attr("level") === "start") {
@@ -227,6 +229,8 @@ Template.home.events({
 //The third argument is a special async arg, making the call async and forcing you
 //to handle the possible async error as done here
 
+
+/*
 Template.home.events({
     'click .button-assertive': function(e) {
         e.preventDefault();
@@ -236,19 +240,9 @@ Template.home.events({
         return;
     }
 });
+*/
 
 // ------------ NEXT ------------ //
-
-Template.next.onCreated(function() {
-    var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("laws");
-            self.subscribe("filters");
-            self.subscribe("links");
-        }
-    });
-});
 
 Template.next.helpers({
     'current': function() {
@@ -281,54 +275,25 @@ Template.end.helpers({
 // ------------ TABS ------------ //
 
 Template.end.onCreated(function() {
-    lawHolder.push(Router.current().params._id)
-    var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("startcases");
-            self.subscribe("laws");
-            self.subscribe("filters");
-            self.subscribe("links");
-        }
-    });
-});
-
-Template.ttabs.onCreated(function() {
-    var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("startcases");
-            self.subscribe("laws");
-            self.subscribe("filters");
-            self.subscribe("links");
-        }
-    });
+    lawHolder.push(Router.current().params._id);
 });
 
 Template.ttabs.onRendered( function () {
-    Session.set('currentTab', 'end')
+    Session.set('currentTab', 'end');
 });
 
 Template.end.onCreated(function () {
-    lawHolder.push(Router.current().params._id)
-})
+    lawHolder.push(Router.current().params._id);
+});
 
 Template.endLayout.onCreated(function() {
-    lawHolder.push(Router.current().params._id)
+    lawHolder.push(Router.current().params._id);
     var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("startcases");
-            self.subscribe("laws");
-            self.subscribe("filters");
-            self.subscribe("links");
-        }
-    });
 });
 
 Template.endLayout.onDestroyed( function () {
     console.log('Destroyed');
-    lawHolder.pop()
+    lawHolder.pop();
 });
 
 

@@ -19,7 +19,6 @@ ElementsSchema = new SimpleSchema({
 });
 
 Elements = new Meteor.Collection('Elements');
-
 //Meteor.is(options) checks where meteor is running, in this case on Cordova which means mobile
 //Ground.Collection makes the collection available offline
 

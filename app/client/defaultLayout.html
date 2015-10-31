@@ -9,9 +9,10 @@
     {{#ionBody}}
         {{> ionNavBar class="bar-positive"}}
 
-        <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->
 
+        <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->
         {{#ionNavView}}
+        	{{> yield 'header'}}
             {{> yield}}
         {{/ionNavView}}
     {{/ionBody}}

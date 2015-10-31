@@ -1,6 +1,6 @@
 <!-- contentFor means content for the element, in this case "headerTitle" which is one of 3 regions supplied by the IonNavBar. In general ion elements can supply regions where content is displayed if put inside contentFor "regionName" -->
 
-<template name="home">
+<template name="homeHeader">
 {{#contentFor "headerTitle"}}
     <h1 class="title">Kategoriser pasienten</h1>
     
@@ -11,26 +11,24 @@
         </button>
     {{else}}
          <a href = "{{pathFor 'login'}}" class="button button-clear pull-right">
-            {{> ionIcon icon='navicon'}}
-        </a>
+            {{> ionIcon icon='navicon'}
+}        </a>
     {{/if}} -->
 {{/contentFor}}
-
-{{#contentFor "headerButtonLeft"}}
-        {{> atNavButton}} <p>{{username}}</p>
+{{#contentFor "headerButtonRight"}}
+    {{> atNavButton}} <p>{{username}}</p>
 {{/contentFor}}
+</template>
 
 
 
-
+<template name='homeContent'>
+    {{#ionView}}
     <!-- pathFor creates a link dynamically based on info from the route.  -->
     <!-- In this case, base version, it refers to the simple route 'new' -->
 
         <!-- \{{#each}} iterates over over elements in the named object. \{{ (attribute) }} can then be used to get attributes from each element. HTML and ion elements are then used to format and enclose the output content -->
-
-{{#ionView}}
     {{#ionContent}}
-        {{#if Template.subscriptionsReady}}
             {{#ionList}}
                     <!-- startcases here refers to a helper method in home.js which returns an array of objects -->
                 {{#each scase in startcases}}
@@ -125,10 +123,25 @@
                     {{/if}}
                 {{/each}}
             {{/ionList}}
-        {{else}}
-            {{> spinner}}
-        {{/if}}
     {{/ionContent}}
-    {{> mtabs}}
+    {{> yield 'footer'}}
 {{/ionView}}
+</template>
+
+<template name="loading">
+    {{#ionBody}}
+        {{> ionNavBar class="bar-positive"}}
+
+
+        <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->
+        {{#ionNavView}}
+            {{> yield 'header'}}
+            {{#ionView}}
+                {{#ionContent}}
+                    {{> spinner}}
+                {{/ionContent}}
+            {{> yield 'footer'}}
+            {{/ionView}}
+        {{/ionNavView}}
+    {{/ionBody}}
 </template>
