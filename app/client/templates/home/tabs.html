@@ -1,3 +1,16 @@
+<template name="topTabsLayout">
+    {{#ionBody}}
+        {{> ionNavBar class="bar-positive"}}
+
+
+        <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->
+        {{#ionNavView}}
+            {{> yield}}
+        {{/ionNavView}}
+    {{/ionBody}}
+</template>
+
+
 <template name="_tabsHeader">
     {{#ionHeaderBar class="bar-positive"}}
         {{>ionNavBackButton text="Tilbake"}}
