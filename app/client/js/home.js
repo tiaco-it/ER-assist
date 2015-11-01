@@ -217,9 +217,6 @@ Template.homeContent.events({
             console.log("SET TO UNDEFINED");
             Session.set('currentFrom', undefined)
         }
-        else if ($(e.currentTarget).attr("func") === "edit") {
-
-        }
         else {
             console.log("Failed button activation")
         }
@@ -243,30 +240,6 @@ Template.home.events({
 });
 */
 
-// ------------ NEXT ------------ //
-
-Template.next.helpers({
-    'current': function() {
-        return Filters.findOne(Router.current().params._id);
-    },
-    'currentLinks': function() {
-        return Links.find( { 'from._id': Router.current().params._id } );
-    },
-    'to': function(link) {
-        return link.to;
-    },
-    'case': function() {
-        console.log(Session.get('category'));
-        return Session.get('category');
-    }
-});
-
-
-Template.next.events({
-    'click': function(e) {
-        IonNavigation.skipTransitions = true;
-    }
-});
 
 // ------------ END ------------ //
 

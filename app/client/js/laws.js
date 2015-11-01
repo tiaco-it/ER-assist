@@ -8,6 +8,11 @@ Template.laws.onCreated(function() {
     });
 });
 */
+Template.law.helpers({
+    'thisLaw': function() {
+        return Laws.findOne(Router.current().params._id)
+    }
+});
 
 Template.law.onCreated(function() {
     var self = this;
@@ -17,6 +22,17 @@ Template.law.onCreated(function() {
         }
     });
 });
+
+Template.laws.events({
+    'click #law': function() {
+        console.log('triggered')
+        IonNavigation.skipTransitions = true;
+    }
+})
+
+Template.law.rendered = function () {
+    IonNavigation.skipTransitions = true;
+};
 
 Template.laws.helpers({
     // returns all laws, sorted by law-category
@@ -43,8 +59,3 @@ Template.laws.helpers({
     }
 });
 
-Template.law.helpers({
-    'thisLaw': function() {
-        return Laws.findOne(Router.current().params._id)
-    }
-});

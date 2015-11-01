@@ -79,9 +79,9 @@
                                                 </a>
                                         {{else}}
                                             {{#if twoYes currentFrom}}
-                                                    <button class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
+                                                    <a class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
                                                         <p>JA</p>
-                                                    </button>
+                                                    </a>
                                             {{else}}
                                                     <a href = "{{pathFor 'next'}}" class="button button-large secondLevelButton" level="end">
                                                         <p>JA</p>
@@ -96,9 +96,9 @@
                                                 </a>
                                         {{else}}
                                             {{#if twoNo currentFrom}}
-                                                    <button class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
+                                                    <a class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
                                                         <p>NEI</p>
-                                                    </button>
+                                                    </a>
                                             {{else}}
                                                     <a href = "{{pathFor 'next'}}" class="button button-large secondLevelButton" level="end">
                                                         <p>NEI</p>
@@ -119,7 +119,7 @@
                                         </a>
                                     {{#if currentUser}}
                                         {{#with scase}}
-                                        <a href="{{pathFor 'edit.case'}}" class="button pull-right" func="edit">
+                                        <a href="{{pathFor 'edit.case'}}" class="button pull-right">
                                             {{> ionIcon icon="edit"}}
                                         </a>
                                         {{/with}}
@@ -130,6 +130,11 @@
                         {{/if}}
                     {{/if}}
                 {{/each}}
+            {{#if currentUser}}
+            <a href="{{pathFor 'add.case'}}" class="button pull-right" func="add">
+                {{> ionIcon icon="plus"}}
+            </a>
+            {{/if}}
             {{/ionList}}
     {{/ionContent}}
     {{> yield 'footer'}}
