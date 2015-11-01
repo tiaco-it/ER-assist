@@ -1,2 +1,26 @@
 @import '.meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic';
 @import '.meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/ionicons';
+
+.buttonContainer {
+  text-align: center;
+  border-left: 10px solid #B2B2B2;
+  background-color: #f8f8f8;
+  p {
+    color: #335DF1;
+    font-size: 19px;
+  }
+  .buttonQuestion {
+    padding: 10px;
+  }
+  .firstLevelButton {
+    border: none;
+  }
+  .secondLevelButton {
+    border: none;
+    background-color: #335DF1;
+    width: 45%;
+    p {
+      color: #ffffff;
+    }
+  }
+}
