@@ -5,18 +5,18 @@
     {{#ionView}}
         {{#ionContent}}
             {{#if Template.subscriptionsReady}}
-            {{#ionList}}
-                <!-- For each item in links (from the helper, check js file) -->
-                {{#each links}}
-                    {{#ionItem}}
-                        <!-- Link from urls collection -->
-                        <!-- Maybe redirect can be done with Iron Router? -->
-                        <a class="" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
-                            <h2>{{link}}</h2>
-                        </a>
-                    {{/ionItem}}
-                {{/each}}
-            {{/ionList}}
+                {{#ionList}}
+                    <!-- For each item in links (from the helper, check js file) -->
+                    {{#each links}}
+                        {{#ionItem}}
+                            <!-- Link from urls collection -->
+                            <!-- Maybe redirect can be done with Iron Router? -->
+                            <a class="link item item-icon-left" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
+                                <h2><i class="icon ion-link"></i>{{link}}</h2>
+                            </a>
+                        {{/ionItem}}
+                    {{/each}}
+                {{/ionList}}
             {{else}}
                 {{> spinner}}
             {{/if}}
