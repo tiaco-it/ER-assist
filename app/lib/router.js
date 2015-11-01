@@ -25,15 +25,6 @@ Router.route('/', function() {
   name: 'home'
 });
 
-/*
-Router.route('/', function () {
-    this.layout('defaultLayout')
-    this.render('home') 
-}, {
-    name: 'home'
-});
-*/
-
 Router.route('/laws', function (){
     this.layout('defaultLayout');
     this.render('laws');
@@ -86,13 +77,14 @@ Router.route('/conditions', function () {
 });
 
 Router.route('/end/:_id', function (){
+    this.layout('topTabsLayout');
     this.render('endLayout');
   }, {
     name: 'end'
 });
 
 Router.route('/info', function (){
-    this.layout('defaultLayout');
+    this.layout('topTabsLayout');
     this.render('infoLayout');
   }, {
     name: 'info'
