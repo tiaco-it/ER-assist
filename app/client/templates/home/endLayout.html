@@ -7,7 +7,7 @@
         {{else}}
             {{> spinner}}
         {{/if}}
-       <!-- {{>mtabs}} -->
+       {{>mtabs}}
     {{/ionView}}
 </template>
 
@@ -44,19 +44,6 @@
         </div>
     </div>
 </template>
-<!--
-    <div class="tabs tabs-background-positive tabs-color-light tabs-top">
-      <a class="tab-item" id="one">
-        Ban
-      </a>
-      <a class="tab-item" id="two">
-        Allow
-      </a>
-      <a class="tab-item" id="three">
-        Require
-      </a>
-    </div>
-    -->
 
 <template name="tetabs">
     {{#ionTabs class="tabs-top tabs-background-positive tabs-color-light"}}
@@ -69,7 +56,7 @@
 <template name='triple'>
 
 {{#if One}}
-    {{#ionContent}}
+    {{#ionContent class="padding"}}
         {{#with thisLaw}}
             <h2 class="text-center">{{law}}</h2>
             <h3 class="text-center">{{paragraph}}</h3>
@@ -81,7 +68,7 @@
 {{/if}}
 
 {{#if Two}}
-    {{#ionContent}}
+    {{#ionContent class="padding"}}
         {{#with thisLaw}}
             <h2 class="text-center">{{law}}</h2>
             <h3 class="text-center">{{paragraph}}</h3>
@@ -96,7 +83,7 @@
 {{/if}}
 
 {{#if Three}}
-    {{#ionContent}}
+    {{#ionContent class="padding"}}
         {{#with thisLaw}}
             <h2 class="text-center">{{law}}</h2>
             <h3 class="text-center">{{paragraph}}</h3>
