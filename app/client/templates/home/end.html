@@ -1,16 +1,24 @@
 <template name='endLayout'>
-    {{> _tabsHeader}}
-    {{#ionView}}
-        {{>toptabs}}
-        {{#if Template.subscriptionsReady}}
-        {{#ionContent class="padding has-tabs-top"}} 
-            {{>triple}}
-        {{/ionContent}}
-        {{else}}
-            {{> spinner}}
-        {{/if}}
-       {{>mtabs}}
-    {{/ionView}}
+    {{#ionBody}}
+        {{> ionNavBar class="bar-positive"}}
+
+
+        <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->
+        {{#ionNavView}}
+            {{> _tabsHeader}}
+            {{#ionView}}
+                {{>toptabs}}
+                {{#if Template.subscriptionsReady}}
+                {{#ionContent class="padding has-tabs-top"}} 
+                    {{>triple}}
+                {{/ionContent}}
+                {{else}}
+                    {{> spinner}}
+                {{/if}}
+               {{>mtabs}}
+            {{/ionView}}
+        {{/ionNavView}}
+    {{/ionBody}}
 </template>
 
 <template name='toptabs'>
