@@ -110,10 +110,16 @@ Router.route('/admin/laws', function () {
 
 Router.route('/edit/case/:_id', function () {
   this.layout('editLayout');
-  this.render('addcase', {to: 'add'});
   this.render('editcase', {to: 'edit'});
 }, {
   name: 'edit.case'
+});
+
+Router.route('/add/case', function () {
+  this.layout('editLayout');
+  this.render('addcase', {to: 'add'});
+}, {
+  name: 'add.case'
 });
 
 Router.route('edit/link/:_id', function (){

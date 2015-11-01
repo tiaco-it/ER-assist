@@ -217,9 +217,6 @@ Template.homeContent.events({
             console.log("SET TO UNDEFINED");
             Session.set('currentFrom', undefined)
         }
-        else if ($(e.currentTarget).attr("func") === "edit") {
-
-        }
         else {
             console.log("Failed button activation")
         }
