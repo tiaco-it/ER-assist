@@ -92,7 +92,6 @@ Template.triple.onCreated(function() {
 
 Template._tabsHeader.helpers({
     'case': function() {
-        console.log(Session.get('category'));
         return Session.get('category');
     }
 });
