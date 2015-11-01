@@ -86,7 +86,6 @@ Router.route('/conditions', function () {
 });
 
 Router.route('/end/:_id', function (){
-    this.layout('defaultLayout');
     this.render('endLayout');
   }, {
     name: 'end'
