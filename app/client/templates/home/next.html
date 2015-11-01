@@ -3,9 +3,9 @@
         {{>ionNavBackButton text="Tilbake"}}
     {{/contentFor}}
     {{#contentFor "headerTitle"}}
-            {{#with case}}
-                <h1 class="title">{{text}}</h1>
-            {{/with}}
+        {{#with case}}
+            <h1 class="title">{{text}}</h1>
+        {{/with}}
     {{/contentFor}}
     {{#ionView}}
         {{#ionContent class="padding"}}
@@ -15,11 +15,13 @@
             {{#ionList}}
                 {{#each link in currentLinks}}
                     {{#ionItem}}
-                        {{#with to link}}
-                            <a href = "{{pathFor 'end'}}" class="button">
-                                <p>{{ link.mark }}</p>
-                            </a>
-                        {{/with}}
+                        <div class="buttonContainer">
+                            {{#with to link}}
+                                <a href = "{{pathFor 'end'}}" class="button button-full firstLevelButton">
+                                    <p>{{ link.mark }}</p>
+                                </a>
+                            {{/with}}
+                        </div>
                     {{/ionItem}}
                 {{/each}}
             {{/ionList}}

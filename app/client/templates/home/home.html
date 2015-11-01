@@ -34,9 +34,9 @@
                 {{#each scase in startcases}}
                     {{#if oneEither scase}}
                         {{#ionItem}}
-                        <div style="border: 1px solid black">
+                        <div class="buttonContainer">
                             {{#with to scase}}
-                                    <a href="{{pathFor 'end'}}" level="start" class="button" id="{{ scase.text }}">
+                                    <a href="{{pathFor 'end'}}" level="start" class="button button-full button-large firstLevelButton" id="{{ scase.text }}">
                                         <p>{{scase.text}}</p>
                                     </a>
                                     {{#if currentUser}}
@@ -53,9 +53,9 @@
                         {{#if twoEither scase}}
                             {{#if notClicked scase.text}}
                                 {{#ionItem}}
-                                <div style="border: 1px solid black">
+                                <div class="buttonContainer">
                                     {{#with to scase}}
-                                            <button class="button" level="start" id="{{ scase.text }}">
+                                            <button class="button button-full button-large firstLevelButton" level="start" id="{{ scase.text }}">
                                                 <p>{{scase.text}}</p>
                                             </button>
                                     {{#if currentUser}}
@@ -70,38 +70,38 @@
                                 {{/ionItem}}
                             {{else}}
                                 {{#ionItem}}
-                                <div style="border: 1px solid black">
-                                        <p>{{currentFrom.text}}</p>
+                                <div class="buttonContainer">
+                                        <p class="buttonQuestion">{{currentFrom.text}}</p>
                                     {{#with yesLink currentFrom}}
                                         {{#if oneYes currentFrom}}
-                                                <a href="{{pathFor 'end'}}" class="button" level="end">
-                                                    <p>Ja</p>
+                                                <a href="{{pathFor 'end'}}" class="button button-large secondLevelButton" level="end">
+                                                    <p>JA</p>
                                                 </a>
                                         {{else}}
                                             {{#if twoYes currentFrom}}
-                                                    <button class="button" level="inter" id = "{{ text }}">
-                                                        <p>Ja</p>
+                                                    <button class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
+                                                        <p>JA</p>
                                                     </button>
                                             {{else}}
-                                                    <a href = "{{pathFor 'next'}}" class="button" level="end">
-                                                        <p>Ja</p>
+                                                    <a href = "{{pathFor 'next'}}" class="button button-large secondLevelButton" level="end">
+                                                        <p>JA</p>
                                                     </a>
                                             {{/if}}
                                         {{/if}}
                                     {{/with}}
                                     {{#with noLink currentFrom}}
                                         {{#if oneNo currentFrom}}
-                                                <a href="{{pathFor 'end'}}" class="button" level="end">
-                                                    <p>Nei</p>
+                                                <a href="{{pathFor 'end'}}" class="button button-large secondLevelButton" level="end">
+                                                    <p>NEI</p>
                                                 </a>
                                         {{else}}
                                             {{#if twoNo currentFrom}}
-                                                    <button class="button" level="inter" id = "{{ text }}">
-                                                        <p>Nei</p>
+                                                    <button class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
+                                                        <p>NEI</p>
                                                     </button>
                                             {{else}}
-                                                    <a href = "{{pathFor 'next'}}" class="button" level="end">
-                                                        <p>Nei</p>
+                                                    <a href = "{{pathFor 'next'}}" class="button button-large secondLevelButton" level="end">
+                                                        <p>NEI</p>
                                                     </a>
                                             {{/if}}
                                         {{/if}}
@@ -112,8 +112,8 @@
                         {{else}}
                             {{#with to scase}}
                                 {{#ionItem}}
-                                <div style="border: 1px solid black">
-                                        <a href="{{pathFor 'next'}}" level="start" class="button" id="{{ scase.text }}">
+                                <div class="buttonContainer">
+                                        <a href="{{pathFor 'next'}}" level="start" class="button button-full firstLevelButton" id="{{ scase.text }}">
                                             <p>n > 2 outcomes</p>
                                             <p>{{scase.text}}</p>
                                         </a>
