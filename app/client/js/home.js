@@ -270,11 +270,7 @@ Template.next.events({
 
 // ------------ END ------------ //
 
-Template.end.onCreated(function() {
-    lawHolder.push(Router.current().params._id);
-});
-
-Template.end.helpers({
+Template.endLayout.helpers({
     'thisLaw': function() {
         var l = lawHolder[0]
         return Laws.findOne(l)
@@ -284,18 +280,8 @@ Template.end.helpers({
 
 // ------------ TABS ------------ //
 
-
-Template.ttabs.onRendered( function () {
-    Session.set('currentTab', 'end');
-});
-
-Template.end.onCreated(function () {
-    lawHolder.push(Router.current().params._id);
-});
-
 Template.endLayout.onCreated(function() {
     lawHolder.push(Router.current().params._id);
-    var self = this;
 });
 
 Template.endLayout.onDestroyed( function () {
@@ -303,33 +289,11 @@ Template.endLayout.onDestroyed( function () {
     lawHolder.pop();
 });
 
-
-Template.summaryTab.helpers({
-    'thisLaw': function() {
-        var l = lawHolder[0];
-        return Laws.findOne(l)
-    }
-});
-
-Template.exampleTab.helpers({
-    'thisLaw': function() {
-        var l = lawHolder[0];
-        return Laws.findOne(l)
-    }
-});
-
-Template.lawTab.helpers({
-    'thisLaw': function() {
-        var l = lawHolder[0];
-        return Laws.findOne(l)
-    }
-});
-
 $('html').click(function(e) {
     if(!$(e.target).hasClass("button") ) {
     while ( buttons.length > 0 ){
         var f = buttons.pop();
-        Session.set(f, false)
+        Session.set(f, false);
     }
 }
     else {

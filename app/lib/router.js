@@ -86,28 +86,10 @@ Router.route('/conditions', function () {
 });
 
 Router.route('/end/:_id', function (){
+    this.layout('defaultLayout');
     this.render('endLayout');
   }, {
     name: 'end'
-});
-
-Router.route('/lawTab', function (){
-    this.layout('endLayout');
-    this.render('lawTab', {to: 'tab'});
-  }, {
-    name: 'lawTab'
-});
-Router.route('/summaryTab', function (){
-    this.layout('endLayout');
-    this.render('summaryTab', {to: 'tab'});
-  }, {
-    name: 'summaryTab'
-});
-Router.route('/exampleTab', function (){
-    this.layout('endLayout');
-    this.render('exampleTab', {to: 'tab'});
-  }, {
-    name: 'exampleTab'
 });
 
 Router.route('/admin', function () {

@@ -15,7 +15,7 @@ Template.endLayout.events({
     event.preventDefault();
     Session.set('tab', 3);
     console.log('THREE');
-  }
+}
 });
 
 Template.triple.helpers({
@@ -44,6 +44,18 @@ Template.triple.helpers({
         var l = lawHolder[0];
         return Laws.findOne(l);
     }
+});
+
+Template.triple.events({
+    'click #send': function(event, template) {
+        console.log('triggered!');
+        IonPopup.prompt({
+        title: 'Email',
+        template: 'Vennligst skriv inn email',
+        okText: 'Submit',
+        inputPlaceholder: 'Your email'
+    });
+  }
 });
 
 Template.toptabs.helpers({
