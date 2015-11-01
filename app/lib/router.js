@@ -99,27 +99,6 @@ Router.route('/info', function (){
     name: 'info'
 });
 
-Router.route('/lawTab', function (){
-    this.layout('endLayout');
-    this.render('lawTab', {to: 'tab'});
-  }, {
-    name: 'lawTab'
-});
-Router.route('/summaryTab', function (){
-    this.layout('endLayout');
-    this.render('summaryTab', {to: 'tab'});
-  }, {
-    name: 'summaryTab'
-});
-Router.route('/exampleTab', function (){
-    this.layout('endLayout');
-    this.render('exampleTab', {to: 'tab'});
-  }, {
-    name: 'exampleTab'
-});
-
-=======
->>>>>>> 0601e2b84f74e95ea1e3a3fa9ab80204fe62d773
 Router.route('/admin', function () {
   this.layout('defaultLayout');
   this.render('admin');
