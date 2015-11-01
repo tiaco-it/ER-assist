@@ -2,7 +2,11 @@
     {{> _infoHeader}}
     {{#ionView}}
         {{>itabs}}
-        {{> yield "tab"}}
+        {{#if Template.subscriptionsReady}} 
+            {{>infoTriple}}
+        {{else}}
+            {{> spinner}}
+        {{/if}}
         {{>mtabs}}
     {{/ionView}}
 </template>
@@ -11,6 +15,74 @@
     {{#ionHeaderBar class="bar-positive"}}
         <h1 class="title">Info</h1>
     {{/ionHeaderBar}}
+</template>
+
+<template name='itabs'>
+    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+        <div class="tabs">
+            {{#if One}}
+            <a class="tab-item active" id="one">
+                Om Appen
+            </a>
+            {{else}}
+            <a class="tab-item" id="one">
+                Om Appen
+            </a>
+            {{/if}}
+            {{#if Two}}
+            <a class="tab-item active" id="two">
+                Hvordan bruke appen
+            </a>
+            {{else}}
+            <a class="tab-item" id="two">
+                Hvordan bruke appen
+            </a>
+            {{/if}}
+            {{#if Three}}
+            <a class="tab-item active" id="three">
+                Vilkår og bruk
+            </a>
+            {{else}}
+            <a class="tab-item" id="three">
+                Vilkår og bruk
+            </a>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name='infoTriple'>
+test
+{{#if One}}
+    {{#ionContent}}
+    test1
+        {{#with about}}
+            <h1 class="text-center">{{title}}</h1>
+            <p class="text-center">{{text}}</p>
+        {{/with}}
+    {{/ionContent}}
+{{/if}}
+
+{{#if Two}}
+    {{#ionContent}}
+    test2
+        {{#with howto}}
+            <h1 class="text-center">{{title}}</h1>
+            <p class="text-center">{{text}}</p>
+        {{/with}}
+    {{/ionContent}}
+{{/if}}
+
+{{#if Three}}
+    {{#ionContent}}
+    test3
+        {{#with conditions}}
+            <h1 class="text-center">{{title}}</h1>
+            <p class="text-center">{{text}}</p>
+        {{/with}}
+    {{/ionContent}}
+{{/if}}
+
 </template>
 
 <template name="about">
@@ -22,7 +94,7 @@
       {{/ionContent}}
 </template>
 
-<template name="info">
+<template name="infoOriginal">
       {{#ionContent}}
           {{#with howto}}
               <h1>{{title}}</h1>

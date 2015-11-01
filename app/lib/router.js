@@ -60,11 +60,11 @@ Router.route('/links', function () {
     this.render('links');
 });
 
-Router.route('/info', function () {
+Router.route('/infoOriginal', function () {
 
     this.layout('infoLayout')
-    this.render('info', {to: 'tab'});
-    name: 'info'
+    this.render('infoOriginal', {to: 'tab'});
+    name: 'infoOriginal'
 });
 
 Router.route('/about', function () {
@@ -89,6 +89,13 @@ Router.route('/end/:_id', function (){
     this.render('endLayout');
   }, {
     name: 'end'
+});
+
+Router.route('/info', function (){
+    this.layout('defaultLayout');
+    this.render('infoLayout');
+  }, {
+    name: 'info'
 });
 
 Router.route('/lawTab', function (){
