@@ -1,7 +1,7 @@
 <!-- Tentative template for displaying all laws (For shortcut directly to law) -->
 <template name="laws">
     {{#contentFor "headerTitle"}}
-        <h1 class="title">LOVER</h1>
+        <h1 class="title">Lover</h1>
     {{/contentFor}}
     {{#ionView}}
         {{#ionContent}}
@@ -29,7 +29,7 @@
 <template name='law'>
     <div class="bar bar-header bar-positive">
         {{>ionNavBackButton text="Tilbake"}}
-        <div class="title">LOV</div>
+        <div class="title">Lov</div>
     </div>
 
     {{#ionView}}
@@ -44,7 +44,7 @@
                     <h4 style="color:black; text-transform: uppercase;">{{oneline}}</h4>
                 </div>
 
-                <p style="padding-left: 3em; padding-right: 3em;">{{text}}</p>
+                <h4 style="padding-left: 3em; padding-right: 3em;">{{text}}</h4>
             {{/with}}
             {{else}}
                 {{> spinner}}
