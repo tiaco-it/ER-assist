@@ -47,15 +47,10 @@ Router.route('/next/:_id', function (){
 });
 
 Router.route('/links', function () {
-    this.layout('defaultLayout');
-    this.render('links');
-});
-
-Router.route('/infoOriginal', function () {
-
-    this.layout('infoLayout')
-    this.render('infoOriginal', {to: 'tab'});
-    name: 'infoOriginal'
+    this.layout('topTabsLayout');
+    this.render('linksLayout');
+  }, {
+    name: 'links'
 });
 
 Router.route('/end/:_id', function (){

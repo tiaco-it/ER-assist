@@ -1,26 +1,67 @@
-<template name="links">
-    {{#contentFor "headerTitle"}}
-        <h1 class="title">Lenker</h1>
-    {{/contentFor}}
+<template name="linksLayout">
+    {{> _linksHeader}}
     {{#ionView}}
-        {{#ionContent}}
-            {{#if Template.subscriptionsReady}}
-                {{#ionList}}
-                    <!-- For each item in links (from the helper, check js file) -->
-                    {{#each links}}
-                        {{#ionItem}}
-                            <!-- Link from urls collection -->
-                            <!-- Maybe redirect can be done with Iron Router? -->
-                            <a class="link item item-icon-left" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
-                                <h2><i class="icon ion-link"></i>{{link}}</h2>
-                            </a>
-                        {{/ionItem}}
-                    {{/each}}
-                {{/ionList}}
-            {{else}}
-                {{> spinner}}
-            {{/if}}
-        {{/ionContent}}
+        {{>ltabs}}
+        {{#if Template.subscriptionsReady}} 
+            {{#ionContent class="padding has-tabs-top"}} 
+                {{>linksDouble}}
+            {{/ionContent}}
+        {{else}}
+            {{> spinner}}
+        {{/if}}
         {{>mtabs}}
     {{/ionView}}
+</template>
+
+<template name="_linksHeader">
+    {{#ionHeaderBar class="bar-positive"}}
+        <h1 class="title">Lenker og nummer</h1>
+    {{/ionHeaderBar}}
+</template>
+
+<template name='ltabs'>
+    console.log('ltabs')
+    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+        <div class="tabs">
+            {{#if One}}
+            <a class="tab-item active" id="one">
+                Lenker
+            </a>
+            {{else}}
+            <a class="tab-item" id="one">
+                Lenker
+            </a>
+            {{/if}}
+            {{#if Two}}
+            <a class="tab-item active" id="two">
+                Nummer
+            </a>
+            {{else}}
+            <a class="tab-item" id="two">
+                Nummer
+            </a>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name='linksDouble'>
+{{#if One}}
+    {{#ionList}}
+        <!-- For each item in links (from the helper, check js file) -->
+        {{#each links}}
+            {{#ionItem}}
+                <!-- Link from urls collection -->
+                <!-- Maybe redirect can be done with Iron Router? -->
+                <a class="link item item-icon-left" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
+                    <h2><i class="icon ion-link"></i>{{link}}</h2>
+                </a>
+            {{/ionItem}}
+        {{/each}}
+    {{/ionList}}
+{{/if}}
+
+{{#if Two}}
+{{/if}}
+
 </template>
