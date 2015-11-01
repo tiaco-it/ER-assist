@@ -20,28 +20,11 @@
     {{/ionHeaderBar}}
 </template>
 
-<template name="itabsOriginal">
-    {{#ionTabs class="tabs-top tabs-background-positive tabs-color-light"}}
-        {{> ionTab title="Om appen" path="about"}}
-        {{> ionTab title="Hvordan bruke appen" path="info"}}
-        {{> ionTab title="Vilkår og bruk" path="conditions"}}
-    {{/ionTabs}}
-</template>
-
 <template name="mtabs">
-    {{#if isAndroid}}
-        {{#ionTabs style="android" class="tabs-background-positive tabs-color-light"}}
-            {{> ionTab title="Hjem" path="home" icon="android-home"}}
-            {{> ionTab title="Lover" path="laws" icon="android-star"}}
-            {{> ionTab title="Lenker" path="links" icon="android-globe"}}
-            {{> ionTab title="Info" path="info" icon="gear-b"}}
-        {{/ionTabs}}
-    {{else}}
-        {{#ionTabs style="ios"}}
-            {{> ionTab title="Hjem" path="home" iconOff="ios-home-outline" iconOn="ios-home"}}
-            {{> ionTab title="Lover" path="laws" iconOff="ios-book-outline" iconOn="ios-book"}}
-            {{> ionTab title="Lenker" path="links" iconOff="ios-world-outline" iconOn="ios-world"}}
-            {{> ionTab title="Info" path="info" iconOff="ios-information-outline" iconOn="ios-information"}}
-        {{/ionTabs}}
-    {{/if}}
+    {{#ionTabs style="ios"}}
+        {{> ionTab title="Hjem" path="home" iconOff="ios-home-outline" iconOn="ios-home"}}
+        {{> ionTab title="Lover" path="laws" iconOff="ios-book-outline" iconOn="ios-book"}}
+        {{> ionTab title="Lenker" path="links" iconOff="ios-world-outline" iconOn="ios-world"}}
+        {{> ionTab title="Info" path="info" iconOff="ios-information-outline" iconOn="ios-information"}}
+    {{/ionTabs}}
 </template>

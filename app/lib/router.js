@@ -59,24 +59,6 @@ Router.route('/infoOriginal', function () {
     name: 'infoOriginal'
 });
 
-Router.route('/about', function () {
-    this.layout('infoLayout')
-    this.render('about', {to: 'tab'});
-    name: 'about'
-});
-
-Router.route('/howto', function () {
-    this.layout('infoLayout')
-    this.render('howto', {to: 'tab'});
-    name: 'howto'
-});
-
-Router.route('/conditions', function () {
-    this.layout('infoLayout')
-    this.render('conditions', {to: 'tab'});
-    name: 'conditions'
-});
-
 Router.route('/end/:_id', function (){
     this.layout('topTabsLayout');
     this.render('endLayout');
