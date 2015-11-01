@@ -3,7 +3,9 @@
     {{#ionView}}
         {{>itabs}}
         {{#if Template.subscriptionsReady}} 
-            {{>infoTriple}}
+            {{#ionContent class="padding has-tabs-top"}} 
+                {{>infoTriple}}
+            {{/ionContent}}
         {{else}}
             {{> spinner}}
         {{/if}}
@@ -52,62 +54,46 @@
 </template>
 
 <template name='infoTriple'>
-test
 {{#if One}}
-    {{#ionContent}}
-    test1
-        {{#with about}}
-            <h1 class="text-center">{{title}}</h1>
-            <p class="text-center">{{text}}</p>
-        {{/with}}
-    {{/ionContent}}
+    {{#with about}}
+        <h1 class="text-center">{{title}}</h1>
+        <p class="text-center">{{text}}</p>
+    {{/with}}
 {{/if}}
 
 {{#if Two}}
-    {{#ionContent}}
-    test2
-        {{#with howto}}
-            <h1 class="text-center">{{title}}</h1>
-            <p class="text-center">{{text}}</p>
-        {{/with}}
-    {{/ionContent}}
+    {{#with howto}}
+        <h1 class="text-center">{{title}}</h1>
+        <p class="text-center">{{text}}</p>
+    {{/with}}
 {{/if}}
 
 {{#if Three}}
-    {{#ionContent}}
-    test3
-        {{#with conditions}}
-            <h1 class="text-center">{{title}}</h1>
-            <p class="text-center">{{text}}</p>
-        {{/with}}
-    {{/ionContent}}
+    {{#with conditions}}
+        <h1 class="text-center">{{title}}</h1>
+        <p class="text-center">{{text}}</p>
+    {{/with}}
 {{/if}}
 
 </template>
 
 <template name="about">
-      {{#ionContent}}
-          {{#with about}}
-              <h1>{{title}}</h1>
-              <p>{{text}}</p>
-          {{/with}}
-      {{/ionContent}}
+    {{#with about}}
+        <h1>{{title}}</h1>
+        <p>{{text}}</p>
+    {{/with}}
 </template>
 
 <template name="infoOriginal">
-      {{#ionContent}}
-          {{#with howto}}
-              <h1>{{title}}</h1>
-              <p>{{text}}</p>
-          {{/with}}
-      {{/ionContent}}
+    {{#with howto}}
+        <h1>{{title}}</h1>
+        <p>{{text}}</p>
+    {{/with}}
 </template>
 
 <template name="conditions">
-      {{#ionContent}}
-          {{#with conditions}}
-              <h1>{{title}}</h1>
-              <p>{{text}}</p>
-          {{/with}}
-      {{/ionContent}}
+    {{#with conditions}}
+        <h1>{{title}}</h1>
+        <p>{{text}}</p>
+    {{/with}}
 </template>
