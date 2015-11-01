@@ -50,10 +50,18 @@ Template.triple.events({
     'click #send': function(event, template) {
         console.log('triggered!');
         IonPopup.prompt({
-        title: 'Email',
-        template: 'Vennligst skriv inn email',
-        okText: 'Submit',
-        inputPlaceholder: 'Your email'
+            title: 'Email',
+            template: 'Vennligst skriv inn email',
+            okText: 'Submit',
+            inputType: 'text',
+            inputPlaceholder: 'Din email',
+            onOk: function(event, response) {
+                Meteor.call('sendEmail',
+                response,
+                'kontakt@tiaco.it',
+                'Hello from Meteor!',
+                'This is a test of Email.send.');
+            }
     });
   }
 });
