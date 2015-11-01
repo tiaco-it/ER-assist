@@ -2,8 +2,10 @@
     {{> _tabsHeader}}
     {{#ionView}}
         {{>toptabs}}
-        {{#if Template.subscriptionsReady}} 
+        {{#if Template.subscriptionsReady}}
+        {{#ionContent class="padding has-tabs-top"}} 
             {{>triple}}
+        {{/ionContent}}
         {{else}}
             {{> spinner}}
         {{/if}}
@@ -34,11 +36,11 @@
             {{/if}}
             {{#if Three}}
             <a class="tab-item active" id="three">
-                Sammendrag
+                Dokumentasjon
             </a>
             {{else}}
             <a class="tab-item" id="three">
-                Sammendrag
+                Dokumentasjon
             </a>
             {{/if}}
         </div>
@@ -49,7 +51,6 @@
 <template name='triple'>
 
 {{#if One}}
-    {{#ionContent class="padding"}}
         {{#with thisLaw}}
             <h2 class="text-center">{{law}}</h2>
             <h3 class="text-center">{{paragraph}}</h3>
@@ -57,11 +58,9 @@
             <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
             <p style="padding-left: 10px; padding-right: 10px;">{{example}}</p>
         {{/with}}
-    {{/ionContent}}
 {{/if}}
 
 {{#if Two}}
-    {{#ionContent class="padding"}}
         {{#with thisLaw}}
             <h2 class="text-center">{{law}}</h2>
             <h3 class="text-center">{{paragraph}}</h3>
@@ -72,11 +71,9 @@
             </div>
             <p style="padding-left: 3em; padding-right: 3em;">{{text}}</p>
         {{/with}}
-    {{/ionContent}}
 {{/if}}
 
 {{#if Three}}
-    {{#ionContent class="padding"}}
         {{#with thisLaw}}
             <h2 class="text-center">{{law}}</h2>
             <h3 class="text-center">{{paragraph}}</h3>
@@ -100,7 +97,6 @@
                 <div class="button button-block button-positive">SEND</div>
             </div>
         {{/with}}
-    {{/ionContent}}
 {{/if}}
 
 </template>
