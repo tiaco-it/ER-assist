@@ -86,6 +86,7 @@ Router.route('/conditions', function () {
 });
 
 Router.route('/end/:_id', function (){
+    this.layout('defaultLayout');
     this.render('endLayout');
   }, {
     name: 'end'
@@ -117,6 +118,8 @@ Router.route('/exampleTab', function (){
     name: 'exampleTab'
 });
 
+=======
+>>>>>>> 0601e2b84f74e95ea1e3a3fa9ab80204fe62d773
 Router.route('/admin', function () {
   this.layout('defaultLayout');
   this.render('admin');

@@ -1,10 +1,106 @@
-<template name='end'>
-    {{#ionContent}}
-        Denne bør linke rett til "LOV"-tabben...
-        <!--{{#with thisLaw}}
-            <h1>{{law}}</h1>
-            <h2>{{paragraph}}</h2>
-            <p>{{text}}</p>
-        {{/with}}-->
-    {{/ionContent}}
+<template name='endLayout'>
+    {{> _tabsHeader}}
+    {{#ionView}}
+        {{>toptabs}}
+        {{#if Template.subscriptionsReady}}
+        {{#ionContent class="padding has-tabs-top"}} 
+            {{>triple}}
+        {{/ionContent}}
+        {{else}}
+            {{> spinner}}
+        {{/if}}
+       {{>mtabs}}
+    {{/ionView}}
 </template>
+
+<template name='toptabs'>
+    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+        <div class="tabs">
+            {{#if One}}
+            <a class="tab-item active" id="one">
+                Eksempel
+            </a>
+            {{else}}
+            <a class="tab-item" id="one">
+                Eksempel
+            </a>
+            {{/if}}
+            {{#if Two}}
+            <a class="tab-item active" id="two">
+                Lov
+            </a>
+            {{else}}
+            <a class="tab-item" id="two">
+                Lov
+            </a>
+            {{/if}}
+            {{#if Three}}
+            <a class="tab-item active" id="three">
+                Dokumentasjon
+            </a>
+            {{else}}
+            <a class="tab-item" id="three">
+                Dokumentasjon
+            </a>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+
+<template name='triple'>
+
+{{#if One}}
+        {{#with thisLaw}}
+            <h2 class="text-center">{{law}}</h2>
+            <h3 class="text-center">{{paragraph}}</h3>
+            <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
+            <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
+            <p style="padding-left: 10px; padding-right: 10px;">{{example}}</p>
+        {{/with}}
+{{/if}}
+
+{{#if Two}}
+        {{#with thisLaw}}
+            <h2 class="text-center">{{law}}</h2>
+            <h3 class="text-center">{{paragraph}}</h3>
+            <!--<div class="bar bar-positive">-->
+            <div class="button button-full button-positive disabled" style="opacity: 100; background-color: #F3BF42; border-style: none; padding-top: 0.5em; padding-bottom: 0.5em;">
+                    <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
+                    <h4 style="color:black; text-transform: uppercase;">{{oneline}}</h4>
+            </div>
+            <p style="padding-left: 3em; padding-right: 3em;">{{text}}</p>
+        {{/with}}
+{{/if}}
+
+{{#if Three}}
+        {{#with thisLaw}}
+            <h2 class="text-center">{{law}}</h2>
+            <h3 class="text-center">{{paragraph}}</h3>
+            <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
+            <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
+            <p style="padding-left: 10px; padding-right: 10px;">{{summary}}</p>
+            <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
+            <!-- Rest is dummy -->
+            <h3 class="text-center">Relevante dokumenter</h3>
+            <div class="list">
+                <label class="item item-checkbox">
+                    <input type="checkbox" name="group">
+                    <div class="item-content">Dokument 1</div>
+                    <!-- <i class="checkbox-icon ion-checkmark"></i> -->
+                </label>
+                <label class="item item-checkbox">
+                    <input type="checkbox" name="group">
+                    <div class="item-content">Dokument 2</div>
+                    <!-- <i class="checkbox-icon ion-checkmark"></i> -->
+                </label>
+                <div class="button button-block button-positive" id="send">SEND</div>
+            </div>
+        {{/with}}
+{{/if}}
+
+</template>
+
+
+
+

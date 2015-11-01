@@ -15,78 +15,77 @@ Template.endLayout.events({
     event.preventDefault();
     Session.set('tab', 3);
     console.log('THREE');
-  }
+}
 });
 
 Template.triple.helpers({
     'One': function() {
         if (Session.get('tab')===1){
-            console.log('OneTrue');
             return true;
         } else {
-            console.log('OneFalse');
             return false;
         }
     },
     'Two': function() {
         if (Session.get('tab')===2){
-            console.log('TwoTrue');
             return true;
         } else {
-            console.log('TwoFalse');
             return false;
         }
     },
     'Three': function() {
         if (Session.get('tab')===3){
-            console.log('ThreeTrue');
             return true;
         } else {
-            console.log('ThreeFalse');
             return false;
         }
     },
     'thisLaw': function() {
-        var l = lawHolder[0]
-        return Laws.findOne(l)
+        var l = lawHolder[0];
+        return Laws.findOne(l);
     }
-})
+});
+
+Template.triple.events({
+    'click #send': function(event, template) {
+        console.log('triggered!');
+        IonPopup.prompt({
+        title: 'Email',
+        template: 'Vennligst skriv inn email',
+        okText: 'Submit',
+        inputPlaceholder: 'Your email'
+    });
+  }
+});
 
 Template.toptabs.helpers({
     'One': function() {
         if (Session.get('tab')===1){
-            console.log('OneTrue');
             return true;
         } else {
-            console.log('OneFalse');
             return false;
         }
     },
     'Two': function() {
         if (Session.get('tab')===2){
-            console.log('TwoTrue');
             return true;
         } else {
-            console.log('TwoFalse');
             return false;
         }
     },
     'Three': function() {
         if (Session.get('tab')===3){
-            console.log('ThreeTrue');
             return true;
         } else {
-            console.log('ThreeFalse');
             return false;
         }
     }
 });
 
-Template.endLayout.onCreated(function() {
-    lawHolder.push(Router.current().params._id);
-});
-
 Template.triple.onCreated(function() {
+    while (lawHolder.length > 0) {
+        lawHolder.pop();
+    }
     Session.set('tab', 2);
     lawHolder.push(Router.current().params._id);
 });
