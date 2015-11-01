@@ -3,7 +3,9 @@
         {{>ionNavBackButton text="Tilbake"}}
     {{/contentFor}}
     {{#contentFor "headerTitle"}}
-        <h1 class="title">Neste</h1>
+            {{#with case}}
+                <h1 class="title">{{text}}</h1>
+            {{/with}}
     {{/contentFor}}
     {{#ionView}}
         {{#ionContent class="padding"}}
