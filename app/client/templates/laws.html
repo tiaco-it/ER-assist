@@ -10,7 +10,7 @@
                 {{#each category}}
                     <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">{{this}}</div>
                     {{#each categoryLaws this}}
-                        {{#ionItem path="law" buttonRight=true}}
+                        {{#ionItem path="law" buttonRight=true id='law'}}
                             <h3>{{paragraph}}</h3>
                         {{/ionItem}}
                     {{/each}}

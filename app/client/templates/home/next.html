@@ -1,4 +1,4 @@
-<template name="next">
+<template name="nextHeader">
     {{#contentFor "headerButtonLeft"}}
         {{>ionNavBackButton text="Tilbake"}}
     {{/contentFor}}
@@ -7,10 +7,13 @@
             <h1 class="title">{{text}}</h1>
         {{/with}}
     {{/contentFor}}
+</template>
+
+<template name="next">
     {{#ionView}}
         {{#ionContent class="padding"}}
             {{#with current}}
-                <p>{{text}}</p>
+                <h4>{{text}}</h4>
             {{/with}}
             {{#ionList}}
                 {{#each link in currentLinks}}

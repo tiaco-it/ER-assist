@@ -41,6 +41,7 @@ Router.route('/law/:_id', function (){
 
 Router.route('/next/:_id', function (){
     this.layout('defaultLayout');
+    this.render('nextHeader', {to: 'header'});
     this.render('next');
   }, {
     name: 'next'

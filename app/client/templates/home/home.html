@@ -79,9 +79,9 @@
                                                 </a>
                                         {{else}}
                                             {{#if twoYes currentFrom}}
-                                                    <button class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
+                                                    <a class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
                                                         <p>JA</p>
-                                                    </button>
+                                                    </a>
                                             {{else}}
                                                     <a href = "{{pathFor 'next'}}" class="button button-large secondLevelButton" level="end">
                                                         <p>JA</p>
@@ -96,9 +96,9 @@
                                                 </a>
                                         {{else}}
                                             {{#if twoNo currentFrom}}
-                                                    <button class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
+                                                    <a class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
                                                         <p>NEI</p>
-                                                    </button>
+                                                    </a>
                                             {{else}}
                                                     <a href = "{{pathFor 'next'}}" class="button button-large secondLevelButton" level="end">
                                                         <p>NEI</p>
