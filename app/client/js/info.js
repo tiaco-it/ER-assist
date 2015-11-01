@@ -1,22 +1,3 @@
-
-Template.about.helpers({
-    'about': function() {
-        return Info.findOne({title: "Om appen"})
-    }
-});
-
-Template.infoOriginal.helpers({
-    'howto': function() {
-        return Info.findOne({title: "Hvordan bruke appen"})
-    }
-});
-
-Template.conditions.helpers({
-    'conditions': function() {
-        return Info.findOne({title: "Om utviklerne"})
-    }
-});
-
 Template.infoLayout.events({
   'click #one': function(event, template) {
     event.preventDefault();
