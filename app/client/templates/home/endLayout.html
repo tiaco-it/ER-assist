@@ -1,32 +1,62 @@
 <template name='endLayout'>
     {{> _tabsHeader}}
     {{#ionView}}
-        {{>tetabs}}
+        {{>toptabs}}
         {{#if Template.subscriptionsReady}} 
             {{>triple}}
         {{else}}
             {{> spinner}}
         {{/if}}
-       {{>mtabs}}
+       <!-- {{>mtabs}} -->
     {{/ionView}}
 </template>
 
 <template name='toptabs'>
-    <div class="tabs tabs-icon-top">
+    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+        <div class="tabs">
+            {{#if One}}
+            <a class="tab-item active" id="one">
+                Eksempel
+            </a>
+            {{else}}
+            <a class="tab-item" id="one">
+                Eksempel
+            </a>
+            {{/if}}
+            {{#if Two}}
+            <a class="tab-item active" id="two">
+                Lov
+            </a>
+            {{else}}
+            <a class="tab-item" id="two">
+                Lov
+            </a>
+            {{/if}}
+            {{#if Three}}
+            <a class="tab-item active" id="three">
+                Sammendrag
+            </a>
+            {{else}}
+            <a class="tab-item" id="three">
+                Sammendrag
+            </a>
+            {{/if}}
+        </div>
+    </div>
+</template>
+<!--
+    <div class="tabs tabs-background-positive tabs-color-light tabs-top">
       <a class="tab-item" id="one">
-        <i class="icon ion-home"></i>
         Ban
       </a>
       <a class="tab-item" id="two">
-        <i class="icon ion-star"></i>
         Allow
       </a>
       <a class="tab-item" id="three">
-        <i class="icon ion-heart"></i>
         Require
       </a>
     </div>
-</template>
+    -->
 
 <template name="tetabs">
     {{#ionTabs class="tabs-top tabs-background-positive tabs-color-light"}}
