@@ -55,6 +55,31 @@ AutoForm.hooks({
 });
 
 AutoForm.hooks({
+    insertUrlForm: {
+        onSubmit: function(insertDoc) {
+            Meteor.call('addUrl', insertDoc, function(error, result) {
+                if (error) alert(error.reason);
+            });
+            $(".back-button").click();
+            return false;
+        }
+    }
+});
+
+
+AutoForm.hooks({
+    insertNumberForm: {
+        onSubmit: function(insertDoc) {
+            Meteor.call('addNumber', insertDoc, function(error, result) {
+                if (error) alert(error.reason);
+            });
+            $(".back-button").click();
+            return false;
+        }
+    }
+});
+
+AutoForm.hooks({
     insertLawForm: {
         onSubmit: function(insertDoc) {
             Meteor.call('addLaw', insertDoc, function(error, result) {
