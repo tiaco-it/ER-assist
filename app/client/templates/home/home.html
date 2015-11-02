@@ -74,16 +74,16 @@
                                         <p class="buttonQuestion">{{currentFrom.text}}</p>
                                     {{#with yesLink currentFrom}}
                                         {{#if oneYes currentFrom}}
-                                                <a href="{{pathFor 'end'}}" class="button button-large secondLevelButton" level="end">
+                                                <a href="{{pathFor 'end'}}" class="button secondLevelButton" level="end">
                                                     <p>JA</p>
                                                 </a>
                                         {{else}}
                                             {{#if twoYes currentFrom}}
-                                                    <a class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
+                                                    <a class="button secondLevelButton" level="inter" id = "{{ text }}">
                                                         <p>JA</p>
                                                     </a>
                                             {{else}}
-                                                    <a href = "{{pathFor 'next'}}" class="button button-large secondLevelButton" level="end">
+                                                    <a href = "{{pathFor 'next'}}" class="button secondLevelButton" level="end">
                                                         <p>JA</p>
                                                     </a>
                                             {{/if}}
@@ -91,16 +91,16 @@
                                     {{/with}}
                                     {{#with noLink currentFrom}}
                                         {{#if oneNo currentFrom}}
-                                                <a href="{{pathFor 'end'}}" class="button button-large secondLevelButton" level="end">
+                                                <a href="{{pathFor 'end'}}" class="button secondLevelButton" level="end">
                                                     <p>NEI</p>
                                                 </a>
                                         {{else}}
                                             {{#if twoNo currentFrom}}
-                                                    <a class="button button-large secondLevelButton" level="inter" id = "{{ text }}">
+                                                    <a class="button secondLevelButton" level="inter" id = "{{ text }}">
                                                         <p>NEI</p>
                                                     </a>
                                             {{else}}
-                                                    <a href = "{{pathFor 'next'}}" class="button button-large secondLevelButton" level="end">
+                                                    <a href = "{{pathFor 'next'}}" class="button secondLevelButton" level="end">
                                                         <p>NEI</p>
                                                     </a>
                                             {{/if}}
