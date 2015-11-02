@@ -70,13 +70,13 @@
 
     {{#if Two}}
         {{#with thisLaw}}
-            <h3 class="text-center">{{law}}</h3>
-            <h4 class="text-center">{{paragraph}}</h4>
-            <!--<div class="bar bar-positive">-->
             <div class="button button-full button-positive disabled" style="opacity: 100; background-color: #F3BF42; border-style: none; padding-top: 0.5em; padding-bottom: 0.5em;">
                 <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
                 <h5 style="color:black; text-transform: uppercase;">{{oneline}}</h5>
             </div>
+            <h3 class="text-center">{{law}}</h3>
+            <h4 class="text-center">{{paragraph}}</h4>
+            <!--<div class="bar bar-positive">-->
             <p style="padding-left: 1em; padding-right: 1em;">{{text}}</p>
         {{/with}}
     {{/if}}
