@@ -5,7 +5,21 @@
   text-align: center;
   border-left: 10px solid #B2B2B2;
   background-color: #f8f8f8;
-  padding: 8px;
+  p {
+    color: #335DF1;
+    font-size: 19px;
+  }
+  .firstLevelButton {
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+.buttonContainerActive {
+  text-align: center;
+  border-left: 10px solid #335DF1;
+  background-color: #f8f8f8;
   p {
     color: #335DF1;
     font-size: 19px;
@@ -13,13 +27,11 @@
   .buttonQuestion {
     padding: 10px;
   }
-  .firstLevelButton {
-    border: none;
-  }
   .secondLevelButton {
     border: none;
     background-color: #335DF1;
     width: 45%;
+    margin-bottom: 8px;
     p {
       color: #ffffff;
     }

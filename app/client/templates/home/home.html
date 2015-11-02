@@ -33,7 +33,6 @@
                     <!-- startcases here refers to a helper method in home.js which returns an array of objects -->
                 {{#each scase in startcases}}
                     {{#if oneEither scase}}
-                        {{#ionItem}}
                         <div class="buttonContainer">
                             {{#with to scase}}
                                     <a href="{{pathFor 'end'}}" level="start" class="button button-full button-large firstLevelButton" id="{{ scase.text }}">
@@ -48,11 +47,9 @@
                                     {{/if}}
                             {{/with}}
                         </div>
-                        {{/ionItem}}
                     {{else}}
                         {{#if twoEither scase}}
                             {{#if notClicked scase.text}}
-                                {{#ionItem}}
                                 <div class="buttonContainer">
                                     {{#with to scase}}
                                             <button class="button button-full button-large firstLevelButton" level="start" id="{{ scase.text }}">
@@ -67,10 +64,8 @@
                                     {{/if}}
                                     {{/with}}
                                 </div>
-                                {{/ionItem}}
                             {{else}}
-                                {{#ionItem}}
-                                <div class="buttonContainer">
+                                <div class="buttonContainerActive">
                                         <p class="buttonQuestion">{{currentFrom.text}}</p>
                                     {{#with yesLink currentFrom}}
                                         {{#if oneYes currentFrom}}
@@ -107,11 +102,9 @@
                                         {{/if}}
                                     {{/with}}
                                 </div>
-                                {{/ionItem}}
                             {{/if}}
                         {{else}}
                             {{#with to scase}}
-                                {{#ionItem}}
                                 <div class="buttonContainer">
                                         <a href="{{pathFor 'next'}}" level="start" class="button button-full firstLevelButton" id="{{ scase.text }}">
                                             <p>n > 2 outcomes</p>
@@ -125,7 +118,6 @@
                                         {{/with}}
                                     {{/if}}
                                 </div>
-                                {{/ionItem}}
                             {{/with}}
                         {{/if}}
                     {{/if}}

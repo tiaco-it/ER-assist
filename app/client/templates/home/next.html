@@ -17,15 +17,13 @@
             {{/with}}
             {{#ionList}}
                 {{#each link in currentLinks}}
-                    {{#ionItem}}
-                        <div class="buttonContainer">
+                        <div class="buttonContainerActive">
                             {{#with to link}}
                                 <a href = "{{pathFor 'end'}}" class="button button-full firstLevelButton">
                                     <p>{{ link.mark }}</p>
                                 </a>
                             {{/with}}
                         </div>
-                    {{/ionItem}}
                 {{/each}}
             {{/ionList}}
         {{/ionContent}}
