@@ -3,7 +3,7 @@
 ## Documentation
 ### Database
 
-There are 4 collections in this app:
+There are 7 collections in this app:
 #### Startcases
 *Startcases is the entry point of a path through the app*
 ```
@@ -53,6 +53,15 @@ To: Object
 ```
 Link: String
 // The external URL (http://www...)
+```
+
+#### Numbers
+*Relevant phone-numbers for the application*
+```
+Title: String
+// The name of the caller
+Number: Number
+// The telephone number
 ```
 
 #### Info

@@ -41,9 +41,13 @@ Template.linksDouble.helpers({
             return false;
         }
     },
-    'links': function() {
+    'urls': function() {
         var urls = Urls.find({});
         return urls && urls
+    },
+    'numbers': function() {
+        var numbers = Numbers.find({});
+        return numbers && numbers
     }
 });
 
@@ -53,6 +57,7 @@ Template.linksDouble.onCreated(function() {
     self.autorun(function() {
         if ( Meteor.status().connected ) {
             self.subscribe("urls");
+            self.subscribe("numbers");
         }
     });
 });

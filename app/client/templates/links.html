@@ -2,8 +2,8 @@
     {{> _linksHeader}}
     {{#ionView}}
         {{>ltabs}}
-        {{#if Template.subscriptionsReady}} 
-            {{#ionContent class="padding has-tabs-top"}} 
+        {{#if Template.subscriptionsReady}}
+            {{#ionContent class="padding has-tabs-top"}}
                 {{>linksDouble}}
             {{/ionContent}}
         {{else}}
@@ -24,44 +24,48 @@
     <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
         <div class="tabs">
             {{#if One}}
-            <a class="tab-item active" id="one">
-                Lenker
-            </a>
+                <a class="tab-item active" id="one">
+                    Lenker
+                </a>
             {{else}}
-            <a class="tab-item" id="one">
-                Lenker
-            </a>
+                <a class="tab-item" id="one">
+                    Lenker
+                </a>
             {{/if}}
             {{#if Two}}
-            <a class="tab-item active" id="two">
-                Nummer
-            </a>
+                <a class="tab-item active" id="two">
+                    Nummer
+                </a>
             {{else}}
-            <a class="tab-item" id="two">
-                Nummer
-            </a>
+                <a class="tab-item" id="two">
+                    Nummer
+                </a>
             {{/if}}
         </div>
     </div>
 </template>
 
 <template name='linksDouble'>
-{{#if One}}
-    {{#ionList}}
-        <!-- For each item in links (from the helper, check js file) -->
-        {{#each links}}
-            {{#ionItem}}
-                <!-- Link from urls collection -->
-                <!-- Maybe redirect can be done with Iron Router? -->
+    {{#if One}}
+        {{#ionList}}
+            {{#each urls}}
                 <a class="link item item-icon-left" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
-                    <h2><i class="icon ion-link"></i>{{link}}</h2>
+                    <i class="icon ion-link"></i>
+                    <h2>{{link}}</h2>
                 </a>
-            {{/ionItem}}
-        {{/each}}
-    {{/ionList}}
-{{/if}}
+            {{/each}}
+        {{/ionList}}
+    {{/if}}
 
-{{#if Two}}
-{{/if}}
-
+    {{#if Two}}
+        {{#ionList}}
+            {{#each numbers}}
+                <a class="link item item-icon-left" href="tel:{{number}}" target="_blank">
+                    <i class="icon ion-ios-telephone"></i>
+                    <h2>{{title}}</h2>
+                    <h3>{{number}}</h3>
+                </a>
+            {{/each}}
+        {{/ionList}}
+    {{/if}}
 </template>

@@ -51,6 +51,15 @@ Meteor.publish('url', function(_id) {
   return Urls.find({_id: _id});
 });
 
+// NUMBERS
+Meteor.publish('numbers', function() {
+  return Numbers.find();
+});
+
+Meteor.publish('number', function(_id) {
+  return Numbers.find({_id: _id});
+});
+
 // INFO
 Meteor.publish('info', function() {
   return Info.find();

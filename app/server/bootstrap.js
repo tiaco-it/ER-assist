@@ -13,6 +13,7 @@ if (UPDATE == true) {
     Links.remove({});
     Urls.remove({});
     Info.remove({});
+    Numbers.remove({});
 }
 Meteor.startup(function () {
 
@@ -47,11 +48,11 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "a) den blir foretatt for å redde liv, helse, eiendom eller en annen interesse fra en fare for skade som ikke kan avverges på annen rimelig måte, og \ " +
             "b) denne skaderisikoen er langt større enn skaderisikoen ved handlingen.",
             summary: "Man må vurdere ytterlige psykiatrisk behandling for denne pasienten.",
-            example: "Helsepersonell kan holde fast en pasient som forsøker å hoppe ut av et vindu. \ " + 
+            example: "Helsepersonell kan holde fast en pasient som forsøker å hoppe ut av et vindu. \ " +
             " \ " +
-            "Selvmordsatferd omfatter tanker om, planer for, trusler om og forsøk på å gjennomføre selvmord. Slik atferd kan være uttrykk for et virkelig ønske om å dø, \ " + 
-            "men er også ofte blandet med et ønske om å få hjelp eller ønske om endring i en uutholdelig livssituasjon. I enkelte tilfeller motiveres selvmordsatferd av et ubevisst \ " + 
-            "eller bevisst ønske om å kontrollere personer i omgivelsene. Noen mennesker lever med tilnærmet konstante selvmordstanker og -planer (kronisk suicidale). \ " + 
+            "Selvmordsatferd omfatter tanker om, planer for, trusler om og forsøk på å gjennomføre selvmord. Slik atferd kan være uttrykk for et virkelig ønske om å dø, \ " +
+            "men er også ofte blandet med et ønske om å få hjelp eller ønske om endring i en uutholdelig livssituasjon. I enkelte tilfeller motiveres selvmordsatferd av et ubevisst \ " +
+            "eller bevisst ønske om å kontrollere personer i omgivelsene. Noen mennesker lever med tilnærmet konstante selvmordstanker og -planer (kronisk suicidale). \ " +
             "Disse må ofte håndteres annerledes enn mennesker med akutt nyoppstått suicidalitet. \ " +
             "(ref. legevakthåndboken)",
             oneline: "Nødrett gir rett til å hindre med makt at pasienten tar livet sitt."
@@ -83,28 +84,28 @@ if (Laws.find().count() === 0 || UPDATE == true) {
         {
             law: "Pasient- og brukerrettighetsloven",
             paragraph: "§4-1. Hovedregel om samtykke",
-            text: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke. \ " + 
-            "For at samtykket skal være gyldig, må pasienten ha fått nødvendig informasjon om sin helsetilstand og innholdet i helsehjelpen. \ " + 
+            text: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke. \ " +
+            "For at samtykket skal være gyldig, må pasienten ha fått nødvendig informasjon om sin helsetilstand og innholdet i helsehjelpen. \ " +
             "Pasienten kan trekke sitt samtykke tilbake. Trekker pasienten samtykket tilbake, skal den som yter helsehjelp gi nødvendig informasjon om betydningen av at helsehjelpen ikke gis.",
             summary: "Pasienten forlater behandling uten legens samtykke. Pasienten må da skrive under skjema for utskrivelse. Man må vurdere ytterlige psykiatrisk behandling for denne pasienten.",
-            example: "Pasienten har f.eks. en spiseforstyrrelse, men er stabil og alle vitale parametre er ok. Man finner kanskje bifunn på røntgen som burde utredes nærmere, \ " + 
+            example: "Pasienten har f.eks. en spiseforstyrrelse, men er stabil og alle vitale parametre er ok. Man finner kanskje bifunn på røntgen som burde utredes nærmere, \ " +
             "men pasienten behøver ikke umiddelbar behandling. Pasienten har i dette tilfellet full rett til å nekte behandling.",
             oneline: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke."
         },
         {
             law: "Pasient- og brukerrettighetsloven",
             paragraph: "Kapittel 4A",
-            text: "Før det kan ytes helsehjelp som pasienten motsetter seg, må tillitskapende tiltak ha vært forsøkt, med mindre det er åpenbart formålsløst å prøve dette. \ " + 
+            text: "Før det kan ytes helsehjelp som pasienten motsetter seg, må tillitskapende tiltak ha vært forsøkt, med mindre det er åpenbart formålsløst å prøve dette. \ " +
             "Opprettholder pasienten sin motstand, eller vet helsepersonellet at vedkommende med stor sannsynlighet vil opprettholde sin motstand, kan det treffes vedtak om helsehjelp dersom \ " +
-            "a) en unnlatelse av å gi helsehjelp kan føre til vesentlig helseskade for pasienten, og \ " + 
-            "b) helsehjelpen anses nødvendig, og \ " + 
+            "a) en unnlatelse av å gi helsehjelp kan føre til vesentlig helseskade for pasienten, og \ " +
+            "b) helsehjelpen anses nødvendig, og \ " +
             "c) tiltakene står i forhold til behovet for helsehjelpen. \ " +
             "\ " +
-            "Selv om vilkårene i første og andre ledd er oppfylt, kan helsehjelp bare gis der dette etter en helhetsvurdering framtrer som den klart beste løsningen for pasienten. \ " + 
+            "Selv om vilkårene i første og andre ledd er oppfylt, kan helsehjelp bare gis der dette etter en helhetsvurdering framtrer som den klart beste løsningen for pasienten. \ " +
             "I vurderingen av om slik helsehjelp skal gis, skal det blant annet legges vekt på graden av motstand samt om det i nær fremtid kan forventes at pasienten vil kunne gjenvinne sin samtykkekompetanse.",
             summary: "Man må vurdere ytterlige psykiatrisk behandling for denne pasienten.",
             example: "Helsepersonell kan gi ernæring over PEG-sonde til en hjerneskadet pasient. \ " +
-            "Pasienten trenger somatisk behandling. Pasienter som faller innenfor denne kategorien kan ofte være: \ " + 
+            "Pasienten trenger somatisk behandling. Pasienter som faller innenfor denne kategorien kan ofte være: \ " +
             "- Ruspåvirket",
             oneline: "Helsepersonell må sikre nødvendig somatisk helsehjelp til pasienter som mangler samtykkekompetanse og som motsetter seg helsehjelpen."
         },
@@ -144,9 +145,9 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter denne bestemmelsen til kontrollkommisjonen. \ " +
             "Pasienten kan påklage vedtak om etablering av tvungent psykisk helsevern i inntil 3 måneder etter at vernet er opphørt.",
             summary: "Pasienten skal undersøkes av helsepersonell etter §3-1 i psykisk helsevernloven og kan fatte vedtak om tvungent psykisk helsevern. Legen må fylle ut skjema for begjær om tvungent psykisk helsevern.",
-            example: "Pasienten har en kjent alvorlig sinnslidelse. Pasienter som går under denne klassifiseringen kan lide av: \ " + 
-            "- Schizofreni \ " + 
-            "- Demens \ " + 
+            example: "Pasienten har en kjent alvorlig sinnslidelse. Pasienter som går under denne klassifiseringen kan lide av: \ " +
+            "- Schizofreni \ " +
+            "- Demens \ " +
             "- Alzheimer",
             oneline: "På bakgrunn av opplysninger fra legeundersøkelser, kan den faglige ansvarlige fatte vedtak om tvungent psykisk helsevern."
         }
@@ -267,6 +268,35 @@ if (Urls.find().count() === 0 || UPDATE == true) {
     });
 }
 
+// NUMBERS
+if (Numbers.find().count() === 0 || UPDATE == true) {
+    var numbers = [
+        {
+            title: "Østmarka ekspedisjon",
+            number: 72823000
+        },
+        {
+            title: "Rus akutt",
+            number: 73862929
+        },
+        {
+            title: "Sikkerhet/vekter",
+            number: 67500
+        },
+        {
+            title: "AMK",
+            number: 113
+        },
+        {
+            title: "Politi",
+            number: 112
+        }
+    ];
+    _.each(numbers, function (list) {
+        Numbers.insert({title: list.title, number: list.number})
+    });
+}
+
 // INFO
 if (Info.find().count() === 0 || UPDATE == true) {
     var elements = [
@@ -288,4 +318,4 @@ if (Info.find().count() === 0 || UPDATE == true) {
     });
 }
 
-})
+});
