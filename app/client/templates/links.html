@@ -51,7 +51,8 @@
             {{#each urls}}
                 <a class="link item item-icon-left" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
                     <i class="icon ion-link"></i>
-                    <h2>{{link}}</h2>
+                    <h2>{{title}}</h2>
+                    <p>{{link}}</p>
                 </a>
             {{/each}}
         {{/ionList}}
@@ -63,7 +64,7 @@
                 <a class="link item item-icon-left" href="tel:{{number}}" target="_blank">
                     <i class="icon ion-ios-telephone"></i>
                     <h2>{{title}}</h2>
-                    <h3>{{number}}</h3>
+                    <p>{{number}}</p>
                 </a>
             {{/each}}
         {{/ionList}}

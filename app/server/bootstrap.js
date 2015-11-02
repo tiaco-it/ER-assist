@@ -248,23 +248,28 @@ if (Links.find().count() === 0 || UPDATE == true) {
 if (Urls.find().count() === 0 || UPDATE == true) {
     var urls = [
         {
+            title: "Lovdata",
             link: "https://lovdata.no"
         },
         {
+            title: "Sykehuset",
             link: "http://www.stolav.no"
         },
         {
+            title: "Universitetet",
             link: "http://www.ntnu.no"
         },
         {
+            title: "Helsenorge",
             link: "http://www.helsenorge.no/giftsentralen.no"
         },
         {
+            title: "Helsedirektoratet",
             link: "http://www.helsedirektoratet.no"
         }
     ];
     _.each(urls, function (list) {
-        Urls.insert({link: list.link})
+        Urls.insert({title: list.title, link: list.link})
     });
 }
 

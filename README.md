@@ -51,6 +51,8 @@ To: Object
 #### Urls
 *Relevant URLs for the application*
 ```
+Title: String
+// A header for the link
 Link: String
 // The external URL (http://www...)
 ```

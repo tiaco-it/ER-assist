@@ -1,5 +1,8 @@
 // Validate input with SimpleSchema
 UrlSchema = new SimpleSchema({
+    title: {
+        type: String
+    },
     link: {
         type: String
     }
@@ -15,7 +18,7 @@ if (Meteor.isCordova) Ground.Collection(Urls);
 Meteor.methods({
     addUrl: function(doc) {
         check(doc, UrlSchema);
-        var obj = {link: doc.link};
+        var obj = {title: doc.title, link: doc.link};
         return Urls.insert(obj);
     },
     editUrl: function(obj) {
