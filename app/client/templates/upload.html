@@ -1,0 +1,31 @@
+<template name="upload">
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">UPLOAD</h1>
+    {{/contentFor}}
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton text="Tilbake"}}
+    {{/contentFor}}
+
+    {{#ionView}}
+        {{#ionContent}}
+            <input class="your-upload-class" type="file">
+            {{#if Template.subscriptionsReady}}
+                {{#ionList}}
+                    {{#each theFiles}}
+                        {{#ionItem}}
+                            <a href="{{url}}">{{original.name}}</a>
+                            <p>Uploaded at: {{uploadedAt}}</p>
+                            <!--\{{#if isUploaded}}-->
+                                <!--<p>is uploaded</p>-->
+                            <!--\{{/if}}-->
+                            <button id="deleteFileButton">delete</button>
+                        {{/ionItem}}
+                    {{/each}}
+                {{/ionList}}
+            {{else}}
+                {{> spinner}}
+            {{/if}}
+        {{/ionContent}}
+        {{> mtabs}}
+    {{/ionView}}
+</template>

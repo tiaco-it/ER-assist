@@ -68,3 +68,9 @@ Meteor.publish('info', function() {
 Meteor.publish('infoElement', function(_id) {
   return Info.find({_id: _id});
 });
+
+// UPLOADS
+Meteor.publish("uploads", function () {
+  console.log("publishing uploads");
+  return Uploads.find();
+});

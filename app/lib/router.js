@@ -176,3 +176,10 @@ AccountsTemplates.configureRoute('signIn', {
     layoutTemplate: 'defaultLayout',
     redirect: '/',
 });
+
+Router.route('/upload', function () {
+    this.layout('defaultLayout');
+    this.render('upload');
+}, {
+    name: 'upload'
+});
