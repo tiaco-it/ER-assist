@@ -17,6 +17,9 @@
     {{#ionHeaderBar class="bar-positive"}}
         <h1 class="title">Lenker og nummer</h1>
     {{/ionHeaderBar}}
+    {{#contentFor "headerButtonRight"}}
+        {{> atNavButton}} <p>{{username}}</p>
+    {{/contentFor}}
 </template>
 
 <template name='ltabs'>
@@ -56,6 +59,11 @@
                 </a>
             {{/each}}
         {{/ionList}}
+        {{#if currentUser}}
+        <a href="{{pathFor 'add.url'}}" class="button pull-right" func="add">
+            {{> ionIcon icon="plus"}}
+        </a>
+        {{/if}}
     {{/if}}
 
     {{#if Two}}
@@ -68,5 +76,10 @@
                 </a>
             {{/each}}
         {{/ionList}}
+        {{#if currentUser}}
+        <a href="{{pathFor 'add.number'}}" class="button pull-right" func="add">
+            {{> ionIcon icon="plus"}}
+        </a>
+        {{/if}}
     {{/if}}
 </template>

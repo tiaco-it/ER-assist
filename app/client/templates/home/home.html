@@ -38,13 +38,13 @@
                                     <a href="{{pathFor 'end'}}" level="start" class="button button-full button-large firstLevelButton" id="{{ scase.text }}">
                                         <p>{{scase.text}}</p>
                                     </a>
-                                    {{#if currentUser}}
+                                    <!-- {{#if}}
                                         {{#with scase}}
                                         <a href="{{pathFor 'edit.case'}}" class="button pull-right" func="edit">
                                             {{> ionIcon icon="edit"}}
                                         </a>
                                         {{/with}}
-                                    {{/if}}
+                                    {{/if}} -->
                             {{/with}}
                         </div>
                     {{else}}
@@ -55,13 +55,13 @@
                                             <button class="button button-full button-large firstLevelButton" level="start" id="{{ scase.text }}">
                                                 <p>{{scase.text}}</p>
                                             </button>
-                                    {{#if currentUser}}
+                                    <!-- {{#if}}
                                         {{#with scase}}
                                         <a href="{{pathFor 'edit.case'}}" class="button pull-right" func="edit">
                                             {{> ionIcon icon="edit"}}
                                         </a>
                                         {{/with}}
-                                    {{/if}}
+                                    {{/if}} -->
                                     {{/with}}
                                 </div>
                             {{else}}
@@ -110,23 +110,23 @@
                                             <p>n > 2 outcomes</p>
                                             <p>{{scase.text}}</p>
                                         </a>
-                                    {{#if currentUser}}
+                                    <!-- {{#if}}
                                         {{#with scase}}
                                         <a href="{{pathFor 'edit.case'}}" class="button pull-right">
                                             {{> ionIcon icon="edit"}}
                                         </a>
                                         {{/with}}
-                                    {{/if}}
+                                    {{/if}} -->
                                 </div>
                             {{/with}}
                         {{/if}}
                     {{/if}}
                 {{/each}}
-            {{#if currentUser}}
-            <a href="{{pathFor 'add.case'}}" class="button pull-right" func="add">
-                {{> ionIcon icon="plus"}}
-            </a>
-            {{/if}}
+            <!-- {{#if}}
+                <a href="{{pathFor 'add.case'}}" class="button pull-right" func="add">
+                    {{> ionIcon icon="plus"}}
+                </a>
+            {{/if}} -->
             {{/ionList}}
     {{/ionContent}}
     {{> yield 'footer'}}

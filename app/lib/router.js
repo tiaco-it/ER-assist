@@ -117,12 +117,32 @@ Router.route('/add/case', function () {
   name: 'add.case'
 });
 
-Router.route('edit/link/:_id', function (){
+Router.route('edit/url/:_id', function (){
     this.layout('editLayout')
-    this.render('addlink', {to: 'add'});
-    this.render('editlink', {to: 'edit'});
+    this.render('editurl', {to: 'edit'});
   }, {
-    name: 'edit.link'
+    name: 'edit.url'
+});
+
+Router.route('/add/url', function () {
+  this.layout('editLayout');
+  this.render('addurl', {to: 'add'});
+}, {
+  name: 'add.url'
+});
+
+Router.route('edit/number/:_id', function (){
+    this.layout('editLayout')
+    this.render('editnumber', {to: 'edit'});
+  }, {
+    name: 'edit.number'
+});
+
+Router.route('/add/number', function () {
+  this.layout('editLayout');
+  this.render('addnumber', {to: 'add'});
+}, {
+  name: 'add.number'
 });
 
 Router.route('edit/law/:_id', function (){
@@ -147,14 +167,6 @@ Router.route('edit/info/:_id', function (){
     this.render('editinfo', {to: 'edit'});
   }, {
     name: 'edit.info'
-});
-
-Router.route('edit/url/:_id', function (){
-    this.layout('editLayout')
-    this.render('addurl', {to: 'add'});
-    this.render('editlink', {to: 'edit'});
-  }, {
-    name: 'edit.url'
 });
 
 AccountsTemplates.configureRoute('signIn', {

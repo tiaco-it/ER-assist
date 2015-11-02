@@ -46,6 +46,10 @@
         {{> quickForm schema="UrlSchema" collection="Urls" id="editUrlForm" type="normal" doc=selectedDoc}}
 </template>
 
+<template name="editnumber">
+        {{> quickForm schema="NumberSchema" collection="Numbers" id="editNumberForm" type="normal" doc=selectedDoc}}
+</template>
+
 <template name="addlaw">
     {{> quickForm schema="LawSchema" collection="Laws" id="insertLawForm" type="normal" omitFields="createdAt, lastUpdated"}}
 </template>
@@ -68,4 +72,8 @@
 
 <template name="addcase">
     {{> quickForm schema="StartcaseSchema" collection="Startcases" id="insertStartcaseForm" type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="addnumber">
+    {{> quickForm schema="NumberSchema" collection="Numbers" id="insertNumberForm" type="normal" omitFields="createdAt, lastUpdated"}}
 </template>
