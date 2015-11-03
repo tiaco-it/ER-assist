@@ -21,6 +21,15 @@
                             <button id="deleteFileButton">delete</button>
                         {{/ionItem}}
                     {{/each}}
+                    <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Laws</div>
+                    {{#each laws}}
+                        {{#ionItem}}
+                            <a href="{{pathFor 'edit.lawDocs'}}" class="button pull-right">
+                                {{> ionIcon icon="edit"}}
+                            </a>
+                            {{paragraph}}
+                        {{/ionItem}}
+                    {{/each}}
                 {{/ionList}}
             {{else}}
                 {{> spinner}}

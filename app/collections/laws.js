@@ -17,6 +17,9 @@ LawSchema = new SimpleSchema({
     },
     oneline: {
         type: String
+    },
+    relatedDocs: {
+        type: [String]
     }
 });
 
@@ -35,6 +38,8 @@ Meteor.methods({
         return Laws.insert(obj);
     },
     editLaw: function(obj) {
+        console.log('law edited');
+        _.extend(obj.updateDoc.$set, {lastUpdated: new Date});
         check(obj._id, String);
         check(obj.updateDoc.$set, LawSchema);
         return Laws.update({_id: obj._id}, obj.updateDoc);

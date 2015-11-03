@@ -107,9 +107,14 @@ AutoForm.hooks({
 AutoForm.hooks({
     editLawForm: {
         onSubmit: function(insertDoc, updateDoc, currentDoc) {
+            console.log('submitted')
             var obj = {_id: Router.current().params._id, updateDoc: updateDoc};
             Meteor.call('editLaw', obj, function(error, result) {
-                if (error) alert(error.reason);
+                if (error) {
+                    alert(error.reason)
+                    } else {
+                        console.log('editLaw success');
+                    }
             });
             $(".back-button").click();
             return false;

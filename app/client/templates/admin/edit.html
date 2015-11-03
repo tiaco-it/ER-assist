@@ -50,9 +50,14 @@
         {{> quickForm schema="NumberSchema" collection="Numbers" id="editNumberForm" type="normal" doc=selectedDoc}}
 </template>
 
+<template name="editlawdocs">
+    {{> quickForm schema="LawSchema" collection="Laws" id="editLawForm" type="normal" doc=selectedDoc omitFields="text, summary, example, oneline, createdAt, lastUpdated"}}
+</template>
+
 <template name="addlaw">
     {{> quickForm schema="LawSchema" collection="Laws" id="insertLawForm" type="normal" omitFields="createdAt, lastUpdated"}}
 </template>
+
 
 <template name="addlink">
     {{> quickForm schema="LinkSchema" collection="Links" id="insertLinkForm" type="normal" omitFields="createdAt, lastUpdated"}}

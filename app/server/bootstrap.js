@@ -55,7 +55,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "eller bevisst ønske om å kontrollere personer i omgivelsene. Noen mennesker lever med tilnærmet konstante selvmordstanker og -planer (kronisk suicidale). \ " +
             "Disse må ofte håndteres annerledes enn mennesker med akutt nyoppstått suicidalitet. \ " +
             "(ref. legevakthåndboken)",
-            oneline: "Nødrett gir rett til å hindre med makt at pasienten tar livet sitt."
+            oneline: "Nødrett gir rett til å hindre med makt at pasienten tar livet sitt.",
+            relatedDocs: []
         },
         {
             law: "Straffeloven",
@@ -68,7 +69,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Utøving av offentlig myndighet kan bare møtes med nødverge når myndighetsutøvingen er ulovlig, og den som gjennomfører den, opptrer forsettlig eller grovt uaktsomt.",
             summary: "Politianmeldelse bør vurderes. Skjema for politianmeldelse må fylles ut.",
             example: "Pasienten utøver vold mot ansatte eller pasienter som er tilstede i mottak/kontor. Helsepersonell har lov til å holde fast/låse inn en voldelig pasient til politi/vakt ankommer.",
-            oneline: "Gir mulighet til å holde fast/låse inn en utagerende pasient inntil politi/vakt ankommer."
+            oneline: "Gir mulighet til å holde fast/låse inn en utagerende pasient inntil politi/vakt ankommer.",
+            relatedDocs: []
         },
         {
             law: "Helsepersonelloven",
@@ -79,7 +81,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Plikten gjelder ikke i den grad annet kvalifisert helsepersonell påtar seg ansvaret for å gi helsehjelpen.",
             summary: "Man må vurdere ytterlige psykiatrisk behandling for denne pasienten.",
             example: "Helsepersonell kan utføre akutt livreddende behandling mot pasientens vilje om pasientens liv står i øyeblikkelig fare.",
-            oneline: "Helsepersonell skal straks gi den helsehjelp de evner når det må antas at hjelpen er påtrengende nødvendig."
+            oneline: "Helsepersonell skal straks gi den helsehjelp de evner når det må antas at hjelpen er påtrengende nødvendig.",
+            relatedDocs: []
         },
         {
             law: "Pasient- og brukerrettighetsloven",
@@ -90,7 +93,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             summary: "Pasienten forlater behandling uten legens samtykke. Pasienten må da skrive under skjema for utskrivelse. Man må vurdere ytterlige psykiatrisk behandling for denne pasienten.",
             example: "Pasienten har f.eks. en spiseforstyrrelse, men er stabil og alle vitale parametre er ok. Man finner kanskje bifunn på røntgen som burde utredes nærmere, \ " +
             "men pasienten behøver ikke umiddelbar behandling. Pasienten har i dette tilfellet full rett til å nekte behandling.",
-            oneline: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke."
+            oneline: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke.",
+            relatedDocs: ["utskrivelse.pdf"]
         },
         {
             law: "Pasient- og brukerrettighetsloven",
@@ -107,7 +111,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             example: "Helsepersonell kan gi ernæring over PEG-sonde til en hjerneskadet pasient. \ " +
             "Pasienten trenger somatisk behandling. Pasienter som faller innenfor denne kategorien kan ofte være: \ " +
             "- Ruspåvirket",
-            oneline: "Helsepersonell må sikre nødvendig somatisk helsehjelp til pasienter som mangler samtykkekompetanse og som motsetter seg helsehjelpen."
+            oneline: "Helsepersonell må sikre nødvendig somatisk helsehjelp til pasienter som mangler samtykkekompetanse og som motsetter seg helsehjelpen.",
+            relatedDocs: []
         },
         {
             law: "Psykisk helsevernloven",
@@ -126,7 +131,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter annet ledd til kontrollkommisjonen.",
             summary: "Pasienten skal undersøkes av helsepersonell etter §3-1 i psykisk helsevernloven og kan fatte vedtak om tvungen observasjon. Legen må fylle ut skjema for begjær om tvungen observasjon.",
             example: "Den praktiserende legen mistenker en alvorlig sinnslidelse hos pasienten, men det er ikke registrert noen kjent alvorlig sinnslidelse. ",
-            oneline: "På bakgrunn av opplysninger fra legeundersøkelser, kan den faglige ansvarlige fatte vedtak om tvungen observasjon."
+            oneline: "På bakgrunn av opplysninger fra legeundersøkelser, kan den faglige ansvarlige fatte vedtak om tvungen observasjon.",
+            relatedDocs: []
         },
         {
             law: "Psykisk helsevernloven",
@@ -149,12 +155,13 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "- Schizofreni \ " +
             "- Demens \ " +
             "- Alzheimer",
-            oneline: "På bakgrunn av opplysninger fra legeundersøkelser, kan den faglige ansvarlige fatte vedtak om tvungent psykisk helsevern."
+            oneline: "På bakgrunn av opplysninger fra legeundersøkelser, kan den faglige ansvarlige fatte vedtak om tvungent psykisk helsevern.",
+            relatedDocs: []
         }
     ];
     _.each(laws, function(list) {
         Laws.insert({law: list.law, paragraph: list.paragraph, text: list.text,
-            summary: list.summary, example: list.example, oneline: list.oneline})
+            summary: list.summary, example: list.example, oneline: list.oneline, relatedDocs: list.relatedDocs})
     });
 }
 

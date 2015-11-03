@@ -17,6 +17,15 @@ Template.editLayout.helpers({
     }
 });
 
+Template.editlawdocs.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+        if ( Meteor.status().connected ) {
+            Meteor.subscribe("law", Router.current().params._id);
+        }
+    });
+});
+
 /*
 Template.editcase.onCreated( function() {
     var self = this;
@@ -32,6 +41,14 @@ Template.editcase.helpers({
     'selectedDoc': function() {
         console.log(Startcases.findOne(Router.current().params._id));
         return Startcases.findOne(Router.current().params._id);
+    }
+});
+
+Template.editlawdocs.helpers({ 
+    'selectedDoc': function() {
+        console.log('selected')
+        console.log(Laws.findOne(Router.current().params._id));
+        return Laws.findOne(Router.current().params._id);
     }
 });
 

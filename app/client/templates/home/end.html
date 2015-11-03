@@ -91,19 +91,15 @@
             <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
             <!-- Rest is dummy -->
             <h3 class="text-center">Relevante dokumenter</h3>
-            <div class="list">
-                <li class="item item-checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox" name="group">
-                    </label>
-                    <div class="item-content">Dokument 1</div>
-                </li>
-                <li class="item item-checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox" name="group">
-                    </label>
-                    <div class="item-content">Dokument 2</div>
-                </li>
+                <div class="list">
+                {{#each relDoc in relDocs related}}
+                    <li class="item item-checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" id="{{relDoc}}" checked={{isChecked}} name="group">
+                        </label>
+                        <div class="item-content" id="{{relDoc}}">{{relDoc}}</div>
+                    </li>
+                {{/each}}
                 <div class="button button-block button-positive" id="send">SEND</div>
             </div>
         {{/with}}

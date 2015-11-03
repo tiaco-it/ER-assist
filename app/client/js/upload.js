@@ -1,4 +1,5 @@
 Meteor.subscribe("uploads");
+
 Template.upload.events({
     'click #deleteFileButton ': function (event) {
         console.log("deleteFile button ", this);
@@ -27,5 +28,8 @@ Template.upload.events({
 Template.upload.helpers({
     theFiles: function () {
         return Uploads.find();
+    },
+    laws: function () {
+        return Laws.find();
     }
 });
