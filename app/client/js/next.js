@@ -20,3 +20,16 @@ Template.nextHeader.helpers({
         return Session.get('category');
     } 
 })
+
+Template.next.events({
+    'click .firstLevelButton': function (e) {
+        path.push($(e.currentTarget).text());
+        Session.set('nextAdded', true);
+    }
+})
+
+Template.next.onCreated( function() {
+    if (Session.get('nextAdded')) {
+        path.pop();
+    }
+});

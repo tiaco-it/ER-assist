@@ -1,5 +1,3 @@
-var lawHolder = new Array();
-
 Template.endLayout.events({
   'click #one': function(event, template) {
     event.preventDefault();
@@ -43,6 +41,9 @@ Template.triple.helpers({
     'thisLaw': function() {
         var l = lawHolder[0];
         return Laws.findOne(l);
+    },
+    'path': function() {
+        return path;
     }
 });
 

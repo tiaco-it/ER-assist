@@ -1,6 +1,6 @@
 var buttons  = new Array();
-var marks = new Array();
-var lawHolder = new Array();
+path = new Array();
+lawHolder = new Array();
 
 query = function(string, item) {
     var con = Links.findOne({
@@ -88,7 +88,15 @@ Template.home.onCreated(function() {
         }
     });
 });
-*/
+*/ 
+
+Template.homeContent.onCreated( function () {
+    Session.set('home', true);
+    Session.set('nextAdded', false);
+    while (path.length > 0) {
+            path.pop();
+    }
+});
 
 Template.homeContent.helpers({
     'startcases': function() {
@@ -113,6 +121,7 @@ Template.homeContent.helpers({
         })
     },
     'yesLink': function(scase) {
+        Session.set('question', scase.text);
         var li = Links.findOne({
             $and: [
                 { mark: 'JA' },
@@ -122,6 +131,7 @@ Template.homeContent.helpers({
         return li.to
     },
     'noLink': function(scase) {
+        Session.set('question', scase.text);
         var li = Links.findOne({
             $and: [
                 { mark: 'NEI'},
@@ -204,6 +214,8 @@ Template.homeContent.events({
         }
         else if ($(e.currentTarget).attr("level") === "inter") {
             $(e.currentTarget).fadeOut();
+            path.push(Session.get('question'));
+            path.push($(e.currentTarget).text());
             Session.set('currentFrom', this);
             Session.set(e.currentTarget.id, true);
             buttons.push(e.currentTarget.id)
@@ -213,8 +225,9 @@ Template.homeContent.events({
                 var f = buttons.pop();
                 Session.set(f, false)
             }
+            path.push(Session.get('question'));
+            path.push($(e.currentTarget).text());
             $(e.currentTarget).fadeOut();
-            console.log("SET TO UNDEFINED");
             Session.set('currentFrom', undefined)
         }
         else {
@@ -262,11 +275,22 @@ Template.endLayout.onDestroyed( function () {
     lawHolder.pop();
 });
 
+// ------------ MISC ------------ //
+
+Template.homeContent.onDestroyed( function () {
+    Session.set('home', false);
+})
+
 $('html').click(function(e) {
     if(!$(e.target).hasClass("button") ) {
     while ( buttons.length > 0 ){
         var f = buttons.pop();
         Session.set(f, false);
+    }
+    if (Session.get('home')) {
+        while (path.length > 0) {
+            path.pop();
+        }
     }
 }
     else {
