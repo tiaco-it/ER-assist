@@ -278,27 +278,32 @@ if (Numbers.find().count() === 0 || UPDATE == true) {
     var numbers = [
         {
             title: "Østmarka ekspedisjon",
-            number: 72823000
+            number: 72823000,
+            type: "Ekstern"
         },
         {
             title: "Rus akutt",
-            number: 73862929
+            number: 73862929,
+            type: "Ekstern"
         },
         {
             title: "Sikkerhet/vekter",
-            number: 67500
+            number: 67500,
+            type: "Intern"
         },
         {
             title: "AMK",
-            number: 113
+            number: 113,
+            type: "Ekstern"
         },
         {
             title: "Politi",
-            number: 112
+            number: 112,
+            type: "Ekstern"
         }
     ];
     _.each(numbers, function (list) {
-        Numbers.insert({title: list.title, number: list.number})
+        Numbers.insert({title: list.title, number: list.number, type: list.type})
     });
 }
 

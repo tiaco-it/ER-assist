@@ -5,8 +5,10 @@ NumberSchema = new SimpleSchema({
     },
     number: {
         type: Number
+    },
+    type: {
+        type: String
     }
-
 });
 
 // Create collection

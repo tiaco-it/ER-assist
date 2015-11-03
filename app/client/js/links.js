@@ -45,8 +45,12 @@ Template.linksDouble.helpers({
         var urls = Urls.find({});
         return urls && urls
     },
-    'numbers': function() {
-        var numbers = Numbers.find({});
+    'numbersEkst': function() {
+        var numbers = Numbers.find({ 'type': "Ekstern" });
+        return numbers && numbers
+    },
+    'numbersInt': function() {
+        var numbers = Numbers.find({ 'type': "Intern" })
         return numbers && numbers
     }
 });
