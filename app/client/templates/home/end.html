@@ -81,7 +81,8 @@
         <h3 class="text-center">Dokumentasjon til: </h3>
         <h4 class="text-center">{{law}}, {{paragraph}}</h4>
         {{#each item in path}}
-            <p>{{item}}</p>
+            <p>{{item.question}}</p>
+            <p>{{item.answer}}</p>
         {{/each}}
         <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
         <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
@@ -105,64 +106,6 @@
             <div class="button button-block button-positive" id="send">SEND</div>
         </div>
     {{/with}}
-</template>
-
-<template name='triple'>
-
-    {{#if One}}
-        {{#with thisLaw}}
-            <h3 class="text-center">Eksempel på bruk av: </h3>
-            <h4 class="text-center">{{law}}, {{paragraph}}</h4>
-            <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
-            <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
-            <p style="padding-left: 1em; padding-right: 1em;">{{example}}</p>
-        {{/with}}
-    {{/if}}
-
-    {{#if Two}}
-        {{#with thisLaw}}
-            <div class="button button-full button-positive disabled" style="opacity: 100; background-color: #F3BF42; border-style: none; padding-top: 0.5em; padding-bottom: 0.5em;">
-                <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
-                <h5 style="color:black; text-transform: uppercase;">{{oneline}}</h5>
-            </div>
-            <h3 class="text-center">{{law}}</h3>
-            <h4 class="text-center">{{paragraph}}</h4>
-            <!--<div class="bar bar-positive">-->
-            <p style="padding-left: 1em; padding-right: 1em;">{{text}}</p>
-        {{/with}}
-    {{/if}}
-
-    {{#if Three}}
-        {{#with thisLaw}}
-            <h3 class="text-center">Dokumentasjon til: </h3>
-            <h4 class="text-center">{{law}}, {{paragraph}}</h4>
-            {{#each item in path}}
-                <p>{{item}}</p>
-            {{/each}}
-            <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
-            <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
-            <p style="padding-left: 1em; padding-right: 1em;">{{summary}}</p>
-            <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
-            <!-- Rest is dummy -->
-            <h3 class="text-center">Relevante dokumenter</h3>
-            <div class="list">
-                <li class="item item-checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox" name="group">
-                    </label>
-                    <div class="item-content">Dokument 1</div>
-                </li>
-                <li class="item item-checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox" name="group">
-                    </label>
-                    <div class="item-content">Dokument 2</div>
-                </li>
-                <div class="button button-block button-positive" id="send">SEND</div>
-            </div>
-        {{/with}}
-    {{/if}}
-
 </template>
 
 <template name="topTabsLayout">
