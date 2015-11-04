@@ -42,7 +42,7 @@ if (Startcases.find().count() === 0 || UPDATE == true) {
 if (Laws.find().count() === 0 || UPDATE == true) {
     var laws = [
         {
-            category: "Pasienten er suicidal"
+            category: "Pasienten er suicidal",
             law: "Straffeloven",
             paragraph: "§17. Nødrett",
             text: "En handling som ellers ville være straffbar, er lovlig når \ " +
@@ -59,7 +59,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             oneline: "Nødrett gir rett til å hindre med makt at pasienten tar livet sitt."
         },
         {
-            category: "Pasienten er voldelig"
+            category: "Pasienten er voldelig",
             law: "Straffeloven",
             paragraph: "§18. Nødverge",
             text: "En handling som ellers ville være straffbar, er lovlig når den \ " +
@@ -68,9 +68,9 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "c) ikke går åpenbart ut over hva som er forsvarlig under hensyn til hvor farlig angrepet er, hva slags interesse som angrepet krenker, og angriperens skyld \ " +
             "Regelen i første ledd gjelder tilsvarende for den som iverksetter en lovlig pågripelse eller søker å hindre at noen unndrar seg varetektsfengsling eller gjennomføring av frihetsstraff. \ " +
             "Utøving av offentlig myndighet kan bare møtes med nødverge når myndighetsutøvingen er ulovlig, og den som gjennomfører den, opptrer forsettlig eller grovt uaktsomt.",
-            summary:    "Hendelsen og tiltak dokumenteres i pasientens ordinære journal."
+            summary:    "Hendelsen og tiltak dokumenteres i pasientens ordinære journal. \ " +
                         "Politianmeldelse bør vurderes. Skjema for politianmeldelse må fylles ut. \ " + 
-                        "Kun sykehusdirektøren har lov til å anmelde saken på vegen av sykehuset." 
+                        "Kun sykehusdirektøren har lov til å anmelde saken på vegen av sykehuset.", 
             example: "Pasienten utøver vold mot ansatte eller pasienter som er tilstede i mottak/kontor. Helsepersonell har lov til å holde fast/låse inn en voldelig pasient til politi/vakt ankommer.",
             oneline: "Gir mulighet til å holde fast/låse inn en utagerende pasient inntil politi/vakt ankommer."
         },
@@ -216,6 +216,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             summary: "Pasienten skal undersøkes av helsepersonell etter §3-1 i psykisk helsevernloven og kan fatte vedtak om tvungen observasjon. Legen må fylle ut skjema for begjær om tvungen observasjon.",
             example: "Virker pasienten dypt deprimert eller psykotisk, så må psykiatrisk utredning overveies, om nødvendig med tvang.",
             oneline: "Ved klar mistanke om alvorlig depresjon eller psykose kan pasienten innlegges i psykiatrien til tvungen observasjon."
+        },
         {
             category: "Pasienten nekter behandling",
             law: "Psykisk helsevernloven",
@@ -238,7 +239,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "- Schizofreni/psykose   \ " +
             "- Depresjon ",
             oneline: "En pasient med kjent sinnslidelse kan ved en alvorlig forverring innlegges i psykiatrien til tvungent psykisk helsevern."
-        },
+        }
     ];
     _.each(laws, function(list) {
         Laws.insert({catgory: list.category, law: list.law, paragraph: list.paragraph, text: list.text,
