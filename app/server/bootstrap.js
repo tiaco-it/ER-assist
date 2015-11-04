@@ -71,6 +71,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             summary:    "Hendelsen og tiltak dokumenteres i pasientens ordinære journal. \ " +
                         "Politianmeldelse bør vurderes. Skjema for politianmeldelse må fylles ut. \ " + 
                         "Kun sykehusdirektøren har lov til å anmelde saken på vegen av sykehuset.",
+
             example: "Pasienten utøver vold mot ansatte eller pasienter som er tilstede i mottak/kontor. Helsepersonell har lov til å holde fast/låse inn en voldelig pasient til politi/vakt ankommer.",
             oneline: "Gir mulighet til å holde fast/låse inn en utagerende pasient inntil politi/vakt ankommer."
         },
@@ -239,7 +240,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "- Schizofreni/psykose   \ " +
             "- Depresjon ",
             oneline: "En pasient med kjent sinnslidelse kan ved en alvorlig forverring innlegges i psykiatrien til tvungent psykisk helsevern."
-        },
+        }
     ];
     _.each(laws, function(list) {
         Laws.insert({cat: list.cat, law: list.law, paragraph: list.paragraph, text: list.text,
