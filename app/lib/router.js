@@ -50,9 +50,10 @@ Router.route('/next/:_id', function (){
     name: 'next'
 });
 
-Router.route('/links', function () {
+Router.route('/links', function (){
     this.layout('topTabsLayout');
     this.render('linksLayout');
+    this.render('urls', {to: 'tabTemplate'});
   }, {
     name: 'links'
 });

@@ -57,6 +57,7 @@ Template.howto.helpers({
         return Info.findOne({title: "Hvordan bruke appen"})
     }
 });
+
 Template.conditions.helpers({
     'conditions': function() {
         return Info.findOne({title: "Om utviklerne"})
