@@ -50,31 +50,6 @@ Template.endLayout.onDestroyed( function () {
     lawHolder.pop();
 });
 
-    /*
-Template.triple.helpers({
-    'One': function() {
-        if (Session.get('tab')===1){
-            return true;
-        } else {
-            return false;
-        }
-    },
-    'Two': function() {
-        if (Session.get('tab')===2){
-            return true;
-        } else {
-            return false;
-        }
-    },
-    'Three': function() {
-        if (Session.get('tab')===3){
-            return true;
-        } else {
-            return false;
-        }
-    }, */
-
-
 Template.documentation.helpers({
     'thisLaw': function() {
         var l = lawHolder[0];
