@@ -40,17 +40,22 @@ Template.triple.helpers({
     },
     'thisLaw': function() {
         var l = lawHolder[0];
-        var lt = Laws.find(l);
+        var lt = Laws.find({'paragraph': l});
+        var p = {};
+        console.log(lt.count());
         if (lt.count() > 1) {
             lt.forEach(function (post) {
-                console.log(post.category);
+                console.log(post.cat);
                 console.log(Session.get('category').text);
-                if (post.category === Session.get('category').text) {
+                if (post.cat === Session.get('category').text) {
                     console.log('triggered fit');
-                    return post;
+                    console.log(post);
+                    p = post;
+                    return;
                 }
             });
         }
+        return p;
     },
     'path': function() {
         return path;
