@@ -246,7 +246,7 @@ $('html').click(function(e) {
         var f = buttons.pop();
         Session.set(f, false);
     }
-    if (Router.current().getName() === 'home') {
+    if (Router.current().route.name === 'home') {
         path = [];
     }
 }
