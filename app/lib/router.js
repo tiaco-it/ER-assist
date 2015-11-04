@@ -69,6 +69,7 @@ Router.route('/info', function (){
 Router.route('/end/:_id', function (){
     this.layout('topTabsLayout');
     this.render('endLayout');
+    this.render('tlaw', {to: 'tabTemplate'});
   }, {
     name: 'end'
 });

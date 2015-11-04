@@ -1,25 +1,3 @@
-<template name="topTabsLayout">
-    {{#ionBody}}
-        {{> ionNavBar class="bar-positive"}}
-
-
-        <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->
-        {{#ionNavView}}
-            {{> yield}}
-        {{/ionNavView}}
-    {{/ionBody}}
-</template>
-
-
-<template name="_tabsHeader">
-    {{#ionHeaderBar class="bar-positive"}}
-        {{>ionNavBackButton text="Tilbake"}}
-            {{#with case}}
-                <h1 class="title">{{text}}</h1>
-            {{/with}}
-    {{/ionHeaderBar}}
-</template>
-
 <template name="mtabs">
     {{#ionTabs style="ios"}}
         {{> ionTab title="Hjem" path="home" iconOff="ios-home-outline" iconOn="ios-home"}}

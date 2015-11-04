@@ -42,7 +42,6 @@ Template.itabs.helpers({
 
 Template.infoLayout.onCreated(function() {
     Session.set('itab', 2);
-    var self = this;
 });
 
 Template.about.helpers({
