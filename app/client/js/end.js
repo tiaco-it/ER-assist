@@ -51,6 +51,7 @@ Template.endLayout.onDestroyed( function () {
     lawHolder.pop();
 });
 
+    /*
 Template.triple.helpers({
     'One': function() {
         if (Session.get('tab')===1){
@@ -72,7 +73,10 @@ Template.triple.helpers({
         } else {
             return false;
         }
-    },
+    }, */
+
+
+Template.documentation.helpers({
     'thisLaw': function() {
         var l = lawHolder[0];
         var lt = Laws.find({'paragraph': l});
@@ -89,13 +93,59 @@ Template.triple.helpers({
             });
         }
         else {
-                return Laws.findOne({'paragraph': 1});
+                return Laws.findOne({'paragraph': l});
         }
         return p;
     },
     'path': function() {
         return path;
-    }
+    }    
+});
+
+Template.example.helpers({
+    'thisLaw': function() {
+        var l = lawHolder[0];
+        var lt = Laws.find({'paragraph': l});
+        var p = {};
+        console.log(lt.count());
+        if (lt.count() > 1) {
+            lt.forEach(function (post) {
+                console.log(post.cat);
+                console.log(Session.get('category').text);
+                if (post.cat === Session.get('category').text) {
+                    p = post;
+                    return;
+                }
+            });
+        }
+        else {
+                return Laws.findOne({'paragraph': l});
+        }
+        return p;
+    }  
+});
+
+Template.tlaw.helpers({
+    'thisLaw': function() {
+        var l = lawHolder[0];
+        var lt = Laws.find({'paragraph': l});
+        var p = {};
+        console.log(lt.count());
+        if (lt.count() > 1) {
+            lt.forEach(function (post) {
+                console.log(post.cat);
+                console.log(Session.get('category').text);
+                if (post.cat === Session.get('category').text) {
+                    p = post;
+                    return;
+                }
+            });
+        }
+        else {
+                return Laws.findOne({'paragraph': l});
+        }
+        return p;
+    }  
 });
 
 Template.registerHelper('thisLaw', function() {
@@ -114,7 +164,7 @@ Template.registerHelper('thisLaw', function() {
         });
     }
     else {
-        return Laws.findOne({'paragraph': 1});
+        return Laws.findOne({'paragraph': l});
     }
     return p;
 });
