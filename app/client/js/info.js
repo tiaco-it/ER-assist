@@ -13,6 +13,25 @@ Template.infoLayout.events({
   }
 });
 
+Template.infoLayout.helpers({
+    templateGestures: {
+        'swipeleft .infoSwipe': function (event, templateInstance) {
+            if (Session.get('itab')===1){
+            Session.set('itab', 2);
+            } else if (Session.get('itab')===2){
+            Session.set('itab', 3);
+            }
+        },
+        'swiperight .infoSwipe': function (event, templateInstance) {
+            if (Session.get('itab')===2){
+            Session.set('itab', 1);
+            } else if (Session.get('itab')===3){
+            Session.set('itab', 2);
+            }
+        }
+    }
+});
+
 Template.itabs.helpers({
     'One': function() {
         if (Session.get('itab')===1){
@@ -35,8 +54,6 @@ Template.itabs.helpers({
             return false;
         }
     }
-    'swipeleft div div a': function (event, templateInstance) {
-        console.log("SWIPE")
 });
 
 Template.infoTriple.helpers({

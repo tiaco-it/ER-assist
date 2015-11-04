@@ -3,9 +3,13 @@
     {{#ionView}}
         {{>itabs}}
         {{#if Template.subscriptionsReady}} 
-            {{#ionContent class="padding has-tabs-top"}} 
-                {{>infoTriple}}
-            {{/ionContent}}
+            {{#HammerTouchArea gestureMap=templateGestures}}
+                <div class="infoSwipe">
+                    {{#ionContent class="padding has-tabs-top"}} 
+                        {{>infoTriple}}
+                    {{/ionContent}}
+                </div>
+            {{/HammerTouchArea}}
         {{else}}
             {{> spinner}}
         {{/if}}
@@ -23,7 +27,6 @@
 </template>
 
 <template name='itabs'>
-    {{#HammerTouchArea configureCallback=configureHammer}}
     <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
         <div class="tabs">
             {{#if One}}
@@ -55,7 +58,6 @@
             {{/if}}
         </div>
     </div>
-    {{/HammerTouchArea}}
 </template>
 
 <template name='infoTriple'>
