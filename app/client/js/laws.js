@@ -16,7 +16,6 @@ Template.law.helpers({
 
 Template.laws.events({
     'click #law': function() {
-        console.log('triggered')
         IonNavigation.skipTransitions = true;
     }
 })
@@ -48,9 +47,6 @@ Template.laws.helpers({
         var uniqueLaws = [];
         var uniqueNames = [];
         $.each(catLaws, function(i, el){
-            console.log('iteration')
-            console.log(el.paragraph)
-            console.log(uniqueNames)
             if($.inArray(el.paragraph, uniqueNames) === -1) {
                 uniqueNames.push(el.paragraph);
                 uniqueLaws.push(el);

@@ -42,7 +42,6 @@ Template.toptabs.helpers({
 
 Template.endLayout.onCreated(function() {
 	var l = Laws.findOne(Router.current().params._id);
-	console.log(l.paragraph);
 	lawHolder.push(l.paragraph);
     Session.set('tab', 2);
 });
@@ -81,11 +80,8 @@ Template.documentation.helpers({
         var l = lawHolder[0];
         var lt = Laws.find({'paragraph': l});
         var p = {};
-        console.log(lt.count());
         if (lt.count() > 1) {
             lt.forEach(function (post) {
-                console.log(post.cat);
-                console.log(Session.get('category').text);
                 if (post.cat === Session.get('category').text) {
                     p = post;
                     return;
@@ -107,11 +103,8 @@ Template.example.helpers({
         var l = lawHolder[0];
         var lt = Laws.find({'paragraph': l});
         var p = {};
-        console.log(lt.count());
         if (lt.count() > 1) {
             lt.forEach(function (post) {
-                console.log(post.cat);
-                console.log(Session.get('category').text);
                 if (post.cat === Session.get('category').text) {
                     p = post;
                     return;
@@ -130,11 +123,8 @@ Template.tlaw.helpers({
         var l = lawHolder[0];
         var lt = Laws.find({'paragraph': l});
         var p = {};
-        console.log(lt.count());
         if (lt.count() > 1) {
             lt.forEach(function (post) {
-                console.log(post.cat);
-                console.log(Session.get('category').text);
                 if (post.cat === Session.get('category').text) {
                     p = post;
                     return;
@@ -152,11 +142,8 @@ Template.registerHelper('thisLaw', function() {
     var l = lawHolder[0];
     var lt = Laws.find({'paragraph': l});
     var p = {};
-    console.log(lt.count());
     if (lt.count() > 1) {
         lt.forEach(function (post) {
-            console.log(post.cat);
-            console.log(Session.get('category').text);
             if (post.cat === Session.get('category').text) {
                 p = post;
                 return;
@@ -174,7 +161,6 @@ Template.documentation.helpers({
         return path;
     },
     'click #send': function(event, template) {
-        console.log('triggered!');
         IonPopup.prompt({
             title: 'Email',
             template: 'Vennligst skriv inn email',
@@ -198,7 +184,6 @@ Template.tlaw.onCreated(function() {
     }
     Session.set('tab', 2);
     var l = Laws.findOne(Router.current().params._id);
-    console.log(l.paragraph);
     lawHolder.push(l.paragraph);
 });
 
