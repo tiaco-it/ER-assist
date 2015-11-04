@@ -40,7 +40,17 @@ Template.triple.helpers({
     },
     'thisLaw': function() {
         var l = lawHolder[0];
-        return Laws.findOne(l);
+        var lt = Laws.find(l);
+        if (lt.count() > 1) {
+            lt.forEach(function (post) {
+                console.log(post.category);
+                console.log(Session.get('category').text);
+                if (post.category === Session.get('category').text) {
+                    console.log('triggered fit');
+                    return post;
+                }
+            });
+        }
     },
     'path': function() {
         return path;
@@ -96,7 +106,9 @@ Template.triple.onCreated(function() {
         lawHolder.pop();
     }
     Session.set('tab', 2);
-    lawHolder.push(Router.current().params._id);
+    var l = Laws.findOne(Router.current().params._id);
+    console.log(l.paragraph);
+    lawHolder.push(l.paragraph);
 });
 
 Template._tabsHeader.helpers({
