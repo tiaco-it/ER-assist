@@ -48,12 +48,13 @@ Template.triple.helpers({
                 console.log(post.cat);
                 console.log(Session.get('category').text);
                 if (post.cat === Session.get('category').text) {
-                    console.log('triggered fit');
-                    console.log(post);
                     p = post;
                     return;
                 }
             });
+        }
+        else {
+            return Laws.findOne({'paragraph': l});
         }
         return p;
     },

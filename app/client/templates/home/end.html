@@ -84,7 +84,8 @@
             <h3 class="text-center">Dokumentasjon til: </h3>
             <h4 class="text-center">{{law}}, {{paragraph}}</h4>
             {{#each item in path}}
-                <p>{{item}}</p>
+                <p>{{item.question}}</p>
+                <p>{{item.answer}}</p>
             {{/each}}
             <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
             <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
