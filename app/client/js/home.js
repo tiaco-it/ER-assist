@@ -2,6 +2,8 @@ var buttons  = new Array();
 path = new Array();
 lawHolder = new Array();
 
+//Helpers for template helpers
+
 query = function(string, item) {
     var con = Links.findOne({
         $and: [
@@ -76,26 +78,9 @@ twoOutcome = function(cons){
 
 // ------------ HOME ------------ //
 
-/*
-Template.home.onCreated(function() {
-    var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("startcases");
-            self.subscribe("laws");
-            self.subscribe("filters");
-            self.subscribe("links");
-        }
-    });
-});
-*/ 
-
 Template.homeContent.onCreated( function () {
-    Session.set('home', true);
     Session.set('nextAdded', false);
-    while (path.length > 0) {
-            path.pop();
-    }
+    path = [];
 });
 
 Template.homeContent.helpers({
@@ -253,33 +238,7 @@ Template.home.events({
 });
 */
 
-
-// ------------ END ------------ //
-
-Template.endLayout.helpers({
-    'thisLaw': function() {
-        var l = lawHolder[0]
-        return Laws.findOne(l)
-    }
-});
-
-
-// ------------ TABS ------------ //
-
-Template.endLayout.onCreated(function() {
-    lawHolder.push(Router.current().params._id);
-});
-
-Template.endLayout.onDestroyed( function () {
-    console.log('Destroyed');
-    lawHolder.pop();
-});
-
-// ------------ MISC ------------ //
-
-Template.homeContent.onDestroyed( function () {
-    Session.set('home', false);
-})
+// ------------ GLOBAL ------------ //
 
 $('html').click(function(e) {
     if(!$(e.target).hasClass("button") ) {
@@ -287,10 +246,8 @@ $('html').click(function(e) {
         var f = buttons.pop();
         Session.set(f, false);
     }
-    if (Session.get('home')) {
-        while (path.length > 0) {
-            path.pop();
-        }
+    if (Router.current().getName() === 'home') {
+        path = [];
     }
 }
     else {
