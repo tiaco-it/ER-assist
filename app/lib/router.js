@@ -13,7 +13,7 @@ Router.configure({
             Meteor.subscribe("laws"),
             Meteor.subscribe("filters"),
             Meteor.subscribe("links"),
-            Meteor.subsribe("urls"),
+            Meteor.subscribe("urls"),
             Meteor.subscribe("numbers"),
             Meteor.subscribe("info") ];
   }
