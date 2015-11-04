@@ -57,11 +57,4 @@ Template.linksDouble.helpers({
 
 Template.linksDouble.onCreated(function() {
     Session.set('ltab', 1);
-    var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("urls");
-            self.subscribe("numbers");
-        }
-    });
 });

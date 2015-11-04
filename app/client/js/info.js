@@ -74,9 +74,4 @@ Template.infoTriple.helpers({
 Template.infoTriple.onCreated(function() {
     Session.set('itab', 2);
     var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("info");
-        }
-    });
 });

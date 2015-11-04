@@ -12,7 +12,10 @@ Router.configure({
     return [Meteor.subscribe("startcases"),
             Meteor.subscribe("laws"),
             Meteor.subscribe("filters"),
-            Meteor.subscribe("links") ];
+            Meteor.subscribe("links"),
+            Meteor.subsribe("urls"),
+            Meteor.subscribe("numbers"),
+            Meteor.subscribe("info") ];
   }
 });
 

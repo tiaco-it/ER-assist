@@ -14,15 +14,6 @@ Template.law.helpers({
     }
 });
 
-Template.law.onCreated(function() {
-    var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("laws");
-        }
-    });
-});
-
 Template.laws.events({
     'click #law': function() {
         console.log('triggered')
