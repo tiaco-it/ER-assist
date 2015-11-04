@@ -35,6 +35,8 @@ Template.itabs.helpers({
             return false;
         }
     }
+    'swipeleft div div a': function (event, templateInstance) {
+        console.log("SWIPE")
 });
 
 Template.infoTriple.helpers({
