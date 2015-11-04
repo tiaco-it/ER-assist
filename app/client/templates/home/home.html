@@ -1,23 +1,15 @@
 <!-- contentFor means content for the element, in this case "headerTitle" which is one of 3 regions supplied by the IonNavBar. In general ion elements can supply regions where content is displayed if put inside contentFor "regionName" -->
 
 <template name="homeHeader">
+
 {{#contentFor "headerTitle"}}
     <h1 class="title">Kategoriser pasienten</h1>
-    
-    <!--
-    {{#if currentUser}}
-        <button class="button button-clear pull-right"> 
-            Logget inn som {{username}}
-        </button>
-    {{else}}
-         <a href = "{{pathFor 'login'}}" class="button button-clear pull-right">
-            {{> ionIcon icon='navicon'}
-}        </a>
-    {{/if}} -->
 {{/contentFor}}
+
 {{#contentFor "headerButtonRight"}}
     {{> atNavButton}} <p>{{username}}</p>
 {{/contentFor}}
+
 </template>
 
 
