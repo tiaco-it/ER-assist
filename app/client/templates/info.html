@@ -4,7 +4,7 @@
         {{>itabs}}
         {{#if Template.subscriptionsReady}} 
             {{#ionContent class="padding has-tabs-top"}} 
-                {{>infoTriple}}
+                {{>yield "tabTemplate"}}
             {{/ionContent}}
         {{else}}
             {{> spinner}}
@@ -56,27 +56,23 @@
     </div>
 </template>
 
-<template name='infoTriple'>
-
-{{#if One}}
+<template name='about'>
     {{#with about}}
         <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
     {{/with}}
-{{/if}}
+</template>
 
-{{#if Two}}
+<template name='howto'>
     {{#with howto}}
         <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
     {{/with}}
-{{/if}}
+</template>
 
-{{#if Three}}
+<template name='conditions'>
     {{#with conditions}}
         <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
     {{/with}}
-{{/if}}
-
 </template>

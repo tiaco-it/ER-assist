@@ -57,18 +57,19 @@ Router.route('/links', function () {
     name: 'links'
 });
 
+Router.route('/info', function (){
+    this.layout('topTabsLayout');
+    this.render('infoLayout');
+    this.render('howto', {to: 'tabTemplate'});
+  }, {
+    name: 'info'
+});
+
 Router.route('/end/:_id', function (){
     this.layout('topTabsLayout');
     this.render('endLayout');
   }, {
     name: 'end'
-});
-
-Router.route('/info', function (){
-    this.layout('topTabsLayout');
-    this.render('infoLayout');
-  }, {
-    name: 'info'
 });
 
 Router.route('/admin', function () {
