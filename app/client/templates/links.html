@@ -4,7 +4,7 @@
         {{>ltabs}}
         {{#if Template.subscriptionsReady}}
             {{#ionContent class="padding has-tabs-top"}}
-                {{>linksDouble}}
+                {{>yield "tabTemplate"}}
             {{/ionContent}}
         {{else}}
             {{> spinner}}
@@ -48,47 +48,59 @@
     </div>
 </template>
 
-<template name='linksDouble'>
-    {{#if One}}
-        {{#ionList}}
-            {{#each urls}}
-                <a class="link item item-icon-left" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
-                    <i class="icon ion-link"></i>
-                    <h2>{{title}}</h2>
-                    <p>{{link}}</p>
-                </a>
-            {{/each}}
-        {{/ionList}}
-        {{#if currentUser}}
-        <a href="{{pathFor 'add.url'}}" class="button pull-right" func="add">
-            {{> ionIcon icon="plus"}}
-        </a>
-        {{/if}}
+<template name='urls'>
+    {{#ionList}}
+        {{#each urls}}
+            <a class="link item item-icon-left" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
+                <i class="icon ion-link"></i>
+                <h2>{{title}}</h2>
+                <p>{{link}}</p>
+            </a>
+        {{/each}}
+    {{/ionList}}
+    {{#if currentUser}}
+    <a href="{{pathFor 'add.url'}}" class="button pull-right" func="add">
+        {{> ionIcon icon="plus"}}
+    </a>
     {{/if}}
+    {{#ionList}}
+        {{#each urls}}
+            <a class="link item item-icon-left" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
+                <i class="icon ion-link"></i>
+                <h2>{{title}}</h2>
+                <p>{{link}}</p>
+            </a>
+        {{/each}}
+    {{/ionList}}
+    {{#if currentUser}}
+    <a href="{{pathFor 'add.url'}}" class="button pull-right" func="add">
+        {{> ionIcon icon="plus"}}
+    </a>
+    {{/if}}
+</template>
 
-    {{#if Two}}
-        {{#ionList}}
-            <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Eksterne nummer</div>
-            {{#each numbersEkst}}
-                <a class="link item item-icon-left" href="tel:{{number}}" target="_blank">
-                    <i class="icon ion-ios-telephone"></i>
-                    <h2>{{title}}</h2>
-                    <p>{{number}}</p>
-                </a>
-            {{/each}}
-            <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Interne nummer</div>
-            {{#each numbersInt}}
-                <a class="link item item-icon-left">
-                    <i class="icon ion-ios-telephone"></i>
-                    <h2>{{title}}</h2>
-                    <p>{{number}}</p>
-                </a>
-            {{/each}}
-        {{/ionList}}
-        {{#if currentUser}}
-        <a href="{{pathFor 'add.number'}}" class="button pull-right" func="add">
-            {{> ionIcon icon="plus"}}
-        </a>
-        {{/if}}
+<template name='numbers'>
+    {{#ionList}}
+        <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Eksterne nummer</div>
+        {{#each numbersEkst}}
+            <a class="link item item-icon-left" href="tel:{{number}}" target="_blank">
+                <i class="icon ion-ios-telephone"></i>
+                <h2>{{title}}</h2>
+                <p>{{number}}</p>
+            </a>
+        {{/each}}
+        <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Interne nummer</div>
+        {{#each numbersInt}}
+            <a class="link item item-icon-left">
+                <i class="icon ion-ios-telephone"></i>
+                <h2>{{title}}</h2>
+                <p>{{number}}</p>
+            </a>
+        {{/each}}
+    {{/ionList}}
+    {{#if currentUser}}
+    <a href="{{pathFor 'add.number'}}" class="button pull-right" func="add">
+        {{> ionIcon icon="plus"}}
+    </a>
     {{/if}}
 </template>

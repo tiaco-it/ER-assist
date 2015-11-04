@@ -14,18 +14,8 @@ Template.law.helpers({
     }
 });
 
-Template.law.onCreated(function() {
-    var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("laws");
-        }
-    });
-});
-
 Template.laws.events({
     'click #law': function() {
-        console.log('triggered')
         IonNavigation.skipTransitions = true;
     }
 })
@@ -38,9 +28,9 @@ Template.laws.helpers({
     // returns all laws, sorted by law-category
     'laws': function() {
         var laws = Laws.find({},{
-            sort: {law: true}
-        });
-        return laws && laws
+            sort: {paragraph: true}
+        })
+        return laws && laws;
     },
     // returns a list of law-categories
     'category': function() {
@@ -51,11 +41,18 @@ Template.laws.helpers({
         }), true);
         return distinctEntries
     },
-    // returns all laws for a given category
+    // returns all laws for a given category, unique laws only
     'categoryLaws': function(category) {
-        var categoryLaws = Laws.find({law: category});
-        console.log("TEST:",  categoryLaws);
-        return categoryLaws && categoryLaws
+        var catLaws = Laws.find({law: category}).fetch();
+        var uniqueLaws = [];
+        var uniqueNames = [];
+        $.each(catLaws, function(i, el){
+            if($.inArray(el.paragraph, uniqueNames) === -1) {
+                uniqueNames.push(el.paragraph);
+                uniqueLaws.push(el);
+            }
+        });
+        return uniqueLaws;
     }
 });
 

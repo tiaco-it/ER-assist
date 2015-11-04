@@ -199,8 +199,10 @@ Template.homeContent.events({
         }
         else if ($(e.currentTarget).attr("level") === "inter") {
             $(e.currentTarget).fadeOut();
-            path.push(Session.get('question'));
-            path.push($(e.currentTarget).text());
+            var item = {};
+            item['question'] = Session.get('question');
+            item['answer'] = $(e.currentTarget).text();
+            path.push(item);
             Session.set('currentFrom', this);
             Session.set(e.currentTarget.id, true);
             buttons.push(e.currentTarget.id)
@@ -210,8 +212,10 @@ Template.homeContent.events({
                 var f = buttons.pop();
                 Session.set(f, false)
             }
-            path.push(Session.get('question'));
-            path.push($(e.currentTarget).text());
+            var item = {};
+            item['question'] = Session.get('question');
+            item['answer'] = $(e.currentTarget).text();
+            path.push(item);
             $(e.currentTarget).fadeOut();
             Session.set('currentFrom', undefined)
         }
@@ -246,7 +250,7 @@ $('html').click(function(e) {
         var f = buttons.pop();
         Session.set(f, false);
     }
-    if (Router.current().getName() === 'home') {
+    if (Router.current().route.name === 'home') {
         path = [];
     }
 }

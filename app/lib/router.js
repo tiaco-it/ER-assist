@@ -12,7 +12,10 @@ Router.configure({
     return [Meteor.subscribe("startcases"),
             Meteor.subscribe("laws"),
             Meteor.subscribe("filters"),
-            Meteor.subscribe("links") ];
+            Meteor.subscribe("links"),
+            Meteor.subscribe("urls"),
+            Meteor.subscribe("numbers"),
+            Meteor.subscribe("info") ];
   }
 });
 
@@ -47,25 +50,28 @@ Router.route('/next/:_id', function (){
     name: 'next'
 });
 
-Router.route('/links', function () {
+Router.route('/links', function (){
     this.layout('topTabsLayout');
     this.render('linksLayout');
+    this.render('urls', {to: 'tabTemplate'});
   }, {
     name: 'links'
-});
-
-Router.route('/end/:_id', function (){
-    this.layout('topTabsLayout');
-    this.render('endLayout');
-  }, {
-    name: 'end'
 });
 
 Router.route('/info', function (){
     this.layout('topTabsLayout');
     this.render('infoLayout');
+    this.render('howto', {to: 'tabTemplate'});
   }, {
     name: 'info'
+});
+
+Router.route('/end/:_id', function (){
+    this.layout('topTabsLayout');
+    this.render('endLayout');
+    this.render('tlaw', {to: 'tabTemplate'});
+  }, {
+    name: 'end'
 });
 
 Router.route('/admin', function () {

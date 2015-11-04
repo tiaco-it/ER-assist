@@ -23,7 +23,9 @@ Template.nextHeader.helpers({
 
 Template.next.events({
     'click .firstLevelButton': function (e) {
-        path.push($(e.currentTarget).text());
+        var item = {};
+        item['question'] = $(e.currentTarget).text();
+        path.push(item);
         Session.set('nextAdded', true);
     }
 })
