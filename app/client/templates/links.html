@@ -67,20 +67,6 @@
         {{> ionIcon icon="plus"}}
     </a>
     {{/if}}
-    {{#ionList}}
-        {{#each urls}}
-            <a class="link item item-icon-left" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
-                <i class="icon ion-link"></i>
-                <h2>{{title}}</h2>
-                <p>{{link}}</p>
-            </a>
-        {{/each}}
-    {{/ionList}}
-    {{#if currentUser}}
-    <a href="{{pathFor 'add.url'}}" class="button pull-right" func="add">
-        {{> ionIcon icon="plus"}}
-    </a>
-    {{/if}}
 </template>
 
 <template name='numbers'>

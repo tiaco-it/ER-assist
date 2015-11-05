@@ -219,7 +219,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             oneline: "Ved klar mistanke om alvorlig depresjon eller psykose kan pasienten innlegges i psykiatrien til tvungen observasjon."
         },
         {
-            cat: "Pasienten skader seg selv",
+            cat: "Pasienten nekter behandling",
             law: "Psykisk helsevernloven",
             paragraph: "§3-3. Vedtak om tvungent psykisk helsevern",
             text: "På bakgrunn av opplysninger fra legeundersøkelsen etter § 3-1 og eventuell tvungen observasjon etter § 3-2, foretar den faglig ansvarlige en vurdering av om de følgende vilkårene for tvungent psykisk helsevern er oppfylt: \ " +
