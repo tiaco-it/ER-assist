@@ -93,7 +93,23 @@ Template.documentation.helpers({
     },
     'path': function() {
         return path;
-    }    
+    },    
+    'click #send': function(event, template) {
+        IonPopup.prompt({
+            title: 'Email',
+            template: 'Vennligst skriv inn email',
+            okText: 'Submit',
+            inputType: 'text',
+            inputPlaceholder: 'Din email',
+            onOk: function(event, response) {
+                Meteor.call('sendEmail',
+                response,
+                'kontakt@tiaco.it',
+                'Hello from Meteor!',
+                'This is a test of Email.send.');
+            }
+    });
+  }
 });
 
 Template.example.helpers({
@@ -152,28 +168,6 @@ Template.registerHelper('thisLaw', function() {
         return Laws.findOne({'paragraph': l});
     }
     return p;
-});
-
-Template.documentation.helpers({
-    'path': function() {
-        return path;
-    },
-    'click #send': function(event, template) {
-        IonPopup.prompt({
-            title: 'Email',
-            template: 'Vennligst skriv inn email',
-            okText: 'Submit',
-            inputType: 'text',
-            inputPlaceholder: 'Din email',
-            onOk: function(event, response) {
-                Meteor.call('sendEmail',
-                response,
-                'kontakt@tiaco.it',
-                'Hello from Meteor!',
-                'This is a test of Email.send.');
-            }
-    });
-  }
 });
 
 Template.tlaw.onCreated(function() {
