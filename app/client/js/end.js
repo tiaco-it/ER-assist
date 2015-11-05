@@ -16,6 +16,29 @@ Template.endLayout.events({
 }
 });
 
+Template.endLayout.helpers({
+    templateGestures: {
+        'swipeleft .endSwipe': function (event, templateInstance) {
+            if (Session.get('tab')===1){
+                Router.current().render('tlaw', {to: 'tabTemplate'});
+                Session.set('tab', 2);
+            } else if (Session.get('tab')===2){
+                Router.current().render('documentation', {to: 'tabTemplate'});
+                Session.set('tab', 3);
+            }
+        },
+        'swiperight .endSwipe': function (event, templateInstance) {
+            if (Session.get('tab')===2){
+                Router.current().render('example', {to: 'tabTemplate'});
+                Session.set('tab', 1);
+            } else if (Session.get('tab')===3){
+                Router.current().render('tlaw', {to: 'tabTemplate'});
+                Session.set('tab', 2);
+            }
+        }
+    }
+});
+
 Template.toptabs.helpers({
     'One': function() {
         if (Session.get('tab')===1){

@@ -7,9 +7,13 @@
             {{#ionView}}
                 {{>toptabs}}
                 {{#if Template.subscriptionsReady}}
-                    {{#ionContent class="has-tabs-top end"}}
-                        {{>yield "tabTemplate"}}
-                    {{/ionContent}}
+                    {{#HammerTouchArea gestureMap=templateGestures}}
+                        <div class="endSwipe">
+                            {{#ionContent class="has-tabs-top end"}}
+                                {{>yield "tabTemplate"}}
+                            {{/ionContent}}
+                        </div>
+                    {{/HammerTouchArea}}
                 {{else}}
                     {{> spinner}}
                 {{/if}}

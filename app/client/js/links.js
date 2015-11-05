@@ -11,6 +11,23 @@ Template.linksLayout.events({
 }
 });
 
+Template.linksLayout.helpers({
+    templateGestures: {
+        'swipeleft .linksSwipe': function (event, templateInstance) {
+            if (Session.get('ltab')===1){
+                Router.current().render('numbers', {to: 'tabTemplate'});
+                Session.set('ltab', 2);
+            }
+        },
+        'swiperight .linksSwipe': function (event, templateInstance) {
+            if (Session.get('ltab')===2){
+                Router.current().render('urls', {to: 'tabTemplate'});
+                Session.set('ltab', 1);
+            }
+        }
+    }
+});
+
 Template.ltabs.helpers({
     'One': function() {
         if (Session.get('ltab')===1){

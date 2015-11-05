@@ -3,9 +3,13 @@
     {{#ionView}}
         {{>ltabs}}
         {{#if Template.subscriptionsReady}}
-            {{#ionContent class="padding has-tabs-top"}}
-                {{>yield "tabTemplate"}}
-            {{/ionContent}}
+            {{#HammerTouchArea gestureMap=templateGestures}}
+                <div class="linksSwipe">
+                    {{#ionContent class="padding has-tabs-top"}}
+                        {{>yield "tabTemplate"}}
+                    {{/ionContent}}
+                </div>
+            {{/HammerTouchArea}}
         {{else}}
             {{> spinner}}
         {{/if}}
