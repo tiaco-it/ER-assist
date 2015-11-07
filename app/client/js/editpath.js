@@ -61,25 +61,49 @@ Template.chooseL.helpers({
 
 Template.chooseL.events({
     'click .lawChooser': function(event) {
-        Session.set('chosenLaw', event.currentTarget.id);
-        console.log(Session.get('chosenLaw'));
-        var from = Filters.findOne({ 'text': Session.get('text2')});
+        if (Session.get('firstFilterCreated')) {
+            var from = Filters.findOne({ 'text': Session.get('From')});
+        } else {
+            var from = Startcases.findOne({ 'text': Session.get('From')})
+        }
         var to = Laws.findOne({ 'paragraph': event.currentTarget.id })
-        var obj = {'from': from, 'mark': pathQueue[0], 'to': to};
+        if (pathQueue[0]) {
+            var obj = {'from': from, 'mark': pathQueue[0], 'to': to};
+        } else {
+            var obj = {'from': from, 'mark': "", 'to': to};
+        }
+        console.log('Link that got added')
+        console.log(obj);
         Meteor.call('addLink2', obj, function(error, result) {
             if (error) {
                 alert(error.reason)
             } else {
-                console.log('LinkAddSuccess');
+                console.log('LawLinkAddSuccess');
             }
         });
         pathQueue.shift();
         if (pathQueue.length < 1) {
             Router.go('pathAdded')
         } else {
-            console.log(pathQueue[0]);
-            console.log(pathQueue);
+            if (pathQueue[0] === 'NEI') {
+            } else if (pathQueue[0] === 'JA') {
+            Session.set('From', Session.get('To'));
+        }
+
+
             Router.current().render('blank', {to: 'forms'});
         }
     }
 });
+
+addPathCleanup = function() {
+    pathQueue = new ReactiveArray();
+    Session.set('firstFilterCreated', false);
+    Session.set('From', undefined);
+    Session.set('To', undefined);
+    console.log('cleanup called')
+}
+
+Template.success.onCreated( function() {
+    addPathCleanup();
+})

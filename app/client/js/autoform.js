@@ -21,10 +21,11 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertStartcaseForm: {
         onSubmit: function(insertDoc) {
-            Session.set('text2', insertDoc.text);
+            Session.set('From', insertDoc.text);
             Meteor.call('addStartcase', insertDoc, function(error, result) {
                 if (error) {
-                 alert(error.reason);
+                console.log(error.reason)
+                alert(error.reason);
                 }
             });
             this.done();
@@ -46,33 +47,36 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertFirstFilterForm: {
         onSubmit: function(insertDoc) {
-            Session.set('text1', Session.get('text2'));
-            Session.set('text2', insertDoc.text);
+            Session.set('To', insertDoc.text);
             Meteor.call('addFilter', insertDoc, function(error, result) {
-                if (error) alert(error.reason);
-                Session.set('FilterID', 'todo');
+                if (error) {
+                    console.log('failed first')
+                    alert(error.reason);
+                }   
             });
             this.done();
             return false;
         },
         onSuccess: function(formType, result) {
-            console.log(Session.get('text2'));
+            console.log(Session.get('To'));
         },
         beginSubmit: function() {
-            console.log('STARTING SUBMIT')
+            console.log('STARTING SUBMIT 1')
         },
         endSubmit: function() {
             console.log('DONE')
-            var from = Startcases.findOne({ 'text': Session.get('text1')});
-            var to = Filters.findOne({ 'text': Session.get('text2')});
+            var from = Startcases.findOne({ 'text': Session.get('From')});
+            var to = Filters.findOne({ 'text': Session.get('To')});
             var obj = {'from': from, 'mark': "", 'to': to};
             Meteor.call('addLink2', obj, function(error, result) {
                 if (error) {
-                    alert(error.reason)
+                    console.log(error.reason)
                 } else {
-                    console.log('LinkAddSuccess');
+                    console.log('FirstLinkAddSuccess');
+                    console.log(obj)
                     Router.current().render('itemToAdd', {to: 'next'});
-                    Session.set('first', true);
+                    Router.current().render('addQ', {to: 'forms'});
+                    Session.set('firstFilterCreated', true);
                     pathQueue.push('JA');
                     pathQueue.push('NEI');
                 }
@@ -84,37 +88,44 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertFilterForm: {
         onSubmit: function(insertDoc) {
-            Session.set('text1', Session.get('text2'));
-            Session.set('text2', insertDoc.text);
+            if (pathQueue[0] === 'NEI') {
+                Session.set('To', insertDoc.text);
+            } else if (pathQueue[0] === 'JA') {
+            Session.set('From', Session.get('To'));
+            Session.set('To', insertDoc.text);
+            }
+            console.log('got to method call')
             Meteor.call('addFilter', insertDoc, function(error, result) {
-                if (error) alert(error.reason);
-                Session.set('FilterID', 'todo');
+                if (error) {
+                    console.log('Failed second')
+                    console.log(error.reason);
+                }
             });
-            this.done;
+            console.log('finished method call')
+            this.done();
             return false;
         },
         onSuccess: function(formType, result) {
-            console.log(Session.get('text2'));
+            console.log(Session.get('To'));
         },
         beginSubmit: function() {
-            console.log('STARTING SUBMIT')
+            console.log('STARTING SUBMIT 2')
         },
         endSubmit: function() {
             console.log('DONE')
-            var from = Startcases.findOne({ 'text': Session.get('text1')});
-            if (from === undefined) {
-                from = Filters.findOne({ 'text': Session.get('text1')});
-            }
-            var to = Filters.findOne({ 'text': Session.get('text2')});
+            var from = Filters.findOne({ 'text': Session.get('From')});
+            var to = Filters.findOne({ 'text': Session.get('To')});
             var obj = {'from': from, 'mark': pathQueue[0], 'to': to};
             Meteor.call('addLink2', obj, function(error, result) {
                 if (error) {
+                    console.log('failed link')
                     alert(error.reason)
                 } else {
-                    console.log('LinkAddSuccess');
+                    console.log('NLinkAddSuccess');
+                    console.log(obj)
                     pathQueue.shift();
                     pathQueue.push('JA');
-                    pathQUeue.push('NEI');
+                    pathQueue.push('NEI');
                 }
             });
         }
@@ -124,8 +135,11 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertLawForm: {
         onSubmit: function(insertDoc) {
-            Session.set('text1', Session.get('text2'));
-            Session.set('text2', insertDoc.paragraph);
+            Session.set('From', Session.get('To'));
+            Session.set('To', insertDoc.paragraph);
+            console.log('FromTo')
+            console.log(Session.get('From'))
+            console.log(Session.get('To'))
             Meteor.call('addLaw', insertDoc, function(error, result) {
                 if (error) alert(error.reason);
             });
@@ -133,7 +147,7 @@ AutoForm.hooks({
             return false;
         },
         onSuccess: function(formType, result) {
-            console.log(Session.get('text2'));
+            console.log(Session.get('To'));
         },
         beginSubmit: function() {
             console.log('STARTING SUBMIT')

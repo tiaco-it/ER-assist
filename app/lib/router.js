@@ -76,6 +76,7 @@ Router.route('/end/:_id', function (){
 
 Router.route('/success', function () {
   this.layout('defaultLayout');
+  this.render('successHeader', {to: 'header'});
   this.render('success');
 }, {
   name: 'pathAdded'
@@ -106,6 +107,8 @@ Router.route('/add/path', function () {
   this.layout('pathLayout');
   this.render('addpathHeader', {to: 'header'});
   this.render('caseadd', {to: 'add'});
+  this.render('blank', {to: 'choices'});
+  this.render('blank', {to: 'forms'});
 }, {
   name: 'add.path'
 });

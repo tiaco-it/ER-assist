@@ -23,7 +23,7 @@
     {{/contentFor}}
 
     {{#contentFor "headerButtonLeft"}}
-        {{>ionNavBackButton text="Tilbake"}}
+        {{>ionNavBackButton path="home" text="Hjem"}}
     {{/contentFor}}
 </template>
 
@@ -98,8 +98,24 @@
 </template>
 
 <template name='blank'>
+  <p></p>
+</template>
+
+
+<template name="successHeader">
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Success</h1>
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton path="home" text="Hjem"}}
+    {{/contentFor}}
 </template>
 
 <template name='success'>
-  <h2>You added a path!</h2>
+  {{#ionView}}
+    {{#ionContent}}
+      <h2>You added a path!</h2>
+    {{/ionContent}}
+  {{/ionView}}
 </template>
