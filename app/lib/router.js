@@ -74,39 +74,11 @@ Router.route('/end/:_id', function (){
     name: 'end'
 });
 
-Router.route('/admin', function () {
+Router.route('/success', function () {
   this.layout('defaultLayout');
-  this.render('admin');
+  this.render('success');
 }, {
-  name: 'admin'
-});
-
-Router.route('/admin/cases', function () {
-  this.layout('defaultLayout');
-  this.render('admincases');
-}, {
-  name: 'admincases'
-});
-
-Router.route('/admin/filters', function () {
-  this.layout('defaultLayout');
-  this.render('adminfilters');
-}, {
-  name: 'adminfilters'
-});
-
-Router.route('/admin/links', function () {
-  this.layout('defaultLayout');
-  this.render('adminlinks');
-}, {
-  name: 'adminlinks'
-});
-
-Router.route('/admin/laws', function () {
-  this.layout('defaultLayout');
-  this.render('adminlaws');
-}, {
-  name: 'adminlaws'
+  name: 'pathAdded'
 });
 
 Router.route('/edit/case/:_id', function () {
@@ -128,6 +100,14 @@ Router.route('/add/law', function () {
   this.render('addlaw', {to: 'add'});
 }, {
   name: 'add.law'
+});
+
+Router.route('/add/path', function () {
+  this.layout('pathLayout');
+  this.render('addpathHeader', {to: 'header'});
+  this.render('caseadd', {to: 'add'});
+}, {
+  name: 'add.path'
 });
 
 Router.route('edit/url/:_id', function (){

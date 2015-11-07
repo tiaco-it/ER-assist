@@ -86,9 +86,12 @@ Template.documentation.helpers({
                 }
             });
         }
-        else {
-                return Laws.findOne({'paragraph': l});
+        if (jQuery.isEmptyObject(p)) {
+        console.log(Laws.findOne({ 'paragraph': l}))
+        return Laws.findOne({'paragraph': l});
         }
+        console.log('got p')
+        console.log(p)
         return p;
     },
     'path': function() {
@@ -125,9 +128,12 @@ Template.example.helpers({
                 }
             });
         }
-        else {
-                return Laws.findOne({'paragraph': l});
+        if (jQuery.isEmptyObject(p)) {
+        console.log(Laws.findOne({ 'paragraph': l}))
+        return Laws.findOne({'paragraph': l});
         }
+        console.log('got p')
+        console.log(p)
         return p;
     }  
 });
@@ -145,9 +151,12 @@ Template.tlaw.helpers({
                 }
             });
         }
-        else {
-                return Laws.findOne({'paragraph': l});
+        if (jQuery.isEmptyObject(p)) {
+        console.log(Laws.findOne({ 'paragraph': l}))
+        return Laws.findOne({'paragraph': l});
         }
+        console.log('got p')
+        console.log(p)
         return p;
     }  
 });

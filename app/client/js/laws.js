@@ -20,6 +20,10 @@ Template.laws.events({
     }
 })
 
+Template.laws.rendered = function () {
+    IonNavigation.skipTransitions = true;
+};
+
 Template.law.rendered = function () {
     IonNavigation.skipTransitions = true;
 };
