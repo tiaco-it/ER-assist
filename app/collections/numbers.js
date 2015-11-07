@@ -6,8 +6,8 @@ NumberSchema = new SimpleSchema({
     number: {
         type: Number
     },
-    type: {
-        type: String
+    internal: {
+        type: Boolean
     }
 });
 

@@ -11,9 +11,17 @@
                     {{#each categoryLaws this}}
                         {{#ionItem path="law" buttonRight=true id='law'}}
                             <h3>{{paragraph}}</h3>
+                            {{#if currentUser}}
+                                <a href="{{pathFor 'edit.law'}}" class="button button-clear pull-right">
+                                    {{> ionIcon icon="edit"}}
+                                </a>
+                            {{/if}}
                         {{/ionItem}}
                     {{/each}}
                 {{/each}}
+                    <a href="{{pathFor 'add.law'}}" class="button">
+                        {{> ionIcon icon="plus"}}
+                    </a>
             {{/ionList}}
         {{else}}
             {{> spinner}}

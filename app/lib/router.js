@@ -123,6 +123,13 @@ Router.route('/add/case', function () {
   name: 'add.case'
 });
 
+Router.route('/add/law', function () {
+  this.layout('editLayout');
+  this.render('addlaw', {to: 'add'});
+}, {
+  name: 'add.law'
+});
+
 Router.route('edit/url/:_id', function (){
     this.layout('editLayout')
     this.render('editurl', {to: 'edit'});
@@ -153,7 +160,6 @@ Router.route('/add/number', function () {
 
 Router.route('edit/law/:_id', function (){
     this.layout('editLayout')
-    this.render('addlaw', {to: 'add'});
     this.render('editlaw', {to: 'edit'});
   }, {
     name: 'edit.law'
@@ -169,7 +175,6 @@ Router.route('edit/filter/:_id', function (){
 
 Router.route('edit/info/:_id', function (){
     this.layout('editLayout')
-    this.render('addinfo', {to: 'add'})
     this.render('editinfo', {to: 'edit'});
   }, {
     name: 'edit.info'

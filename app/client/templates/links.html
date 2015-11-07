@@ -55,11 +55,16 @@
 <template name='urls'>
     {{#ionList}}
         {{#each urls}}
-            <a class="link item item-icon-left" href="#" onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
-                <i class="icon ion-link"></i>
-                <h2>{{title}}</h2>
-                <p>{{link}}</p>
-            </a>
+            <div class="link item item-icon-left">
+                <a onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
+                    <i class="icon ion-link"></i>
+                    <h2>{{title}}</h2>
+                    <p>{{link}}</p>
+                </a>
+                <a href="{{pathFor 'edit.url'}}" class="button pull-right">
+                    {{> ionIcon icon="edit"}}
+                </a>
+            </div>
         {{/each}}
     {{/ionList}}
     {{#if currentUser}}
@@ -77,6 +82,11 @@
                 <i class="icon ion-ios-telephone"></i>
                 <h2>{{title}}</h2>
                 <p>{{number}}</p>
+                {{#if currentUser}}
+                <a href="{{pathFor 'edit.number'}}" class="button">
+                    {{> ionIcon icon="edit"}}
+                </a>
+                {{/if}}
             </a>
         {{/each}}
         <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Interne nummer</div>
@@ -85,6 +95,9 @@
                 <i class="icon ion-ios-telephone"></i>
                 <h2>{{title}}</h2>
                 <p>{{number}}</p>
+                <a href="{{pathFor 'edit.number'}}" class="button">
+                    {{> ionIcon icon="edit"}}
+                </a>
             </a>
         {{/each}}
     {{/ionList}}

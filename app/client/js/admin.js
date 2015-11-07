@@ -35,6 +35,31 @@ Template.editcase.helpers({
     }
 });
 
+Template.editnumber.helpers({ 
+    'selectedDoc': function() {
+        console.log(Numbers.findOne(Router.current().params._id));
+        return Numbers.findOne(Router.current().params._id);
+    }
+});
+
+Template.editurl.helpers({ 
+    'selectedDoc': function() {
+        return Urls.findOne(Router.current().params._id);
+    }
+});
+
+Template.editlaw.helpers({ 
+    'selectedDoc': function() {
+        return Laws.findOne(Router.current().params._id);
+    }
+});
+
+Template.editinfo.helpers({ 
+    'selectedDoc': function() {
+        return Info.findOne(Router.current().params._id);
+    }
+});
+
 Template.admincases.helpers({
     'cases': function() {
         var cases = Startcases.find({});
