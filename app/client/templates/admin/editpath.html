@@ -59,11 +59,11 @@
 </template>
 
 <template name="addFirstQ">
-  {{> quickForm schema="FilterSchema" collection="Filters" id="insertFirstFilterForm" type="normal" omitFields="createdAt, lastUpdated"}}
+  {{> quickForm schema="FilterSchema" collection="Filters" id="insertFirstFilterForm" omitFields="number_of_outcomes, createdAt, lastUpdated"}}
 </template>
 
 <template name="addQ">
-  {{> quickForm schema="FilterSchema" collection="Filters" id="insertFilterForm" type="normal" omitFields="createdAt, lastUpdated"}}
+  {{> quickForm schema="FilterSchema" collection="Filters" id="insertFilterForm" omitFields="number_of_outcomes, createdAt, lastUpdated"}}
 </template>
 
 <template name="addpath">
