@@ -1,5 +1,7 @@
 pathQueue = new ReactiveArray();
 addedItems = {"scases":[], "filters":[], "links":[], "laws":[]};
+markCount = 0;
+marks = [];
 
 Template.itemToAdd.helpers({
     'next': function() {
@@ -17,7 +19,6 @@ Template.caseadd.helpers({
 
 Template.pathButtons.events({
     'click .connectN': function(event, template) {
-        Session.set('StartedN', true);
         Router.current().render('addN', {to: 'forms'});
     },
     'click .connectQ': function(event, template) {
@@ -31,6 +32,13 @@ Template.pathButtons.events({
         Router.current().render('chooseL', {to: 'forms'});
     }
 })
+
+Template.pathButtons.helpers({
+    'showQ': function() {
+        console.log(Session.get('showQ'));
+        return Session.get('showQ');
+    }
+});
 
 Template.chooseL.helpers({
     // returns all laws, sorted by law-category
@@ -91,16 +99,13 @@ Template.chooseL.events({
         if (pathQueue.length < 1) {
             Router.go('pathAdded')
         } else {
-            if (pathQueue[0] === 'NEI') {
-            } else if (pathQueue[0] === 'JA') {
-            Session.set('From', Session.get('To'));
+            if (pathQueue[0] === Session.get('TopElement')) {
+                Session.set('From', Session.get('To'));
+            }
         }
-
-
             Router.current().render('blank', {to: 'forms'});
         }
-    }
-});
+    });
 
 addPathCleanup = function() {
     pathQueue = new ReactiveArray();
@@ -108,6 +113,9 @@ addPathCleanup = function() {
     Session.set('From', undefined);
     Session.set('To', undefined);
     console.log('cleanup called')
+    Session.set('showQ', true);
+    markCount = 0;
+    marks = [];
 }
 
 dbCleanup = function() {
@@ -197,5 +205,5 @@ Template.success.onCreated( function() {
 
 Template.pathLayout.onCreated( function() {
     Session.set('clean', true);
-    Session.set('cancelledPath', true);
+    Session.set('showQ', true);
 })

@@ -33,7 +33,10 @@
 </template>
 
 <template name="pathButtons">
-  <button class="button connectQ">Connect to YES/NO question</button>
+  <button class="button connectN">Connect to question with multiple options</button>
+  {{#if showQ}}
+    <button class="button connectQ">Connect to YES/NO question</button>
+  {{/if}}
   <button class="button connectL">Connect to law</button>
 </template>
 
@@ -63,7 +66,15 @@
 </template>
 
 <template name="addQ">
-  {{> quickForm schema="FilterSchema" collection="Filters" id="insertFilterForm" doc=default type="normal" omitFields=createdAt, lastUpdated"}}
+  {{> quickForm schema="FilterSchema" collection="Filters" id="insertFilterForm" doc=default type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="addN">
+  {{> quickForm schema="FilterSchema" collection="Filters" id="insertFilterNForm" type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="addMarks">
+  {{> quickForm schema="MarkSchema" id="insertMarkForm" type="normal" omitFields="createdAt, lastUpdated"}}
 </template>
 
 <template name="addpath">
