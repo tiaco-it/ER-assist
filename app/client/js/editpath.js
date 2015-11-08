@@ -1,4 +1,5 @@
 pathQueue = new ReactiveArray();
+addedItems = {"scases":[], "filters":[], "links":[], "laws":[]};
 
 Template.itemToAdd.helpers({
     'next': function() {
@@ -61,25 +62,122 @@ Template.chooseL.helpers({
 
 Template.chooseL.events({
     'click .lawChooser': function(event) {
-        Session.set('chosenLaw', event.currentTarget.id);
-        console.log(Session.get('chosenLaw'));
-        var from = Filters.findOne({ 'text': Session.get('text2')});
+        if (Session.get('firstFilterCreated')) {
+            var from = Filters.findOne({ 'text': Session.get('From')});
+        } else {
+            var from = Startcases.findOne({ 'text': Session.get('From')})
+        }
         var to = Laws.findOne({ 'paragraph': event.currentTarget.id })
-        var obj = {'from': from, 'mark': pathQueue[0], 'to': to};
+        if (pathQueue[0]) {
+            var obj = {'from': from, 'mark': pathQueue[0], 'to': to};
+        } else {
+            var obj = {'from': from, 'mark': "", 'to': to};
+        }
+        console.log('Link that got added')
+        console.log(obj);
         Meteor.call('addLink2', obj, function(error, result) {
             if (error) {
                 alert(error.reason)
             } else {
-                console.log('LinkAddSuccess');
+                console.log('LawLinkAddSuccess');
+                addedItems["laws"].push(obj);
             }
         });
         pathQueue.shift();
         if (pathQueue.length < 1) {
             Router.go('pathAdded')
         } else {
-            console.log(pathQueue[0]);
-            console.log(pathQueue);
+            if (pathQueue[0] === 'NEI') {
+            } else if (pathQueue[0] === 'JA') {
+            Session.set('From', Session.get('To'));
+        }
+
+
             Router.current().render('blank', {to: 'forms'});
         }
     }
 });
+
+addPathCleanup = function() {
+    pathQueue = new ReactiveArray();
+    Session.set('firstFilterCreated', false);
+    Session.set('From', undefined);
+    Session.set('To', undefined);
+    console.log('cleanup called')
+}
+
+dbCleanup = function() {
+    while (addedItems["scases"].length > 0) {
+        var obj = addedItems["scases"].pop();
+        var id = Startcases.findOne({ 'text': obj.text })._id;
+        console.log('ID GET');
+        console.log(id);
+        Meteor.call('removeStartcase', id, function(error, result) {
+            if (error) {
+                console.log('removeScaseError')
+                console.log(error)
+            } else {
+                console.log('scase removal success');
+            }
+        });
+
+    }
+    while (addedItems["links"].length > 0) {
+        var obj = addedItems["links"].pop();
+        var id = Links.findOne({ $and: [ { 'to': obj.to }, {'mark': obj.mark}, { 'from': obj.from } ] })._id;
+        console.log('ID GET');
+        console.log(id);
+        Meteor.call('removeLink', id, function(error, result) {
+            if (error) {
+                console.log('removeLinkError')
+                console.log(error)
+            } else {
+                console.log('Link removal success');
+            }
+        });
+
+    }
+    while (addedItems["filters"].length > 0) {
+        var obj = addedItems["filters"].pop();
+        var id = Filters.findOne({ $and: [ { 'text': obj.text }, {'number_of_outcomes': obj.number_of_outcomes} ] })._id;
+        console.log('ID GET');
+        console.log(id);
+        Meteor.call('removeFilter', id, function(error, result) {
+            if (error) {
+                console.log('removeFilterError')
+                console.log(error)
+            } else {
+                console.log('Filter removal success');
+            }
+        });
+
+    }
+    while (addedItems["laws"].length > 0) {
+        var obj = addedItems["laws"].pop();
+        var id = Filters.findOne({ $and: [ { 'text': obj.paragraph }, {'category': obj.category} ] })._id;
+        console.log('ID GET');
+        console.log(id);
+        Meteor.call('removeFilter', id, function(error, result) {
+            if (error) {
+                console.log('removeFilterError')
+                console.log(error)
+            } else {
+                console.log('Filter removal success');
+            }
+        });
+
+    }
+    console.log('dbCleanup called');
+}
+
+
+
+Template.success.onCreated( function() {
+    addPathCleanup();
+    Session.set('cancelledPath', false);
+})
+
+Template.pathLayout.onCreated( function() {
+    Session.set('clean', true);
+    Session.set('cancelledPath', true);
+})

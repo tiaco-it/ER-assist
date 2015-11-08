@@ -81,6 +81,12 @@ twoOutcome = function(cons){
 Template.homeContent.onCreated( function () {
     Session.set('nextAdded', false);
     path = [];
+    if (Session.get('cleanPath')) {
+        addPathCleanup();
+    }
+    if (Session.get('cancelledPath')) {
+        dbCleanup();
+    }
 });
 
 Template.homeContent.rendered = function () {
@@ -117,6 +123,8 @@ Template.homeContent.helpers({
                 {'from.text': scase.text}
             ]
         });
+        console.log(scase.text);
+        console.log(li);
         return li.to
     },
     'noLink': function(scase) {
@@ -127,6 +135,8 @@ Template.homeContent.helpers({
                 {'from.text': scase.text}
             ]
         });
+        console.log(scase.text);
+        console.log(li)
         return li.to
     },
     'allLinks': function(fromItem) {
@@ -202,7 +212,6 @@ Template.homeContent.events({
             buttons.push(e.currentTarget.id);
         }
         else if ($(e.currentTarget).attr("level") === "inter") {
-            $(e.currentTarget).fadeOut();
             var item = {};
             item['question'] = Session.get('question');
             item['answer'] = $(e.currentTarget).text();
