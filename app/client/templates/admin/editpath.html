@@ -1,0 +1,105 @@
+<template name='pathLayout'>
+    {{#ionBody}}
+        {{> ionNavBar class="bar-positive"}}
+        <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->
+        {{#ionNavView}}
+          {{> yield 'header'}}
+          {{#ionView}}
+            {{#ionContent}}
+              {{> yield 'add'}}
+              {{> yield 'next'}}
+              {{> yield 'choices'}}
+              {{> yield 'forms'}}
+             {{/ionContent}}
+          {{/ionView}}
+        {{/ionNavView}}
+    {{/ionBody}}
+</template>
+
+
+<template name="addpathHeader">
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Legge til en vei</h1>
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton text="Tilbake"}}
+    {{/contentFor}}
+</template>
+
+<template name="caseadd">
+  Add the starting point:
+  {{> quickForm schema="StartcaseSchema" collection="Startcases" id="insertStartcaseForm" type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="pathButtons">
+  <button class="button connectQ">Connect to YES/NO question</button>
+  <button class="button connectL">Connect to law</button>
+</template>
+
+<template name="chooseL">
+            {{#ionList}}
+                {{#each category}}
+                    <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">{{this}}</div>
+                    {{#each categoryLaws this}}
+                        {{#ionItem buttonRight=true id='chooseL'}}
+                            <h3>{{paragraph}}</h3>
+                            <button class="button lawChooser" id="{{paragraph}}">Choose</button>
+                        {{/ionItem}}
+                    {{/each}}
+                {{/each}}
+                    <a href="{{pathFor 'add.law'}}" class="button">
+                        {{> ionIcon icon="plus"}}
+                    </a>
+            {{/ionList}}
+</template>
+
+<template name="itemToAdd">
+  <h2>Next item is: {{next}}</h2>
+</template>
+
+<template name="addFirstQ">
+  {{> quickForm schema="FilterSchema" collection="Filters" id="insertFirstFilterForm" type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="addQ">
+  {{> quickForm schema="FilterSchema" collection="Filters" id="insertFilterForm" type="normal" omitFields="createdAt, lastUpdated"}}
+</template>
+
+<template name="addpath">
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Legge til en vei</h1>
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton text="Tilbake"}}
+    {{/contentFor}}
+
+    {{#ionView}}
+        {{#ionContent}}
+            <p>Startcases are the initial categories of patients, the root node of the tree of questions.</p>
+          
+            {{> quickForm schema="StartcaseSchema" collection="Startcases" id="insertStartcaseForm" type="normal" omitFields="createdAt, lastUpdated"}}
+
+            <a href = "{{pathFor 'adminfilters'}}" class="button">
+                <p>Filters</p>
+            </a>
+            <p>Filters are questions that depending on the answers given lead to a law or subsequent question, nodes in the tree.</p>
+            <a href = "{{pathFor 'adminlinks'}}" class="button">
+                <p>Links</p>
+            </a>
+            <p>Links decide where startcases and filters lead.</p>
+            <a href = "{{pathFor 'adminlaws'}}" class="button">
+                <p>Laws</p>
+            </a>
+            <p>Laws are the end points or leaf nodes to any tree of questions, reached when a patient has been categorized.</p>
+        {{/ionContent}}
+    {{/ionView}}
+</template>
+
+<template name='blank'>
+</template>
+
+<template name='success'>
+  <h2>You added a path!</h2>
+</template>

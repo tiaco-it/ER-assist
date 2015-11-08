@@ -64,6 +64,9 @@
     {{#with about}}
         <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
+        <a href="{{pathFor 'edit.info'}}" class="button">
+            {{> ionIcon icon="edit"}}
+        </a>
     {{/with}}
 </template>
 
@@ -71,6 +74,11 @@
     {{#with howto}}
         <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
+        {{#if currentUser}}
+        <a href="{{pathFor 'edit.info'}}" class="button">
+            {{> ionIcon icon="edit"}}
+        </a>
+        {{/if}}
     {{/with}}
 </template>
 
@@ -78,5 +86,8 @@
     {{#with conditions}}
         <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
+        <a href="{{pathFor 'edit.info'}}" class="button">
+            {{> ionIcon icon="edit"}}
+        </a>
     {{/with}}
 </template>

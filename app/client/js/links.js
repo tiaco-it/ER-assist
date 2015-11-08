@@ -8,7 +8,7 @@ Template.linksLayout.events({
     event.preventDefault();
     Router.current().render('numbers', {to: 'tabTemplate'});
     Session.set('ltab', 2);
-}
+    }
 });
 
 Template.linksLayout.helpers({
@@ -58,11 +58,11 @@ Template.urls.helpers({
 
 Template.numbers.helpers({
     'numbersEkst': function() {
-        var numbers = Numbers.find({ 'type': "Ekstern" });
+        var numbers = Numbers.find({ 'internal': false });
         return numbers && numbers
     },
     'numbersInt': function() {
-        var numbers = Numbers.find({ 'type': "Intern" })
+        var numbers = Numbers.find({ 'internal': true })
         return numbers && numbers
     }
 });

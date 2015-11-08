@@ -373,31 +373,31 @@ if (Numbers.find().count() === 0 || UPDATE == true) {
         {
             title: "Østmarka ekspedisjon",
             number: 72823000,
-            type: "Ekstern"
+            internal: false
         },
         {
             title: "Rus akutt",
             number: 73862929,
-            type: "Ekstern"
+            internal: false
         },
         {
             title: "Sikkerhet/vekter",
             number: 67500,
-            type: "Intern"
+            internal: true
         },
         {
             title: "AMK",
             number: 113,
-            type: "Ekstern"
+            internal: false
         },
         {
             title: "Politi",
             number: 112,
-            type: "Ekstern"
+            internal: false
         }
     ];
     _.each(numbers, function (list) {
-        Numbers.insert({title: list.title, number: list.number, type: list.type})
+        Numbers.insert({title: list.title, number: list.number, internal: list.internal})
     });
 }
 

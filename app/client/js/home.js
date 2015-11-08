@@ -83,6 +83,10 @@ Template.homeContent.onCreated( function () {
     path = [];
 });
 
+Template.homeContent.rendered = function () {
+    IonNavigation.skipTransitions = true;
+};
+
 Template.homeContent.helpers({
     'startcases': function() {
         var cases = Startcases.find({});

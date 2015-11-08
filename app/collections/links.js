@@ -24,6 +24,10 @@ Meteor.methods({
         var obj = {from: doc.from, mark: doc.mark, to: doc.to};
         return Links.insert(obj);
     },
+    addLink2: function(doc) {
+        var obj = {from: doc.from, mark: doc.mark, to: doc.to};
+        return Links.insert(obj);
+    },
     editLink: function(obj) {
         check(obj._id, String);
         check(obj.updateDoc.$set, LinkSchema);
