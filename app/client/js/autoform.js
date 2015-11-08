@@ -49,6 +49,8 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertFirstFilterForm: {
         onSubmit: function(insertDoc) {
+            console.log('onSubmit');
+            insertDoc["number_of_outcomes"] = 2;
             insert = insertDoc;
             Session.set('To', insertDoc.text);
             Meteor.call('addFilter', insertDoc, function(error, result) {
@@ -93,6 +95,7 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertFilterForm: {
         onSubmit: function(insertDoc) {
+            insertDoc["number_of_outcomes"] = 2;
             insert = insertDoc;
             if (pathQueue[0] === 'NEI') {
                 Session.set('To', insertDoc.text);
