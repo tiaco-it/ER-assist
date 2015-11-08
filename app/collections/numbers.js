@@ -21,7 +21,7 @@ if (Meteor.isCordova) Ground.Collection(Numbers);
 Meteor.methods({
     addNumber: function(doc) {
         check(doc, NumberSchema);
-        var obj = {titke: doc.title, number: doc.number};
+        var obj = {title: doc.title, number: doc.number, type: doc.type};
         return Numbers.insert(obj);
     },
     editNumber: function(obj) {
