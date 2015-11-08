@@ -174,7 +174,21 @@ dbCleanup = function() {
     console.log('dbCleanup called');
 }
 
+Template.addQ.helpers({
+    'default': function() {
+        var obj = {}
+        obj["number_of_outcomes"] = 2;
+        return obj;
+    }
+});
 
+Template.addFirstQ.helpers({
+    'default': function() {
+        var obj = {}
+        obj["number_of_outcomes"] = 2;
+        return obj;
+    }
+});
 
 Template.success.onCreated( function() {
     addPathCleanup();
