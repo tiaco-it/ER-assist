@@ -50,11 +50,7 @@ AutoForm.hooks({
     insertFirstFilterForm: {
         onSubmit: function(insertDoc) {
             console.log('onSubmit');
-<<<<<<< HEAD
-            insertDoc.number_of_outcomes = 2;
-=======
             insertDoc["number_of_outcomes"] = 2;
->>>>>>> origin/admin
             insert = insertDoc;
             console.log('Altered doc');
             console.log(insertDoc);
@@ -101,11 +97,7 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertFilterForm: {
         onSubmit: function(insertDoc) {
-<<<<<<< HEAD
-            insertDoc.number_of_outcomes = 2;
-=======
             insertDoc["number_of_outcomes"] = 2;
->>>>>>> origin/admin
             insert = insertDoc;
             console.log('Altered doc');
             console.log(insertDoc);
