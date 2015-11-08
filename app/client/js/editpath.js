@@ -1,4 +1,5 @@
 pathQueue = new ReactiveArray();
+addedItems = {"scases":[], "filters":[], "links":[], "laws":[]};
 
 Template.itemToAdd.helpers({
     'next': function() {
@@ -79,6 +80,7 @@ Template.chooseL.events({
                 alert(error.reason)
             } else {
                 console.log('LawLinkAddSuccess');
+                addedItems["laws"].push(obj);
             }
         });
         pathQueue.shift();
@@ -104,6 +106,78 @@ addPathCleanup = function() {
     console.log('cleanup called')
 }
 
+dbCleanup = function() {
+    while (addedItems["scases"].length > 0) {
+        var obj = addedItems["scases"].pop();
+        var id = Startcases.findOne({ 'text': obj.text })._id;
+        console.log('ID GET');
+        console.log(id);
+        Meteor.call('removeStartcase', id, function(error, result) {
+            if (error) {
+                console.log('removeScaseError')
+                console.log(error)
+            } else {
+                console.log('scase removal success');
+            }
+        });
+
+    }
+    while (addedItems["links"].length > 0) {
+        var obj = addedItems["links"].pop();
+        var id = Links.findOne({ $and: [ { 'to': obj.to }, {'mark': obj.mark}, { 'from': obj.from } ] })._id;
+        console.log('ID GET');
+        console.log(id);
+        Meteor.call('removeLink', id, function(error, result) {
+            if (error) {
+                console.log('removeLinkError')
+                console.log(error)
+            } else {
+                console.log('Link removal success');
+            }
+        });
+
+    }
+    while (addedItems["filters"].length > 0) {
+        var obj = addedItems["filters"].pop();
+        var id = Filters.findOne({ $and: [ { 'text': obj.text }, {'number_of_outcomes': obj.number_of_outcomes} ] })._id;
+        console.log('ID GET');
+        console.log(id);
+        Meteor.call('removeFilter', id, function(error, result) {
+            if (error) {
+                console.log('removeFilterError')
+                console.log(error)
+            } else {
+                console.log('Filter removal success');
+            }
+        });
+
+    }
+    while (addedItems["laws"].length > 0) {
+        var obj = addedItems["laws"].pop();
+        var id = Filters.findOne({ $and: [ { 'text': obj.paragraph }, {'category': obj.category} ] })._id;
+        console.log('ID GET');
+        console.log(id);
+        Meteor.call('removeFilter', id, function(error, result) {
+            if (error) {
+                console.log('removeFilterError')
+                console.log(error)
+            } else {
+                console.log('Filter removal success');
+            }
+        });
+
+    }
+    console.log('dbCleanup called');
+}
+
+
+
 Template.success.onCreated( function() {
     addPathCleanup();
+    Session.set('cancelledPath', false);
+})
+
+Template.pathLayout.onCreated( function() {
+    Session.set('clean', true);
+    Session.set('cancelledPath', true);
 })

@@ -81,11 +81,11 @@ twoOutcome = function(cons){
 Template.homeContent.onCreated( function () {
     Session.set('nextAdded', false);
     path = [];
-    Session.set('text1', undefined);
-    Session.set('text2', undefined);
-    Session.set('first', false);
-    while (pathQueue.length > 0) {
-        pathQueue.pop();
+    if (Session.get('cleanPath')) {
+        addPathCleanup();
+    }
+    if (Session.get('cancelledPath')) {
+        dbCleanup();
     }
 });
 

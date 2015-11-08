@@ -21,6 +21,7 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertStartcaseForm: {
         onSubmit: function(insertDoc) {
+            insert = insertDoc;
             Session.set('From', insertDoc.text);
             Meteor.call('addStartcase', insertDoc, function(error, result) {
                 if (error) {
@@ -38,6 +39,7 @@ AutoForm.hooks({
             console.log('STARTING SUBMIT')
         },
         endSubmit: function() {
+            addedItems["scases"].push(insert);
             Router.current().render('pathButtons', {to: 'choices'});
             console.log('DONE')
         }
@@ -47,6 +49,7 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertFirstFilterForm: {
         onSubmit: function(insertDoc) {
+            insert = insertDoc;
             Session.set('To', insertDoc.text);
             Meteor.call('addFilter', insertDoc, function(error, result) {
                 if (error) {
@@ -64,6 +67,7 @@ AutoForm.hooks({
             console.log('STARTING SUBMIT 1')
         },
         endSubmit: function() {
+            addedItems["filters"].push(insert);
             console.log('DONE')
             var from = Startcases.findOne({ 'text': Session.get('From')});
             var to = Filters.findOne({ 'text': Session.get('To')});
@@ -73,6 +77,7 @@ AutoForm.hooks({
                     console.log(error.reason)
                 } else {
                     console.log('FirstLinkAddSuccess');
+                    addedItems["links"].push(obj);
                     console.log(obj)
                     Router.current().render('itemToAdd', {to: 'next'});
                     Router.current().render('addQ', {to: 'forms'});
@@ -88,6 +93,7 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertFilterForm: {
         onSubmit: function(insertDoc) {
+            insert = insertDoc;
             if (pathQueue[0] === 'NEI') {
                 Session.set('To', insertDoc.text);
             } else if (pathQueue[0] === 'JA') {
@@ -112,6 +118,7 @@ AutoForm.hooks({
             console.log('STARTING SUBMIT 2')
         },
         endSubmit: function() {
+            addedItems["filters"].push(insert);
             console.log('DONE')
             var from = Filters.findOne({ 'text': Session.get('From')});
             var to = Filters.findOne({ 'text': Session.get('To')});
@@ -122,6 +129,7 @@ AutoForm.hooks({
                     alert(error.reason)
                 } else {
                     console.log('NLinkAddSuccess');
+                    addedItems["links"].push(obj);
                     console.log(obj)
                     pathQueue.shift();
                     pathQueue.push('JA');
@@ -135,6 +143,7 @@ AutoForm.hooks({
 AutoForm.hooks({
     insertLawForm: {
         onSubmit: function(insertDoc) {
+            insert = insertDoc;
             Session.set('From', Session.get('To'));
             Session.set('To', insertDoc.paragraph);
             console.log('FromTo')
@@ -153,6 +162,7 @@ AutoForm.hooks({
             console.log('STARTING SUBMIT')
         },
         endSubmit: function() {
+            addedItems["laws"].push(insert)
             console.log('DONE')
         }
     }
