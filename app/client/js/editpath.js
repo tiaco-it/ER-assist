@@ -16,6 +16,10 @@ Template.caseadd.helpers({
 });
 
 Template.pathButtons.events({
+    'click .connectN': function(event, template) {
+        Session.set('StartedN', true);
+        Router.current().render('addN', {to: 'forms'});
+    },
     'click .connectQ': function(event, template) {
         if (Session.get('first')){
         Router.current().render('addQ', {to: 'forms'});
