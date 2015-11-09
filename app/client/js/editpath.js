@@ -81,9 +81,6 @@ Template.chooseL.helpers({
 
 Template.chooseL.events({
     'click .lawChooser': function(event) {
-        console.log('this is the top element and next in queue');
-        console.log(topElement[0])
-        console.log(pathQueue[0])
         if (pathQueue[0] === topElement[0]) {
             if (nextFrom.length > 0) {
                     Session.set('From', nextFrom.shift().text);
@@ -105,7 +102,7 @@ Template.chooseL.events({
         if (insertLink(from, mark, to)) {
             console.log('LawLinkAddSuccess');
         } else {
-            alert('failed to link law, try again');
+            alert('failed to link law');
         }
         pathQueue.shift();
         if (pathQueue.length < 1) {
@@ -210,7 +207,7 @@ Template.addFirstQ.helpers({
     }
 });
 
-Template.success.onCreated( function() {
+Template.success.onRendered( function() {
     //if the path is succesfully added, do not remove db items added
     Session.set('cleanDB', false);
 })

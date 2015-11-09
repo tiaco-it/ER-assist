@@ -8,7 +8,7 @@ AccountsTemplates.configure({
         navSignOut: "signOut",
         optionalField: "optional",
         pwdLink_pre: "",
-        pwdLink_link: "forgotPassword",
+        pwdLink_link: "Glemt passord?",
         pwdLink_suff: "",
         resendVerificationEmailLink_pre: "Verification email lost?",
         resendVerificationEmailLink_link: "Send again",
@@ -34,12 +34,10 @@ AccountsTemplates.configure({
         termsAnd: "and",
         termsTerms: "terms",
         button: {
-          changePwd: "Password Text",
-          enrollAccount: "Enroll Text",
-          forgotPwd: "Forgot Pwd Text",
+          changePwd: "Endre passord",
+          forgotPwd: "Glemt passord?",
           resetPwd: "Reset Pwd Text",
           signIn: "Logg inn",
-          signUp: "Sign Up Text",
         },
         title: {
             changePwd: "Password Title",
@@ -59,10 +57,6 @@ var mySubmitFunc = function(error, state){
       // Successfully logged in
       // ...
     }
-    if (state === "signUp") {
-      // Successfully registered
-      // ...
-    }
   }
 };
 
@@ -73,15 +67,15 @@ AccountsTemplates.configure({
 AccountsTemplates.configure({    // Behaviour
     confirmPassword: true,
     enablePasswordChange: true,
-    forbidClientAccountCreation: false,
+    forbidClientAccountCreation: true,
     overrideLoginErrors: true,
     sendVerificationEmail: false,
-    lowercaseUsername: false,
+    lowercaseUsername: true,
 
     // Appearance
     showAddRemoveServices: false,
     // Email field required for this to work
-    showForgotPasswordLink: false,
+    showForgotPasswordLink: true,
     showLabels: true,
     showPlaceholders: true,
     showResendVerificationEmailLink: false,
@@ -94,49 +88,46 @@ AccountsTemplates.configure({    // Behaviour
     positiveFeedback: true,
     showValidating: true,
 
-    // Privacy Policy and Terms of Use
-    /*privacyUrl: 'privacy',
-    termsUrl: 'terms-of-use',*/
-
     // Redirects
     homeRoutePath: '/',
     redirectTimeout: 4000,
 
     // Hooks
-    /*onLogoutHook: myLogoutFunc,
+    //onLogoutHook: myLogoutFunc,
     onSubmitHook: mySubmitFunc,
 
     // Texts
     texts: {
-      button: {
-          signUp: "Register Now!"
-      },
-      socialSignUp: "Register",
-      socialIcons: {
-          "meteor-developer": "fa fa-rocket"
-      },
       title: {
-          forgotPwd: "Recover Your Password"
-      },
-    },*/ 
+          forgotPwd: "Glemt passord?"
+      }
+    }
 });
-var pwd = AccountsTemplates.removeField('password');
+/*var pwd =*/ AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
 AccountsTemplates.addFields([
   {
       _id: "username",
       type: "text",
-      displayName: "username",
+      displayName: "brukernavn",
+      placeholder: "brukernavn",
       required: true,
       minLength: 5,
   },
-  pwd
+  //pwd
+  {
+    _id: 'password',
+    type: 'password',
+    displayName: "passord",
+    placeholder: 'passord',
+    required: true,
+  }
 ]);
 
 AccountsTemplates.configureRoute('changePwd');
-//AccountsTemplates.configureRoute('enrollAccount');
-//AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
+AccountsTemplates.configureRoute('forgotPwd');
+//AccountsTemplates.configureRoute('enrollAccount');
 //AccountsTemplates.configureRoute('signIn');
-AccountsTemplates.configureRoute('signUp');
+//AccountsTemplates.configureRoute('signUp');
 //AccountsTemplates.configureRoute('verifyEmail');

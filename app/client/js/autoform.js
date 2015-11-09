@@ -111,7 +111,7 @@ AutoForm.hooks({
                     pathQueue.push('NEI');
                     topElement.push('JA');
             } else {
-                alert('link connection failed, try again');
+                alert('link connection failed');
             }
         }
     }
@@ -169,7 +169,7 @@ AutoForm.hooks({
                 pathQueue.push('NEI');
                 topElement.push('JA');
             } else {
-                alert('link connection failed, try again');
+                alert('link connection failed');
             }
         }
     }
@@ -229,6 +229,7 @@ AutoForm.hooks({
                     Session.set('firstFilterCreated', true);
                     console.log('NLinkAddSuccess');
                     pathQueue.shift();
+                    Router.current().render('answerOptions', {to: 'next'});
                     Router.current().render('blank', {to: 'choices'});
                     Router.current().render('addMarks', {to: 'forms' });
             } else {
@@ -283,11 +284,12 @@ AutoForm.hooks({
         },
         endSubmit: function() {
             markCount-=1;
-            if (markCount === 0) {
+            if (markCount < 1) {
                 topElement.push(marks[0]);
                 while (marks.length > 0) {
                     pathQueue.push(marks.shift());
                 }
+                Router.current().render('itemToAdd', {to: 'next'});
                 Router.current().render('pathButtons', {to: 'choices'});
                 Router.current().render('blank', {to: 'forms'});
             } else {
