@@ -2,10 +2,17 @@ pathQueue = new ReactiveArray();
 addedItems = {"scases":[], "filters":[], "links":[], "laws":[]};
 markCount = 0;
 marks = [];
+topElement = [];
+nextFrom = [];
 
 Template.itemToAdd.helpers({
     'next': function() {
         var b = pathQueue.list();
+        if (!(b[0] === 'JA') && !(b[0] === 'NEI')) {
+            Session.set('showQ', false);
+        } else {
+            Session.set('showQ', true);
+        }
         return b[0];
     }
 })
@@ -22,7 +29,7 @@ Template.pathButtons.events({
         Router.current().render('addN', {to: 'forms'});
     },
     'click .connectQ': function(event, template) {
-        if (Session.get('first')){
+        if (Session.get('firstFilterCreated')){
         Router.current().render('addQ', {to: 'forms'});
         } else {
             Router.current().render('addFirstQ', {to: 'forms'});
@@ -74,10 +81,20 @@ Template.chooseL.helpers({
 
 Template.chooseL.events({
     'click .lawChooser': function(event) {
-        if (Session.get('firstFilterCreated')) {
-            var from = Filters.findOne({ 'text': Session.get('From')});
-        } else {
-            var from = Startcases.findOne({ 'text': Session.get('From')})
+        console.log('this is the top element and next in queue');
+        console.log(topElement[0])
+        console.log(pathQueue[0])
+        if (pathQueue[0] === topElement[0]) {
+            if (nextFrom.length > 0) {
+                    Session.set('From', nextFrom.shift().text);
+            } else {
+                Session.set('From', Session.get('To'));
+            }
+            topElement.shift();
+        }
+        var from = Filters.findOne({ 'text': Session.get('From')});
+        if (from === undefined) {
+            var from = Startcases.findOne({ 'text': Session.get('From')})     
         }
         var to = Laws.findOne({ 'paragraph': event.currentTarget.id })
         if (pathQueue[0]) {
@@ -92,16 +109,12 @@ Template.chooseL.events({
                 alert(error.reason)
             } else {
                 console.log('LawLinkAddSuccess');
-                addedItems["laws"].push(obj);
+                addedItems["links"].push(obj);
             }
         });
         pathQueue.shift();
         if (pathQueue.length < 1) {
             Router.go('pathAdded')
-        } else {
-            if (pathQueue[0] === Session.get('TopElement')) {
-                Session.set('From', Session.get('To'));
-            }
         }
             Router.current().render('blank', {to: 'forms'});
         }
@@ -109,9 +122,12 @@ Template.chooseL.events({
 
 addPathCleanup = function() {
     pathQueue = new ReactiveArray();
-    Session.set('firstFilterCreated', false);
+    topElement = [];
+    nextFrom = [];
+    Session.set('firstFilterCreated', undefined);
     Session.set('From', undefined);
     Session.set('To', undefined);
+    Session.set('cleanPath', false);
     console.log('cleanup called')
     Session.set('showQ', true);
     markCount = 0;
@@ -180,6 +196,7 @@ dbCleanup = function() {
 
     }
     console.log('dbCleanup called');
+    Session.set('cleanDB', false);
 }
 
 Template.addQ.helpers({
@@ -199,11 +216,11 @@ Template.addFirstQ.helpers({
 });
 
 Template.success.onCreated( function() {
-    addPathCleanup();
-    Session.set('cancelledPath', false);
+    //if the path is succesfully added, do not remove db items added
+    Session.set('cleanDB', false);
 })
 
 Template.pathLayout.onCreated( function() {
-    Session.set('clean', true);
+    Session.set('cleanPath', true);
     Session.set('showQ', true);
 })

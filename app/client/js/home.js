@@ -84,7 +84,7 @@ Template.homeContent.onCreated( function () {
     if (Session.get('cleanPath')) {
         addPathCleanup();
     }
-    if (Session.get('cancelledPath')) {
+    if (Session.get('cleanDB')) {
         dbCleanup();
     }
 });
@@ -154,6 +154,8 @@ Template.homeContent.helpers({
             console.log("collection not built");
         }
         else {
+            console.log('TO');
+            console.log(con.to);
             return con.to
         }
     },
