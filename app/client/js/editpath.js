@@ -97,21 +97,16 @@ Template.chooseL.events({
             var from = Startcases.findOne({ 'text': Session.get('From')})     
         }
         var to = Laws.findOne({ 'paragraph': event.currentTarget.id })
-        if (pathQueue[0]) {
-            var obj = {'from': from, 'mark': pathQueue[0], 'to': to};
+        if (pathQueue.length > 0) {
+            var mark = pathQueue[0];
         } else {
-            var obj = {'from': from, 'mark': "", 'to': to};
+            var mark = "";
         }
-        console.log('Link that got added')
-        console.log(obj);
-        Meteor.call('addLink2', obj, function(error, result) {
-            if (error) {
-                alert(error.reason)
-            } else {
-                console.log('LawLinkAddSuccess');
-                addedItems["links"].push(obj);
-            }
-        });
+        if (insertLink(from, mark, to)) {
+            console.log('LawLinkAddSuccess');
+        } else {
+            alert('failed to link law, try again');
+        }
         pathQueue.shift();
         if (pathQueue.length < 1) {
             Router.go('pathAdded')

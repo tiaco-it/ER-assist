@@ -163,6 +163,13 @@ Router.route('edit/info/:_id', function (){
     name: 'edit.info'
 });
 
+Router.route('edit/link/:_id', function (){
+    this.layout('editLayout')
+    this.render('editlink', {to: 'edit'});
+  }, {
+    name: 'edit.link'
+});
+
 AccountsTemplates.configureRoute('signIn', {
     name: 'signin',
     path: '/login',

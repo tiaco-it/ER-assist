@@ -60,6 +60,18 @@ Template.editinfo.helpers({
     }
 });
 
+Template.editfilter.helpers({ 
+    'selectedDoc': function() {
+        return Filters.findOne(Router.current().params._id);
+    }
+});
+
+Template.editlink.helpers({ 
+    'selectedDoc': function() {
+        return Links.findOne(Router.current().params._id);
+    }
+});
+
 Template.admincases.helpers({
     'cases': function() {
         var cases = Startcases.find({});
