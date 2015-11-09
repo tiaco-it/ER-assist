@@ -5,6 +5,9 @@
 
 var UPDATE = true; // set true to delete all records and insert all initial data
 
+
+Meteor.startup(function () {
+
 if (UPDATE == true) {
     // Remove existing collection
     Startcases.remove({});
@@ -14,8 +17,16 @@ if (UPDATE == true) {
     Urls.remove({});
     Info.remove({});
     Numbers.remove({});
+    Meteor.users.remove({});
 }
-Meteor.startup(function () {
+
+if ( Meteor.users.find().count() === 0 || UPDATE == true) {
+    Accounts.createUser({
+        username: 'tiaco',
+        email: '',
+        password: 'tiaco',
+    });
+}
 
 //STARTCASES
 if (Startcases.find().count() === 0 || UPDATE == true) {

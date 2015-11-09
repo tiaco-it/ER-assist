@@ -28,17 +28,26 @@ if (Meteor.isCordova) Ground.Collection(Elements);
 
 Meteor.methods({
   addElement: function(doc) {
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
     check(doc, ElementsSchema);
     var obj = {data1: doc.data1, data2: doc.data2, createdAt: new Date};
     return Elements.insert(obj);
   },
   editElement: function(obj) {
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
     _.extend(obj.updateDoc.$set, {lastUpdated: new Date});
     check(obj._id, String);
     check(obj.updateDoc.$set, ElementsSchema);
     return Elements.update({_id: obj._id}, obj.updateDoc);
   },
   removeElement: function(id) {
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
     check(id, String);
     return Elements.remove(id);
   }
