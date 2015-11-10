@@ -12,7 +12,7 @@ pathBuilder = function(scase) {
 		console.log(next);
 		if (!(Laws.findOne({ 'text': next.to.text }) === undefined)) {
 			var law = Laws.findOne({ 'text': next.to.text});
-			//path.push(law) if you want to remove the laws
+			//path.push(law) if you want to remove the laws here
 		} else {
 			var filter = Filters.findOne({ 'text': next.to.text });
 			path.push(filter);
