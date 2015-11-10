@@ -67,9 +67,14 @@
                         {{/ionItem}}
                     {{/each}}
                 {{/each}}
-                    <a href="{{pathFor 'add.law'}}" class="button">
+                  {{#if addingLaw}}
+                    <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Legg til ny lov</div>
+                    {{> quickForm schema="LawSchema" collection="Laws" id="insertLawPathForm" type="normal" omitFields="createdAt, lastUpdated"}}
+                  {{else}}
+                    <button class="button addLawButton">
                         {{> ionIcon icon="plus"}}
-                    </a>
+                    </button>
+                  {{/if}}
             {{/ionList}}
 </template>
 

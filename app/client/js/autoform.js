@@ -262,11 +262,6 @@ AutoForm.hooks({
         onSubmit: function(insertDoc) {
             insert = insertDoc;
             if (typeof insert !== 'undefined') {
-                Session.set('From', Session.get('To'));
-                Session.set('To', insertDoc.paragraph);
-                console.log('FromTo')
-                console.log(Session.get('From'))
-                console.log(Session.get('To'))
                 Meteor.call('addLaw', insertDoc, function(error, result) {
                     if (error) alert(error.reason);
                 });
@@ -286,6 +281,36 @@ AutoForm.hooks({
                 addedItems["laws"].push(insert)
                 console.log('DONE')
                 insert = undefined;
+            }
+        }
+    }
+});
+
+AutoForm.hooks({
+    insertLawPathForm: {
+        onSubmit: function(insertDoc) {
+            insert = insertDoc;
+            if (typeof insert !== 'undefined') {
+                Meteor.call('addLaw', insertDoc, function(error, result) {
+                    if (error) alert(error.reason);
+                });
+                $(".back-button").click();
+            }
+            this.done();
+            return false;
+        },
+        onSuccess: function(formType, result) {
+            console.log(Session.get('To'));
+        },
+        beginSubmit: function() {
+            console.log('STARTING SUBMIT')
+        },
+        endSubmit: function() {
+            if (typeof insert !== 'undefined') {
+                addedItems["laws"].push(insert)
+                console.log('DONE')
+                insert = undefined;
+                Session.set('addLaw', false)
             }
         }
     }

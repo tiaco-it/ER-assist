@@ -27,6 +27,7 @@ Template.caseadd.helpers({
 Template.pathButtons.events({
     'click .connectN': function(event, template) {
         Router.current().render('addN', {to: 'forms'});
+        Session.set('addLaw', false);
     },
     'click .connectQ': function(event, template) {
         if (Session.get('firstFilterCreated')){
@@ -34,9 +35,11 @@ Template.pathButtons.events({
         } else {
             Router.current().render('addFirstQ', {to: 'forms'});
         }
+        Session.set('addLaw', false);
     },
     'click .connectL': function(event, template) {
         Router.current().render('chooseL', {to: 'forms'});
+        Session.set('addLaw', false);
     }
 })
 
@@ -48,6 +51,9 @@ Template.pathButtons.helpers({
 });
 
 Template.chooseL.helpers({
+    'addingLaw': function() {
+        return Session.get('addLaw');
+    },
     // returns all laws, sorted by law-category
     'laws': function() {
         var laws = Laws.find({},{
@@ -80,6 +86,9 @@ Template.chooseL.helpers({
 });
 
 Template.chooseL.events({
+    'click .addLawButton': function(e) {
+        Session.set('addLaw', true);
+    },
     'click .lawChooser': function(event) {
         if (pathQueue[0] === topElement[0]) {
             if (nextFrom.length > 0) {
@@ -122,6 +131,7 @@ addPathCleanup = function() {
     Session.set('cleanPath', false);
     console.log('cleanup called')
     Session.set('showQ', true);
+    Session.set('addLaw', false);
     markCount = 0;
     marks = [];
 }
@@ -215,4 +225,8 @@ Template.success.onRendered( function() {
 Template.pathLayout.onCreated( function() {
     Session.set('cleanPath', true);
     Session.set('showQ', true);
+})
+
+Template.pathLayout.onRendered( function() {
+    Session.set('addLaw', false);
 })
