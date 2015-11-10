@@ -32,9 +32,12 @@
                                     </a>
                                     {{#if currentUser}}
                                         {{#with scase}}
-                                        <a href="{{pathFor 'edit.case'}}" class="button button-clear pull-right" func="edit">
-                                            {{> ionIcon icon="edit"}}
-                                        </a>
+                                            <a href="{{pathFor 'edit.case'}}" class="button button-clear pull-right" func="edit">
+                                                {{> ionIcon icon="edit"}}
+                                            </a>
+                                            <button class="button button-clear pull-right removeButton" id="{{ scase.text }}">
+                                                {{> ionIcon icon="close"}}
+                                            </button>
                                         {{/with}}
                                     {{/if}}
                             {{/with}}
@@ -52,6 +55,9 @@
                                         <a href="{{pathFor 'edit.case'}}" class="button button-clear pull-right" func="edit">
                                             {{> ionIcon icon="edit"}}
                                         </a>
+                                        <button class="button button-clear pull-right removeButton" id="{{ scase.text }}">
+                                            {{> ionIcon icon="close"}}
+                                        </button>
                                         {{/with}}
                                     {{/if}}
                                     {{/with}}

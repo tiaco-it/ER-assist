@@ -200,6 +200,20 @@ Template.homeContent.helpers({
 });
 
 Template.homeContent.events({
+    'click .removeButton': function(e) {
+        IonPopup.confirm({
+            title: 'Are you sure you want to remove the path?',
+            template: 'Are you <strong>really</strong> sure?',
+            onOk: function() {
+                var scase = Startcases.findOne({ 'text': e.currentTarget.id });
+                removePath(scase);
+                console.log('Confirmed');
+            },
+            onCancel: function() {
+                console.log('Cancelled');
+            }
+        });
+    },
     'click .button': function(e) {
         IonNavigation.skipTransitions = true;
         if ($(e.currentTarget).attr("level") === "start") {
