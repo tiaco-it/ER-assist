@@ -96,7 +96,10 @@ Template.documentation.helpers({
     },
     'path': function() {
         return path;
-    },    
+    }
+});    
+
+Template.documentation.events({
     'click #send': function(event, template) {
         IonPopup.prompt({
             title: 'Email',
@@ -111,8 +114,8 @@ Template.documentation.helpers({
                 'Hello from Meteor!',
                 'This is a test of Email.send.');
             }
-    });
-  }
+        });
+    }
 });
 
 Template.example.helpers({
