@@ -96,6 +96,10 @@ Template.documentation.helpers({
     },
     'path': function() {
         return path;
+    },
+    //use thisLaw as input for func. Docs can be doc = {'name': name, 'link': link} for instance
+    'relatedDocs': function(law) {
+        return law.relDocs;
     }
 });    
 

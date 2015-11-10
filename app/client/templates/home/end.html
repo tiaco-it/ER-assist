@@ -99,12 +99,15 @@
         <!-- Rest is dummy -->
         <h3 class="text-center">Relevante dokumenter</h3>
         <div class="list">
+            <!--  example of getting the docs
+            {{#each doc in relatedDocs}} -->
             <li class="item item-checkbox">
                 <label class="checkbox">
                     <input type="checkbox" name="group">
                 </label>
-                <div class="item-content">Dokument 1</div>
+                <div class="item-content"><!-- {{doc.name}} -->Dokument 1</div>
             </li>
+    <!--    {{/each}} -->
             <li class="item item-checkbox">
                 <label class="checkbox">
                     <input type="checkbox" name="group">
@@ -120,8 +123,6 @@
     {{#ionBody}}
         {{> ionNavBar class="bar-positive"}}
 
-
-        <!-- Yield is used to get NavView content from the template (other than main layout template) that is active. The active template is the one chosen by the route -->
         {{#ionNavView}}
             {{> yield}}
         {{/ionNavView}}
