@@ -66,9 +66,13 @@
                     <p>{{link}}</p>
                 </a>
                 {{#if currentUser}}
-                    <a href="{{pathFor 'edit.url'}}" class="button button-clear pull-right">
+                    <a href="{{pathFor 'edit.url'}}" class="button button-clear editButtonList">
                         {{> ionIcon icon="edit"}}
                     </a>
+                    <!-- removeButton NOT YET ACTIVE just a mockup -->
+                    <button class="button button-clear">
+                        {{> ionIcon icon="close"}}
+                    </button>
                 {{/if}}
             {{/ionItem}}
         {{/each}}
@@ -91,9 +95,13 @@
                     <p>{{number}}</p>
                 </a>
                 {{#if currentUser}}
-                    <a href="{{pathFor 'edit.number'}}" class="button button-clear">
+                    <a href="{{pathFor 'edit.number'}}" class="button button-clear editButtonList">
                         {{> ionIcon icon="edit"}}
                     </a>
+                    <!-- removeButton NOT YET ACTIVE just a mockup -->
+                    <button class="button button-clear">
+                        {{> ionIcon icon="close"}}
+                    </button>
                 {{/if}}
             {{/ionItem}}
         {{/each}}
@@ -104,9 +112,13 @@
                 <h2>{{title}}</h2>
                 <p>{{number}}</p>
                 {{#if currentUser}}
-                    <a href="{{pathFor 'edit.number'}}" class="button button-clear">
+                    <a href="{{pathFor 'edit.number'}}" class="button button-clear editButtonList">
                         {{> ionIcon icon="edit"}}
                     </a>
+                    <!-- removeButton NOT YET ACTIVE just a mockup -->
+                    <button class="button button-clear">
+                        {{> ionIcon icon="close"}}
+                    </button>
                 {{/if}}
             {{/ionItem}}
         {{/each}}
