@@ -119,6 +119,9 @@
                                         <a href="{{pathFor 'edit.case'}}" class="button button-clear pull-right">
                                             {{> ionIcon icon="edit"}}
                                         </a>
+                                        <button class="button button-clear pull-right removeButton" id="{{ scase.text }}">
+                                            {{> ionIcon icon="close"}}
+                                        </button>
                                     {{/if}}
                                 </div>
                             {{/with}}

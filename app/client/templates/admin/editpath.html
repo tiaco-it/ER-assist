@@ -6,6 +6,7 @@
           {{> yield 'header'}}
           {{#ionView}}
             {{#ionContent}}
+              {{> yield 'added'}}
               {{> yield 'add'}}
               {{> yield 'next'}}
               {{> yield 'choices'}}
@@ -16,6 +17,21 @@
     {{/ionBody}}
 </template>
 
+<template name="addedItems">
+
+  {{#with addedScase}}
+  {{/with}}
+
+  {{#each addedLinks}}
+  {{/each}}
+
+  {{#each addedFilters}}
+  {{/each}}
+
+  {{#each addedLaws}}
+  {{/each}}
+  
+</template>
 
 <template name="addpathHeader">
     {{#contentFor "headerTitle"}}
