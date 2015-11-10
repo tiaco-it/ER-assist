@@ -7,6 +7,12 @@ Template.next.helpers({
     },
     'to': function(link) {
         return link.to;
+    },
+    'toLaw': function(link) {
+        if (typeof Laws.findOne({'text': link.to.text }) !== 'undefined') {
+            return true;
+        }
+        return false;
     }
 });
 

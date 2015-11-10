@@ -25,9 +25,15 @@
                 {{#each link in currentLinks}}
                         <div class="buttonContainer">
                             {{#with to link}}
-                                <a href = "{{pathFor 'end'}}" class="button button-full firstLevelButton">
-                                    <p>{{ link.mark }}</p>
-                                </a>
+                                {{#if toLaw link}}
+                                    <a href = "{{pathFor 'end'}}" class="button button-full firstLevelButton">
+                                        <p>{{ link.mark }}</p>
+                                    </a>
+                                {{else}}
+                                    <a href = "{{pathFor 'next'}}" class="button button-full firstLevelButton">
+                                        <p>{{ link.mark }}</p>
+                                    </a>
+                                {{/if}}
                             {{/with}}
                         </div>
                     {{#if currentUser}}

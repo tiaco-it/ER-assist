@@ -163,7 +163,7 @@ AutoForm.hooks({
         endSubmit: function() {
             if (typeof insert !== 'undefined') {
                 addedItems["filters"].push(insert);
-                nextFrom.push(insert);
+                nextFrom.push(insert.text);
                 console.log('DONE')
                 var from = Filters.findOne({ 'text': Session.get('From')});
                 var to = Filters.findOne({ 'text': Session.get('To')});
@@ -195,6 +195,7 @@ AutoForm.hooks({
                 //Then shuffle the from node down the tree one level
                 if (pathQueue[0] === topElement[0] && addedItems['filters'].length > 0) {
                     if (nextFrom.length > 0) {
+                        console.log('used nextFrom')
                         Session.set('From', nextFrom.shift());
                         Session.set('To', insertDoc.text);
                     } else {
@@ -223,7 +224,7 @@ AutoForm.hooks({
             if (typeof insert !== 'undefined') {
                 markCount = insert.number_of_outcomes;
                 addedItems["filters"].push(insert);
-                nextFrom.push(insert);
+                nextFrom.push(insert.text);
                 console.log('DONE')
                 var from = Startcases.findOne({ 'text': Session.get('From')});
                 if (from === undefined) {

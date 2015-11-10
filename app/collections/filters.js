@@ -8,6 +8,16 @@ FilterSchema = new SimpleSchema({
     }
 });
 
+NFilterSchema = new SimpleSchema({
+    text: {
+        type: String
+    },
+    number_of_outcomes: {
+        type: Number,
+        min: 3
+    }
+})
+
 // Create collection
 Filters = new Meteor.Collection('Filters');
 

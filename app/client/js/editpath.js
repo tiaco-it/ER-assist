@@ -83,7 +83,7 @@ Template.chooseL.events({
     'click .lawChooser': function(event) {
         if (pathQueue[0] === topElement[0]) {
             if (nextFrom.length > 0) {
-                    Session.set('From', nextFrom.shift().text);
+                    Session.set('From', nextFrom.shift());
             } else {
                 Session.set('From', Session.get('To'));
             }
