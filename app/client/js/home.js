@@ -81,11 +81,11 @@ twoOutcome = function(cons){
 Template.homeContent.onCreated( function () {
     Session.set('nextAdded', false);
     path = [];
-    if (Session.get('cleanPath')) {
-        addPathCleanup();
-    }
     if (Session.get('cleanDB')) {
         dbCleanup();
+    }
+    if (Session.get('cleanPath')) {
+        addPathCleanup();
     }
 });
 
@@ -154,8 +154,6 @@ Template.homeContent.helpers({
             console.log("collection not built");
         }
         else {
-            console.log('TO');
-            console.log(con.to);
             return con.to
         }
     },
@@ -249,7 +247,7 @@ Template.homeContent.events({
             Session.set('currentFrom', undefined)
         }
         else {
-            console.log("Failed button activation")
+            console.log("Button outside button event scope")
         }
     }
 });

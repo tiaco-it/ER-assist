@@ -106,6 +106,7 @@ Router.route('/add/law', function () {
 Router.route('/add/path', function () {
   this.layout('pathLayout');
   this.render('addpathHeader', {to: 'header'});
+  this.render('addedItems', {to: 'added'});
   this.render('caseadd', {to: 'add'});
   this.render('blank', {to: 'choices'});
   this.render('blank', {to: 'forms'});

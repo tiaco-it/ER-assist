@@ -22,6 +22,7 @@ insertLink = function(from, mark, to) {
         } else {
             console.log('GOT SUCCESS AT INSERT')
             addedItems["links"].push(obj);
+            _dep.changed();
         }
     });
     return inserted;
@@ -67,6 +68,7 @@ AutoForm.hooks({
                 //First item inserted into db, so clean it if cancelled
                 Session.set('cleanDB', true);
                 addedItems["scases"].push(insert);
+                _dep.changed();
                 Router.current().render('pathButtons', {to: 'choices'});
                 Router.current().render('blank', {to: 'add'});
                 console.log('DONE');
@@ -102,6 +104,7 @@ AutoForm.hooks({
         endSubmit: function() {
             if (typeof insert !== 'undefined') {
                 addedItems["filters"].push(insert);
+                _dep.changed();
                 console.log('DONE')
                 var from = Startcases.findOne({ 'text': Session.get('From')});
                 var to = Filters.findOne({ 'text': Session.get('To')});
@@ -163,6 +166,7 @@ AutoForm.hooks({
         endSubmit: function() {
             if (typeof insert !== 'undefined') {
                 addedItems["filters"].push(insert);
+                _dep.changed();
                 nextFrom.push(insert.text);
                 console.log('DONE')
                 var from = Filters.findOne({ 'text': Session.get('From')});
@@ -180,6 +184,8 @@ AutoForm.hooks({
                 } else {
                     alert('link connection failed');
                 }
+                Router.current().render('blank', {to: 'added'})
+                Router.current().render('addedItems', {to: 'added'});
             }
         }
     }
@@ -224,6 +230,7 @@ AutoForm.hooks({
             if (typeof insert !== 'undefined') {
                 markCount = insert.number_of_outcomes;
                 addedItems["filters"].push(insert);
+                _dep.changed();
                 nextFrom.push(insert.text);
                 console.log('DONE')
                 var from = Startcases.findOne({ 'text': Session.get('From')});
@@ -245,6 +252,7 @@ AutoForm.hooks({
                         Router.current().render('answerOptions', {to: 'next'});
                         Router.current().render('blank', {to: 'choices'});
                         Router.current().render('addMarks', {to: 'forms' });
+                        Router.current().render('addedItems', {to: 'added'});
                 } else {
                     alert('Couldnt link n options filter');
                 }
@@ -278,7 +286,6 @@ AutoForm.hooks({
         },
         endSubmit: function() {
             if (typeof insert !== 'undefined') {
-                addedItems["laws"].push(insert)
                 console.log('DONE')
                 insert = undefined;
             }
@@ -307,10 +314,13 @@ AutoForm.hooks({
         },
         endSubmit: function() {
             if (typeof insert !== 'undefined') {
-                addedItems["laws"].push(insert)
+                addedItems["laws"].push(insert);
+                _dep.changed();
                 console.log('DONE')
                 insert = undefined;
                 Session.set('addLaw', false)
+                Router.current().render('blank', {to: 'added'});
+                Router.current().render('addedItems', {to: 'added'});
             }
         }
     }
@@ -341,6 +351,8 @@ AutoForm.hooks({
                     Router.current().render('itemToAdd', {to: 'next'});
                     Router.current().render('pathButtons', {to: 'choices'});
                     Router.current().render('blank', {to: 'forms'});
+                    Router.current().render('blank', {to: 'added'});
+                    Router.current().render('addedItems', {to: 'added'});
                 } else {
                     Router.current().render('addMarks', {to: 'forms'});
                 }

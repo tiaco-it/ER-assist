@@ -4,6 +4,54 @@ markCount = 0;
 marks = [];
 topElement = [];
 nextFrom = [];
+_dep = new Deps.Dependency();
+
+Template.addedItems.helpers({
+    'scase': function() {
+        _dep.depend()
+        if (addedItems['scases'].length > 0) {
+            return true;
+        }
+        return false;
+    },
+    'fil': function() {
+        _dep.depend()
+        if (addedItems['filters'].length > 0) {
+            return true;
+        }
+        return false;
+    },
+    'li': function() {
+        _dep.depend()
+        if (addedItems['links'].length > 0) {
+            return true;
+        }
+        return false;
+    },
+    'la': function() {
+        _dep.depend();
+        if (addedItems['laws'].length > 0) {
+            return true;
+        }
+        return false;
+    },
+    'addedScase': function() {
+        _dep.depend();
+        return addedItems["scases"][0];
+    },
+    'addedFilters': function() {
+        _dep.depend();
+        return addedItems["filters"];
+    },
+    'addedLinks': function() {
+        _dep.depend();
+        return addedItems["links"];
+    },
+    'item': function(link) {
+        console.log(link);
+        return link;
+    }
+})
 
 Template.itemToAdd.helpers({
     'next': function() {
@@ -117,12 +165,13 @@ Template.chooseL.events({
         if (pathQueue.length < 1) {
             Router.go('pathAdded')
         }
-            Router.current().render('blank', {to: 'forms'});
+        Router.current().render('blank', {to: 'forms'});
         }
     });
 
 addPathCleanup = function() {
     pathQueue = new ReactiveArray();
+    addedItems = {"scases":[], "filters":[], "links":[], "laws":[]};
     topElement = [];
     nextFrom = [];
     Session.set('firstFilterCreated', undefined);

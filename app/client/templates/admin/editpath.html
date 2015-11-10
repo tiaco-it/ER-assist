@@ -19,17 +19,33 @@
 
 <template name="addedItems">
 
+  {{#if scase}}
+  Kategorien du la til
   {{#with addedScase}}
+    <h3>{{text}}</h3>
   {{/with}}
+  {{/if}}
 
-  {{#each addedLinks}}
+  {{#if li}}
+  Koblinger du har lagt til
+  {{#each link in addedLinks}}
+    <h3>{{link.mark}}</h3>
   {{/each}}
+  {{/if}}
 
-  {{#each addedFilters}}
+  {{#if fil}}
+  Spørsmål du har lagt til
+  {{#each filter in addedFilters}}
+    <h3>{{filter.text}}</h3>
   {{/each}}
+  {{/if}}
 
-  {{#each addedLaws}}
+  {{#if la}}
+  Lover du har lagt til
+  {{#each law in addedLaws}}
+    <h3>{{law.text}}</h3>
   {{/each}}
+  {{/if}}
 
 </template>
 
