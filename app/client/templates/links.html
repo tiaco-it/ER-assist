@@ -69,8 +69,8 @@
                     <a href="{{pathFor 'edit.url'}}" class="button button-clear editButtonList">
                         {{> ionIcon icon="edit"}}
                     </a>
-                    <!-- removeButton NOT YET ACTIVE just a mockup -->
-                    <button class="button button-clear">
+                    <!-- ionItem necessitates double click? -->
+                    <button class="button button-clear removeUrl" id="{{_id}}">
                         {{> ionIcon icon="close"}}
                     </button>
                 {{/if}}
@@ -99,7 +99,7 @@
                         {{> ionIcon icon="edit"}}
                     </a>
                     <!-- removeButton NOT YET ACTIVE just a mockup -->
-                    <button class="button button-clear">
+                    <button class="button button-clear removeNumber" id="{{_id}}">
                         {{> ionIcon icon="close"}}
                     </button>
                 {{/if}}
@@ -116,7 +116,7 @@
                         {{> ionIcon icon="edit"}}
                     </a>
                     <!-- removeButton NOT YET ACTIVE just a mockup -->
-                    <button class="button button-clear">
+                    <button class="button button-clear removeNumber" id="{{_id}}">
                         {{> ionIcon icon="close"}}
                     </button>
                 {{/if}}

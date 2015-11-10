@@ -331,6 +331,7 @@ AutoForm.hooks({
                 if (error) alert(error.reason);
             });
             $(".back-button").click();
+            this.done();
             return false;
         }
     }

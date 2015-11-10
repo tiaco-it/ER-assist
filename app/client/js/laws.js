@@ -17,6 +17,16 @@ Template.law.helpers({
 Template.laws.events({
     'click #law': function() {
         IonNavigation.skipTransitions = true;
+    },
+    'click .removeLawButton': function(e) {
+        var id = e.currentTarget.id;
+        Meteor.call('removeLaw', id, function(error, result) {
+            if (error) {
+                alert(error, reason);
+            } else {
+                console.log('law removal success');
+            }
+        })
     }
 })
 

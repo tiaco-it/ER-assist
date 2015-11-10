@@ -15,8 +15,8 @@
                                 <a href="{{pathFor 'edit.law'}}" class="button button-clear editButtonList">
                                     {{> ionIcon icon="edit"}}
                                 </a>
-                                <!-- removeButton NOT YET ACTIVE just a mockup -->
-                                <button class="button button-clear">
+                                <!-- Functional, but item remains clickable, bugged -->
+                                <button class="button button-clear removeLawButton" id="{{_id}}">
                                     {{> ionIcon icon="close"}}
                                 </button>
                             {{/if}}
