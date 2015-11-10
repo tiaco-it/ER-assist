@@ -32,10 +32,10 @@
                                     </a>
                                     {{#if currentUser}}
                                         {{#with scase}}
-                                            <a href="{{pathFor 'edit.case'}}" class="button button-clear pull-right" func="edit">
+                                            <a href="{{pathFor 'edit.case'}}" class="button button-clear editCase" func="edit">
                                                 {{> ionIcon icon="edit"}}
                                             </a>
-                                            <button class="button button-clear pull-right removeButton" id="{{ scase.text }}">
+                                            <button class="button button-clear removeButton removeCase" id="{{ scase.text }}">
                                                 {{> ionIcon icon="close"}}
                                             </button>
                                         {{/with}}
@@ -52,10 +52,10 @@
                                         </button>
                                     {{#if currentUser}}
                                         {{#with scase}}
-                                        <a href="{{pathFor 'edit.case'}}" class="button button-clear pull-right" func="edit">
+                                        <a href="{{pathFor 'edit.case'}}" class="button button-clear editCase" func="edit">
                                             {{> ionIcon icon="edit"}}
                                         </a>
-                                        <button class="button button-clear pull-right removeButton" id="{{ scase.text }}">
+                                        <button class="button button-clear removeButton removeCase" id="{{ scase.text }}">
                                             {{> ionIcon icon="close"}}
                                         </button>
                                         {{/with}}
@@ -67,9 +67,13 @@
                                         <p class="buttonQuestion">{{currentFrom.text}}</p>
                                         {{#if currentUser}}
                                             {{#with currentFrom}}
-                                                <a href="{{pathFor 'edit.filter'}}" class="button button-clear pull-right">
+                                                <a href="{{pathFor 'edit.filter'}}" class="button button-clear editFilter">
                                                     {{> ionIcon icon="edit"}}
                                                 </a>
+                                                <!-- removeButton NOT YET ACTIVE -->
+                                                <button class="button button-clear removeFilter">
+                                                    {{> ionIcon icon="close"}}
+                                                </button>
                                             {{/with}}
                                         {{/if}}
                                     {{#with yesLink currentFrom}}
@@ -116,7 +120,7 @@
                                             <p>{{scase.text}}</p>
                                         </a>
                                     {{#if currentUser}}
-                                        <a href="{{pathFor 'edit.case'}}" class="button button-clear pull-right">
+                                        <a href="{{pathFor 'edit.case'}}" class="button button-clear editCase">
                                             {{> ionIcon icon="edit"}}
                                         </a>
                                     {{/if}}

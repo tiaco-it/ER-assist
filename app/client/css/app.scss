@@ -67,3 +67,30 @@
   top: 0;
   right: 0;
 }
+
+// some of these might be grouped
+
+.editCase {
+  position: absolute;
+  right: 40px;
+  margin-top: -75px;
+}
+
+.removeCase {
+  position: absolute;
+  right: 0;
+  margin-top: -75px;
+}
+
+.editFilter {
+  float: right;
+  right: 40px;
+  margin-top: -50px;
+}
+
+// not yet applied
+.removeFilter {
+  float: right;
+  right: 0;
+  margin-top: -50px;
+}
