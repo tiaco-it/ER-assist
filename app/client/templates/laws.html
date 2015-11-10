@@ -12,9 +12,13 @@
                         {{#ionItem path="law" buttonRight=true id='law'}}
                             <h3>{{paragraph}}</h3>
                             {{#if currentUser}}
-                                <a href="{{pathFor 'edit.law'}}" class="button button-clear pull-right">
+                                <a href="{{pathFor 'edit.law'}}" class="button button-clear editLaw">
                                     {{> ionIcon icon="edit"}}
                                 </a>
+                                <!-- removeButton NOT YET ACTIVE just a mockup -->
+                                <button class="button button-clear">
+                                    {{> ionIcon icon="close"}}
+                                </button>
                             {{/if}}
                         {{/ionItem}}
                     {{/each}}
