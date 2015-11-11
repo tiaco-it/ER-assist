@@ -474,3 +474,45 @@ AutoForm.hooks({
         }
     }
 });
+
+AutoForm.hooks({
+    editStartcaseForm: {
+        onSubmit: function(insertDoc, updateDoc, currentDoc) {
+            var obj = {_id: Router.current().params._id, updateDoc: updateDoc};
+            Meteor.call('editStartcase', obj, function(error, result) {
+                if (error) alert(error.reason);
+            });
+            $(".back-button").click();
+            this.done();
+            return false;
+        }
+    }
+});
+
+AutoForm.hooks({
+    editNumberForm: {
+        onSubmit: function(insertDoc, updateDoc, currentDoc) {
+            var obj = {_id: Router.current().params._id, updateDoc: updateDoc};
+            Meteor.call('editNumber', obj, function(error, result) {
+                if (error) alert(error.reason);
+            });
+            $(".back-button").click();
+            this.done();
+            return false;
+        }
+    }
+});
+
+AutoForm.hooks({
+    editUrlForm: {
+        onSubmit: function(insertDoc, updateDoc, currentDoc) {
+            var obj = {_id: Router.current().params._id, updateDoc: updateDoc};
+            Meteor.call('editUrl', obj, function(error, result) {
+                if (error) alert(error.reason);
+            });
+            $(".back-button").click();
+            this.done();
+            return false;
+        }
+    }
+});
