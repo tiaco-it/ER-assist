@@ -33,19 +33,23 @@
             {{#if One}}
                 <a class="tab-item active" id="one">
                     Lenker
+                    <!--<i class="icon ion-link" style="float:left;"></i>-->
                 </a>
             {{else}}
                 <a class="tab-item" id="one">
                     Lenker
+                    <!--<i class="icon ion-link" style="float:left;"></i>-->
                 </a>
             {{/if}}
             {{#if Two}}
                 <a class="tab-item active" id="two">
                     Nummer
+                    <!--<i class="icon ion-ios-telephone" style="float:right;"></i>-->
                 </a>
             {{else}}
                 <a class="tab-item" id="two">
                     Nummer
+                    <!--<i class="icon ion-ios-telephone" style="float:right;"></i>-->
                 </a>
             {{/if}}
         </div>
@@ -55,22 +59,28 @@
 <template name='urls'>
     {{#ionList}}
         {{#each urls}}
-            <div class="link item item-icon-left">
+            {{#ionItem iconLeft=true buttonRight=true}}
                 <a onclick="window.open('{{link}}', '_system', 'location=yes'); return false;">
-                    <i class="icon ion-link"></i>
+                    {{> ionIcon icon="link"}}
                     <h2>{{title}}</h2>
                     <p>{{link}}</p>
                 </a>
-                <a href="{{pathFor 'edit.url'}}" class="button pull-right">
-                    {{> ionIcon icon="edit"}}
-                </a>
-            </div>
+                {{#if currentUser}}
+                    <a href="{{pathFor 'edit.url'}}" class="button button-clear editButtonList">
+                        {{> ionIcon icon="edit"}}
+                    </a>
+                    <!-- ionItem necessitates double click? -->
+                    <button class="button button-clear removeUrl" id="{{_id}}">
+                        {{> ionIcon icon="close"}}
+                    </button>
+                {{/if}}
+            {{/ionItem}}
         {{/each}}
     {{/ionList}}
     {{#if currentUser}}
-    <a href="{{pathFor 'add.url'}}" class="button pull-right" func="add">
-        {{> ionIcon icon="plus"}}
-    </a>
+        <a href="{{pathFor 'add.url'}}" class="button pull-right" func="add">
+            {{> ionIcon icon="plus"}}
+        </a>
     {{/if}}
 </template>
 
@@ -78,32 +88,44 @@
     {{#ionList}}
         <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Eksterne nummer</div>
         {{#each numbersEkst}}
-            <a class="link item item-icon-left" href="tel:{{number}}" target="_blank">
+            {{#ionItem iconLeft=true buttonRight=true}}
+                <a class="link" href="tel:{{number}}" target="_blank">
+                    {{>ionIcon icon="ios-telephone"}}
+                    <h2>{{title}}</h2>
+                    <p>{{number}}</p>
+                </a>
+                {{#if currentUser}}
+                    <a href="{{pathFor 'edit.number'}}" class="button button-clear editButtonList">
+                        {{> ionIcon icon="edit"}}
+                    </a>
+                    <!-- removeButton NOT YET ACTIVE just a mockup -->
+                    <button class="button button-clear removeNumber" id="{{_id}}">
+                        {{> ionIcon icon="close"}}
+                    </button>
+                {{/if}}
+            {{/ionItem}}
+        {{/each}}
+        <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Interne nummer</div>
+        {{#each numbersInt}}
+            {{#ionItem iconLeft=true buttonRight=true}}
                 <i class="icon ion-ios-telephone"></i>
                 <h2>{{title}}</h2>
                 <p>{{number}}</p>
                 {{#if currentUser}}
-                <a href="{{pathFor 'edit.number'}}" class="button">
-                    {{> ionIcon icon="edit"}}
-                </a>
+                    <a href="{{pathFor 'edit.number'}}" class="button button-clear editButtonList">
+                        {{> ionIcon icon="edit"}}
+                    </a>
+                    <!-- removeButton NOT YET ACTIVE just a mockup -->
+                    <button class="button button-clear removeNumber" id="{{_id}}">
+                        {{> ionIcon icon="close"}}
+                    </button>
                 {{/if}}
-            </a>
-        {{/each}}
-        <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Interne nummer</div>
-        {{#each numbersInt}}
-            <a class="link item item-icon-left">
-                <i class="icon ion-ios-telephone"></i>
-                <h2>{{title}}</h2>
-                <p>{{number}}</p>
-                <a href="{{pathFor 'edit.number'}}" class="button">
-                    {{> ionIcon icon="edit"}}
-                </a>
-            </a>
+            {{/ionItem}}
         {{/each}}
     {{/ionList}}
     {{#if currentUser}}
-    <a href="{{pathFor 'add.number'}}" class="button pull-right" func="add">
-        {{> ionIcon icon="plus"}}
-    </a>
+        <a href="{{pathFor 'add.number'}}" class="button pull-right" func="add">
+            {{> ionIcon icon="plus"}}
+        </a>
     {{/if}}
 </template>

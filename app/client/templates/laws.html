@@ -4,28 +4,34 @@
     {{/contentFor}}
     {{#ionView}}
         {{#ionContent}}
-        {{#if Template.subscriptionsReady}}
-            {{#ionList}}
-                {{#each category}}
-                    <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">{{this}}</div>
-                    {{#each categoryLaws this}}
-                        {{#ionItem path="law" buttonRight=true id='law'}}
-                            <h3>{{paragraph}}</h3>
-                            {{#if currentUser}}
-                                <a href="{{pathFor 'edit.law'}}" class="button button-clear pull-right">
-                                    {{> ionIcon icon="edit"}}
-                                </a>
-                            {{/if}}
-                        {{/ionItem}}
+            {{#if Template.subscriptionsReady}}
+                {{#ionList}}
+                    {{#each category}}
+                        <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">{{this}}</div>
+                        {{#each categoryLaws this}}
+                            {{#ionItem path="law" buttonRight=true id='law'}}
+                                <h3>{{paragraph}}</h3>
+                                {{#if currentUser}}
+                                    <a href="{{pathFor 'edit.law'}}" class="button button-clear editButtonList">
+                                        {{> ionIcon icon="edit"}}
+                                    </a>
+                                    <!-- Functional, but item remains clickable, bugged -->
+                                    <button class="button button-clear removeLawButton" id="{{_id}}">
+                                        {{> ionIcon icon="close"}}
+                                    </button>
+                                {{/if}}
+                            {{/ionItem}}
+                        {{/each}}
                     {{/each}}
-                {{/each}}
-                    <a href="{{pathFor 'add.law'}}" class="button">
-                        {{> ionIcon icon="plus"}}
-                    </a>
-            {{/ionList}}
-        {{else}}
-            {{> spinner}}
-        {{/if}}
+                    {{#if currentUser}}
+                        <a href="{{pathFor 'add.law'}}" class="button">
+                            {{> ionIcon icon="plus"}}
+                        </a>
+                    {{/if}}
+                {{/ionList}}
+            {{else}}
+                {{> spinner}}
+            {{/if}}
         {{/ionContent}}
         {{> mtabs}}
     {{/ionView}}
@@ -40,16 +46,16 @@
     {{#ionView}}
         {{#ionContent}}
             {{#if Template.subscriptionsReady}}
-            {{#with thisLaw}}
-                <div class="button button-full button-positive disabled" style="opacity: 100; background-color: #F3BF42; border-style: none; padding-top: 0.5em; padding-bottom: 0.5em;">
-                    <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
-                    <h4 style="color:black; text-transform: uppercase;">{{oneline}}</h4>
-                </div>
-                <h2 class="text-center">{{law}}</h2>
-                <h3 class="text-center">{{paragraph}}</h3>
-                <!--<div class="bar bar-positive">-->
-                <p style="padding-left: 1em; padding-right: 1em;">{{text}}</p>
-            {{/with}}
+                {{#with thisLaw}}
+                    <div class="button button-full button-positive disabled" style="opacity: 100; background-color: #F3BF42; border-style: none; padding-top: 0.5em; padding-bottom: 0.5em;">
+                        <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
+                        <h4 style="color:black; text-transform: uppercase;">{{oneline}}</h4>
+                    </div>
+                    <h2 class="text-center">{{law}}</h2>
+                    <h3 class="text-center">{{paragraph}}</h3>
+                    <!--<div class="bar bar-positive">-->
+                    <p style="padding-left: 1em; padding-right: 1em;">{{text}}</p>
+                {{/with}}
             {{else}}
                 {{> spinner}}
             {{/if}}

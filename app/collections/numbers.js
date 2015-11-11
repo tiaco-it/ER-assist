@@ -24,7 +24,7 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
         check(doc, NumberSchema);
-        var obj = {title: doc.title, number: doc.number, type: doc.type};
+        var obj = {title: doc.title, number: doc.number, internal: doc.internal};
         return Numbers.insert(obj);
     },
     editNumber: function(obj) {
