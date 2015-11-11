@@ -579,6 +579,34 @@ AutoForm.hooks({
 });
 
 AutoForm.hooks({
+    editLinkForm: {
+        onSubmit: function(insertDoc, updateDoc, currentDoc) {
+            var id = Router.current().params._id
+            var oldLink = Links.findOne({'_id': id});
+            Meteor.call('removeLink', id, function(error, result) {
+                if (error) {
+                    alert(error.reason);
+                } else {
+                    console.log('removed link for replacement')
+                }   
+            });
+            var newLink = {'from': oldLink.from, 'mark': insertDoc.mark, 'to': oldLink.to}
+            console.log(insertDoc.mark)
+            Meteor.call('addLink2', newLink, function(error, result) {
+                if (error) {
+                    alert(error.reason);
+                } else {
+                    console.log('replaced link with new')
+                }
+            });
+            $(".back-button").click();
+            this.done();
+            return false;
+        }
+    }
+});
+
+AutoForm.hooks({
     editNumberForm: {
         onSubmit: function(insertDoc, updateDoc, currentDoc) {
             var obj = {_id: Router.current().params._id, updateDoc: updateDoc};

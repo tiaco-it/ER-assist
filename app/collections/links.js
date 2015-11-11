@@ -11,6 +11,12 @@ LinkSchema = new SimpleSchema({
     }
 });
 
+EditLinkSchema = new SimpleSchema({
+    mark: {
+        type: String
+    }
+});
+
 // Create collection
 Links = new Meteor.Collection('Links');
 
