@@ -151,7 +151,6 @@ Router.route('edit/law/:_id', function (){
 
 Router.route('edit/filter/:_id', function (){
     this.layout('editLayout')
-    this.render('addfilter', {to: 'add'})
     this.render('editfilter', {to: 'edit'});
   }, {
     name: 'edit.filter'

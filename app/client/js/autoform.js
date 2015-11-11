@@ -436,10 +436,41 @@ AutoForm.hooks({
 AutoForm.hooks({
     editLawForm: {
         onSubmit: function(insertDoc, updateDoc, currentDoc) {
+
+            var oldLaw = Laws.findOne({ '_id': Router.current().params._id })
+            var oldToLinks = Links.find({'to._id': oldLaw._id}).fetch();
+
             var obj = {_id: Router.current().params._id, updateDoc: updateDoc};
+
             Meteor.call('editLaw', obj, function(error, result) {
                 if (error) alert(error.reason);
             });
+            var newLaw = Laws.findOne({'_id': Router.current().params._id});
+
+            var oldTo = [];
+
+            while (oldToLinks.length > 0) {
+                var next = oldToLinks.pop();
+                oldTo.push(next);
+                Meteor.call('removeLink', next._id, function(error, result) {
+                    if (error) {
+                        alert(error.reason)
+                    } else {
+                        console.log('Removed related to link');
+                    }
+                })
+            }
+            while (oldTo.length > 0) {
+                var next = oldTo.pop()
+                var obj = {'from': next.from, 'mark': next.mark, 'to': newLaw};
+                Meteor.call('addLink2', obj, function(error, result) {
+                    if (error) {
+                        alert(error.reason)
+                    } else {
+                        console.log('Replaced related to link');
+                    }
+                });
+            }
             $(".back-button").click();
             this.done();
             return false;
@@ -450,24 +481,64 @@ AutoForm.hooks({
 AutoForm.hooks({
     editFilterForm: {
         onSubmit: function(insertDoc, updateDoc, currentDoc) {
+            var oldFilter = Filters.findOne({ '_id': Router.current().params._id })
+
             var obj = {_id: Router.current().params._id, updateDoc: updateDoc};
+            var oldFromLinks = Links.find({'from._id': oldFilter._id}).fetch();
+            var oldToLinks = Links.find({'to._id': oldFilter._id}).fetch();
+            console.log(oldToLinks);
+
             Meteor.call('editFilter', obj, function(error, result) {
                 if (error) alert(error.reason);
             });
-            $(".back-button").click();
-            this.done();
-            return false;
-        }
-    }
-});
+            var newFilter = Filters.findOne({'_id': Router.current().params._id});
 
-AutoForm.hooks({
-    editLinkForm: {
-        onSubmit: function(insertDoc, updateDoc, currentDoc) {
-            var obj = {_id: Router.current().params._id, updateDoc: updateDoc};
-            Meteor.call('editLink', obj, function(error, result) {
-                if (error) alert(error.reason);
-            });
+            var oldFrom = [];
+            var oldTo = [];
+            while (oldFromLinks.length > 0) {
+                var next = oldFromLinks.pop();
+                oldFrom.push(next);
+                Meteor.call('removeLink', next._id, function(error, result) {
+                    if (error) {
+                        alert(error.reason)
+                    } else {
+                        console.log('Removed related from link');
+                    }
+                })
+            }
+            while (oldToLinks.length > 0) {
+                var next = oldToLinks.pop();
+                oldTo.push(next);
+                Meteor.call('removeLink', next._id, function(error, result) {
+                    if (error) {
+                        alert(error.reason)
+                    } else {
+                        console.log('Removed related to link');
+                    }
+                })
+            }
+            while (oldFrom.length > 0) {
+                var next = oldFrom.pop()
+                var obj = {'from': newFilter, 'mark': next.mark, 'to': next.to}
+                Meteor.call('addLink2', obj, function(error, result) {
+                    if (error) {
+                        alert(error.reason)
+                    } else {
+                        console.log('Replaced related from link');
+                    }
+                });
+            }
+            while (oldTo.length > 0) {
+                var next = oldTo.pop()
+                var obj = {'from': next.from, 'mark': next.mark, 'to': newFilter};
+                Meteor.call('addLink2', obj, function(error, result) {
+                    if (error) {
+                        alert(error.reason)
+                    } else {
+                        console.log('Replaced related to link');
+                    }
+                });
+            }
             $(".back-button").click();
             this.done();
             return false;
@@ -483,7 +554,7 @@ AutoForm.hooks({
             Meteor.call('editStartcase', obj, function(error, result) {
                 if (error) alert(error.reason);
             });
-            var oldLink = Links.findOne({'from': scase});
+            var oldLink = Links.findOne({'from': oldScase});
             Meteor.call('removeLink', oldLink._id, function(error, result) {
                 if (error) {
                     alert(error.reason)
@@ -493,7 +564,7 @@ AutoForm.hooks({
             })
             var newScase = Startcases.findOne({'_id': Router.current().params._id});
             newLink = {'from': newScase, 'mark': oldLink.mark, 'to': oldLink.to};
-            Meteor.call('addLink', newLink, function(error, result) {
+            Meteor.call('addLink2', newLink, function(error, result) {
                 if (error) {
                     alert(error.reason)
                 } else {
