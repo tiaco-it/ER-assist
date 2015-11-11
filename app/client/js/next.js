@@ -22,7 +22,6 @@ Template.next.rendered = function() {
 
 Template.nextHeader.helpers({
     'case': function() {
-        console.log(Session.get('category'));
         return Session.get('category');
     } 
 })

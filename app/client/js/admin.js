@@ -1,13 +1,11 @@
 Template.editcase.helpers({ 
     'selectedDoc': function() {
-        console.log(Startcases.findOne(Router.current().params._id));
         return Startcases.findOne(Router.current().params._id);
     }
 });
 
 Template.editnumber.helpers({ 
     'selectedDoc': function() {
-        console.log(Numbers.findOne(Router.current().params._id));
         return Numbers.findOne(Router.current().params._id);
     }
 });

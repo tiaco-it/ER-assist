@@ -123,8 +123,6 @@ Template.homeContent.helpers({
                 {'from.text': scase.text}
             ]
         });
-        console.log(scase.text);
-        console.log(li);
         return li.to
     },
     'noLink': function(scase) {
@@ -135,8 +133,6 @@ Template.homeContent.helpers({
                 {'from.text': scase.text}
             ]
         });
-        console.log(scase.text);
-        console.log(li)
         return li.to
     },
     'notClicked': function(id) {

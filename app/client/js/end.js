@@ -37,7 +37,6 @@ getLaw = function() {
     if (jQuery.isEmptyObject(p)) {
         return Laws.findOne({'paragraph': l})
     }
-    console.log(p);
     return p;
 }
 
@@ -107,7 +106,6 @@ Template.toptabs.helpers({
 });
 
 Template.endLayout.onCreated(function() {
-    console.log(Meteor.absoluteUrl.defaultOptions.rootUrl);
 	var l = Laws.findOne(Router.current().params._id);
 	lawHolder.push(l.paragraph);
     Session.set('tab', 2);
@@ -125,10 +123,15 @@ Template.documentation.helpers({
     },
     'anyRelated': function() {
         if (getLaw().reldocs !== null) {
-            console.log(getLaw().reldocs)
             if (getLaw().reldocs.length > 0) {
                 return true;
             }
+        }
+        return false;
+    },
+    'choices': function() {
+        if (path.length > 0) {
+            return true;
         }
         return false;
     }
@@ -136,7 +139,6 @@ Template.documentation.helpers({
 
 Template.documentation.events({
     'click #send': function(event, template) {
-        console.log('triggered!');
         var relLinks = createLinks(checkedDocs)
         IonPopup.prompt({
             title: 'Email',
@@ -180,11 +182,8 @@ Template.example.helpers({
             });
         }
         if (jQuery.isEmptyObject(p)) {
-        console.log(Laws.findOne({ 'paragraph': l}))
         return Laws.findOne({'paragraph': l});
         }
-        console.log('got p')
-        console.log(p)
         return p;
     }  
 });
@@ -215,11 +214,8 @@ Template.tlaw.helpers({
             });
         }
         if (jQuery.isEmptyObject(p)) {
-        console.log(Laws.findOne({ 'paragraph': l}))
         return Laws.findOne({'paragraph': l});
         }
-        console.log('got p')
-        console.log(p)
         return p;
     }  
 });
