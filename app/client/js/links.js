@@ -56,6 +56,32 @@ Template.urls.helpers({
     }
 });
 
+Template.urls.events({
+    'click .removeUrl': function(e) {
+        var id = e.currentTarget.id;
+        Meteor.call('removeUrl', id, function(error, result) {
+            if (error) {
+                alert(error.reason)
+            } else {
+                console.log('Url removal success');
+            }
+        });
+    }
+})
+
+Template.numbers.events({
+    'click .removeNumber': function(e) {
+        var id = e.currentTarget.id;
+        Meteor.call('removeNumber', id, function(error, result) {
+            if (error) {
+                alert(error.reason)
+            } else {
+                console.log('Number removal success');
+            }
+        });
+    }
+})
+
 Template.numbers.helpers({
     'numbersEkst': function() {
         var numbers = Numbers.find({ 'internal': false });

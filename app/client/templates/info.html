@@ -2,7 +2,7 @@
     {{> _infoHeader}}
     {{#ionView}}
         {{>itabs}}
-        {{#if Template.subscriptionsReady}} 
+        {{#if Template.subscriptionsReady}}
             {{#HammerTouchArea gestureMap=templateGestures}}
                 <div class="infoSwipe">
                     {{#ionContent class="padding has-tabs-top"}}
@@ -30,31 +30,31 @@
     <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
         <div class="tabs">
             {{#if One}}
-            <a class="tab-item active" id="one">
-                Om Appen
-            </a>
+                <a class="tab-item active" id="one">
+                    Om Appen
+                </a>
             {{else}}
-            <a class="tab-item" id="one">
-                Om Appen
-            </a>
+                <a class="tab-item" id="one">
+                    Om Appen
+                </a>
             {{/if}}
             {{#if Two}}
-            <a class="tab-item active" id="two">
-                Hvordan bruke appen
-            </a>
+                <a class="tab-item active" id="two">
+                    Hvordan bruke appen
+                </a>
             {{else}}
-            <a class="tab-item" id="two">
-                Hvordan bruke appen
-            </a>
+                <a class="tab-item" id="two">
+                    Hvordan bruke appen
+                </a>
             {{/if}}
             {{#if Three}}
-            <a class="tab-item active" id="three">
-                Vilkår og bruk
-            </a>
+                <a class="tab-item active" id="three">
+                    Vilkår og bruk
+                </a>
             {{else}}
-            <a class="tab-item" id="three">
-                Vilkår og bruk
-            </a>
+                <a class="tab-item" id="three">
+                    Vilkår og bruk
+                </a>
             {{/if}}
         </div>
     </div>
@@ -64,9 +64,11 @@
     {{#with about}}
         <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
-        <a href="{{pathFor 'edit.info'}}" class="button">
-            {{> ionIcon icon="edit"}}
-        </a>
+        {{#if currentUser}}
+            <a href="{{pathFor 'edit.info'}}" class="button button-clear editInfo">
+                {{> ionIcon icon="edit"}}
+            </a>
+        {{/if}}
     {{/with}}
 </template>
 
@@ -75,9 +77,9 @@
         <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
         {{#if currentUser}}
-        <a href="{{pathFor 'edit.info'}}" class="button">
-            {{> ionIcon icon="edit"}}
-        </a>
+            <a href="{{pathFor 'edit.info'}}" class="button button-clear editInfo">
+                {{> ionIcon icon="edit"}}
+            </a>
         {{/if}}
     {{/with}}
 </template>
@@ -86,8 +88,10 @@
     {{#with conditions}}
         <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
-        <a href="{{pathFor 'edit.info'}}" class="button">
-            {{> ionIcon icon="edit"}}
-        </a>
+        {{#if currentUser}}
+            <a href="{{pathFor 'edit.info'}}" class="button button-clear editInfo">
+                {{> ionIcon icon="edit"}}
+            </a>
+        {{/if}}
     {{/with}}
 </template>

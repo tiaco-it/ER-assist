@@ -16,7 +16,7 @@
             {{#with current}}
                 <h4 style="padding-left: 5px; padding-right: 5px;">{{text}}</h4>
                 {{#if currentUser}}
-                    <a href="{{pathFor 'edit.filter'}}" class="button button-clear pull-right">
+                    <a href="{{pathFor 'edit.filter'}}" class="button button-clear editFilter">
                         {{> ionIcon icon="edit"}}
                     </a>
                 {{/if}}
@@ -38,7 +38,7 @@
                         </div>
                     {{#if currentUser}}
                         {{#with link}}
-                        <a href="{{pathFor 'edit.link'}}" class="button button-clear pull-right">
+                        <a href="{{pathFor 'edit.link'}}" class="button button-clear editCase">
                             {{> ionIcon icon="edit"}}
                         </a>
                         {{/with}}
