@@ -478,10 +478,28 @@ AutoForm.hooks({
 AutoForm.hooks({
     editStartcaseForm: {
         onSubmit: function(insertDoc, updateDoc, currentDoc) {
+            var oldScase = Startcases.findOne({ '_id': Router.current().params._id })
             var obj = {_id: Router.current().params._id, updateDoc: updateDoc};
             Meteor.call('editStartcase', obj, function(error, result) {
                 if (error) alert(error.reason);
             });
+            var oldLink = Links.findOne({'from': scase});
+            Meteor.call('removeLink', oldLink._id, function(error, result) {
+                if (error) {
+                    alert(error.reason)
+                } else {
+                    console.log('Removed related link');
+                }
+            })
+            var newScase = Startcases.findOne({'_id': Router.current().params._id});
+            newLink = {'from': newScase, 'mark': oldLink.mark, 'to': oldLink.to};
+            Meteor.call('addLink', newLink, function(error, result) {
+                if (error) {
+                    alert(error.reason)
+                } else {
+                    console.log('Replaced related link');
+                }
+            })
             $(".back-button").click();
             this.done();
             return false;
