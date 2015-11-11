@@ -67,7 +67,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "eller bevisst ønske om å kontrollere personer i omgivelsene. Noen mennesker lever med tilnærmet konstante selvmordstanker og -planer (kronisk suicidale). \ " +
             "Disse må ofte håndteres annerledes enn mennesker med akutt nyoppstått suicidalitet. \ " +
             "(ref. legevakthåndboken)",
-            oneline: "Nødrett gir rett til å hindre med makt at pasienten tar livet sitt."
+            oneline: "Nødrett gir rett til å hindre med makt at pasienten tar livet sitt.",
+            reldocs: ["kortfattet suicidalitets vurdering.pdf"]
         },
         {
             cat: "Pasienten er voldelig",
@@ -84,7 +85,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
                         "Kun sykehusdirektøren har lov til å anmelde saken på vegen av sykehuset.",
 
             example: "Pasienten utøver vold mot ansatte eller pasienter som er tilstede i mottak/kontor. Helsepersonell har lov til å holde fast/låse inn en voldelig pasient til politi/vakt ankommer.",
-            oneline: "Gir mulighet til å holde fast/låse inn en utagerende pasient inntil politi/vakt ankommer."
+            oneline: "Gir mulighet til å holde fast/låse inn en utagerende pasient inntil politi/vakt ankommer.",
+            reldocs: ["mal_for_anmeldelse_2016.pdf"]
         },
         {
             cat: "Pasienten skader seg selv",
@@ -126,7 +128,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "I vurderingen av om slik helsehjelp skal gis, skal det blant annet legges vekt på graden av motstand samt om det i nær fremtid kan forventes at pasienten vil kunne gjenvinne sin samtykkekompetanse.",
             summary: "Tiltak utover øyebklikkelig hjelp for en pasient som ikke er samtykkekompetent må begrunnes i et skriftlig vedtak i pasientens journal.",
             example: "-Vanskelig situasjon, ofte pga en blanding av psykiatri, rus og somatikk. Pasientene kan være bare periodevis ikke samtykkekompetent pga rus, underernæring eller psykiatrisk forverring, ofte er bare øyeblikkelig hjelp gjennomførbar mens videre tiltak er meget vanskelig realiserbar.",
-            oneline: "Helsepersonell må sikre nødvendig somatisk helsehjelp til pasienter som mangler samtykkekompetanse og som motsetter seg helsehjelpen."
+            oneline: "Helsepersonell må sikre nødvendig somatisk helsehjelp til pasienter som mangler samtykkekompetanse og som motsetter seg helsehjelpen.",
+            reldocs: ["vedtaksskjema.pdf"]
         },
         {
             cat: "Pasienten skader seg selv",
@@ -192,7 +195,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Pasienten kan trekke sitt samtykke tilbake. Trekker pasienten samtykket tilbake, skal den som yter helsehjelp gi nødvendig informasjon om betydningen av at helsehjelpen ikke gis.",
             summary: "Dersom pasienten nekter/avbryter indisert behandling, så skal dette dokumenteres i journal. Det er ønskelig at pasienten underskriver at han/hun har fått grundig informasjon, men ikke ønsker helsehjelp alikevel.",
             example: "Pasienten er klar og adekvat, alle vitale parametre er ok. Dersom man finner alikevel holdepunkter for malignitet eller annen mer eller mindre alvorlig patologi og pasienten ikke ønsker utredning/behandling, så har denne pasienten har i dette tilfellet full rett til å nekte behandling.",
-            oneline: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke."
+            oneline: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke.",
+            reldocs: [ "utskrivelse.pdf" ]
         },
         {
             cat: "Pasienten nekter behandling",
@@ -208,7 +212,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "I vurderingen av om slik helsehjelp skal gis, skal det blant annet legges vekt på graden av motstand samt om det i nær fremtid kan forventes at pasienten vil kunne gjenvinne sin samtykkekompetanse.",
             summary: "Tiltak utover øyebklikkelig hjelp for en pasient som ikke er samtykkekompetent må begrunnes i et skriftlig vedtak i pasientens journal.",
             example: "-Vanskelig situasjon, ofte pga en blanding av psykiatri, rus og somatikk. Pasientene kan være bare periodevis ikke samtykkekompetent pga rus, underernæring eller psykiatrisk forverring, ofte er bare øyeblikkelig hjelp gjennomførbar mens videre tiltak er meget vanskelig realiserbar.",
-            oneline: "Helsepersonell må sikre nødvendig somatisk helsehjelp til pasienter som mangler samtykkekompetanse og som motsetter seg helsehjelpen."
+            oneline: "Helsepersonell må sikre nødvendig somatisk helsehjelp til pasienter som mangler samtykkekompetanse og som motsetter seg helsehjelpen.",
+            reldocs: ["vedtaksskjema.pdf"]
         },
         {
             cat: "Pasienten nekter behandling",
@@ -228,7 +233,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Pasienten, samt hans eller hennes nærmeste pårørende og eventuelt den myndighet som har framsatt begjæring etter § 3-6, kan påklage vedtak etter annet ledd til kontrollkommisjonen.",
             summary: "Pasienten skal undersøkes av helsepersonell etter §3-1 i psykisk helsevernloven og kan fatte vedtak om tvungen observasjon. Legen må fylle ut skjema for begjær om tvungen observasjon.",
             example: "Virker pasienten dypt deprimert eller psykotisk, så må psykiatrisk utredning overveies, om nødvendig med tvang.",
-            oneline: "Ved klar mistanke om alvorlig depresjon eller psykose kan pasienten innlegges i psykiatrien til tvungen observasjon."
+            oneline: "Ved klar mistanke om alvorlig depresjon eller psykose kan pasienten innlegges i psykiatrien til tvungen observasjon.",
+            reldocs: ["begjering_om_tvungen_legeundersokelse.pdf"]
         },
         {
             cat: "Pasienten nekter behandling",
@@ -251,7 +257,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             example: "Pasienten har en kjent alvorlig sinnslidelse. Pasienter som går under denne klassifiseringen kan lide av: \ " +
             "- Schizofreni/psykose   \ " +
             "- Depresjon ",
-            oneline: "En pasient med kjent sinnslidelse kan ved en alvorlig forverring innlegges i psykiatrien til tvungent psykisk helsevern."
+            oneline: "En pasient med kjent sinnslidelse kan ved en alvorlig forverring innlegges i psykiatrien til tvungent psykisk helsevern.",
+            reldocs: ["begjering_om_tvungen_legeundersokelse.pdf"]
         }
     ];
     _.each(laws, function(list) {

@@ -103,9 +103,9 @@
                 {{#each doc in relatedDocs}}
                     <li class="item item-checkbox">
                         <label class="checkbox">
-                            <input type="checkbox" name="group">
+                            <input type="checkbox" id="{{doc}}" check="{{isChecked}}" name="group">
                         </label>
-                        <div class="item-content">{{doc}}</div>
+                        <div class="item-content" id="{{doc}}">{{doc}}</div>
                     </li>
                     <button class="button openDoc" id="{{doc}}"> Åpne </button>
                 {{/each}}

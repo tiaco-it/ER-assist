@@ -1,33 +1,3 @@
-/*
-Template.editLayout.onCreated(function() {
-    var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            self.subscribe("element", Router.current().params._id);
-            self.subscribe("laws");
-            self.subscribe("filters");
-            self.subscribe("links");
-        }
-    });
-});
-*/
-Template.editLayout.helpers({
-    'selectedDoc': function() {
-        return Elements.findOne(Router.current().params._id);
-    }
-});
-
-/*
-Template.editcase.onCreated( function() {
-    var self = this;
-    self.autorun(function() {
-        if ( Meteor.status().connected ) {
-            Meteor.subscribe("startcase", Router.current().params._id);
-        }
-    });
-});
-*/
-
 Template.editcase.helpers({ 
     'selectedDoc': function() {
         console.log(Startcases.findOne(Router.current().params._id));

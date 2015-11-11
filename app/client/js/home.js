@@ -139,11 +139,6 @@ Template.homeContent.helpers({
         console.log(li)
         return li.to
     },
-    'allLinks': function(fromItem) {
-        Links.find({
-            from: fromItem
-        })
-    },
     'notClicked': function(id) {
         return !Session.get(id)
     },
@@ -183,15 +178,15 @@ Template.homeContent.helpers({
     'username': function() {
         return Meteor.user().username
     },
-        'link': function() {
+    'link': function() {
         var links = Links.findOne({});
         return links && links
     },
-        'filter': function() {
+    'filter': function() {
         var links = Filters.findOne({});
         return links && links
     },
-        'law': function() {
+    'law': function() {
         var links = Laws.findOne({});
         return links && links
     },

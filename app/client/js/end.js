@@ -1,3 +1,27 @@
+var checkedDocs = new Array();
+
+createLinks = function(checkedDocs) {
+    var len = checkedDocs.length;
+    var links = "";
+    for (var i = 0; i < len; i++) {
+        var next = checkedDocs[i];
+        links+= Meteor.absoluteUrl.defaultOptions.rootUrl + '/docs/' + next + '\n';
+    }
+    return links;
+}
+
+createAttachements = function(relDocNames) {
+    var len = relDocNames.length;
+    var attachements = [];
+    for (var i = 0; i < len; i++) {
+        var current = {};
+        current['fileName'] = relDocNames[i];
+        current['filePath'] = '/docs/' + relDocNames[i];
+        attachements.push(current);
+    }
+    return attachements;
+}
+
 getLaw = function() {
     var l = lawHolder[0];
     var lt = Laws.find({'paragraph': l});
@@ -11,8 +35,7 @@ getLaw = function() {
         });
     }
     if (jQuery.isEmptyObject(p)) {
-        var law = Laws.findOne({'paragraph': l})
-        return law;
+        return Laws.findOne({'paragraph': l})
     }
     console.log(p);
     return p;
@@ -84,6 +107,7 @@ Template.toptabs.helpers({
 });
 
 Template.endLayout.onCreated(function() {
+    console.log(Meteor.absoluteUrl.defaultOptions.rootUrl);
 	var l = Laws.findOne(Router.current().params._id);
 	lawHolder.push(l.paragraph);
     Session.set('tab', 2);
@@ -100,8 +124,11 @@ Template.documentation.helpers({
         return getLaw().reldocs;
     },
     'anyRelated': function() {
-        if (getLaw().reldocs.length > 0) {
-            return true;
+        if (getLaw().reldocs !== null) {
+            console.log(getLaw().reldocs)
+            if (getLaw().reldocs.length > 0) {
+                return true;
+            }
         }
         return false;
     }
@@ -109,6 +136,8 @@ Template.documentation.helpers({
 
 Template.documentation.events({
     'click #send': function(event, template) {
+        console.log('triggered!');
+        var relLinks = createLinks(checkedDocs)
         IonPopup.prompt({
             title: 'Email',
             template: 'Vennligst skriv inn email',
@@ -119,13 +148,21 @@ Template.documentation.events({
                 Meteor.call('sendEmail',
                 response,
                 'kontakt@tiaco.it',
-                'Hello from Meteor!',
-                'This is a test of Email.send.');
-            }
-        });
+                'Lenker til dokumentasjon',
+                'Lenker til relevant dokumentasjon du har bedt om: \n\n' + Session.get('category').text + '\n\n' + relLinks);
+                }
+            });
     },
     'click .openDoc': function(e) {
         window.location = '/docs/' + e.currentTarget.id;
+    },
+    'change .checkbox input': function(event) {
+        var item = event.target.id;
+        if (event.target.checked) {
+            checkedDocs.push(item);
+        } else {
+        checkedDocs.splice( $.inArray(item, checkedDocs), 1 );
+        }
     }
 });
 

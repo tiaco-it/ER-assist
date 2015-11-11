@@ -88,7 +88,6 @@ Template.itemToAdd.helpers({
 
 Template.caseadd.helpers({ 
     'selectedCase': function() {
-        console.log(Startcases.findOne(Router.current().params._id));
         return Startcases.findOne(Router.current().params._id);
     }
 });
