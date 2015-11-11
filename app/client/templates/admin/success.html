@@ -1,0 +1,18 @@
+<template name="successHeader">
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Ferdig</h1>
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton path="home" text="Hjem"}}
+    {{/contentFor}}
+</template>
+
+<template name='success'>
+  {{#ionView}}
+    {{#ionContent class="padding"}}
+      <h4>Veien har blitt lagt til.</h4>
+      <button class="button homeButton">Hjem {{> ionIcon icon="chevron-right"}}</button>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

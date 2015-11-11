@@ -108,7 +108,9 @@
 </template>
 
 <template name="itemToAdd">
-   <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Neste svar som skal linkes er svaret {{next.filter}} fra spørsmålet {{next.mark}}</div>
+  {{#if hasNext}}
+    <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Neste svar som skal linkes er svaret {{next.mark}} fra spørsmålet {{next.filter}}</div>
+  {{/if}}
 </template>
 
 <template name="addFirstQ">
@@ -128,28 +130,9 @@
 </template>
 
 <template name="answerOptions">
-  Legg til svaralternativer
+  <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Legg til svaralternativer</div>
 </template>
 
 <template name='blank'>
   <p></p>
-</template>
-
-
-<template name="successHeader">
-    {{#contentFor "headerTitle"}}
-        <h1 class="title">Success</h1>
-    {{/contentFor}}
-
-    {{#contentFor "headerButtonLeft"}}
-        {{>ionNavBackButton path="home" text="Hjem"}}
-    {{/contentFor}}
-</template>
-
-<template name='success'>
-  {{#ionView}}
-    {{#ionContent}}
-      <h2>Du la til en vei!</h2>
-    {{/ionContent}}
-  {{/ionView}}
 </template>

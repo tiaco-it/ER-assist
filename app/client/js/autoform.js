@@ -111,7 +111,6 @@ AutoForm.hooks({
                 var mark = "";
                 var isInserted = insertLink(from, mark, to);
                 console.log(isInserted);
-                insert = undefined;
                 if (isInserted) {
                     console.log('FirstLinkAddSuccess');
                     Router.current().render('itemToAdd', {to: 'next'});
@@ -125,6 +124,7 @@ AutoForm.hooks({
                 } else {
                     alert('link connection failed');
                 }
+                insert = undefined;
             }
         }
     }
@@ -136,17 +136,20 @@ AutoForm.hooks({
             insert = insertDoc;
             if (typeof insert !== 'undefined') {
                 insertDoc["number_of_outcomes"] = 2;
-                if (pathQueue[0].mark === topElement[0]) {
-                    if (nextFrom.length > 0) {
-                        Session.set('From', nextFrom.shift());
+                if (pathQueue.length > 0) {
+                    if (pathQueue[0].mark === topElement[0]) {
+                        if (nextFrom.length > 0) {
+                            Session.set('From', nextFrom.shift());
+                        } else {
+                            Session.set('From', Session.get('To'));
+                        }
+                        Session.set('To', insertDoc.text);
+                        topElement.shift();
                     } else {
-                        Session.set('From', Session.get('To'));
+                        Session.set('To', insertDoc.text);
                     }
-                    Session.set('To', insertDoc.text);
-                    topElement.shift();
                 } else {
-                    console.log('GOT CORRECT AT FILTER')
-                    Session.set('To', insertDoc.text);
+                        Session.set('To', insertDoc.text);
                 }
                 console.log('got to method call')
                 Meteor.call('addFilter', insertDoc, function(error, result) {
@@ -171,10 +174,13 @@ AutoForm.hooks({
                 console.log('DONE')
                 var from = Filters.findOne({ 'text': Session.get('From')});
                 var to = Filters.findOne({ 'text': Session.get('To')});
-                var mark = pathQueue[0].mark;
+                if (pathQueue.length > 0) {
+                    var mark = pathQueue[0].mark;
+                } else {
+                    var mark = "";
+                }
                 var isInserted = insertLink(from, mark, to);
                 console.log(isInserted);
-                insert = undefined;
                 if (isInserted) {
                     console.log('NextLinkAddSuccess');
                     pathQueue.shift();
@@ -186,6 +192,7 @@ AutoForm.hooks({
                 } else {
                     alert('link connection failed');
                 }
+                insert = undefined;
                 Router.current().render('blank', {to: 'added'})
                 Router.current().render('addedItems', {to: 'added'});
             }
@@ -201,20 +208,25 @@ AutoForm.hooks({
                 console.log('got to Submit')
                 //If the next item to link is the first to be connected to a new "from" node (TopElement)
                 //Then shuffle the from node down the tree one level
-                if (pathQueue[0].mark === topElement[0] && addedItems['filters'].length > 0) {
-                    if (nextFrom.length > 0) {
-                        console.log('used nextFrom')
-                        Session.set('From', nextFrom.shift());
-                        Session.set('To', insertDoc.text);
+                if (pathQueue > 0) {
+                    if (pathQueue[0].mark === topElement[0] && addedItems['filters'].length > 0) {
+                        if (nextFrom.length > 0) {
+                            console.log('used nextFrom')
+                            Session.set('From', nextFrom.shift());
+                            Session.set('To', insertDoc.text);
+                        } else {
+                            Session.set('From', Session.get('To'));
+                            Session.set('To', insertDoc.text);
+                        }
+                        topElement.shift();
+                    //Otherwise, just shift To along same layer
                     } else {
-                        Session.set('From', Session.get('To'));
+                        console.log('not equal to top');
                         Session.set('To', insertDoc.text);
-                    }
-                    topElement.shift();
-                //Otherwise, just shift To along same layer
+                    }  
                 } else {
-                    console.log('not equal to top');
-                    Session.set('To', insertDoc.text);
+                        console.log('not equal to top');
+                        Session.set('To', insertDoc.text);
                 }
                 Meteor.call('addFilter', insertDoc, function(error, result) {
                     if (error) {
@@ -231,6 +243,7 @@ AutoForm.hooks({
         endSubmit: function() {
             if (typeof insert !== 'undefined') {
                 markCount = insert.number_of_outcomes;
+                Session.set('NFilterText', insert.text);
                 addedItems["filters"].push(insert);
                 _dep.changed();
                 nextFrom.push(insert.text);
@@ -246,7 +259,6 @@ AutoForm.hooks({
                 } else {
                     var mark = "";
                 }
-                insert = undefined;
                 if (insertLink(from, mark, to)) {
                         Session.set('firstFilterCreated', true);
                         console.log('NLinkAddSuccess');
@@ -258,6 +270,7 @@ AutoForm.hooks({
                 } else {
                     alert('Couldnt link n options filter');
                 }
+                insert = undefined;
                 //if this was the first connection, shift From down one layer in the tree
                 if (addedItems['filters'].length == 1) {
                     Session.set('From', Session.get('To'));
@@ -348,9 +361,10 @@ AutoForm.hooks({
                 if (markCount < 1) {
                     topElement.push(marks[0]);
                     while (marks.length > 0) {
-                        var qItem = {'mark': marks.shift(), 'filter':insert.text}
+                        var qItem = {'mark': marks.shift(), 'filter':Session.get('NFilterText')}
                         pathQueue.push(qItem);
                     }
+                    Session.set('NFilterText', undefined);
                     Router.current().render('itemToAdd', {to: 'next'});
                     Router.current().render('pathButtons', {to: 'choices'});
                     Router.current().render('blank', {to: 'forms'});

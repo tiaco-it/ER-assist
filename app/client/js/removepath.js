@@ -8,20 +8,20 @@ pathBuilder = function(scase) {
 
 	while (queue.length > 0) {
 		var next = queue.pop();
-		console.log('next item');
-		console.log(next);
-		if (!(Laws.findOne({ 'text': next.to.text }) === undefined)) {
-			var law = Laws.findOne({ 'text': next.to.text});
-			//path.push(law) if you want to remove the laws here
-		} else {
-			var filter = Filters.findOne({ 'text': next.to.text });
-			path.push(filter);
-			var links = Links.find({ 'from': filter }).fetch();
-			while (links.length > 0) {
-				var link = links.pop();
-				queue.push(link);
-				path.push(link);
-			}
+		if (typeof next !== 'undefined') {
+			if (!(Laws.findOne({ 'text': next.to.text }) === undefined)) {
+				var law = Laws.findOne({ 'text': next.to.text});
+				//path.push(law) if you want to remove the laws here
+			} else {
+				var filter = Filters.findOne({ 'text': next.to.text });
+				path.push(filter);
+				var links = Links.find({ 'from': filter }).fetch();
+				while (links.length > 0) {
+					var link = links.pop();
+					queue.push(link);
+					path.push(link);
+				}
+			}	
 		}
 	}
 	return path;

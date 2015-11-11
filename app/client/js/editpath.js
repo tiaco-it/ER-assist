@@ -68,12 +68,21 @@ Template.addedItems.helpers({
 Template.itemToAdd.helpers({
     'next': function() {
         var b = pathQueue.list();
-        if (!(b[0].mark === 'JA') && !(b[0].mark === 'NEI')) {
-            Session.set('showQ', false);
-        } else {
-            Session.set('showQ', true);
-        }
+        if (b.length > 0) {
+            if (!(b[0].mark === 'JA') && !(b[0].mark === 'NEI')) {
+                Session.set('showQ', false);
+            } else {
+                Session.set('showQ', true);
+            }
         return b[0];
+        }
+        return [];
+    },
+    'hasNext': function() {
+        if (pathQueue.length > 0) {
+            return true;
+        }
+        return false;
     }
 })
 
@@ -150,13 +159,15 @@ Template.chooseL.events({
         Session.set('addLaw', true);
     },
     'click .lawChooser': function(event) {
-        if (pathQueue[0].mark === topElement[0]) {
-            if (nextFrom.length > 0) {
-                    Session.set('From', nextFrom.shift());
-            } else {
-                Session.set('From', Session.get('To'));
+        if (pathQueue.length > 0) {
+            if (pathQueue[0].mark === topElement[0]) {
+                if (nextFrom.length > 0) {
+                        Session.set('From', nextFrom.shift());
+                } else {
+                    Session.set('From', Session.get('To'));
+                }
+                topElement.shift();
             }
-            topElement.shift();
         }
         var from = Filters.findOne({ 'text': Session.get('From')});
         if (from === undefined) {
@@ -278,11 +289,6 @@ Template.addFirstQ.helpers({
     }
 });
 
-Template.success.onRendered( function() {
-    //if the path is succesfully added, do not remove db items added
-    Session.set('cleanDB', false);
-})
-
 Template.pathLayout.onCreated( function() {
     Session.set('cleanPath', true);
     Session.set('showQ', true);
@@ -291,3 +297,4 @@ Template.pathLayout.onCreated( function() {
 Template.pathLayout.onRendered( function() {
     Session.set('addLaw', false);
 })
+
