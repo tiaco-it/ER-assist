@@ -19,35 +19,47 @@
 
 <template name="addedItems">
 
+  {{#ionList}}
+
   {{#if scase}}
-  Kategorien du la til
-  {{#with addedScase}}
-    <h3>{{text}}</h3>
-  {{/with}}
+  <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Kategorien du la til</div>
+    {{#with addedScase}}
+      {{#ionItem}}
+        <h3>{{text}}</h3>
+      {{/ionItem}}
+    {{/with}}
   {{/if}}
 
   {{#if li}}
-  Koblinger du har lagt til
-  <!-- Koblinger fra startcase har ingen "mark" tekst så vises blanke -->
-  {{#each link in addedLinks}}
-    <h3>{{link.mark}}</h3>
-  {{/each}}
+  <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Koblinger du har lagt til</div>
+    {{#each link in addedLinks}}
+      {{#ionItem}}
+        <h3>Fra: {{link.from.text}}</h3>
+        <h3>Til: {{lawOrFilter link.to}}</h3>
+        <h3>Svaret som kobler: {{startLink link.mark}}</h3>
+      {{/ionItem}}
+    {{/each}}
   {{/if}}
 
   {{#if fil}}
-  Spørsmål du har lagt til
-  {{#each filter in addedFilters}}
-    <h3>{{filter.text}}</h3>
-  {{/each}}
+  <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Spørsmål du har lagt til</div>
+    {{#each filter in addedFilters}}
+      {{#ionItem}}
+        <h3>{{filter.text}}</h3>
+      {{/ionItem}}
+    {{/each}}
   {{/if}}
 
   {{#if la}}
-  Lover du har lagt til
-  {{#each law in addedLaws}}
-    <h3>{{law.text}}</h3>
-  {{/each}}
+  <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Lover du har lagt til</div>
+    {{#each law in addedLaws}}
+      {{#ionItem}}
+        <h3>{{law.paragraph}}</h3>
+      {{/ionItem}}
+    {{/each}}
   {{/if}}
 
+  {{/ionList}}
 </template>
 
 <template name="addpathHeader">
@@ -61,7 +73,7 @@
 </template>
 
 <template name="caseadd">
-  Add the starting point:
+   <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Legg til startkategorien</div>
   {{> quickForm schema="StartcaseSchema" collection="Startcases" id="insertStartcaseForm" type="normal" omitFields="createdAt, lastUpdated"}}
 </template>
 
@@ -96,7 +108,7 @@
 </template>
 
 <template name="itemToAdd">
-  Neste svar som skal linkes er: {{next}}
+   <div class="item item-divider text-center" style="border-bottom: 3px; border-bottom-style: solid; border-bottom-color: blue;">Neste svar som skal linkes er svaret {{next.filter}} fra spørsmålet {{next.mark}}</div>
 </template>
 
 <template name="addFirstQ">

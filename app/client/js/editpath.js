@@ -50,13 +50,25 @@ Template.addedItems.helpers({
     'item': function(link) {
         console.log(link);
         return link;
+    },
+    'lawOrFilter': function(item) {
+        if (item.hasOwnProperty('paragraph')) {
+            return item.paragraph;
+        }
+        return item.text;
+    },
+    'startLink': function(item) {
+        if (item === "") {
+            return "Kobling til startkategori"
+        }
+        return item;
     }
 })
 
 Template.itemToAdd.helpers({
     'next': function() {
         var b = pathQueue.list();
-        if (!(b[0] === 'JA') && !(b[0] === 'NEI')) {
+        if (!(b[0].mark === 'JA') && !(b[0].mark === 'NEI')) {
             Session.set('showQ', false);
         } else {
             Session.set('showQ', true);
@@ -138,7 +150,7 @@ Template.chooseL.events({
         Session.set('addLaw', true);
     },
     'click .lawChooser': function(event) {
-        if (pathQueue[0] === topElement[0]) {
+        if (pathQueue[0].mark === topElement[0]) {
             if (nextFrom.length > 0) {
                     Session.set('From', nextFrom.shift());
             } else {
@@ -152,7 +164,7 @@ Template.chooseL.events({
         }
         var to = Laws.findOne({ 'paragraph': event.currentTarget.id })
         if (pathQueue.length > 0) {
-            var mark = pathQueue[0];
+            var mark = pathQueue[0].mark;
         } else {
             var mark = "";
         }

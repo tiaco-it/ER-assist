@@ -117,8 +117,10 @@ AutoForm.hooks({
                     Router.current().render('itemToAdd', {to: 'next'});
                     Router.current().render('addQ', {to: 'forms'});
                     Session.set('firstFilterCreated', true);
-                    pathQueue.push('JA');
-                    pathQueue.push('NEI');
+                    var qItem = {'mark': 'JA', 'filter':insert.text}
+                    pathQueue.push(qItem);
+                    var qItem = {'mark': 'NEI', 'filter':insert.text}
+                    pathQueue.push(qItem);
                     topElement.push('JA');
                 } else {
                     alert('link connection failed');
@@ -134,9 +136,7 @@ AutoForm.hooks({
             insert = insertDoc;
             if (typeof insert !== 'undefined') {
                 insertDoc["number_of_outcomes"] = 2;
-                console.log(pathQueue[0]);
-                console.log(topElement[0]);
-                if (pathQueue[0] === topElement[0]) {
+                if (pathQueue[0].mark === topElement[0]) {
                     if (nextFrom.length > 0) {
                         Session.set('From', nextFrom.shift());
                     } else {
@@ -171,15 +171,17 @@ AutoForm.hooks({
                 console.log('DONE')
                 var from = Filters.findOne({ 'text': Session.get('From')});
                 var to = Filters.findOne({ 'text': Session.get('To')});
-                var mark = pathQueue[0];
+                var mark = pathQueue[0].mark;
                 var isInserted = insertLink(from, mark, to);
                 console.log(isInserted);
                 insert = undefined;
                 if (isInserted) {
                     console.log('NextLinkAddSuccess');
                     pathQueue.shift();
-                    pathQueue.push('JA');
-                    pathQueue.push('NEI');
+                    var qItem = {'mark': 'JA', 'filter':insert.text}
+                    pathQueue.push(qItem);
+                    var qItem = {'mark': 'NEI', 'filter':insert.text}
+                    pathQueue.push(qItem);
                     topElement.push('JA');
                 } else {
                     alert('link connection failed');
@@ -199,7 +201,7 @@ AutoForm.hooks({
                 console.log('got to Submit')
                 //If the next item to link is the first to be connected to a new "from" node (TopElement)
                 //Then shuffle the from node down the tree one level
-                if (pathQueue[0] === topElement[0] && addedItems['filters'].length > 0) {
+                if (pathQueue[0].mark === topElement[0] && addedItems['filters'].length > 0) {
                     if (nextFrom.length > 0) {
                         console.log('used nextFrom')
                         Session.set('From', nextFrom.shift());
@@ -240,7 +242,7 @@ AutoForm.hooks({
                 console.log(from);
                 var to = Filters.findOne({ 'text': Session.get('To')});
                 if (pathQueue.length > 0) {
-                    var mark = pathQueue[0];
+                    var mark = pathQueue[0].mark;
                 } else {
                     var mark = "";
                 }
@@ -346,7 +348,8 @@ AutoForm.hooks({
                 if (markCount < 1) {
                     topElement.push(marks[0]);
                     while (marks.length > 0) {
-                        pathQueue.push(marks.shift());
+                        var qItem = {'mark': marks.shift(), 'filter':insert.text}
+                        pathQueue.push(qItem);
                     }
                     Router.current().render('itemToAdd', {to: 'next'});
                     Router.current().render('pathButtons', {to: 'choices'});
