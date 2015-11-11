@@ -109,7 +109,8 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             summary: "Dersom pasienten nekter/avbryter indisert behandling, så skal dette dokumenteres i journal. Det er ønskelig at pasienten underskriver at han/hun har fått grundig informasjon, men ikke ønsker helsehjelp alikevel.",
             example: "Pasienten har f.eks. en spiseforstyrrelse eller er selvskader, men er stabil og alle vitale parametre er ok. Man finner kanskje bifunn på røntgen som burde utredes nærmere, \ " +
             "men pasienten behøver ikke umiddelbar behandling. Pasienten har i dette tilfellet full rett til å nekte behandling.",
-            oneline: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke."
+            oneline: "Helsehjelp kan bare gis med pasientens samtykke, med mindre det foreligger lovhjemmel eller annet gyldig rettsgrunnlag for å gi helsehjelp uten samtykke.",
+            reldocs: [ "utskrivelse.pdf" ] 
         },
         {
             cat: "Pasienten skader seg selv",
@@ -255,7 +256,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
     ];
     _.each(laws, function(list) {
         Laws.insert({cat: list.cat, law: list.law, paragraph: list.paragraph, text: list.text,
-            summary: list.summary, example: list.example, oneline: list.oneline})
+            summary: list.summary, example: list.example, oneline: list.oneline, reldocs: list.reldocs})
     });
 }
 

@@ -98,23 +98,21 @@
         <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
         <!-- Rest is dummy -->
         <h3 class="text-center">Relevante dokumenter</h3>
-        <div class="list">
-            <!--  example of getting the docs
-            {{#each doc in relatedDocs}} -->
-            <li class="item item-checkbox">
-                <label class="checkbox">
-                    <input type="checkbox" name="group">
-                </label>
-                <div class="item-content"><!-- {{doc.name}} -->Dokument 1</div>
-            </li>
-    <!--    {{/each}} -->
-            <li class="item item-checkbox">
-                <label class="checkbox">
-                    <input type="checkbox" name="group">
-                </label>
-                <div class="item-content">Dokument 2</div>
-            </li>
-        </div>
+            {{#if anyRelated}}
+               <div class="list">
+                {{#each doc in relatedDocs}}
+                    <li class="item item-checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" name="group">
+                        </label>
+                        <div class="item-content">{{doc}}</div>
+                    </li>
+                    <button class="button openDoc" id="{{doc}}"> Åpne </button>
+                {{/each}}
+                </div>
+            {{else}}
+                Ingen dokumenter å vise
+            {{/if}}
     {{/with}}
     <button class="button button-block button-positive" id="send">SEND</button>
 </template>

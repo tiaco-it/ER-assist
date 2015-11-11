@@ -277,8 +277,10 @@ $('html').click(function(e) {
         var f = buttons.pop();
         Session.set(f, false);
     }
-    if (Router.current().route.name === 'home') {
-        path = [];
+    if (Router.current().route !== undefined) {
+        if (Router.current().route.name === 'home') {
+            path = [];
+        }
     }
 }
     else {

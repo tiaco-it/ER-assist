@@ -1,3 +1,23 @@
+getLaw = function() {
+    var l = lawHolder[0];
+    var lt = Laws.find({'paragraph': l});
+    var p = {};
+    if (lt.count() > 1) {
+        lt.forEach(function (post) {
+            if (post.cat === Session.get('category').text) {
+                p = post;
+                return;
+            }
+        });
+    }
+    if (jQuery.isEmptyObject(p)) {
+        var law = Laws.findOne({'paragraph': l})
+        return law;
+    }
+    console.log(p);
+    return p;
+}
+
 Template.endLayout.events({
   'click #one': function(event, template) {
     event.preventDefault();
@@ -69,37 +89,21 @@ Template.endLayout.onCreated(function() {
     Session.set('tab', 2);
 });
 
-Template.endLayout.onDestroyed( function () {
-    lawHolder.pop();
-});
-
 Template.documentation.helpers({
     'thisLaw': function() {
-        var l = lawHolder[0];
-        var lt = Laws.find({'paragraph': l});
-        var p = {};
-        if (lt.count() > 1) {
-            lt.forEach(function (post) {
-                if (post.cat === Session.get('category').text) {
-                    p = post;
-                    return;
-                }
-            });
-        }
-        if (jQuery.isEmptyObject(p)) {
-        console.log(Laws.findOne({ 'paragraph': l}))
-        return Laws.findOne({'paragraph': l});
-        }
-        console.log('got p')
-        console.log(p)
-        return p;
+        return getLaw();
     },
     'path': function() {
         return path;
     },
-    //use thisLaw as input for func. Docs can be doc = {'name': name, 'link': link} for instance
-    'relatedDocs': function(law) {
-        return law.relDocs;
+    'relatedDocs': function() {
+        return getLaw().reldocs;
+    },
+    'anyRelated': function() {
+        if (getLaw().reldocs.length > 0) {
+            return true;
+        }
+        return false;
     }
 });    
 
@@ -119,6 +123,9 @@ Template.documentation.events({
                 'This is a test of Email.send.');
             }
         });
+    },
+    'click .openDoc': function(e) {
+        window.location = '/docs/' + e.currentTarget.id;
     }
 });
 
@@ -144,6 +151,18 @@ Template.example.helpers({
         return p;
     }  
 });
+
+Template.example.onCreated(function() {
+    if (Laws.findOne() === undefined) {
+        this.subscribe('laws');
+    }
+})
+
+Template.documentation.onCreated(function() {
+    if (Laws.findOne() === undefined) {
+        this.subscribe('laws');
+    }
+})
 
 Template.tlaw.helpers({
     'thisLaw': function() {
@@ -187,12 +206,17 @@ Template.registerHelper('thisLaw', function() {
 });
 
 Template.tlaw.onCreated(function() {
-    while (lawHolder.length > 0) {
-        lawHolder.pop();
+    if (Laws.findOne() === undefined) {
+        this.subscribe('laws');
     }
-    Session.set('tab', 2);
     var l = Laws.findOne(Router.current().params._id);
-    lawHolder.push(l.paragraph);
+    if (typeof l !== 'undefined') {
+        while (lawHolder.length > 0) {
+            lawHolder.pop();
+        }
+        Session.set('tab', 2);
+        lawHolder.push(l.paragraph);     
+    }
 });
 
 Template._tabsHeader.helpers({
