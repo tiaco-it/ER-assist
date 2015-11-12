@@ -84,37 +84,42 @@
     {{#with thisLaw}}
         <h3 class="text-center">Dokumentasjon til: </h3>
         <h4 class="text-center">{{law}}, {{paragraph}}</h4>
-        <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
-        <p style="padding-left: 1em; padding-right: 1em;"><b>Valg du har tatt</b></p>
-        <ul>
-            {{#each item in path}}
-                <li style="padding-left: 1em; padding-right: 1em;">{{item.question}} {{item.answer}}</li>
-            {{/each}}
-        </ul>
+        {{#if choices}}
+            <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
+            <p style="padding-left: 1em; padding-right: 1em;"><b>Valg du har tatt</b></p>
+            <ul style="list-style: dics;">
+                {{#each item in path}}
+                    <li style="padding-left: 1em; padding-right: 1em;">{{item.question}} {{item.answer}}</li>
+                {{/each}}
+            </ul>
+        {{/if}}
         <!-- should probably use bar instead of button, but padding and center-text is destroyed.. -->
         <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
         <p style="padding-left: 1em; padding-right: 1em;"><b>Viktig Informasjon</b></p>
         <p style="padding-left: 1em; padding-right: 1em;">{{summary}}</p>
         <div class="button button-full button-positive disabled" style="min-height: 3px; opacity: 100;"></div>
-        <!-- Rest is dummy -->
         <h3 class="text-center">Relevante dokumenter</h3>
-            {{#if anyRelated}}
-               <div class="list">
+        {{#if anyRelated}}
+            <div class="list item-button-right">
                 {{#each doc in relatedDocs}}
-                    <li class="item item-checkbox">
+                    <li class="item item-checkbox" style="border-right-width: 0;">
                         <label class="checkbox">
                             <input type="checkbox" id="{{doc}}" check="{{isChecked}}" name="group">
                         </label>
                         <div class="item-content" id="{{doc}}">{{doc}}</div>
                     </li>
-                    <button class="button openDoc" id="{{doc}}"> Åpne </button>
+                    <button class="button openDoc" id="{{doc}}"> Åpne</button>
                 {{/each}}
-                </div>
-            {{else}}
-                Ingen dokumenter å vise
-            {{/if}}
+            </div>
+            <button class="button button-block button-positive" id="send">SEND</button>
+        {{else}}
+            {{#ionList}}
+                {{#ionItem}}
+                    <p style="padding-left: 1em; padding-right: 1em;">Ingen dokumenter å vise</p>
+                {{/ionItem}}
+            {{/ionList}}
+        {{/if}}
     {{/with}}
-    <button class="button button-block button-positive" id="send">SEND</button>
 </template>
 
 <template name="topTabsLayout">
@@ -131,8 +136,8 @@
 <template name="_tabsHeader">
     {{#ionHeaderBar class="bar-positive"}}
         {{>ionNavBackButton text="Tilbake"}}
-            {{#with case}}
-                <h1 class="title">{{text}}</h1>
-            {{/with}}
+        {{#with case}}
+            <h1 class="title">{{text}}</h1>
+        {{/with}}
     {{/ionHeaderBar}}
 </template>
