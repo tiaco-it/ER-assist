@@ -438,7 +438,9 @@ if (Info.find().count() === 0 || UPDATE == true) {
                   " Hvis 'Lover'-knappen trykkes på vises alle lovene som gjelder for kategoriene. \ " +
                   " 'Lenker'-knappen fører til en side med relevante nettsider og telefonnummer. \ " +
                   " Info siden inneholder informasjon om selve applikasjonen. \ " +
-                  " Steder i applikasjonen som har faner på toppen, har brukeren mulighet til å bytte fane med å trykke på fanene eller å dra fingeren horisontalt over skjermen."        },
+                  " De stedene i applikasjonen som har faner på toppen, har brukeren mulighet til å bytte fane med å trykke på fanene eller å dra fingeren horisontalt over skjermen. \ " +
+                  " 'Sign in' brukes kun av administratorere av applikasjonen."
+        },
         {
             title: "Om utviklerne",
             //".. og litt informasjon om Tiaco.."
