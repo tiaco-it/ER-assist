@@ -62,7 +62,6 @@
 
 <template name='about'>
     {{#with about}}
-        <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
         {{#if currentUser}}
             <a href="{{pathFor 'edit.info'}}" class="button button-clear editInfo">
@@ -74,7 +73,6 @@
 
 <template name='howto'>
     {{#with howto}}
-        <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
         {{#if currentUser}}
             <a href="{{pathFor 'edit.info'}}" class="button button-clear editInfo">
@@ -86,7 +84,6 @@
 
 <template name='conditions'>
     {{#with conditions}}
-        <h3 class="text-center">{{title}}</h3>
         <p class="text-center">{{text}}</p>
         {{#if currentUser}}
             <a href="{{pathFor 'edit.info'}}" class="button button-clear editInfo">

@@ -425,15 +425,25 @@ if (Info.find().count() === 0 || UPDATE == true) {
     var elements = [
         {
             title: "Om appen",
-            text: "Her finner du litt informasjon om selve appen"
+            //"Her finner du litt informasjon om selve appen"
+            text: "Applikasjonen skal bli brukt som et verktøy for kunnskap, læring, håndtering og dokumentering av 'vanskelige pasienter', og den skal i hovedsak brukes av medisinsk personell som jobber i akuttmottak i Norge. \ " + 
+                   "Utviklingen er gjort i tett sammerbeid med klinikere ved St.Olavs Hospital i Trondheim."
         },
         {
             title: "Hvordan bruke appen",
-            text: ".. f.eks. en brukerguide.."
-        },
+            //".. f.eks. en brukerguide.."
+            text: "Applikasjonen har fire knapper nederst som alltid er tilgjengelig. \ " +
+                  " 'Hjem'-knappen fører til mulige kategorier for 'vanskelige pasienter'. \ " +
+                  " Etter at pasienten er kategorisert vil brukeren få opp lov som gjelder, eksempel på situasjon, og relevante dokumenter og et sammendrag. \ " +
+                  " Hvis 'Lover'-knappen trykkes på vises alle lovene som gjelder for kategoriene. \ " +
+                  " 'Lenker'-knappen fører til en side med relevante nettsider og telefonnummer. \ " +
+                  " Info siden inneholder informasjon om selve applikasjonen. \ " +
+                  " Steder i applikasjonen som har faner på toppen, har brukeren mulighet til å bytte fane med å trykke på fanene eller å dra fingeren horisontalt over skjermen."        },
         {
             title: "Om utviklerne",
-            text: ".. og litt informasjon om Tiaco.."
+            //".. og litt informasjon om Tiaco.."
+            text: "Florentin Moser, overlege Mottaksavdelingen, St. Olavs Hospital HF hadde idéen om applikasjonen. \ " +
+                "Programmering og design ble utført av studenter som tok emnet Kundestyrt Prosjekt på NTNU."
         }
     ];
     _.each(elements, function (list) {
