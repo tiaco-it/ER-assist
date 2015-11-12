@@ -68,7 +68,7 @@ if (Laws.find().count() === 0 || UPDATE == true) {
             "Disse må ofte håndteres annerledes enn mennesker med akutt nyoppstått suicidalitet. \ " +
             "(ref. legevakthåndboken)",
             oneline: "Nødrett gir rett til å hindre med makt at pasienten tar livet sitt.",
-            reldocs: ["kortfattet suicidalitets vurdering.pdf"]
+            reldocs: ["kortfattet_suicidalitets_vurdering.pdf"]
         },
         {
             cat: "Pasienten er voldelig",
